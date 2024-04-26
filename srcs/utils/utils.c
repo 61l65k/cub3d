@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/04/04 02:43:34 by apyykone         ###   ########.fr       */
+/*   Created: 2024/04/26 18:00:06 by apyykone          #+#    #+#             */
+/*   Updated: 2024/04/26 18:00:07 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-
-# include "libft.h"
-# include <ctype.h>
-# include <fcntl.h>
-# include <limits.h>
-# include <math.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
 #include "utils.h"
 
-# define MAX_X 2560
-# define MAX_Y 1440
-
-typedef struct s_cubed
+int	is_cubfile(char *file)
 {
+	int	len;
 
-}			t_cubed;
-
-#endif
+	len = ft_strlen(file);
+	if (len < 4)
+		return (0);
+	return (ft_strncmp(file + len - 4, ".cub", 4) == 0);
+}

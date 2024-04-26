@@ -12,25 +12,40 @@
 
 #include "cub3d.h"
 
-int	is_cubfile(char *file)
+static int	run_cub3d(char *cubname)
 {
-	int	len;
+	int		fd;
+	t_cubed	a;
 
-	len = ft_strlen(file);
-	if (len < 4)
+	//ft_start_tmap(&a.parse);
+	fd = open(cubname, O_RDONLY);
+	if (fd <= 0)
+		return (ft_fprintf(STDERR_FILENO, CUB_OPEN_ERROR_MSG));
+	//cub_extract(&a.parse, fd);
+	/*if (a.parse.error)
+	{
+		printf("there was an error while extracting");
 		return (0);
-	return (ft_strncmp(file + len - 4, ".cub", 4) == 0);
+	}*/
+	/*if (!ft_parse_cub(a.parse.text, &a.parse))
+	{
+		ft_freetext(a.parse.text);
+		free_all_texts(&a.parse);
+		return (0);
+	}*/
+	//start_game(&a);
+	return (1);
 }
 
 int	main(int argc, char **argv)
 {
 	if (argc < 2)
-		printf(ARG_ERROR_MSG);
+		ft_fprintf(STDERR_FILENO, ARG_ERROR_MSG);
 	else if (argc == 2)
 	{
 		if (!is_cubfile(argv[1]))
 			return (ft_fprintf(STDERR_FILENO, NOT_CUB_ERROR_MSG));
-		// run_cub3d(argv[1]);
+		run_cub3d(argv[1]);
 	}
 	/*else if (argc == 3)
 	{
@@ -41,31 +56,5 @@ int	main(int argc, char **argv)
 			printf("WRONG");
 	}*/
 	else
-		printf("WRONG");
+		ft_fprintf(STDERR_FILENO, "WRONG");
 }
-
-/*
-static int	run_cub3d(char *cubname)
-{
-	int		fd;
-	t_cubed	a;
-
-	ft_start_tmap(&a.parse);
-	fd = open(cubname, O_RDONLY);
-	if (fd <= 0)
-		return (ft_error(INVALID_FILE));
-	cub_extract(&a.parse, fd);
-	if (a.parse.error)
-	{
-		printf("there was an error while extracting");
-		return (0);
-	}
-	if (!ft_parse_cub(a.parse.text, &a.parse))
-	{
-		ft_freetext(a.parse.text);
-		free_all_texts(&a.parse);
-		return (0);
-	}
-	start_game(&a);
-	return (1);
-}*/

@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/04/04 02:43:34 by apyykone         ###   ########.fr       */
+/*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
+/*   Updated: 2024/04/26 18:00:38 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
 
-# include "libft.h"
-# include <ctype.h>
-# include <fcntl.h>
-# include <limits.h>
-# include <math.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-#include "utils.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-# define MAX_X 2560
-# define MAX_Y 1440
+#include "libft.h"
 
-typedef struct s_cubed
-{
 
-}			t_cubed;
+# define ARG_ERROR_MSG "Remember to give the cub file name ./cub3d <example.cub>\n"
+# define NOT_CUB_ERROR_MSG "The file is not a .cub file\n"
+# define CUB_OPEN_ERROR_MSG "Error while opening .cub the file\n"
+
+
+int	is_cubfile(char *file);
+
+
 
 #endif
