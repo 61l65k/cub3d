@@ -26,9 +26,6 @@
 # define MAX_X 2560
 # define MAX_Y 1440
 
-# define ARG_ERROR_MSG "Remember to give the cub file name ./cub3d <example.cub>\n"
-# define NOT_CUB_ERROR_MSG "The file is not a .cub file\n"
-# define CUB_OPEN_ERROR_MSG "Error while opening .cub the file\n"
 typedef struct s_img
 {
 	void	*ptr;
