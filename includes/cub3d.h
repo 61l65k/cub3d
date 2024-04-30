@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/04/04 02:43:34 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/04/30 09:55:12 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define CUB3D_H
 
 # include "libft.h"
+# include "mlx.h"
+# include "utils.h"
 # include <ctype.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -22,14 +24,12 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-#include "utils.h"
 
 # define MAX_X 2560
 # define MAX_Y 1440
 
 typedef struct s_cubed
 {
-
-}			t_cubed;
+}	t_cubed;
 
 #endif

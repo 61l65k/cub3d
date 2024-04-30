@@ -12,9 +12,11 @@ UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
     FLAGS := -Wall -Wextra -Werror -g -L./minilibx-linux -lmlx -lX11 -lXext -lm
 	MINILIBX = minilibx-linux
+	INCLUDES += -I./minilibx-linux
 else ifeq ($(UNAME_S),Darwin)
     FLAGS := -Wall -Wextra -Werror -g -L./minilibx-macos -lmlx -framework OpenGL -framework AppKit -lm
 	MINILIBX = minilibx-macos
+	INCLUDES += -I./minilibx-macos
 else
     $(error "Unsupported operating system ($(UNAME_S))")
 	exit 1
