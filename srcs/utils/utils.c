@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/04/30 13:56:30 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/04/30 14:40:36 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	is_cubfile(char *file)
 {
 	int	len;
-	int	fd;
 
 	len = ft_strlen(file);
 	if (len < 4)
@@ -23,8 +22,8 @@ int	is_cubfile(char *file)
 	return (ft_strncmp(file + len - 4, ".cub", 4) == 0);
 }
 
-void	ft_clean_exit(char *exit_msg)
+void	ft_clean_exit(char *msg)
 {
-	ft_fprintf(STDERR_FILENO, exit_msg);
+	perror(msg);
 	exit(EXIT_FAILURE);
 }

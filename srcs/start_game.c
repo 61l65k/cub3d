@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_scene.c                                    :+:      :+:    :+:   */
+/*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/04/30 14:25:04 by apyykone         ###   ########.fr       */
+/*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
+/*   Updated: 2024/04/30 14:39:32 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	extract_scene(t_scenedata *scene, char **av)
+void	start_game(t_cubed *cubed)
 {
-	const int	fd = open(av[1], O_RDONLY);
-
-	if (fd < 0)
-		ft_clean_exit(CUB_OPEN_ERROR_MSG);
-	close(fd);
+	(void)cubed;
 }
