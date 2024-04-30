@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   check_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/04/30 13:54:33 by apyykone         ###   ########.fr       */
+/*   Created: 2024/04/30 13:58:18 by apyykone          #+#    #+#             */
+/*   Updated: 2024/04/30 13:58:40 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "cub3d.h"
 
-# include "libft.h"
-
-# define ARG_ERROR_MSG "Remember to give the cub file name ./cub3d <example.cub>\n"
-# define NOT_CUB_ERROR_MSG "The file is not a .cub file\n"
-# define CUB_OPEN_ERROR_MSG "Error while opening .cub the file\n"
-
-int		is_cubfile(char *file);
-void	ft_clean_exit(char *exit_msg);
-
-#endif
+void	check_scene(t_cubed *cubed)
+{
+	(void)cubed;
+}
