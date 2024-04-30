@@ -3,7 +3,7 @@ INCLUDE_DIRS := includes libft
 INCLUDES := $(addprefix -I, $(INCLUDE_DIRS))
 NAME := cub3d
 LIBFT := libft/libft.a
-SRCS := main.c utils/utils.c
+SRCS := main.c utils/utils.c check_scene.c extract_scene.c start_game.c
 SRCS_MANDATORY := $(addprefix srcs/, $(SRCS))
 OBJS_MANDATORY := $(SRCS_MANDATORY:.c=.o)
 
@@ -35,17 +35,18 @@ minilibx:
 	@printf "\033[0;33mCompiling $< 🔨\033[0m\n"
 
 $(NAME) : $(OBJS_MANDATORY) 
-	$(CC) $(FLAGS) $^ -o $@ $(INCLUDES) $(LIBFT)
+	@$(CC) $(FLAGS) $^ -o $@ $(INCLUDES) $(LIBFT)
+	@printf "\033[0;32mGame $(NAME) created. 🎮\033[0m\n"
 
 clean:
 	@rm -f $(OBJS_MANDATORY)
 	@$(MAKE) -s -C libft/ clean
 	@$(MAKE) -s -C $(MINILIBX) clean
-	@printf "\033[0;31mCleaning up $(OBJS_MANDATORY) 🗑️\033[0m\n"
+	@printf "\033[0;31mCleaning up Cub3d 🗑️\033[0m\n"
 
 fclean: clean
-	@rm -f $(NAME)
 	@$(MAKE) -s -C libft/ fclean
+	@rm -f $(NAME)
 
 re: fclean all
 
