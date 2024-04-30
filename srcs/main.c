@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:01:33 by apyykone          #+#    #+#             */
-/*   Updated: 2024/04/04 02:43:39 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/04/30 00:44:53 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static int	run_cub3d(char *cubname)
 	int		fd;
 	t_cubed	a;
 
-	//ft_start_tmap(&a.parse);
+	// ft_start_tmap(&a.parse);
 	fd = open(cubname, O_RDONLY);
 	if (fd <= 0)
 		return (ft_fprintf(STDERR_FILENO, CUB_OPEN_ERROR_MSG));
-	//cub_extract(&a.parse, fd);
+	// cub_extract(&a.parse, fd);
 	/*if (a.parse.error)
 	{
 		printf("there was an error while extracting");
@@ -33,7 +33,7 @@ static int	run_cub3d(char *cubname)
 		free_all_texts(&a.parse);
 		return (0);
 	}*/
-	//start_game(&a);
+	// start_game(&a);
 	return (1);
 }
 
