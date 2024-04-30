@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   extract_scene.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/04/30 13:54:33 by apyykone         ###   ########.fr       */
+/*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
+/*   Updated: 2024/04/30 13:56:33 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "cub3d.h"
 
-# include "libft.h"
+void	extract_scene(int ac, char **av)
+{
+	int	fd;
 
-# define ARG_ERROR_MSG "Remember to give the cub file name ./cub3d <example.cub>\n"
-# define NOT_CUB_ERROR_MSG "The file is not a .cub file\n"
-# define CUB_OPEN_ERROR_MSG "Error while opening .cub the file\n"
-
-int		is_cubfile(char *file);
-void	ft_clean_exit(char *exit_msg);
-
-#endif
+	fd = open(av[1], O_RDONLY);
+	if (fd < 0)
+	{
+		ft_fprintf(STDERR_FILENO, CUB_OPEN_ERROR_MSG);
+		exit(EXIT_FAILURE);
+	}
+}

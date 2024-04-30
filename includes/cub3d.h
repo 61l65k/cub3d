@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/04/30 13:50:53 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:58:36 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,8 @@ typedef struct s_cubed
 	t_scenedata	scene;
 
 }				t_cubed;
+
+void			extract_scene(int ac, char **av);
+void			check_scene(t_cubed *cubed);
 
 #endif
