@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:55:43 by apyykone          #+#    #+#             */
-/*   Updated: 2024/02/28 13:01:25 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/04/30 14:27:06 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,13 @@
 # include "./vec/vec.h"
 # include <limits.h>
 # include <stddef.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef enum e_io_type
-{
-	IO_NONE,
-	IO_OUT_TRUNC,
-	IO_OUT_APPEND,
-	IO_INPUT,
-	IO_HEREDOC
-}					t_io_type;
-
 typedef struct s_list
 {
-	char			*content;
-	bool			ambiguous_redirect;
-	t_io_type		type;
+	void			*content;
 	struct s_list	*next;
 }					t_list;
 
