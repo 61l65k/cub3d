@@ -6,21 +6,30 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:01:33 by apyykone          #+#    #+#             */
-/*   Updated: 2024/04/30 00:44:53 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:50:54 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	run_cub3d(char *cubname)
+static void	extract_scene(int ac, char **av)
 {
-	int		fd;
-	t_cubed	a;
+	int	fd;
 
+	fd = open(av[1], O_RDONLY);
+	if (fd < 0)
+	{
+		ft_fprintf(STDERR_FILENO, CUB_OPEN_ERROR_MSG);
+		exit(EXIT_FAILURE);
+	}
+}
+
+static int	run_cub3d(int ac, char **av)
+{
+	int	fd;
+
+	extract_scene(ac, av);
 	// ft_start_tmap(&a.parse);
-	fd = open(cubname, O_RDONLY);
-	if (fd <= 0)
-		return (ft_fprintf(STDERR_FILENO, CUB_OPEN_ERROR_MSG));
 	// cub_extract(&a.parse, fd);
 	/*if (a.parse.error)
 	{
@@ -37,16 +46,19 @@ static int	run_cub3d(char *cubname)
 	return (1);
 }
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
-	if (argc < 2)
-		ft_fprintf(STDERR_FILENO, ARG_ERROR_MSG);
-	else if (argc == 2)
+	if (ac > 2)
 	{
-		if (!is_cubfile(argv[1]))
-			return (ft_fprintf(STDERR_FILENO, NOT_CUB_ERROR_MSG));
-		run_cub3d(argv[1]);
+		if (!is_cubfile(av[1]))
+		{
+			ft_fprintf(STDERR_FILENO, NOT_CUB_ERROR_MSG);
+			exit(EXIT_FAILURE);
+		}
+		run_cub3d(ac, av);
 	}
+	else if (ac < 2)
+		ft_fprintf(STDERR_FILENO, ARG_ERROR_MSG);
 	/*else if (argc == 3)
 	{
 		if (!(ft_strncmp("--save", argv[2], ft_strlen(argv[2])))

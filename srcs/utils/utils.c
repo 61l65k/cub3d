@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/04/26 18:00:07 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/04/30 10:31:06 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	is_cubfile(char *file)
 {
 	int	len;
+	int	fd;
 
 	len = ft_strlen(file);
 	if (len < 4)
