@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/04/30 09:55:12 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:50:53 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,44 @@
 # define MAX_X 2560
 # define MAX_Y 1440
 
+typedef struct s_img
+{
+	void		*img_ptr;
+	int			*data;
+	int			bpp;
+	int			size_l;
+	int			endian;
+}				t_img;
+
+typedef struct s_texture
+{
+	char		*path;
+	t_img		img;
+	int			width;
+	int			height;
+}				t_texture;
+
+typedef struct s_map
+{
+	char		**grid;
+	int			width;
+	int			height;
+}				t_map;
+
+typedef struct s_scenedata
+{
+	t_texture	no_tex;
+	t_texture	so_tex;
+	t_texture	we_tex;
+	t_texture	ea_tex;
+	t_map		map;
+	int			mini_map_tile_size;
+}				t_scenedata;
+
 typedef struct s_cubed
 {
-}	t_cubed;
+	t_scenedata	scene;
+
+}				t_cubed;
 
 #endif
