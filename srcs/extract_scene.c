@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/01 23:45:06 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/02 00:19:19 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,15 @@ static void	extract_game_data(t_scenedata *scene, char **data)
 
 void	extract_scene(t_scenedata *scene, char **av)
 {
-	int fd;
+	const int fd = open(av[1], O_RDONLY);
 	char *line;
 	char **splitted_data;
 
-	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		ft_clean_exit(CUB_OPEN_ERROR_MSG);
-	while (true)
+	while (gnl(fd, &line))
 	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		if (is_start_of_map(line))
+		if (!is_start_of_map(line))
 		{
 			extract_map(scene, fd, line);
 			break ;
@@ -68,7 +64,10 @@ void	extract_scene(t_scenedata *scene, char **av)
 			if (!splitted_data)
 				ft_clean_exit("Error: ft_splits()\n");
 			extract_game_data(scene, splitted_data);
+			free_2d_array(splitted_data);
 		}
+		free(line);
 	}
+	free(line);
 	close(fd);
 }

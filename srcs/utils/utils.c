@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/04/30 16:54:35 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/01 23:47:11 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,17 @@ int	is_start_of_map(char *line)
 		line++;
 	}
 	return (check);
+}
+
+void	free_2d_array(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
 }
