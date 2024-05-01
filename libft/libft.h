@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:55:43 by apyykone          #+#    #+#             */
-/*   Updated: 2024/04/30 14:58:25 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/01 23:26:26 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ int					ft_isupper(int c);
 size_t				ft_envlen(char *env);
 char				*ft_strndup(const char *s1, size_t n);
 char				*ft_strncat(char *dest, const char *src, size_t n);
+char				*ft_strncpy(char *dest, char *src, size_t n);
 void				*ft_realloc(void *old_ptr, size_t old_size,
 						size_t new_size);
+char				**ft_splits(char *str, char *charset);
 int					ft_isalnum(int c);
 int					ft_isenv_var(int c);
 int					ft_strcmp(const char *s1, const char *s2);
