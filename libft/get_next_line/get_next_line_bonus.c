@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:03:05 by apyykone          #+#    #+#             */
-/*   Updated: 2023/11/18 00:43:22 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/01 23:51:19 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,11 @@ static char	*get_line_b(char **s_buff)
 	*s_buff = next_spot_b(*s_buff);
 	return (next_line);
 }
+
+/*
+ *	returns 1 on newline,
+ *	0 on EOF,  -1 on error.
+ */
 
 char	*get_next_line(int fd)
 {

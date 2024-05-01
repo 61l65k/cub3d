@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/01 23:33:51 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/01 23:47:24 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@
 int		is_cubfile(char *file);
 void	ft_clean_exit(char *msg);
 int		is_start_of_map(char *line);
+void	free_2d_array(char **array);
 
 #endif

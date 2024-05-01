@@ -66,7 +66,8 @@ PRINTF_FILES = 	ft_printf \
                 ft_printf_hex \
 
 GNL_FILES = get_next_line_bonus \
-			get_next_line_utils_bonus
+			get_next_line_utils_bonus \
+			gnl_new
 
 VEC_FILES = vec_append_prepend \
 			vec_iter_map_filter_reduce_find \
