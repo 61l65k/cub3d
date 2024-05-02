@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "mlx.h"
 
 void get_resolution(char *res_buffer, t_resolution *resolution)
 {
@@ -36,20 +37,37 @@ void	fill_texture(char *texture_path, t_texture *texture)
 		texture->path = 0;
 }
 
+void get_color_rgb(char *color_buffer, t_color *color)
+{
+	char **rgb;
+
+	rgb = ft_splits(color_buffer, ",");
+	if (!rgb)
+		ft_clean_exit("Error: get_color_rgb()\n");
+	color->red = ft_atoi(rgb[0]);
+	color->green = ft_atoi(rgb[1]);
+	color->blue = ft_atoi(rgb[2]);
+	free_2d_array(rgb);
+}
+
 static void	extract_game_data(t_scenedata *scene, char **data)
 {
 	if (data[0] == 0)
 		return ;
+	else if (!ft_strcmp(data[0], "C") && data[1] != 0 && data[2] == 0)
+		get_resolution(data[1], &scene->resolution);
+	else if (!ft_strcmp(data[0], "F") && data[1] != 0 && data[2] == 0)
+		get_resolution(data[1], &scene->resolution);
 	else if (!ft_strcmp(data[0], "R") && data[1] != 0 && data[2] == 0)
 		get_resolution(data[1], &scene->resolution);
 	else if (!ft_strcmp(data[0], "NO") && data[1] != 0 && data[2] == 0)
-		fill_texture(data[1], &scene->no_tex);
+		fill_texture(data[1], &scene->north_texture);
 	else if (!ft_strcmp(data[0], "SO") && data[1] != 0 && data[2] == 0)
-		fill_texture(data[1], &scene->so_tex);
+		fill_texture(data[1], &scene->south_texture);
 	else if (!ft_strcmp(data[0], "WE") && data[1] != 0 && data[2] == 0)
-		fill_texture(data[1], &scene->we_tex);
+		fill_texture(data[1], &scene->west_texture);
 	else if (!ft_strcmp(data[0], "EA") && data[1] != 0 && data[2] == 0)
-		fill_texture(data[1], &scene->ea_tex);
+		fill_texture(data[1], &scene->east_texture);
 	else if (data[0][0] != '\n')
 	{
 		printf("Error\nUnknown identifier: %s", data[0]);

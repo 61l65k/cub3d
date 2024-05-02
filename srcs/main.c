@@ -12,20 +12,33 @@
 
 #include "cub3d.h"
 
+void printalldata(t_cubed *cubed)
+{
+	ft_printf("Resolution: %d x %d\n", cubed->scene.resolution.width, cubed->scene.resolution.height);
+	ft_printf("North texture: %s\n", cubed->scene.north_texture.path);
+	ft_printf("South texture: %s\n", cubed->scene.south_texture.path);
+	ft_printf("West texture: %s\n", cubed->scene.west_texture.path);
+	ft_printf("East texture: %s\n", cubed->scene.east_texture.path);
+	//ft_printf("Sprite texture: %s\n", cubed->scene.sprite_texture.path);
+	ft_printf("Floor color: %d, %d, %d\n", cubed->scene.floor_color.red, cubed->scene.floor_color.green, cubed->scene.floor_color.blue);
+	ft_printf("Ceiling color: %d, %d, %d\n", cubed->scene.ceiling_color.red, cubed->scene.ceiling_color.green, cubed->scene.ceiling_color.blue);
+
+}
+
 static int	run_cub3d(char **av)
 {
 	t_cubed	cubed;
 
 	cubed = (t_cubed){0};
 	extract_scene(&cubed.scene, av);
-	check_scene(&cubed);
+	validate_scene(&cubed);
 	start_game(&cubed);
 	return (0);
 }
 
 int	main(int ac, char **av)
 {
-	if (ac > 2 && (av + 1) && *(av + 1))
+	if (ac > 1 && (av + 1) && *(av + 1))
 	{
 		if (!is_cubfile(av[1]))
 		{
