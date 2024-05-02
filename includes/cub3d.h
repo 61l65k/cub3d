@@ -28,6 +28,12 @@
 # define MAX_X 2560
 # define MAX_Y 1440
 
+typedef struct s_resolution
+{
+	int		width;
+	int		height;
+}				t_resolution;
+
 typedef struct s_img
 {
 	void		*img_ptr;
@@ -54,6 +60,7 @@ typedef struct s_map
 
 typedef struct s_scenedata
 {
+	t_resolution resolution;
 	t_texture	no_tex;
 	t_texture	so_tex;
 	t_texture	we_tex;

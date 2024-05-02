@@ -3,7 +3,7 @@ INCLUDE_DIRS := includes libft
 INCLUDES := $(addprefix -I, $(INCLUDE_DIRS))
 NAME := cub3d
 LIBFT := libft/libft.a
-SRCS := main.c utils/utils.c check_scene.c extract_scene.c start_game.c
+SRCS := main.c utils/utils.c check_scene.c extract_scene.c start_game.c extract_map.c
 SRCS_MANDATORY := $(addprefix srcs/, $(SRCS))
 OBJS_MANDATORY := $(SRCS_MANDATORY:.c=.o)
 
