@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	check_scene(t_cubed *cubed)
+void	validate_scene(t_cubed *cubed)
 {
 	(void)cubed;
 }

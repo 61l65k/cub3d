@@ -34,6 +34,13 @@ typedef struct s_resolution
 	int		height;
 }				t_resolution;
 
+typedef struct s_color
+{
+	int		red;
+	int		green;
+	int		blue;
+}				t_color;
+
 typedef struct s_img
 {
 	void		*img_ptr;
@@ -61,10 +68,12 @@ typedef struct s_map
 typedef struct s_scenedata
 {
 	t_resolution resolution;
-	t_texture	no_tex;
-	t_texture	so_tex;
-	t_texture	we_tex;
-	t_texture	ea_tex;
+	t_color		floor_color;
+	t_color		ceiling_color;
+	t_texture	north_texture;
+	t_texture	south_texture;
+	t_texture	west_texture;
+	t_texture	east_texture;
 	t_map		map;
 	int			mini_map_tile_size;
 }				t_scenedata;
@@ -77,7 +86,7 @@ typedef struct s_cubed
 
 void			extract_scene(t_scenedata *scene, char **av);
 void			extract_map(t_scenedata *scene, int fd, char *line);
-void			check_scene(t_cubed *cubed);
+void			validate_scene(t_cubed *cubed);
 void			start_game(t_cubed *cubed);
 
 #endif
