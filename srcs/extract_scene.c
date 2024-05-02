@@ -12,6 +12,18 @@
 
 #include "cub3d.h"
 
+void get_resolution(char *res_buffer, t_resolution *resolution)
+{
+	char **res;
+ 
+ 	res = ft_splits(res_buffer, "x");
+	if (!res)
+		ft_clean_exit("Error: get_resolution()\n");
+	resolution->width = ft_atoi(res[0]);
+	resolution->height = ft_atoi(res[1]);
+	free_2d_array(res);
+}
+
 void	fill_texture(char *texture_path, t_texture *texture)
 {
 	if (!texture->path)
@@ -28,6 +40,8 @@ static void	extract_game_data(t_scenedata *scene, char **data)
 {
 	if (data[0] == 0)
 		return ;
+	else if (!ft_strcmp(data[0], "R") && data[1] != 0 && data[2] == 0)
+		get_resolution(data[1], &scene->resolution);
 	else if (!ft_strcmp(data[0], "NO") && data[1] != 0 && data[2] == 0)
 		fill_texture(data[1], &scene->no_tex);
 	else if (!ft_strcmp(data[0], "SO") && data[1] != 0 && data[2] == 0)
