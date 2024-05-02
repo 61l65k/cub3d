@@ -31,6 +31,7 @@ static int	run_cub3d(char **av)
 
 	cubed = (t_cubed){0};
 	extract_scene(&cubed.scene, av);
+	printalldata(&cubed);
 	validate_scene(&cubed);
 	start_game(&cubed);
 	return (0);

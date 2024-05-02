@@ -55,9 +55,9 @@ static void	extract_game_data(t_scenedata *scene, char **data)
 	if (data[0] == 0)
 		return ;
 	else if (!ft_strcmp(data[0], "C") && data[1] != 0 && data[2] == 0)
-		get_resolution(data[1], &scene->resolution);
+		get_color_rgb(data[1], &scene->ceiling_color);
 	else if (!ft_strcmp(data[0], "F") && data[1] != 0 && data[2] == 0)
-		get_resolution(data[1], &scene->resolution);
+		get_color_rgb(data[1], &scene->floor_color);
 	else if (!ft_strcmp(data[0], "R") && data[1] != 0 && data[2] == 0)
 		get_resolution(data[1], &scene->resolution);
 	else if (!ft_strcmp(data[0], "NO") && data[1] != 0 && data[2] == 0)
@@ -85,14 +85,14 @@ void	extract_scene(t_scenedata *scene, char **av)
 		ft_clean_exit(CUB_OPEN_ERROR_MSG);
 	while (gnl(fd, &line))
 	{
-		if (!is_start_of_map(line))
+		if (is_start_of_map(line))
 		{
 			extract_map(scene, fd, line);
 			break ;
 		}
 		else
 		{
-			splitted_data = ft_splits(line, "\n\t\v\f\r");
+			splitted_data = ft_splits(line, " \n\t\v\f\r");
 			if (!splitted_data)
 				ft_clean_exit("Error: ft_splits()\n");
 			extract_game_data(scene, splitted_data);
