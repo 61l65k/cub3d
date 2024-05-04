@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 13:49:09 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:13:02 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <string.h>
 # include <unistd.h>
 
-# define MAX_X 2560
-# define MAX_Y 1440
+# define MAX_X_RES 2560
+# define MAX_Y_RES 1440
 
 typedef struct s_resolution
 {
