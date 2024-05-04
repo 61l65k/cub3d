@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 12:51:21 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 13:25:09 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@ int	is_cubfile(char *file)
 	if (len < 4)
 		return (0);
 	return (ft_strncmp(file + len - 4, ".cub", 4) == 0);
-}
-
-void	ft_clean_exit(char *msg)
-{
-	perror(msg);
-	exit(EXIT_FAILURE);
 }
 
 bool	is_valid_game_identifier(const char *identifier, char **data)
