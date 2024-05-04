@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 12:51:21 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 13:11:03 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,14 @@
 	- color value out of range\n"
 # define CUB_ERROR_MALLOC "Error: malloc() in -> "
 # define CUB_MAP_SPLIT_DELIMITERS " \n\t\v\f\r"
-int		is_cubfile(char *file);
-void	ft_clean_exit(char *msg);
-int		is_start_of_map(char *line);
-void	free_2d_array(char **array);
-bool	is_valid_game_identifier(const char *identifier, char **data);
+
+typedef struct s_cubed	t_cubed;
+
+int						is_cubfile(char *file);
+void					ft_clean_exit(t_cubed *cubed, char *msg);
+int						is_start_of_map(char *line);
+void					free_2d_array(char **array);
+bool					is_valid_game_identifier(const char *identifier,
+							char **data);
 
 #endif

@@ -6,82 +6,79 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 12:51:23 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 13:26:51 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx.h"
 
-void	get_resolution(char *res_buffer, t_resolution *resolution)
+static int	get_resolution(char *res_buffer, t_resolution *resolution)
 {
 	char	**res;
 
 	res = ft_splits(res_buffer, "x");
 	if (!res)
-		ft_clean_exit("Error: get_resolution()\n");
+		return (perror(CUB_ERROR_MALLOC "get_resolution()\n"), -1);
 	resolution->width = ft_atoi(res[0]);
 	resolution->height = ft_atoi(res[1]);
 	free_2d_array(res);
+	return (0);
 }
 
-void	fill_texture(char *texture_path, t_texture *texture)
+static int	fill_texture(char *texture_path, t_texture *texture)
 {
 	if (!texture->path)
 	{
 		texture->path = ft_strdup(texture_path);
 		if (!texture->path)
-			ft_clean_exit("Error: get_texture()\n");
+			return (perror(CUB_ERROR_MALLOC "fill_texture()\n"), -1);
 	}
 	else
 		texture->path = 0;
+	return (0);
 }
 
-static void	get_color_rgb(char *color_buffer, t_color *color)
+static int	get_color_rgb(char *color_buffer, t_color *color)
 {
 	char	**rgb;
 
 	rgb = ft_splits(color_buffer, ",");
 	if (!rgb)
-		ft_clean_exit(CUB_ERROR_MALLOC "get_color_rgb()\n");
+		return (perror(CUB_ERROR_MALLOC "get_color_rgb()\n"), -1);
 	color->red = ft_atoi(rgb[0]);
 	color->green = ft_atoi(rgb[1]);
 	color->blue = ft_atoi(rgb[2]);
 	if (color->red < 0 || color->red > 255 || color->green < 0
 		|| color->green > 255 || color->blue < 0 || color->blue > 255)
-	{
-		free_2d_array(rgb);
-		ft_clean_exit(CUB_ERROR_COLOR);
-	}
-	free_2d_array(rgb);
+		return (free_2d_array(rgb), -1);
+	return (free_2d_array(rgb), 0);
 }
 
-static void	extract_game_data(t_scenedata *scene, char **data)
+static int	extract_game_data(t_scenedata *scene, char **data)
 {
 	if (data[0] == 0)
-		return ;
+		return (0);
 	if (is_valid_game_identifier("C", data))
-		get_color_rgb(data[1], &scene->ceiling_color);
+		return (get_color_rgb(data[1], &scene->ceiling_color));
 	else if (is_valid_game_identifier("F", data))
-		get_color_rgb(data[1], &scene->floor_color);
+		return (get_color_rgb(data[1], &scene->floor_color));
 	else if (is_valid_game_identifier("R", data))
-		get_resolution(data[1], &scene->resolution);
+		return (get_resolution(data[1], &scene->resolution));
 	else if (is_valid_game_identifier("NO", data))
-		fill_texture(data[1], &scene->north_texture);
+		return (fill_texture(data[1], &scene->north_texture));
 	else if (is_valid_game_identifier("SO", data))
-		fill_texture(data[1], &scene->south_texture);
+		return (fill_texture(data[1], &scene->south_texture));
 	else if (is_valid_game_identifier("WE", data))
-		fill_texture(data[1], &scene->west_texture);
+		return (fill_texture(data[1], &scene->west_texture));
 	else if (is_valid_game_identifier("EA", data))
-		fill_texture(data[1], &scene->east_texture);
+		return (fill_texture(data[1], &scene->east_texture));
 	else if (data[0][0] != '\n')
-	{
-		ft_fprintf(2, "Error\nUnknown identifier: %s", data[0]);
-		exit(EXIT_FAILURE);
-	}
+		return (ft_fprintf(2, "Error\nUnknown identifier: %s", data[0]), -1);
+	return (0);
 }
 
-void	extract_scene(t_scenedata *scene, char **av)
+void	extract_scene(t_cubed *cubed, char **av)
 {
 	const int	fd = open(av[1], O_RDONLY);
 	char		*line;
@@ -90,18 +87,19 @@ void	extract_scene(t_scenedata *scene, char **av)
 	line = NULL;
 	splitted_data = NULL;
 	if (fd < 0)
-		ft_clean_exit(CUB_OPEN_ERROR_MSG);
+		ft_clean_exit(NULL, CUB_OPEN_ERROR_MSG);
 	while (gnl(fd, &line))
 	{
 		if (is_start_of_map(line))
 		{
-			extract_map(scene, fd, line);
+			extract_map(&cubed->scene, fd, line);
 			break ;
 		}
 		splitted_data = ft_splits(line, CUB_MAP_SPLIT_DELIMITERS);
 		if (!splitted_data)
-			ft_clean_exit(CUB_ERROR_MALLOC "extract_scene()\n");
-		extract_game_data(scene, splitted_data);
+			ft_clean_exit(cubed, CUB_ERROR_MALLOC "extract_scene()\n");
+		if (extract_game_data(&cubed->scene, splitted_data) < 0)
+			ft_clean_exit(cubed, NULL);
 		free_2d_array(splitted_data);
 		free(line);
 		line = NULL;

@@ -6,23 +6,25 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:01:33 by apyykone          #+#    #+#             */
-/*   Updated: 2024/04/30 14:35:05 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 13:19:11 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void printalldata(t_cubed *cubed)
+void	printalldata(t_cubed *cubed)
 {
-	ft_printf("Resolution: %d x %d\n", cubed->scene.resolution.width, cubed->scene.resolution.height);
+	ft_printf("Resolution: %d x %d\n", cubed->scene.resolution.width,
+		cubed->scene.resolution.height);
 	ft_printf("North texture: %s\n", cubed->scene.north_texture.path);
 	ft_printf("South texture: %s\n", cubed->scene.south_texture.path);
 	ft_printf("West texture: %s\n", cubed->scene.west_texture.path);
 	ft_printf("East texture: %s\n", cubed->scene.east_texture.path);
-	//ft_printf("Sprite texture: %s\n", cubed->scene.sprite_texture.path);
-	ft_printf("Floor color: %d, %d, %d\n", cubed->scene.floor_color.red, cubed->scene.floor_color.green, cubed->scene.floor_color.blue);
-	ft_printf("Ceiling color: %d, %d, %d\n", cubed->scene.ceiling_color.red, cubed->scene.ceiling_color.green, cubed->scene.ceiling_color.blue);
-
+	// ft_printf("Sprite texture: %s\n", cubed->scene.sprite_texture.path);
+	ft_printf("Floor color: %d, %d, %d\n", cubed->scene.floor_color.red,
+		cubed->scene.floor_color.green, cubed->scene.floor_color.blue);
+	ft_printf("Ceiling color: %d, %d, %d\n", cubed->scene.ceiling_color.red,
+		cubed->scene.ceiling_color.green, cubed->scene.ceiling_color.blue);
 }
 
 static int	run_cub3d(char **av)
@@ -30,7 +32,7 @@ static int	run_cub3d(char **av)
 	t_cubed	cubed;
 
 	cubed = (t_cubed){0};
-	extract_scene(&cubed.scene, av);
+	extract_scene(&cubed, av);
 	printalldata(&cubed);
 	validate_scene(&cubed);
 	start_game(&cubed);
@@ -44,7 +46,7 @@ int	main(int ac, char **av)
 		if (!is_cubfile(av[1]))
 		{
 			ft_fprintf(STDERR_FILENO, NOT_CUB_ERROR_MSG);
-			ft_clean_exit(CUB_OPEN_ERROR_MSG);
+			ft_clean_exit(NULL, CUB_OPEN_ERROR_MSG);
 		}
 		run_cub3d(av);
 	}
