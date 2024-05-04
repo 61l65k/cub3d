@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 17:35:48 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:39:00 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ static int	get_resolution(char *res_buffer, t_resolution *resolution)
 	res = ft_splits(res_buffer, "x");
 	if (!res)
 		return (perror(CUB_ERROR_MALLOC "get_resolution()\n"), -1);
+	if (ft_2d_array_len(res) != 2 || !ft_strisdigit(res[0])
+		|| !ft_strisdigit(res[1]))
+		return (perror(ERR_RESOLUTION), free_2d_array(res), -1);
 	resolution->width = ft_atoi(res[0]);
 	resolution->height = ft_atoi(res[1]);
 	return (free_2d_array(res), 0);

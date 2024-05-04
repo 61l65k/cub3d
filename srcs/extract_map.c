@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:21:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 17:14:10 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:01:44 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,39 @@ static int	get_map(int fd, char *line, t_map *map)
 	return (0);
 }
 
+static int	get_map_width(char **strs)
+{
+	size_t	max_length;
+	size_t	length;
+	int		i;
+	int		j;
+
+	max_length = 0;
+	i = 0;
+	while (strs[i])
+	{
+		length = 0;
+		j = 0;
+		while (strs[i][j])
+		{
+			if (strs[i][j] == '\t')
+				length += 4;
+			else
+				length++;
+			j++;
+		}
+		if (length > max_length)
+			max_length = length;
+		i++;
+	}
+	return (max_length);
+}
+
 void	extract_map(t_cubed *cubed, int fd, char *line)
 {
 	if (get_map(fd, line, &cubed->scene.map) < 0)
 		ft_clean_exit(cubed, "Error\nFailed to extract map");
+	cubed->scene.map.width = get_map_width(cubed->scene.map.grid);
 	for (int i = 0; i < cubed->scene.map.height; i++)
 		printf("%s\n", cubed->scene.map.grid[i]);
 	line = NULL;
