@@ -6,18 +6,18 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/02 00:19:19 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:37:32 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx.h"
 
-void get_resolution(char *res_buffer, t_resolution *resolution)
+void	get_resolution(char *res_buffer, t_resolution *resolution)
 {
-	char **res;
- 
- 	res = ft_splits(res_buffer, "x");
+	char	**res;
+
+	res = ft_splits(res_buffer, "x");
 	if (!res)
 		ft_clean_exit("Error: get_resolution()\n");
 	resolution->width = ft_atoi(res[0]);
@@ -37,16 +37,22 @@ void	fill_texture(char *texture_path, t_texture *texture)
 		texture->path = 0;
 }
 
-void get_color_rgb(char *color_buffer, t_color *color)
+static void	get_color_rgb(char *color_buffer, t_color *color)
 {
-	char **rgb;
+	char	**rgb;
 
 	rgb = ft_splits(color_buffer, ",");
 	if (!rgb)
-		ft_clean_exit("Error: get_color_rgb()\n");
+		ft_clean_exit(CUB_ERROR_MALLOC "get_color_rgb()\n");
 	color->red = ft_atoi(rgb[0]);
 	color->green = ft_atoi(rgb[1]);
 	color->blue = ft_atoi(rgb[2]);
+	if (color->red < 0 || color->red > 255 || color->green < 0
+		|| color->green > 255 || color->blue < 0 || color->blue > 255)
+	{
+		free_2d_array(rgb);
+		ft_clean_exit(CUB_ERROR_COLOR);
+	}
 	free_2d_array(rgb);
 }
 
@@ -77,9 +83,9 @@ static void	extract_game_data(t_scenedata *scene, char **data)
 
 void	extract_scene(t_scenedata *scene, char **av)
 {
-	const int fd = open(av[1], O_RDONLY);
-	char *line;
-	char **splitted_data;
+	const int	fd = open(av[1], O_RDONLY);
+	char		*line;
+	char		**splitted_data;
 
 	if (fd < 0)
 		ft_clean_exit(CUB_OPEN_ERROR_MSG);
