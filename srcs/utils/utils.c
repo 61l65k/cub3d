@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/01 23:47:11 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:51:21 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ void	ft_clean_exit(char *msg)
 {
 	perror(msg);
 	exit(EXIT_FAILURE);
+}
+
+bool	is_valid_game_identifier(const char *identifier, char **data)
+{
+	return (!ft_strcmp(data[0], identifier) && data[1] != 0 && data[2] == 0);
 }
 
 int	is_start_of_map(char *line)
