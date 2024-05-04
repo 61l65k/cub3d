@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 16:56:29 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:12:44 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_clean_exit(t_cubed *cubed, char *msg)
 		free_texture(&cubed->scene.west_texture);
 		free_2d_array(cubed->scene.map.grid);
 	}
-
-	perror(msg);
+	if (msg)
+		perror(msg);
 	exit(EXIT_FAILURE);
 }

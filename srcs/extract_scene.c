@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 16:52:42 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:26:21 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static int	get_color_rgb(char *color_buffer, t_color *color)
 	rgb = ft_splits(color_buffer, ",");
 	if (!rgb)
 		return (perror(CUB_ERROR_MALLOC "get_color_rgb()\n"), -1);
-	color->red = ft_atoi(rgb[0]);
-	color->green = ft_atoi(rgb[1]);
-	color->blue = ft_atoi(rgb[2]);
-	if (color->red < 0 || color->red > 255 || color->green < 0
-		|| color->green > 255 || color->blue < 0 || color->blue > 255)
+	if (ft_2d_array_len(rgb) != 3)
+		return (free_2d_array(rgb), -1);
+	if (!is_valid_color_value(&color->red, rgb[0])
+		|| !is_valid_color_value(&color->green, rgb[1])
+		|| !is_valid_color_value(&color->blue, rgb[2]))
 		return (free_2d_array(rgb), -1);
 	return (free_2d_array(rgb), 0);
 }
@@ -89,21 +89,19 @@ void	extract_scene(t_cubed *cubed, char **av)
 		ft_clean_exit(NULL, CUB_OPEN_ERROR_MSG);
 	while (gnl(fd, &line))
 	{
-		if (is_start_of_map(line))
+		if (!is_start_of_map(line))
 		{
-			extract_map(cubed, fd, line);
+			splitted_data = ft_splits(line, CUB_MAP_SPLIT_DELIMITERS);
+			if (!splitted_data)
+				ft_clean_exit(cubed, CUB_ERROR_MALLOC "extract_scene()\n");
+			if (extract_game_data(&cubed->scene, splitted_data) < 0)
+				ft_clean_exit(cubed, NULL);
+			free_2d_array(splitted_data);
+			free(line);
 			line = NULL;
-			break ;
 		}
-		splitted_data = ft_splits(line, CUB_MAP_SPLIT_DELIMITERS);
-		if (!splitted_data)
-			ft_clean_exit(cubed, CUB_ERROR_MALLOC "extract_scene()\n");
-		if (extract_game_data(&cubed->scene, splitted_data) < 0)
-			ft_clean_exit(cubed, NULL);
-		free_2d_array(splitted_data);
-		free(line);
-		line = NULL;
+		else
+			extract_map(cubed, fd, line);
 	}
-	free(line);
-	close(fd);
+	return (close(fd), free(line));
 }

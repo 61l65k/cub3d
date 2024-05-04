@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 13:31:47 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:25:48 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,10 @@ int	is_start_of_map(char *line)
 	return (check);
 }
 
-void	free_2d_array(char **array)
+bool	is_valid_color_value(int *color, char *value)
 {
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-	array = 0;
+	*color = ft_atoi(value);
+	if (*color < 0 || *color > 255)
+		return (false);
+	return (true);
 }
