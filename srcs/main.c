@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:01:33 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 16:48:57 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:53:15 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static int	run_cub3d(char **av)
 	printalldata(&cubed);
 	validate_scene(&cubed);
 	start_game(&cubed);
+	ft_clean_exit(&cubed, NULL);
 	return (0);
 }
 
