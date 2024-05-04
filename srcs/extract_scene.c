@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 17:26:21 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:35:48 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ static int	get_color_rgb(char *color_buffer, t_color *color)
 	if (!rgb)
 		return (perror(CUB_ERROR_MALLOC "get_color_rgb()\n"), -1);
 	if (ft_2d_array_len(rgb) != 3)
-		return (free_2d_array(rgb), -1);
+		return (perror(ERR_RGB), free_2d_array(rgb), -1);
 	if (!is_valid_color_value(&color->red, rgb[0])
 		|| !is_valid_color_value(&color->green, rgb[1])
 		|| !is_valid_color_value(&color->blue, rgb[2]))
-		return (free_2d_array(rgb), -1);
+		return (perror(ERR_RGB), free_2d_array(rgb), -1);
 	return (free_2d_array(rgb), 0);
 }
 

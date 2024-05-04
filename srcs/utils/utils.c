@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 17:25:48 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:35:50 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	is_start_of_map(char *line)
 
 bool	is_valid_color_value(int *color, char *value)
 {
+	if (!ft_strisdigit(value))
+		return (false);
 	*color = ft_atoi(value);
 	if (*color < 0 || *color > 255)
 		return (false);

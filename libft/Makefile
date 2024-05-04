@@ -50,6 +50,7 @@ SRCS_FILES = ft_memset \
 		ft_isupper \
 		ft_strncpy \
 		ft_splits \
+		ft_strisdigit \
 
 BONUS_FILES = 	ft_lstnew_bonus \
 	  		ft_lstadd_front_bonus \

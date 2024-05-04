@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:55:43 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/01 23:26:26 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:34:24 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+int					ft_strisdigit(char *s);
 int					ft_isupper(int c);
 size_t				ft_envlen(char *env);
 char				*ft_strndup(const char *s1, size_t n);

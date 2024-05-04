@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 17:26:00 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:35:57 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 	- color value out of range\n"
 # define CUB_ERROR_MALLOC "Error: malloc() in -> "
 # define CUB_MAP_SPLIT_DELIMITERS " \n\t\v\f\r"
-
+# define ERR_RGB "Error: get_color_rgb() - invalid rgb value\n"
 typedef struct s_cubed	t_cubed;
 
 int						is_cubfile(char *file);
