@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 13:26:51 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 13:49:24 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ static int	get_resolution(char *res_buffer, t_resolution *resolution)
 		return (perror(CUB_ERROR_MALLOC "get_resolution()\n"), -1);
 	resolution->width = ft_atoi(res[0]);
 	resolution->height = ft_atoi(res[1]);
-	free_2d_array(res);
-	return (0);
+	return (free_2d_array(res), 0);
 }
 
 static int	fill_texture(char *texture_path, t_texture *texture)
@@ -92,7 +91,7 @@ void	extract_scene(t_cubed *cubed, char **av)
 	{
 		if (is_start_of_map(line))
 		{
-			extract_map(&cubed->scene, fd, line);
+			extract_map(cubed, fd, line);
 			break ;
 		}
 		splitted_data = ft_splits(line, CUB_MAP_SPLIT_DELIMITERS);

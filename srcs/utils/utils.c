@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 13:25:09 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 13:31:47 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ void	free_2d_array(char **array)
 		i++;
 	}
 	free(array);
+	array = 0;
 }
