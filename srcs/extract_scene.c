@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 12:37:32 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:51:23 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,24 +60,24 @@ static void	extract_game_data(t_scenedata *scene, char **data)
 {
 	if (data[0] == 0)
 		return ;
-	else if (!ft_strcmp(data[0], "C") && data[1] != 0 && data[2] == 0)
+	if (is_valid_game_identifier("C", data))
 		get_color_rgb(data[1], &scene->ceiling_color);
-	else if (!ft_strcmp(data[0], "F") && data[1] != 0 && data[2] == 0)
+	else if (is_valid_game_identifier("F", data))
 		get_color_rgb(data[1], &scene->floor_color);
-	else if (!ft_strcmp(data[0], "R") && data[1] != 0 && data[2] == 0)
+	else if (is_valid_game_identifier("R", data))
 		get_resolution(data[1], &scene->resolution);
-	else if (!ft_strcmp(data[0], "NO") && data[1] != 0 && data[2] == 0)
+	else if (is_valid_game_identifier("NO", data))
 		fill_texture(data[1], &scene->north_texture);
-	else if (!ft_strcmp(data[0], "SO") && data[1] != 0 && data[2] == 0)
+	else if (is_valid_game_identifier("SO", data))
 		fill_texture(data[1], &scene->south_texture);
-	else if (!ft_strcmp(data[0], "WE") && data[1] != 0 && data[2] == 0)
+	else if (is_valid_game_identifier("WE", data))
 		fill_texture(data[1], &scene->west_texture);
-	else if (!ft_strcmp(data[0], "EA") && data[1] != 0 && data[2] == 0)
+	else if (is_valid_game_identifier("EA", data))
 		fill_texture(data[1], &scene->east_texture);
 	else if (data[0][0] != '\n')
 	{
-		printf("Error\nUnknown identifier: %s", data[0]);
-		exit(EXIT_SUCCESS);
+		ft_fprintf(2, "Error\nUnknown identifier: %s", data[0]);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -87,6 +87,8 @@ void	extract_scene(t_scenedata *scene, char **av)
 	char		*line;
 	char		**splitted_data;
 
+	line = NULL;
+	splitted_data = NULL;
 	if (fd < 0)
 		ft_clean_exit(CUB_OPEN_ERROR_MSG);
 	while (gnl(fd, &line))
@@ -96,15 +98,13 @@ void	extract_scene(t_scenedata *scene, char **av)
 			extract_map(scene, fd, line);
 			break ;
 		}
-		else
-		{
-			splitted_data = ft_splits(line, " \n\t\v\f\r");
-			if (!splitted_data)
-				ft_clean_exit("Error: ft_splits()\n");
-			extract_game_data(scene, splitted_data);
-			free_2d_array(splitted_data);
-		}
+		splitted_data = ft_splits(line, CUB_MAP_SPLIT_DELIMITERS);
+		if (!splitted_data)
+			ft_clean_exit(CUB_ERROR_MALLOC "extract_scene()\n");
+		extract_game_data(scene, splitted_data);
+		free_2d_array(splitted_data);
 		free(line);
+		line = NULL;
 	}
 	free(line);
 	close(fd);
