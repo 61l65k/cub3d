@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:21:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 16:48:44 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:51:23 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static int	get_map(int fd, char *line, t_map *map)
 		if (!tmp_map[i - 1])
 			return (perror(CUB_ERROR_MALLOC "get_map()\n"), -1);
 		free(line);
+		line = 0;
 		if (!gnl(fd, &line) && *line == 0)
 			break ;
 	}

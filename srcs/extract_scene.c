@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 13:49:24 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:52:42 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	extract_scene(t_cubed *cubed, char **av)
 		if (is_start_of_map(line))
 		{
 			extract_map(cubed, fd, line);
+			line = NULL;
 			break ;
 		}
 		splitted_data = ft_splits(line, CUB_MAP_SPLIT_DELIMITERS);
