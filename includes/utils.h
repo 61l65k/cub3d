@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 18:25:04 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/05 19:19:02 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 typedef struct s_cubed	t_cubed;
 
-int						is_cubfile(char *file);
+int						has_extension(char *file, char *ext);
 void					ft_clean_exit(t_cubed *cubed, char *msg);
 int						is_start_of_map(char *line);
 void					free_2d_array(char **array);

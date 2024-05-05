@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:01:33 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 18:23:20 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/05 19:19:29 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int ac, char **av)
 {
 	if (ac > 1 && (av + 1) && *(av + 1))
 	{
-		if (!is_cubfile(av[1]))
+		if (!has_extension(av[1], ".cub"))
 		{
 			ft_fprintf(STDERR_FILENO, NOT_CUB_ERROR_MSG);
 			ft_clean_exit(NULL, CUB_OPEN_ERROR_MSG);

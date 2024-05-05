@@ -6,20 +6,20 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 17:35:50 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/05 19:20:48 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-int	is_cubfile(char *file)
+int	has_extension(char *file, char *ext)
 {
-	int	len;
+	const int	file_len = ft_strlen(file);
+	const int	ext_len = ft_strlen(ext);
 
-	len = ft_strlen(file);
-	if (len < 4)
+	if (file_len < ext_len)
 		return (0);
-	return (ft_strncmp(file + len - 4, ".cub", 4) == 0);
+	return (ft_strncmp(file + file_len - ext_len, ext, ext_len) == 0);
 }
 
 bool	is_valid_game_identifier(const char *identifier, char **data)
