@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/05 19:20:48 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/05 19:44:18 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,20 @@ bool	is_valid_color_value(int *color, char *value)
 	*color = ft_atoi(value);
 	if (*color < 0 || *color > 255)
 		return (false);
+	return (true);
+}
+
+bool	does_texture_exist(char *texture_path, char *texture_name)
+{
+	int fd;
+
+	if (texture_path == 0)
+		return (ft_fprintf(2, ERR_POORLY_FORMATTED, texture_name), false);
+	if (!has_extension(texture_path, ".xpm"))
+		return (ft_fprintf(2, ERR_INVALID_EXTENSION, texture_path), false);
+	fd = open(texture_path, O_RDONLY);
+	if (fd < 0)
+		return (ft_fprintf(2, ERR_OPENTEXT, texture_name, texture_path), false);
+	close(fd);
 	return (true);
 }
