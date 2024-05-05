@@ -1,53 +1,69 @@
-CC := gcc
-INCLUDE_DIRS := includes libft
-INCLUDES := $(addprefix -I, $(INCLUDE_DIRS))
-NAME := cub3d
-LIBFT := libft/libft.a
-SRCS := main.c utils/utils.c validate_scene.c extract_scene.c start_game.c extract_map.c utils/free_exit.c utils/2d_arr_utils.c
-SRCS_MANDATORY := $(addprefix srcs/, $(SRCS))
-OBJS_MANDATORY := $(SRCS_MANDATORY:.c=.o)
+NAME				:=		cub3D
 
-# Check for OS
-UNAME_S := $(shell uname -s)
-ifeq ($(UNAME_S),Linux)
-    FLAGS := -Wall -Wextra -Werror -g -L./minilibx-linux -lmlx -lX11 -lXext -lm
-	MINILIBX = minilibx-linux
-	INCLUDES += -I./minilibx-linux
-else ifeq ($(UNAME_S),Darwin)
-    FLAGS := -Wall -Wextra -Werror -g -L./minilibx-macos -lmlx -framework OpenGL -framework AppKit -lm
-	MINILIBX = minilibx-macos
-	INCLUDES += -I./minilibx-macos
+PATH_BUILD			:=		build
+PATH_LIBFT			:=		libft
+PATH_LIBMLX_MAC		:=		minilibx-macos
+PATH_LIBMLX_LINUX	:=		minilibx-linux
+
+SRCS				:=		$(shell find srcs -name *.c)
+SRCS_OBJS			:=		$(shell find srcs -name *.o)
+OBJS				:=		$(SRCS:%.c=$(PATH_BUILD)/%.o)
+DEPS				:=		$(OBJS:.o=.d)
+
+CC					:=		gcc
+
+RM 					:=		rm -rf
+
+OS					:=		$(shell uname)
+
+FLAG_INC			:= 		$(addprefix -I, includes libft minilibx-linux minilibx-macos)
+FLAGS_COMP			:= 		-O3 -Wall -Wextra -Werror $(FLAG_INC) -MMD -MP -g
+
+FLAG_LIBFT			:=		-L$(PATH_LIBFT) -lft 
+FLAG_LIBMLX_MAC		:=		-L$(PATH_LIBMLX_MAC) -lmlx -framework OpenGL -framework AppKit -lz
+FLAG_LIBMLX_LINUX	:=		-L$(PATH_LIBMLX_LINUX) -lmlx -lX11 -lXext
+ifeq ($(OS), "Darwin")
+	FLAGS_LINKINKG := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_MAC)
 else
-    $(error "Unsupported operating system ($(UNAME_S))")
-	exit 1
+	FLAGS_LINKINKG := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_LINUX)
+	OS_DEFINE			:=		-D OS=$(OS)
 endif
 
-all: libft minilibx $(NAME) 
+all:						init $(NAME)
+							@printf "\033[0;32mGame $(NAME) created. 🎮\033[0m\n"
 
-libft:
-	@make -s -C libft/
+init:
+							@ make -s -C $(PATH_LIBFT)
+ifeq ($(OS),)
+	@ make -s -C $(PATH_LIBMLX_MAC)
+else
+	@ make -s -C $(PATH_LIBMLX_LINUX)
+endif
 
-minilibx:
-	@make -s -C $(MINILIBX)
+$(NAME):					$(OBJS)
+							@$(CC) $(FLAGS_COMP) -o $@ $(OBJS) $(FLAGS_LINKINKG)
 
-%.o : %.c
-	@$(CC) -c $^ -o $@ $(INCLUDES)
-	@printf "\033[0;33mCompiling $< 🔨\033[0m\n"
 
-$(NAME) : $(OBJS_MANDATORY) 
-	@$(CC) $(FLAGS) $^ -o $@ $(INCLUDES) $(LIBFT)
-	@printf "\033[0;32mGame $(NAME) created. 🎮\033[0m\n"
+$(PATH_BUILD)/%.o:	%.c
+							@mkdir -p $(dir $@)
+							@$(CC) $(FLAGS_COMP) -c $< -o $@ $(OS_DEFINE)
+							@printf "\033[0;33mCompiling  $< 🔨\033[0m\n"
+
+bonus:						all
 
 clean:
-	@rm -f $(OBJS_MANDATORY)
-	@$(MAKE) -s -C libft/ clean
-	@$(MAKE) -s -C $(MINILIBX) clean
-	@printf "\033[0;31mCleaning up Cub3d 🗑️\033[0m\n"
+							@ $(RM) $(PATH_BUILD)
+							@ $(RM) $(SRCS_OBJS)
+							@ make -s -C $(PATH_LIBFT) clean
+							@ make -s -C $(PATH_LIBMLX_MAC) clean
+							@ make -s -C $(PATH_LIBMLX_LINUX) clean
 
-fclean: clean
-	@$(MAKE) -s -C libft/ fclean
-	@rm -f $(NAME)
+fclean:						clean
+							@ $(RM) $(NAME)
+							@ make -s -C $(PATH_LIBFT) fclean
 
-re: fclean all
+re:							fclean all
 
-.PHONY: libft minilibx all clean fclean re
+.PHONY:						all clean fclean re
+
+-include $(DEPS)
