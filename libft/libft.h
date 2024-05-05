@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:55:43 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 17:34:24 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/05 19:44:39 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "./ft_printf/ft_printf.h"
 # include "./get_next_line/get_next_line_bonus.h"
 # include "./vec/vec.h"
+# include <fcntl.h>
 # include <limits.h>
 # include <stddef.h>
 # include <stdio.h>

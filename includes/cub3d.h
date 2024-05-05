@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 18:13:02 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/05 20:19:55 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 # define CUB3D_H
 
 # include "libft.h"
-# include "mlx.h"
 # include "utils.h"
 # include <ctype.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
+# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
