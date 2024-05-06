@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/06 17:00:16 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:33:03 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	prepare_game(t_cubed *cubed)
 {
 	(void)cubed;
 	// prepare_player(cubed);
-	// prepare_user_events(cubed);
+	prepare_events(cubed);
 	//	prepare_raycaster(cubed);
 	//	prepare_textures(cubed);
 }
