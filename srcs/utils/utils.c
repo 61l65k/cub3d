@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/05 19:44:18 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:58:59 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ bool	is_valid_color_value(int *color, char *value)
 
 bool	does_texture_exist(char *texture_path, char *texture_name)
 {
-	int fd;
+	int	fd;
 
 	if (texture_path == 0)
 		return (ft_fprintf(2, ERR_POORLY_FORMATTED, texture_name), false);
