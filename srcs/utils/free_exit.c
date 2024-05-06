@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 18:23:26 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:45:54 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,28 @@ static void	free_texture(t_texture *texture)
 	}
 }
 
+static void	free_all_mlx(t_mlx *mlx)
+{
+	if (mlx->img.img_ptr || mlx->img.data)
+	{
+		free(mlx->img.data);
+		free(mlx->img.img_ptr);
+		mlx->img.data = 0;
+		mlx->img.img_ptr = 0;
+	}
+	if (mlx->win)
+	{
+		mlx_destroy_window(mlx->mlx_ptr, mlx->win);
+		mlx->win = 0;
+	}
+	if (mlx->mlx_ptr)
+	{
+		mlx_destroy_display(mlx->mlx_ptr);
+		free(mlx->mlx_ptr);
+		mlx->mlx_ptr = 0;
+	}
+}
+
 void	ft_clean_exit(t_cubed *cubed, char *msg)
 {
 	if (cubed)
@@ -38,6 +60,8 @@ void	ft_clean_exit(t_cubed *cubed, char *msg)
 		free_texture(&cubed->scene.west_texture);
 		free_2d_array(cubed->scene.map.grid);
 	}
+	if (cubed->mlx.mlx_ptr)
+		free_all_mlx(&cubed->mlx);
 	if (msg)
 		perror(msg);
 	exit(EXIT_FAILURE);
