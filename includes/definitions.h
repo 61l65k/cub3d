@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/06 17:02:04 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:37:43 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,41 @@
 
 # define MAX_X_RES 1920
 # define MAX_Y_RES 1080
+
+# define VALID_CHARS "012NSEW "
+
+# ifndef linux
+#  define K_ESC 53
+#  define K_W 13
+#  define K_A 0
+#  define K_S 1
+#  define K_D 2
+#  define K_LEFT_ARROW 123
+#  define K_RIGHT_ARROW 124
+# else
+#  define K_ESC 65307
+#  define K_W 122
+#  define K_A 113
+#  define K_S 115
+#  define K_D 100
+#  define K_LEFT_ARROW 65361
+#  define K_RIGHT_ARROW 65363
+# endif
+
+# ifndef linux
+#  define DESTROY_NOTIFY 17
+#  define KEY_PRESS 02
+#  define KEY_RELEASE 03
+#  define M_DESTROY_NOTIFY 131072
+#  define M_KEY_PRESS 1
+#  define M_KEY_RELEASE 2
+# else
+#  define DESTROY_NOTIFY 33
+#  define KEY_PRESS 02
+#  define KEY_RELEASE 03
+#  define M_DESTROY_NOTIFY 0
+#  define M_KEY_PRESS 1
+#  define M_KEY_RELEASE 2
+# endif
 
 #endif

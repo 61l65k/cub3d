@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/06 18:33:03 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:40:46 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	prepare_game(t_cubed *cubed)
 {
-	(void)cubed;
 	// prepare_player(cubed);
 	prepare_events(cubed);
 	//	prepare_raycaster(cubed);
@@ -37,8 +36,6 @@ void	start_game(t_cubed *cubed)
 	if (!mlx_data->win)
 		ft_clean_exit(cubed, "mlx_new_window() failed\n");
 	prepare_game(cubed);
-	while (1)
-		;
 	// mlx_loop_hook(mlx->mlx_ptr, load_frames, cubed);
-	// mlx_loop(mlx_data->mlx_ptr);
+	mlx_loop(mlx_data->mlx_ptr);
 }
