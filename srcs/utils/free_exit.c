@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/06 18:45:54 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/06 19:02:57 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void	ft_clean_exit(t_cubed *cubed, char *msg)
 		free_all_mlx(&cubed->mlx);
 	if (msg)
 		perror(msg);
+	ft_memset(cubed, 0, sizeof(t_cubed));
 	exit(EXIT_FAILURE);
 }
