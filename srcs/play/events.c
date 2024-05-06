@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/06 18:35:38 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:40:26 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 static int	key_press(int keycode, t_cubed *cubed)
 {
-	(void)cubed;
-	(void)keycode;
-	// if (keycode == ESC)
-	//  exit(EXIT_SUCCESS);
+	printf("Key pressed: %d\n", keycode);
+	if (keycode == K_ESC)
+		ft_clean_exit(cubed, "Exiting game!\n");
 	return (0);
 }
 
 void	prepare_events(t_cubed *cubed)
 {
-	(void)cubed;
 	const t_mlx *mlx = &cubed->mlx;
 
 	mlx_hook(mlx->win, KEY_PRESS, M_KEY_PRESS << 0, key_press, cubed);
