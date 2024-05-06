@@ -26,7 +26,6 @@ ifeq ($(OS), "Darwin")
 	FLAGS_LINKINKG := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_MAC)
 else
 	FLAGS_LINKINKG := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_LINUX)
-	OS_DEFINE			:=		-D OS=$(OS)
 endif
 
 all:						init $(NAME)
@@ -46,7 +45,7 @@ $(NAME):					$(OBJS)
 
 $(PATH_BUILD)/%.o:	%.c
 							@mkdir -p $(dir $@)
-							@$(CC) $(FLAGS_COMP) -c $< -o $@ $(OS_DEFINE)
+							@$(CC) $(FLAGS_COMP) -c $< -o $@
 							@printf "\033[0;33mCompiling  $< 🔨\033[0m\n"
 
 bonus:						all

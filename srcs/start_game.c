@@ -6,11 +6,20 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/05 20:20:19 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:00:16 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	prepare_game(t_cubed *cubed)
+{
+	(void)cubed;
+	// prepare_player(cubed);
+	// prepare_user_events(cubed);
+	//	prepare_raycaster(cubed);
+	//	prepare_textures(cubed);
+}
 
 void	start_game(t_cubed *cubed)
 {
@@ -20,15 +29,16 @@ void	start_game(t_cubed *cubed)
 	mlx_data->mlx_ptr = mlx_init();
 	if (!cubed->mlx.mlx_ptr)
 		ft_clean_exit(cubed, "mlx_init() failed\n");
-	/*mlx_get_screen_size(mlx->mlx_ptr, &mlx->max_x,
+	// mlx_get_screen_size(mlx->mlx_ptr, &mlx->max_x,
 	//&mlx->max_y); maybe in mid game user can change resolution to full ?
 	mlx_data->win = mlx_new_window(mlx_data->mlx_ptr,
 			cubed->scene.resolution.width, cubed->scene.resolution.height,
 			"cub3D");
-			if (!mlx_data->win)
-				ft_clean_exit(cubed, "mlx_new_window() failed\n");
-			// prepare_game(cubed);
-			// mlx_loop_hook(mlx->mlx_ptr, load_frames, cubed);
-			// mlx_loop(mlx_data->mlx_ptr);
-	*/
+	if (!mlx_data->win)
+		ft_clean_exit(cubed, "mlx_new_window() failed\n");
+	prepare_game(cubed);
+	while (1)
+		;
+	// mlx_loop_hook(mlx->mlx_ptr, load_frames, cubed);
+	// mlx_loop(mlx_data->mlx_ptr);
 }
