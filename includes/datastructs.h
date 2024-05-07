@@ -6,12 +6,13 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/06 17:04:27 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/06 19:16:00 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATASTRUCTS_H
 # define DATASTRUCTS_H
+
 typedef struct s_resolution
 {
 	int				width;
