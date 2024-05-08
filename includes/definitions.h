@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/08 14:30:03 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:50:20 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define ERR_OPENTEXT "Error\nCould not open the %s: %s.\n"
 # define ERR_MAP_NOT_SURROUNDED "Error: map is not surrounded by walls\n"
 # define ERR_MISSING_MAP "Error: map is missing\n"
+# define ERR_START_POSITION "Error: map has invalid start position\n"
 
 # define MAX_X_RES 1920
 # define MAX_Y_RES 1080
