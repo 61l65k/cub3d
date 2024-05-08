@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:58:18 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/06 17:59:03 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:32:10 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,19 @@ static void	validate_textures(t_cubed *cubed)
 		ft_clean_exit(cubed, NULL);
 }
 
+static void	validate_map(t_cubed *cubed)
+{
+	const t_map	*map = &cubed->scene.map;
+
+	if (!map->grid)
+		ft_clean_exit(cubed, ERR_MISSING_MAP);
+	if (!is_map_surrounded_by_walls(map->grid, map->height, map->width))
+		ft_clean_exit(cubed, ERR_MAP_NOT_SURROUNDED);
+}
+
 void	validate_scene(t_cubed *cubed)
 {
 	validate_resolution(&cubed->scene.resolution);
 	validate_textures(cubed);
+	validate_map(cubed);
 }
