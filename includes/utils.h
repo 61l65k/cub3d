@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/08 14:46:29 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:54:34 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void					prepare_events(t_cubed *cubed);
 int						argb_to_int(int a, int r, int g, int b);
 int						is_map_surrounded_by_walls(char **map, int height,
 							int width);
+int						has_one_start_position(char **map);
 
 #endif

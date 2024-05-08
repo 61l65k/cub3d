@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:45:21 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/08 14:45:28 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:54:42 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,26 @@ static int	has_adjacent_spaces(char **map, int i, int j)
 			|| map[i - 1][j + 1] == ' ' || map[i][j + 1] == ' '
 			|| map[i + 1][j + 1] == ' ' || map[i + 1][j] == ' '
 			|| map[i + 1][j - 1] == ' ' || map[i][j - 1] == ' ');
+}
+
+int	has_one_start_position(char **map)
+{
+	int	count;
+	int	i;
+	int	j;
+
+	count = 0;
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			if (ft_strchr("NSEW", map[i][j]))
+				count++;
+		}
+	}
+	return (count == 1);
 }
 
 int	is_map_surrounded_by_walls(char **map, int height, int width)
