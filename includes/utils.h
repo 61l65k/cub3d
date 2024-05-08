@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/06 19:13:23 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:20:21 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ bool					is_valid_color_value(int *color, char *value);
 bool					does_texture_exist(char *texture_path,
 							char *texture_name);
 void					prepare_events(t_cubed *cubed);
+int						argb_to_int(int a, int r, int g, int b);
 
 #endif
