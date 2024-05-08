@@ -1,7 +1,7 @@
-NO ./assets/textures/mainstream/Coal.xpm
-SO ./assets/textures/mainstream/Gold1.xpm
-WE ./assets/textures/mainstream/WaterF1.xpm
-EA ./assets/textures/mainstream/WalkStone.xpm
+NO ./assets/themes/mainstream/Coal.xpm
+SO ./assets/themes/mainstream/Gold1.xpm
+WE ./assets/themes/mainstream/WaterF1.xpm
+EA ./assets/themes/mainstream/WalkStone.xpm
 
 F 220,100,0
 C 225,30,0

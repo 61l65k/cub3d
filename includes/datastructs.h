@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/06 19:16:00 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:21:05 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_color
 	int				red;
 	int				green;
 	int				blue;
+	int				argb;
 }					t_color;
 
 typedef struct s_img

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/04 17:39:00 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:21:38 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	fill_texture(char *texture_path, t_texture *texture)
 	return (0);
 }
 
-static int	get_color_rgb(char *color_buffer, t_color *color)
+static int	get_validate_rgb(char *color_buffer, t_color *color)
 {
 	char	**rgb;
 
@@ -54,6 +54,7 @@ static int	get_color_rgb(char *color_buffer, t_color *color)
 		|| !is_valid_color_value(&color->green, rgb[1])
 		|| !is_valid_color_value(&color->blue, rgb[2]))
 		return (perror(ERR_RGB), free_2d_array(rgb), -1);
+	color->argb = argb_to_int(0, color->red, color->green, color->blue);
 	return (free_2d_array(rgb), 0);
 }
 
@@ -62,9 +63,9 @@ static int	extract_game_data(t_scenedata *scene, char **data)
 	if (data[0] == 0)
 		return (0);
 	if (is_valid_game_identifier("C", data))
-		return (get_color_rgb(data[1], &scene->ceiling_color));
+		return (get_validate_rgb(data[1], &scene->ceiling_color));
 	else if (is_valid_game_identifier("F", data))
-		return (get_color_rgb(data[1], &scene->floor_color));
+		return (get_validate_rgb(data[1], &scene->floor_color));
 	else if (is_valid_game_identifier("R", data))
 		return (get_resolution(data[1], &scene->resolution));
 	else if (is_valid_game_identifier("NO", data))
