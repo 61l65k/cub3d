@@ -44,7 +44,6 @@ static void	free_all_mlx(t_mlx *mlx)
 	}
 	if (mlx->mlx_ptr)
 	{
-		mlx_destroy_display(mlx->mlx_ptr);
 		free(mlx->mlx_ptr);
 		mlx->mlx_ptr = 0;
 	}
