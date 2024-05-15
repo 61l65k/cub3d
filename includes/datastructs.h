@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/15 16:49:56 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/15 21:18:19 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,17 @@ typedef struct s_mlx
 	void			*win;
 	t_img			img;
 }					t_mlx;
+
+typedef struct s_player
+{
+	double			x;
+	double			y;
+	char			walk_direction;
+	double			move_speed;
+	int				turn_direction;
+	double			rotation_angle;
+	double			rotation_speed;
+}					t_player;
 
 typedef struct s_scenedata
 {

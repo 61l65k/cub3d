@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/15 17:45:07 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:11:02 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void	prepare_game(t_cubed *cubed)
 {
-	// prepare_player(cubed);
+	prepare_player(cubed);
 	prepare_events(cubed);
-	//	prepare_raycaster(cubed);
-	//	prepare_textures(cubed);
+	// prepare_rays(cubed);
+	// prepare_textures(cubed);
 }
 
 int	render_frames(void *data)
@@ -46,8 +46,6 @@ void	start_game(t_cubed *cubed)
 	mlx_data->mlx_ptr = mlx_init();
 	if (!cubed->mlx.mlx_ptr)
 		ft_clean_exit(cubed, "mlx_init() failed\n");
-	// mlx_get_screen_size(mlx->mlx_ptr, &mlx->max_x,
-	//&mlx->max_y); maybe in mid game user can change resolution to full ?
 	mlx_data->win = mlx_new_window(mlx_data->mlx_ptr,
 			cubed->scene.resolution.width, cubed->scene.resolution.height,
 			"cub3D");
