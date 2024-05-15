@@ -14,18 +14,18 @@ CC					:=		gcc
 
 RM 					:=		rm -rf
 
-OS					:=		$(shell uname)
+OS					:=		$(shell uname -s)
 
 FLAG_INC			:= 		$(addprefix -I, includes libft minilibx-linux minilibx-macos)
-FLAGS_COMP			:= 		-O3 -Wall -Wextra -Werror $(FLAG_INC) -MMD -MP -g
+FLAGS_COMP			:= 		-O3 -Wall -Wextra -Werror $(FLAG_INC) -MMD -MP -g -fsanitize=address
 
 FLAG_LIBFT			:=		-L$(PATH_LIBFT) -lft 
 FLAG_LIBMLX_MAC		:=		-L$(PATH_LIBMLX_MAC) -lmlx -framework OpenGL -framework AppKit -lz
 FLAG_LIBMLX_LINUX	:=		-L$(PATH_LIBMLX_LINUX) -lmlx -lX11 -lXext
-ifeq ($(OS), "Darwin")
-	FLAGS_LINKINKG := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_MAC)
-else
+ifeq ($(OS),"Linux")
 	FLAGS_LINKINKG := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_LINUX)
+else
+	FLAGS_LINKINKG := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_MAC)
 endif
 
 all:						init $(NAME)
@@ -33,10 +33,10 @@ all:						init $(NAME)
 
 init:
 							@ make -s -C $(PATH_LIBFT)
-ifeq ($(OS),)
-	@ make -s -C $(PATH_LIBMLX_MAC)
-else
+ifeq ($(OS), "Linux")
 	@ make -s -C $(PATH_LIBMLX_LINUX)
+else
+	@ make -s -C $(PATH_LIBMLX_MAC)
 endif
 
 $(NAME):					$(OBJS)
