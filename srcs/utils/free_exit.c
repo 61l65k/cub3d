@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/15 17:54:59 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:06:38 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static void	free_all_mlx(t_mlx *mlx)
 
 void	ft_clean_exit(t_cubed *cubed, char *msg)
 {
+	if (msg)
+		perror(msg);
 	if (cubed)
 	{
 		free_texture(&cubed->scene.north_texture);
@@ -63,11 +65,10 @@ void	ft_clean_exit(t_cubed *cubed, char *msg)
 		free_texture(&cubed->scene.east_texture);
 		free_texture(&cubed->scene.west_texture);
 		free_2d_array(cubed->scene.map.grid);
+		if (cubed->mlx.mlx_ptr)
+			free_all_mlx(&cubed->mlx);
 	}
-	if (cubed->mlx.mlx_ptr)
-		free_all_mlx(&cubed->mlx);
 	if (msg)
-		perror(msg);
-	ft_memset(cubed, 0, sizeof(t_cubed));
-	exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
+	exit(EXIT_SUCCESS);
 }
