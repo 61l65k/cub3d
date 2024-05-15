@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/06 19:07:52 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:53:23 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	key_press(int keycode, t_cubed *cubed)
 
 void	prepare_events(t_cubed *cubed)
 {
-	const t_mlx *mlx = &cubed->mlx;
+	const t_mlx	*mlx = &cubed->mlx;
 
 	mlx_hook(mlx->win, KEY_PRESS, M_KEY_PRESS, key_press, cubed);
 	mlx_hook(mlx->win, DESTROY_NOTIFY, M_DESTROY_NOTIFY, close_game_x, cubed);

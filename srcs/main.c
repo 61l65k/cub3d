@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:01:33 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/06 19:13:33 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:50:22 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	printalldata(t_cubed *cubed)
 		cubed->scene.floor_color.green, cubed->scene.floor_color.blue);
 	ft_printf("Ceiling color: %d, %d, %d\n", cubed->scene.ceiling_color.red,
 		cubed->scene.ceiling_color.green, cubed->scene.ceiling_color.blue);
-	for (int i = 0; i < cubed->scene.map.height; i++)
+	for (size_t i = 0; i < cubed->scene.map.height; i++)
 		printf("%s\n", cubed->scene.map.grid[i]);
 }
 

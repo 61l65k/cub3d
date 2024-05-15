@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:58:18 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/08 14:54:27 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:46:26 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	validate_map(t_cubed *cubed)
 
 	if (!map->grid)
 		ft_clean_exit(cubed, ERR_MISSING_MAP);
-	if (!is_map_surrounded_by_walls(map->grid, map->height, map->width))
+	if (!is_map_surrounded_by_walls(map))
 		ft_clean_exit(cubed, ERR_MAP_NOT_SURROUNDED);
 	if (!has_one_start_position(map->grid))
 		ft_clean_exit(cubed, ERR_START_POSITION);

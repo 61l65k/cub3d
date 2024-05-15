@@ -6,18 +6,34 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:45:21 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/08 14:54:42 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:52:44 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	has_adjacent_spaces(char **map, int i, int j)
+static int	has_adjacent_spaces(const t_map *map, size_t i, size_t j)
 {
-	return (map[i - 1][j - 1] == ' ' || map[i - 1][j] == ' '
-			|| map[i - 1][j + 1] == ' ' || map[i][j + 1] == ' '
-			|| map[i + 1][j + 1] == ' ' || map[i + 1][j] == ' '
-			|| map[i + 1][j - 1] == ' ' || map[i][j - 1] == ' ');
+	int	has_space;
+
+	has_space = 0;
+	if (i > 0 && j > 0)
+		has_space |= (map->grid[i - 1][j - 1] == ' ');
+	if (i > 0)
+		has_space |= (map->grid[i - 1][j] == ' ');
+	if (i > 0 && j < map->width - 1)
+		has_space |= (map->grid[i - 1][j + 1] == ' ');
+	if (j < map->width - 1 && j < ft_strlen(map->grid[i]))
+		has_space |= (map->grid[i][j + 1] == ' ');
+	if (i < map->height - 1 && j < ft_strlen(map->grid[i]))
+		has_space |= (map->grid[i + 1][j + 1] == ' ');
+	if (i < map->height - 1)
+		has_space |= (map->grid[i + 1][j] == ' ');
+	if (i < map->height - 1 && j > 0)
+		has_space |= (map->grid[i + 1][j - 1] == ' ');
+	if (j > 0)
+		has_space |= (map->grid[i][j - 1] == ' ');
+	return (has_space);
 }
 
 int	has_one_start_position(char **map)
@@ -40,20 +56,22 @@ int	has_one_start_position(char **map)
 	return (count == 1);
 }
 
-int	is_map_surrounded_by_walls(char **map, int height, int width)
+int	is_map_surrounded_by_walls(const t_map *map)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while (i < height)
+	while (i < map->height)
 	{
 		j = 0;
-		while (j < width)
+		while (j < map->width)
 		{
-			if (map[i][j] != '1' && map[i][j] != ' ')
+			if (j < ft_strlen(map->grid[i]) && map->grid[i][j] != '1'
+				&& map->grid[i][j] != ' ')
 			{
-				if (i == 0 || j == 0 || i == height - 1 || j == width - 1)
+				if (i == 0 || j == 0 || i == map->height - 1 || j == map->width
+					- 1)
 					return (1);
 				if (has_adjacent_spaces(map, i, j))
 					return (0);
