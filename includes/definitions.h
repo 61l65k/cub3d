@@ -6,14 +6,16 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/08 14:50:20 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:54:28 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINITIONS_H
 # define DEFINITIONS_H
 
-# define ARG_ERROR_MSG "Remember to give the cub file name ./cub3d <example.cub>\n"
+# define ARG_ERROR_MSG \
+	"Remember to give the cub file name ./cub3d \
+<example.cub>\n"
 # define CUB_OPEN_ERROR_MSG "Error: .cub open()\n"
 # define CUB_ERROR_COLOR \
 	"Error: get_color_rgb()\

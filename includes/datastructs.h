@@ -6,12 +6,14 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/08 14:21:05 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:49:56 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATASTRUCTS_H
 # define DATASTRUCTS_H
+
+# include <stddef.h>
 
 typedef struct s_resolution
 {
@@ -47,8 +49,8 @@ typedef struct s_texture
 typedef struct s_map
 {
 	char			**grid;
-	int				width;
-	int				height;
+	size_t			width;
+	size_t			height;
 }					t_map;
 
 typedef struct s_mlx
