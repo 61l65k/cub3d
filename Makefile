@@ -22,7 +22,7 @@ FLAGS_COMP			:= 		-O3 -Wall -Wextra -Werror $(FLAG_INC) -MMD -MP -g -fsanitize=a
 FLAG_LIBFT			:=		-L$(PATH_LIBFT) -lft 
 FLAG_LIBMLX_MAC		:=		-L$(PATH_LIBMLX_MAC) -lmlx -framework OpenGL -framework AppKit -lz
 FLAG_LIBMLX_LINUX	:=		-L$(PATH_LIBMLX_LINUX) -lmlx -lX11 -lXext
-ifeq ($(OS),"Linux")
+ifeq ($(OS), Linux)
 	FLAGS_LINKINKG := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_LINUX)
 else
 	FLAGS_LINKINKG := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_MAC)
@@ -33,7 +33,7 @@ all:						init $(NAME)
 
 init:
 							@ make -s -C $(PATH_LIBFT)
-ifeq ($(OS), "Linux")
+ifeq ($(OS), Linux)
 	@ make -s -C $(PATH_LIBMLX_LINUX)
 else
 	@ make -s -C $(PATH_LIBMLX_MAC)
