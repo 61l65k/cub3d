@@ -122,7 +122,7 @@ int				mlx_int_do_nothing();
 int				mlx_get_color_value();
 int				mlx_int_get_good_color();
 int				mlx_int_find_in_pcm();
-int				mlx_int_anti_resize_win();
+int				mlx_int_anti_resize_win(t_xvar *xvar,Window win,int w,int h);
 int				mlx_int_wait_first_expose();
 int				mlx_int_rgb_conversion();
 int				mlx_int_deal_shm();
