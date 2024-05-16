@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:21:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/15 16:53:38 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:07:58 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,17 @@ static int	get_map_width(char **strs)
 	return (max_length);
 }
 
-void	extract_map(t_cubed *cubed, int fd, char *line)
+int	extract_map(t_cubed *cubed, int fd, char *line)
 {
-	if (get_map(fd, line, &cubed->scene.map) < 0)
-		ft_clean_exit(cubed, "Error\nFailed to extract map");
+	int	status;
+
+	status = 0;
+	status = get_map(fd, line, &cubed->scene.map);
+	if (status)
+	{
+		ft_fprintf(STDERR_FILENO, "extract_map() failed\n");
+		return (status);
+	}
 	cubed->scene.map.width = get_map_width(cubed->scene.map.grid);
-	line = NULL;
+	return (status);
 }
