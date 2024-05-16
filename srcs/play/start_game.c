@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 16:39:40 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:16:26 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static int	render_frames(void *data)
 	cubed->mlx.img.data = (int *)mlx_get_data_addr(cubed->mlx.img.img_ptr,
 			&cubed->mlx.img.bpp, &cubed->mlx.img.size_l,
 			&cubed->mlx.img.endian);
-	// update(cubed);
-	// draw(cubed);
+	// update_img(cubed);
+	draw_img(cubed);
 	mlx_put_image_to_window(cubed->mlx.mlx_ptr, cubed->mlx.win,
 		cubed->mlx.img.img_ptr, 0, 0);
 	mlx_destroy_image(cubed->mlx.mlx_ptr, cubed->mlx.img.img_ptr);
