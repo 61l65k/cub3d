@@ -17,13 +17,14 @@ RM 					:=		rm -rf
 OS					:=		$(shell uname -s)
 
 FLAG_INC			:= 		$(addprefix -I, includes libft minilibx-linux minilibx-macos)
-FLAGS_COMP			:= 		-O3 -Wall -Wextra -Werror $(FLAG_INC) -MMD -MP -g
+FLAGS_COMP			:= 		-O3 -Wall -Wextra -Werror $(FLAG_INC) -MMD -MP -g 
 
 FLAG_LIBFT			:=		-L$(PATH_LIBFT) -lft 
 FLAG_LIBMLX_MAC		:=		-L$(PATH_LIBMLX_MAC) -lmlx -framework OpenGL -framework AppKit -lz
 FLAG_LIBMLX_LINUX	:=		-L$(PATH_LIBMLX_LINUX) -lmlx -lX11 -lXext
 ifeq ($(OS),Linux)
 	FLAGS_LINKINKG := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_LINUX)
+	FLAGS_COMP += -D LINUX
 else
 	FLAGS_LINKINKG := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_MAC)
 	
