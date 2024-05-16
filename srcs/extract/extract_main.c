@@ -6,14 +6,14 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:16:13 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/16 17:19:42 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/16 19:07:09 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 int		extract_scene(t_cubed *cubed, char *line);
-int		extract_map(t_cubed *cubed, int fd, char *line);
+int		extract_map(t_cubed *cubed, int fd, char **line);
 
 void	extract_from_cub_file(t_cubed *cubed, const char *path)
 {
@@ -37,7 +37,7 @@ void	extract_from_cub_file(t_cubed *cubed, const char *path)
 		gnl_ret = gnl(fd, &line);
 	}
 	if (!status && gnl_ret == 1)
-		status = extract_map(cubed, fd, line);
+		status = extract_map(cubed, fd, &line);
 	close(fd);
 	free_null(&line);
 	if (status || gnl_ret < 0)

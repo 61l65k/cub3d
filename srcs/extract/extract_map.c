@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:21:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 18:24:20 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/16 19:04:54 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	realloc_map(t_map *map)
 	return (0);
 }
 
-static int	get_map(int fd, char *line, t_map *map)
+static int	get_map(int fd, char **line, t_map *map)
 {
 	size_t	i;
 	int		gnl_ret;
@@ -40,19 +40,19 @@ static int	get_map(int fd, char *line, t_map *map)
 		if (i + 1 >= map->grid_alloc_size)
 		{
 			if (realloc_map(map))
-				return (free_null(&line), -1);
+				return (free_null(line), -1);
 		}
-		map->grid[i++] = ft_strdup(line);
-		free_null(&line);
+		map->grid[i++] = ft_strdup(*line);
+		free_null(line);
 		if (!map->grid[i - 1])
 			return (perror(CUB_ERROR_MALLOC "get_map()"), -1);
-		gnl_ret = gnl(fd, &line);
+		gnl_ret = gnl(fd, line);
 		if (gnl_ret < 0)
 			return (perror("get_map(): gnl() fail"), -1);
 		if (gnl_ret == 0)
 			break ;
 	}
-	free(line);
+	free_null(line);
 	map->grid[i] = NULL;
 	map->height = i;
 	return (0);
@@ -86,7 +86,7 @@ static int	get_map_width(char **strs)
 	return (max_length);
 }
 
-int	extract_map(t_cubed *cubed, int fd, char *line)
+int	extract_map(t_cubed *cubed, int fd, char **line)
 {
 	int	status;
 
