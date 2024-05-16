@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   rectangle.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 17:05:09 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 18:41:37 by apyykone         ###   ########.fr       */
+/*   Created: 2024/05/16 19:24:06 by apyykone          #+#    #+#             */
+/*   Updated: 2024/05/16 19:27:12 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_rectangle(t_floor_ceiling *rec, int *img, int res_x)
+static void	draw_rectangle(t_floor_ceiling *rec, int *img, int res_x)
 {
 	int	i;
 	int	j;
@@ -50,7 +50,7 @@ void	draw_floor(t_cubed *cubed)
 
 void	draw_ceiling(t_cubed *cubed)
 {
-	t_floor_ceiling	ceiling;
+	t_floor_ceiling ceiling;
 
 	ceiling.x = 0;
 	ceiling.y = 0;
@@ -61,11 +61,4 @@ void	draw_ceiling(t_cubed *cubed)
 	ceiling.border_color = 0;
 	draw_rectangle(&ceiling, cubed->mlx.img.data,
 		cubed->scene.resolution.width);
-}
-
-void	draw_img(t_cubed *cubed)
-{
-	draw_ceiling(cubed);
-	draw_floor(cubed);
-	// draw_walls(cubed); use rays to draw walls
 }
