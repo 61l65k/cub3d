@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/15 21:45:14 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:05:18 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	ft_clean_exit(t_cubed *cubed, char *msg)
 		free_2d_array(cubed->scene.map.grid);
 		if (cubed->mlx.mlx_ptr)
 			free_all_mlx(&cubed->mlx);
+		if (cubed->rays.ray_array)
+			free(cubed->rays.ray_array);
 	}
 	if (msg)
 		exit(EXIT_FAILURE);
