@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/15 16:54:28 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:24:40 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@
 # define ERR_MAP_NOT_SURROUNDED "Error: map is not surrounded by walls\n"
 # define ERR_MISSING_MAP "Error: map is missing\n"
 # define ERR_START_POSITION "Error: map has invalid start position\n"
+# define VALID_CHARS "012NSEW "
 
 # define MAX_X_RES 1920
 # define MAX_Y_RES 1080
-
-# define VALID_CHARS "012NSEW "
+# define VIEW_ANGLE 60
 
 # ifndef linux
 #  define K_ESC 53

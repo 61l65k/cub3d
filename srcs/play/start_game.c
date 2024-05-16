@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/15 21:35:41 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:58:19 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,7 @@ static void	prepare_game(t_cubed *cubed)
 	prepare_player(cubed);
 	prepare_events(cubed);
 	prepare_textures(cubed);
-	// prepare_rays(cubed);
-}
-
-int	render_frames(void *data)
-{
-	t_cubed	*cubed;
-
-	cubed = data;
-	cubed->mlx.img.img_ptr = mlx_new_image(cubed->mlx.mlx_ptr,
-			cubed->scene.resolution.width, cubed->scene.resolution.height);
-	cubed->mlx.img.data = (int *)mlx_get_data_addr(cubed->mlx.img.img_ptr,
-			&cubed->mlx.img.bpp, &cubed->mlx.img.size_l,
-			&cubed->mlx.img.endian);
-	// update(cubed);
-	// draw(cubed);
-	mlx_put_image_to_window(cubed->mlx.mlx_ptr, cubed->mlx.win,
-		cubed->mlx.img.img_ptr, 0, 0);
-	mlx_destroy_image(cubed->mlx.mlx_ptr, cubed->mlx.img.img_ptr);
-	return (1);
+	prepare_rays(cubed);
 }
 
 void	start_game(t_cubed *cubed)
