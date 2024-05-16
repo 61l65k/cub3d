@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:36 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/15 21:36:27 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:57:06 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,15 @@ void	prepare_textures(t_cubed *cubed)
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.south_texture);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.west_texture);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.east_texture);
+}
+
+void	prepare_rays(t_cubed *cubed)
+{
+	cubed->rays.ray_array = malloc(cubed->scene.resolution.width
+			* sizeof(t_ray));
+	if (!cubed->rays.ray_array)
+		ft_clean_exit(cubed, CUB_ERROR_MALLOC "set_rays()\n");
+	cubed->rays.view_angle = degree_to_radian(VIEW_ANGLE);
+	cubed->rays.proj_plane_dist = (double)cubed->scene.resolution.width / 2
+		/ tan(cubed->rays.view_angle / 2);
 }

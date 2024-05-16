@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/15 21:24:48 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:42:35 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,19 @@ typedef struct s_player
 	double			rotation_angle;
 	double			rotation_speed;
 }					t_player;
+
+typedef struct s_ray
+{
+	double			x;
+	double			y;
+}					t_ray;
+
+typedef struct s_rays
+{
+	t_ray			*ray_array;
+	double			proj_plane_dist;
+	double			view_angle;
+}					t_rays;
 
 typedef struct s_scenedata
 {
