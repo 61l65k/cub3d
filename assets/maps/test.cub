@@ -3,8 +3,8 @@ SO ./assets/themes/mainstream/Gold1.xpm
 WE ./assets/themes/mainstream/WaterF1.xpm
 EA ./assets/themes/mainstream/WalkStone.xpm
 
-F 220,100,0
-C 225,30,0
+F 255,255,255
+C 1,1,100
 
         1111111111111111111111111
         1000000000110000000000001

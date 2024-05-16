@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 14:20:10 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/16 18:41:25 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,30 @@
 # include "definitions.h"
 # include "libft.h"
 
-typedef struct s_cubed	t_cubed;
-typedef struct s_map	t_map;
+typedef struct s_cubed		t_cubed;
+typedef struct s_map		t_map;
+typedef struct s_rectangle	t_floor_ceiling;
 
-int						has_extension(char *file, char *ext);
-void					ft_clean_exit(t_cubed *cubed, char *msg);
-int						is_start_of_map(char *line);
-void					free_2d_array(char **array);
-void					free_null(char	**ptr_to_ptr);
-void					free_null_2d_array(char ***ptr_to_ptrarray);
-int						ft_2d_array_len(char **array);
-bool					is_valid_game_identifier(const char *identifier,
-							char **data);
-bool					is_valid_color_value(int *color, char *value);
-bool					does_texture_exist(char *texture_path,
-							char *texture_name);
-void					prepare_events(t_cubed *cubed);
-int						argb_to_int(int a, int r, int g, int b);
-int						is_map_surrounded_by_walls(const t_map *map);
-int						has_one_start_position(char **map);
-double					degree_to_radian(double deg);
+int							has_extension(char *file, char *ext);
+void						ft_clean_exit(t_cubed *cubed, char *msg);
+int							is_start_of_map(char *line);
+void						free_2d_array(char **array);
+void						free_null(char **ptr_to_ptr);
+void						free_null_2d_array(char ***ptr_to_ptrarray);
+int							ft_2d_array_len(char **array);
+bool						is_valid_game_identifier(const char *identifier,
+								char **data);
+bool						is_valid_color_value(int *color, char *value);
+bool						does_texture_exist(char *texture_path,
+								char *texture_name);
+void						prepare_events(t_cubed *cubed);
+int							argb_to_int(int a, int r, int g, int b);
+int							is_map_surrounded_by_walls(const t_map *map);
+int							has_one_start_position(char **map);
+double						degree_to_radian(double deg);
+void						init_drawable_rectangle(t_floor_ceiling *rect,
+								int x, int y, int width, int height,
+								int fill_color, int border_color,
+								int border_width);
 
 #endif

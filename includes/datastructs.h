@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   datastructs.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 17:57:26 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/16 18:41:05 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,18 @@ typedef struct s_mlx
 	t_img			img;
 }					t_mlx;
 
+typedef struct s_drawable_rect
+{
+	int				x;
+	int				y;
+	double			width;
+	double			height;
+	int				fill_color;
+	int				border_color;
+	int				border_width;
+	t_texture		tex;
+}					t_drawable_rect;
+
 typedef struct s_player
 {
 	double			x;
@@ -84,6 +96,17 @@ typedef struct s_rays
 	double			proj_plane_dist;
 	double			view_angle;
 }					t_rays;
+
+typedef struct s_rectangle
+{
+	int				x;
+	int				y;
+	double			width;
+	double			height;
+	int				fill_color;
+	int				border_color;
+	int				border_width;
+}					t_floor_ceiling;
 
 typedef struct s_scenedata
 {
