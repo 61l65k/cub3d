@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/15 21:45:14 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:22:09 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	free_texture(t_mlx *mlx, t_texture *texture)
 {
+	if (!texture)
+		return ;
 	if (texture->path)
 	{
 		free(texture->path);
