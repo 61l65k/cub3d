@@ -6,44 +6,54 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:21:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 17:07:58 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/16 18:24:20 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static int	realloc_map(t_map *map)
+{
+	size_t	new_alloc_size;
+
+	new_alloc_size = map->grid_alloc_size * 2;
+	map->grid = ft_realloc(map->grid,
+			map->grid_alloc_size * sizeof(char *),
+			new_alloc_size * sizeof(char *));
+	if (!map->grid)
+	{
+		map->grid_alloc_size = 0;
+		return (perror(CUB_ERROR_MALLOC "realloc_map()"), -1);
+	}
+	map->grid_alloc_size = new_alloc_size;
+	return (0);
+}
+
 static int	get_map(int fd, char *line, t_map *map)
 {
-	int		i;
-	int		alloc_size;
-	char	**tmp_map;
+	size_t	i;
+	int		gnl_ret;
 
 	i = 0;
-	alloc_size = 2;
-	tmp_map = malloc(alloc_size * sizeof(char *));
-	if (!tmp_map)
-		return (perror(CUB_ERROR_MALLOC "get_map()\n"), -1);
 	while (1)
 	{
-		if (i >= alloc_size - 1)
+		if (i + 1 >= map->grid_alloc_size)
 		{
-			alloc_size *= 2;
-			tmp_map = ft_realloc(tmp_map, (i + 1) * sizeof(char *), alloc_size
-					* sizeof(char *));
-			if (!tmp_map)
-				return (perror(CUB_ERROR_MALLOC "get_map()\n"), -1);
+			if (realloc_map(map))
+				return (free_null(&line), -1);
 		}
-		tmp_map[i++] = ft_strdup(line);
-		if (!tmp_map[i - 1])
-			return (perror(CUB_ERROR_MALLOC "get_map()\n"), -1);
-		free(line);
-		line = 0;
-		if (!gnl(fd, &line) && *line == 0)
+		map->grid[i++] = ft_strdup(line);
+		free_null(&line);
+		if (!map->grid[i - 1])
+			return (perror(CUB_ERROR_MALLOC "get_map()"), -1);
+		gnl_ret = gnl(fd, &line);
+		if (gnl_ret < 0)
+			return (perror("get_map(): gnl() fail"), -1);
+		if (gnl_ret == 0)
 			break ;
 	}
 	free(line);
-	tmp_map[i] = 0;
-	map->grid = tmp_map;
+	map->grid[i] = NULL;
 	map->height = i;
 	return (0);
 }
@@ -81,10 +91,15 @@ int	extract_map(t_cubed *cubed, int fd, char *line)
 	int	status;
 
 	status = 0;
+	cubed->scene.map.grid_alloc_size = 80;
+	cubed->scene.map.grid
+		= ft_calloc(cubed->scene.map.grid_alloc_size, sizeof(char *));
+	if (!cubed->scene.map.grid)
+		return (perror(CUB_ERROR_MALLOC "extract_map(1) malloc fail"), -1);
 	status = get_map(fd, line, &cubed->scene.map);
 	if (status)
 	{
-		ft_fprintf(STDERR_FILENO, "extract_map() failed\n");
+		ft_fprintf(STDERR_FILENO, "extract_map(2): get_map() failed\n");
 		return (status);
 	}
 	cubed->scene.map.width = get_map_width(cubed->scene.map.grid);
