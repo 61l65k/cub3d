@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/15 20:32:39 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:20:10 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int						has_extension(char *file, char *ext);
 void					ft_clean_exit(t_cubed *cubed, char *msg);
 int						is_start_of_map(char *line);
 void					free_2d_array(char **array);
+void					free_null(char	**ptr_to_ptr);
+void					free_null_2d_array(char ***ptr_to_ptrarray);
 int						ft_2d_array_len(char **array);
 bool					is_valid_game_identifier(const char *identifier,
 							char **data);
