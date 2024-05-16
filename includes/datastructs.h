@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   datastructs.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 15:42:35 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:57:26 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_texture
 typedef struct s_map
 {
 	char			**grid;
+	size_t			grid_alloc_size;
 	size_t			width;
 	size_t			height;
 }					t_map;
