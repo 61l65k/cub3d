@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 15:57:18 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:46:39 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ typedef struct s_cubed
 	t_player	player;
 }				t_cubed;
 
-void			extract_scene(t_cubed *cubed, char **av);
-void			extract_map(t_cubed *cubed, int fd, char *line);
+
 void			validate_scene(t_cubed *cubed);
 void			start_game(t_cubed *cubed);
 void			prepare_textures(t_cubed *cubed);

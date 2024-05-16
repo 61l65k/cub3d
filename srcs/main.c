@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:01:33 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/15 16:50:22 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:11:04 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@ void	printalldata(t_cubed *cubed)
 		printf("%s\n", cubed->scene.map.grid[i]);
 }
 
+void	extract_from_cub_file(t_cubed *cubed, const char *path);
+
 static int	run_cub3d(char **av)
 {
 	t_cubed	cubed;
 
 	cubed = (t_cubed){0};
-	extract_scene(&cubed, av);
+	extract_from_cub_file(&cubed, av[1]);
 	printalldata(&cubed);
 	validate_scene(&cubed);
 	start_game(&cubed);
