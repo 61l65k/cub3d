@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cast_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 04:55:04 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/17 04:55:08 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:11:24 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
 #include "cub3d.h"
-
+// t_game type not defined
 void	update_rays(t_game *game)
 {
 	double ray_angle;
@@ -26,3 +27,4 @@ void	update_rays(t_game *game)
 		ray_angle += game->rays.view_angle / game->scene.res.width;
 	}
 }
+*/
