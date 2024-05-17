@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/17 13:31:55 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/18 02:11:15 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,19 @@ static void	prepare_game(t_cubed *cubed)
 	prepare_rays(cubed);
 }
 
+static void	update_vars(t_cubed *cubed)
+{
+	update_player_position(&cubed->player, cubed->scene.map.grid);
+	update_player_orientation(&cubed->player);
+	update_rays_hard(cubed);
+	// update_rays(cubed);
+}
+
 static void	draw_img(t_cubed *cubed)
 {
 	draw_ceiling(cubed);
 	draw_floor(cubed);
-	draw_walls(cubed); // Not implemented
+	draw_walls(cubed);
 }
 
 static int	render_frames(void *data)

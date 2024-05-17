@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 13:53:30 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/17 14:25:05 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/18 02:20:33 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,30 @@ static int	get_texture_x_offset(t_ray *ray, int texture_width)
 void	render_wall_column(t_wall *wall, int *img, t_resolution *res,
 		t_ray *ray)
 {
-	int		y;
-	int		y_tex;
-	int		x_tex;
-	double	step;
-	double	tex_pos;
+	int y;
+	int y_tex;
+	int x_tex;
+	double step;
+	double tex_pos;
+
+	printf("Rendering wall at x: %d, height: %f, texture: %p\n", wall->x,
+		wall->height, (void *)wall->texture.img.data);
 
 	step = 1.0 * wall->texture.height / wall->height;
-	tex_pos = (wall->y - (int)res->height / 2 + wall->height / 2) * step;
+	tex_pos = (wall->y - res->height / 2 + wall->height / 2) * step;
 	x_tex = get_texture_x_offset(ray, wall->texture.width);
-	y = -1;
-	while (++y < wall->height && y < res->height)
+
+	y = 0;
+	while (y < wall->height && wall->y + y < res->height)
 	{
-		y_tex = (int)tex_pos & (wall->texture.height - 1);
-		tex_pos += step;
-		img[(wall->y * res->width) + (y * res->width)
-			+ wall->x] = wall->texture.img.data[y_tex * wall->texture.width
-			+ x_tex];
+		if (wall->y + y >= 0)
+		{
+			y_tex = (int)tex_pos & (wall->texture.height - 1);
+			tex_pos += step;
+			img[(wall->y + y) * res->width
+				+ wall->x] = wall->texture.img.data[y_tex * wall->texture.width
+				+ x_tex];
+		}
+		y++;
 	}
 }

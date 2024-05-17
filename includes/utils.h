@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/17 13:54:30 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/18 02:05:43 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_rectangle	t_floor_ceiling;
 typedef struct s_ray		t_ray;
 typedef struct s_wall		t_wall;
 typedef struct s_resolution	t_resolution;
+typedef struct s_player		t_player;
 
 int							has_extension(char *file, char *ext);
 void						ft_clean_exit(t_cubed *cubed, char *msg);
@@ -42,5 +43,11 @@ int							has_one_start_position(char **map);
 double						degree_to_radian(double deg);
 void						render_wall_column(t_wall *wall, int *img,
 								t_resolution *res, t_ray *ray);
+
+void						update_rays_hard(t_cubed *game);
+
+void						update_player_position(t_player *player,
+								char **map);
+void						update_player_orientation(t_player *player);
 
 #endif
