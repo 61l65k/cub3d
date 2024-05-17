@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/17 04:59:06 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:54:30 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 typedef struct s_cubed		t_cubed;
 typedef struct s_map		t_map;
 typedef struct s_rectangle	t_floor_ceiling;
+typedef struct s_ray		t_ray;
+typedef struct s_wall		t_wall;
+typedef struct s_resolution	t_resolution;
 
 int							has_extension(char *file, char *ext);
 void						ft_clean_exit(t_cubed *cubed, char *msg);
@@ -37,5 +40,7 @@ int							argb_to_int(int a, int r, int g, int b);
 int							is_map_surrounded_by_walls(const t_map *map);
 int							has_one_start_position(char **map);
 double						degree_to_radian(double deg);
+void						render_wall_column(t_wall *wall, int *img,
+								t_resolution *res, t_ray *ray);
 
 #endif

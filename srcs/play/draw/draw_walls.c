@@ -6,51 +6,11 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 03:18:22 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/17 05:34:44 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:53:42 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	get_bitmap_offset(t_ray *ray, int bitmap_width)
-{
-	double	remainder;
-	int		offset;
-
-	if (ray->side == 'H')
-	{
-		remainder = ray->x - floor(ray->x);
-		offset = bitmap_width * remainder;
-	}
-	else
-	{
-		remainder = ray->y - floor(ray->y);
-		offset = bitmap_width * remainder;
-	}
-	return (offset);
-}
-
-void	draw_wall_strip(t_wall *rect, int *img, t_resolution *res, t_ray *ray)
-{
-	int		y;
-	int		y_tex;
-	int		x_tex;
-	double	step;
-	double	tex_pox;
-
-	step = 1.0 * rect->texture.height / rect->height;
-	tex_pox = (rect->y - (int)res->height / 2 + rect->height / 2) * step;
-	x_tex = get_bitmap_offset(ray, rect->texture.width);
-	y = -1;
-	while (++y < rect->height && y < res->height)
-	{
-		y_tex = (int)tex_pox & (rect->texture.height - 1);
-		tex_pox += step;
-		img[(rect->y * res->width) + (y * res->width)
-			+ rect->x] = rect->texture.img.data[y_tex * rect->texture.height
-			+ x_tex];
-	}
-}
 
 double	get_wall_height(t_cubed *game, t_ray *ray)
 {
@@ -100,7 +60,7 @@ void	draw_walls(t_cubed *game)
 		wall.height = get_wall_height(game, ray);
 		wall.y = get_y_wall_position(game, wall.height);
 		wall.texture = get_wall_texture(&game->scene, ray->orientation);
-		draw_wall_strip(&wall, game->mlx.img.data, &game->scene.resolution,
+		render_wall_column(&wall, game->mlx.img.data, &game->scene.resolution,
 			ray);
 		i++;
 	}
