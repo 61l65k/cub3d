@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/17 05:21:00 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:10:15 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	draw_img(t_cubed *cubed)
 {
 	draw_ceiling(cubed);
 	draw_floor(cubed);
-	draw_walls(cubed);
+	//draw_walls(cubed); // Not implemented
 }
 
 static int	render_frames(void *data)
