@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 18:41:05 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/17 04:58:22 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,13 @@ typedef struct s_ray
 {
 	double			x;
 	double			y;
+	double			size;
+	char			obstacle;
+	double			angle;
+	char			orientation;
+	char			side;
+	double			x_step;
+	double			y_step;
 }					t_ray;
 
 typedef struct s_rays
@@ -95,6 +102,7 @@ typedef struct s_rays
 	t_ray			*ray_array;
 	double			proj_plane_dist;
 	double			view_angle;
+	double			dist_proj_plane;
 }					t_rays;
 
 typedef struct s_rectangle
@@ -107,6 +115,15 @@ typedef struct s_rectangle
 	int				border_color;
 	int				border_width;
 }					t_floor_ceiling;
+
+typedef struct s_wall
+{
+	int				x;
+	int				y;
+	double			width;
+	double			height;
+	t_texture		texture;
+}					t_wall;
 
 typedef struct s_scenedata
 {

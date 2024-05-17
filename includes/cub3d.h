@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 19:24:57 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/17 05:23:04 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void			prepare_textures(t_cubed *cubed);
 void			prepare_rays(t_cubed *cubed);
 void			prepare_player(t_cubed *cubed);
 void			prepare_rays(t_cubed *cubed);
-void			draw_img(t_cubed *cubed);
 void			draw_floor(t_cubed *cubed);
 void			draw_ceiling(t_cubed *cubed);
+void			draw_walls(t_cubed *game);
+void			update_vars(t_cubed *cubed);
 
 #endif

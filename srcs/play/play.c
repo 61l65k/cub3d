@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_game.c                                       :+:      :+:    :+:   */
+/*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 17:16:26 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/17 05:21:00 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ static void	prepare_game(t_cubed *cubed)
 	prepare_rays(cubed);
 }
 
+static void	draw_img(t_cubed *cubed)
+{
+	draw_ceiling(cubed);
+	draw_floor(cubed);
+	draw_walls(cubed);
+}
+
 static int	render_frames(void *data)
 {
 	t_cubed	*cubed;
@@ -30,7 +37,7 @@ static int	render_frames(void *data)
 	cubed->mlx.img.data = (int *)mlx_get_data_addr(cubed->mlx.img.img_ptr,
 			&cubed->mlx.img.bpp, &cubed->mlx.img.size_l,
 			&cubed->mlx.img.endian);
-	// update_img(cubed);
+	update_vars(cubed);
 	draw_img(cubed);
 	mlx_put_image_to_window(cubed->mlx.mlx_ptr, cubed->mlx.win,
 		cubed->mlx.img.img_ptr, 0, 0);
