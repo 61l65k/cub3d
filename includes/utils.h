@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 18:41:25 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/17 04:59:06 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,5 @@ int							argb_to_int(int a, int r, int g, int b);
 int							is_map_surrounded_by_walls(const t_map *map);
 int							has_one_start_position(char **map);
 double						degree_to_radian(double deg);
-void						init_drawable_rectangle(t_floor_ceiling *rect,
-								int x, int y, int width, int height,
-								int fill_color, int border_color,
-								int border_width);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 16:33:26 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/17 04:34:10 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 #  define LINUX 0
 # endif
 
+# define GRID_UNIT_SCALE 64
 # define MAX_X_RES 1920
 # define MAX_Y_RES 1080
 # define VIEW_ANGLE 60
