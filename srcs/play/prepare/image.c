@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:36 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 16:06:50 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:37:10 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	prepare_textures(t_cubed *cubed)
 
 void	prepare_rays(t_cubed *cubed)
 {
-	cubed->rays.ray_array = malloc(cubed->scene.resolution.width
-			* sizeof(t_ray));
+	cubed->rays.ray_array = ft_calloc(cubed->scene.resolution.width,
+			sizeof(t_ray));
 	if (!cubed->rays.ray_array)
 		ft_clean_exit(cubed, CUB_ERROR_MALLOC "set_rays()\n");
 	cubed->rays.view_angle = degree_to_radian(VIEW_ANGLE);
