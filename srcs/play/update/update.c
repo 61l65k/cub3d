@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 04:53:08 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/17 04:57:24 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:19:28 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	update_rays(t_cubed *game)
 	while (++i < game->scene.resolution.width)
 	{
 		game->rays.ray_array[i].angle = ray_angle;
-		// cast_ray(&game->rays.ray_array[i], &game->scene.map, &game->player);
+		cast_ray(&game->rays.ray_array[i], &game->scene.map, &game->player);
 		ray_angle += game->rays.view_angle / game->scene.resolution.width;
 	}
 }
