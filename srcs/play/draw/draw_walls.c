@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 03:18:22 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/17 13:53:42 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/18 02:24:44 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ double	get_wall_height(t_cubed *game, t_ray *ray)
 	const double	scaled_distance = ray->size * GRID_UNIT_SCALE
 			* fisheye_adjustment;
 
-	return ((GRID_UNIT_SCALE / scaled_distance) * game->rays.dist_proj_plane);
+	return ((GRID_UNIT_SCALE / scaled_distance) * game->rays.proj_plane_dist);
 }
 
 int	get_y_wall_position(t_cubed *cubed, double wall_height)
