@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rectangle.c                                        :+:      :+:    :+:   */
+/*   draw_rectangle.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:24:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 19:27:12 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/17 04:58:21 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	draw_floor(t_cubed *cubed)
 
 void	draw_ceiling(t_cubed *cubed)
 {
-	t_floor_ceiling ceiling;
+	t_floor_ceiling	ceiling;
 
 	ceiling.x = 0;
 	ceiling.y = 0;
