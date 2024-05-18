@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:36 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 14:39:14 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/18 17:55:51 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	load_texture(t_cubed *cubed, void *mlx, t_texture *texture)
 			&texture->img.bpp, &texture->img.size_l, &texture->img.endian);
 	if (!texture->img.data)
 		ft_clean_exit(cubed, "mlx_get_data_addr() failed\n");
+	printf("Loaded texture %s, width: %d, height: %d\n", texture->path,
+		texture->width, texture->height);
 }
 
 void	prepare_textures(t_cubed *cubed)
@@ -39,7 +41,7 @@ void	prepare_rays(t_cubed *cubed)
 	if (!cubed->rays.ray_array)
 		ft_clean_exit(cubed, CUB_ERROR_MALLOC "set_rays()\n");
 	cubed->rays.view_angle = deg2rad(VIEW_ANGLE);
-	cubed->rays.proj_plane_dist = (double)cubed->scene.resolution.width / 2
+	cubed->rays.proj_plane_dist = ((double)cubed->scene.resolution.width / 2)
 		/ tan(cubed->rays.view_angle / 2);
 	printf("DIST: %f\n", cubed->rays.proj_plane_dist);
 }

@@ -6,20 +6,21 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 03:18:22 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 02:24:44 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/18 17:58:29 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-double	get_wall_height(t_cubed *game, t_ray *ray)
+double	get_wall_height(t_cubed *cubed, t_ray *ray)
 {
 	const double	fisheye_adjustment = cos(ray->angle
-				- game->player.rotation_angle);
+				- cubed->player.rotation_angle);
 	const double	scaled_distance = ray->size * GRID_UNIT_SCALE
 			* fisheye_adjustment;
 
-	return ((GRID_UNIT_SCALE / scaled_distance) * game->rays.proj_plane_dist);
+	// printf("ROTA: %f\n", cubed->player.rotation_angle);
+	return ((GRID_UNIT_SCALE / scaled_distance) * cubed->rays.proj_plane_dist);
 }
 
 int	get_y_wall_position(t_cubed *cubed, double wall_height)
@@ -41,8 +42,7 @@ t_texture	get_wall_texture(t_scenedata *scene, char orientation)
 		return (scene->south_texture);
 	else if (orientation == 'E')
 		return (scene->east_texture);
-	else
-		return (scene->west_texture);
+	return (scene->west_texture);
 }
 
 void	draw_walls(t_cubed *game)
