@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 18:33:01 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/18 19:33:15 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,117 +91,38 @@ int	is_wall(t_map *map, double x, double y, t_ray *ray)
 	return (0);
 }
 
-void	hr_south(t_ray *ray, t_map *map, t_player *player)
-{
-	double	a_x;
-	double	a_y;
-	double	x_step;
-	double	y_step;
-	double	ray_section;
-
-	a_y = ceil(player->y);
-	y_step = a_y - player->y;
-	x_step = y_step / tan(ray->angle);
-	a_x = player->x + x_step;
-	ray->size += sqrt(pow(x_step, 2) + pow(y_step, 2));
-	if (is_wall(map, a_x, a_y, ray))
-		return ;
-	y_step = 1;
-	x_step = y_step / tan(ray->angle);
-	ray_section = sqrt(pow(x_step, 2) + pow(y_step, 2));
-	while (!is_wall(map, a_x, a_y, ray))
-	{
-		a_x += x_step;
-		a_y += y_step;
-		ray->size += ray_section;
-	}
-}
-
-void	hr_north(t_ray *ray, t_map *map, t_player *player)
-{
-	double	a_x;
-	double	a_y;
-	double	x_step;
-	double	y_step;
-	double	ray_section;
-
-	a_y = floor(player->y);
-	y_step = player->y - a_y;
-	x_step = y_step / tan(ray->angle);
-	a_x = player->x - x_step;
-	ray->size += sqrt(pow(x_step, 2) + pow(y_step, 2));
-	if (is_wall(map, a_x, a_y - 1, ray))
-		return ;
-	y_step = -1;
-	x_step = +y_step / tan(ray->angle);
-	ray_section = sqrt(pow(x_step, 2) + pow(y_step, 2));
-	while (!is_wall(map, a_x, a_y - 1, ray))
-	{
-		a_x += x_step;
-		a_y += y_step;
-		ray->size += ray_section;
-	}
-}
-
 void	get_hrzn_intersection(t_ray *ray, t_map *map, t_player *player)
 {
+	const int	is_south_direction = is_south(ray->angle);
+
+	double a_x, a_y, x_step, y_step, ray_section;
 	ray->size = 0;
 	if (ray->angle == deg2rad(180) || ray->angle == deg2rad(360))
 	{
 		ray->size = INT_MAX;
 		return ;
 	}
-	if (is_south(ray->angle))
-		hr_south(ray, map, player);
-	else
-		hr_north(ray, map, player);
-}
-
-void	vrtl_we(t_ray *ray, t_map *map, t_player *player)
-{
-	double	a_x;
-	double	a_y;
-	double	x_step;
-	double	y_step;
-	double	ray_section;
-
-	a_x = floor(player->x);
-	x_step = player->x - a_x;
-	y_step = x_step * tan(ray->angle);
-	a_y = player->y - y_step;
-	ray->size += sqrt(pow(x_step, 2) + pow(y_step, 2));
-	if (is_wall(map, a_x - 1, a_y, ray))
-		return ;
-	x_step = -1;
-	y_step = x_step * tan(ray->angle);
-	ray_section = sqrt(pow(x_step, 2) + pow(y_step, 2));
-	while (!is_wall(map, a_x - 1, a_y, ray))
+	if (is_south_direction)
 	{
-		a_x += x_step;
-		a_y += y_step;
-		ray->size += ray_section;
+		a_y = ceil(player->y);
+		y_step = a_y - player->y;
+		x_step = y_step / tan(ray->angle);
+		a_x = player->x + x_step;
 	}
-}
-
-void	vrtl_ea(t_ray *ray, t_map *map, t_player *player)
-{
-	double	a_x;
-	double	a_y;
-	double	x_step;
-	double	y_step;
-	double	ray_section;
-
-	a_x = ceil(player->x);
-	x_step = a_x - player->x;
-	y_step = x_step * tan(ray->angle);
-	a_y = player->y + y_step;
+	else
+	{
+		a_y = floor(player->y);
+		y_step = player->y - a_y;
+		x_step = y_step / tan(ray->angle);
+		a_x = player->x - x_step;
+	}
 	ray->size += sqrt(pow(x_step, 2) + pow(y_step, 2));
-	if (is_wall(map, a_x, a_y, ray))
+	if (is_wall(map, a_x, is_south_direction ? a_y : a_y - 1, ray))
 		return ;
-	x_step = 1;
-	y_step = x_step * tan(ray->angle);
+	y_step = is_south_direction ? 1 : -1;
+	x_step = y_step / tan(ray->angle);
 	ray_section = sqrt(pow(x_step, 2) + pow(y_step, 2));
-	while (!is_wall(map, a_x, a_y, ray))
+	while (!is_wall(map, a_x, is_south_direction ? a_y : a_y - 1, ray))
 	{
 		a_x += x_step;
 		a_y += y_step;
@@ -211,16 +132,43 @@ void	vrtl_ea(t_ray *ray, t_map *map, t_player *player)
 
 void	get_vrtl_intersection(t_ray *ray, t_map *map, t_player *player)
 {
+	const int	is_west_direction = is_west(ray->angle);
+
+	double a_x, a_y, x_step, y_step, ray_section;
 	ray->size = 0;
 	if (ray->angle == deg2rad(90) || ray->angle == deg2rad(270))
 	{
 		ray->size = INT_MAX;
 		return ;
 	}
-	if (is_west(ray->angle))
-		vrtl_we(ray, map, player);
+	if (is_west_direction)
+	{
+		a_x = floor(player->x);
+		x_step = player->x - a_x;
+		y_step = x_step * tan(ray->angle);
+		a_y = player->y - y_step;
+	}
 	else
-		vrtl_ea(ray, map, player);
+	{
+		a_x = ceil(player->x);
+		x_step = a_x - player->x;
+		y_step = x_step * tan(ray->angle);
+		a_y = player->y + y_step;
+	}
+	ray->size += sqrt(pow(x_step, 2) + pow(y_step, 2));
+	if (is_west_direction ? is_wall(map, a_x - 1, a_y, ray) : is_wall(map, a_x,
+			a_y, ray))
+		return ;
+	x_step = is_west_direction ? -1 : 1;
+	y_step = x_step * tan(ray->angle);
+	ray_section = sqrt(pow(x_step, 2) + pow(y_step, 2));
+	while (!(is_west_direction ? is_wall(map, a_x - 1, a_y, ray) : is_wall(map,
+				a_x, a_y, ray)))
+	{
+		a_x += x_step;
+		a_y += y_step;
+		ray->size += ray_section;
+	}
 }
 
 void	cast_ray(t_ray *ray, t_map *map, t_player *player)
