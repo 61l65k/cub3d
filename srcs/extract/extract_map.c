@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:21:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 19:04:54 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/18 13:56:33 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ static int	get_map_width(char **strs)
 	return (max_length);
 }
 
+int	finalize_map(t_map *map);
+
 int	extract_map(t_cubed *cubed, int fd, char **line)
 {
 	int	status;
@@ -103,5 +105,11 @@ int	extract_map(t_cubed *cubed, int fd, char **line)
 		return (status);
 	}
 	cubed->scene.map.width = get_map_width(cubed->scene.map.grid);
+	status = finalize_map(&cubed->scene.map);
+	if (status)
+	{
+		ft_fprintf(STDERR_FILENO, "extract_map(3): finalize_map() failed\n");
+		return (status);
+	}
 	return (status);
 }
