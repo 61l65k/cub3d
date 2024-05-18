@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 13:53:30 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 03:28:45 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/18 03:35:29 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	render_wall_column(t_wall *wall, int *img, t_resolution *res,
 	double step;
 	double tex_pos;
 
-	// printf("Rendering wall at x: %d, height: %f, texture: %p\n", wall->x,
-	//	wall->height, (void *)wall->texture.img.data);
+	printf("Rendering wall at x: %d, height: %f, texture: %p\n", wall->x,
+		wall->height, (void *)wall->texture.img.data);
 
 	step = 1.0 * wall->texture.height / wall->height;
 	tex_pos = (wall->y - res->height / 2 + wall->height / 2) * step;
