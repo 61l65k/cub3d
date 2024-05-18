@@ -6,13 +6,14 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:11:42 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/18 13:55:25 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/18 14:36:42 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	calloc_final_grid_strings(char **final_grid, size_t height, size_t width)
+static
+int	calloc_final_grid_strings(char **final_grid, size_t height, size_t width)
 {
 	size_t	i;
 
@@ -31,7 +32,8 @@ static int	calloc_final_grid_strings(char **final_grid, size_t height, size_t wi
 	return (0);
 }
 
-static int	copy_and_replace_tabs(const char *src, char *dst, size_t size)
+static
+int	strcpy_tab_to_space(const char *src, char *dst, size_t size)
 {
 	size_t	i;
 	size_t	offset;
@@ -59,7 +61,7 @@ int	finalize_map(t_map *map)
 {
 	char	**final_grid;
 	size_t	i;
-	
+
 	final_grid = ft_calloc(map->height + 1, sizeof(char *));
 	if (!final_grid)
 		return (-1);
@@ -68,7 +70,7 @@ int	finalize_map(t_map *map)
 	i = 0;
 	while (i < map->height)
 	{
-		if (copy_and_replace_tabs(map->grid[i], final_grid[i], map->width) == -1)
+		if (strcpy_tab_to_space(map->grid[i], final_grid[i], map->width) == -1)
 			return (free_2d_array(final_grid), -1);
 		i++;
 	}
