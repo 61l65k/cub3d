@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:11:42 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/18 14:36:42 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/18 14:46:19 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,11 @@ int	strcpy_tab_to_space(const char *src, char *dst, size_t size)
 
 int	finalize_map(t_map *map)
 {
-	char	**final_grid;
+	char			**final_grid;
+	const size_t	new_alloc_size = map->height + 2;
 	size_t	i;
 
-	final_grid = ft_calloc(map->height + 1, sizeof(char *));
+	final_grid = ft_calloc(new_alloc_size, sizeof(char *));
 	if (!final_grid)
 		return (-1);
 	if (calloc_final_grid_strings(final_grid, map->height, map->width) == -1)
@@ -76,5 +77,6 @@ int	finalize_map(t_map *map)
 	}
 	free_2d_array(map->grid);
 	map->grid = final_grid;
+	map->grid_alloc_size = new_alloc_size;
 	return (0);
 }
