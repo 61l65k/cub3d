@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:17:14 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 19:29:55 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:38:00 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ static double	get_orientation(char orientation)
 
 	radian = 0;
 	if (orientation == 'N')
-		radian = degree_to_radian(270);
+		radian = deg2rad(270);
 	else if (orientation == 'S')
-		radian = degree_to_radian(90);
+		radian = deg2rad(90);
 	else if (orientation == 'E')
-		radian = degree_to_radian(360);
+		radian = deg2rad(360);
 	else if (orientation == 'W')
-		radian = degree_to_radian(180);
+		radian = deg2rad(180);
 	return (radian);
 }
 
@@ -60,6 +60,6 @@ void	prepare_player(t_cubed *cubed)
 	cubed->player.walk_direction = 0;
 	cubed->player.move_speed = 0.15;
 	cubed->player.turn_direction = 0;
-	cubed->player.rotation_speed = degree_to_radian(4);
+	cubed->player.rotation_speed = deg2rad(4);
 	get_starting_position(&cubed->player, cubed->scene.map.grid);
 }

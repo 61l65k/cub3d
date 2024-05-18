@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 14:04:39 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/18 14:38:00 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void						prepare_events(t_cubed *cubed);
 int							argb_to_int(int a, int r, int g, int b);
 int							is_map_surrounded_by_walls(const t_map *map);
 int							has_one_start_position(char **map);
-double						degree_to_radian(double deg);
+double						deg2rad(double deg);
 void						render_wall_column(t_wall *wall, int *img,
 								t_resolution *res, t_ray *ray);
 
