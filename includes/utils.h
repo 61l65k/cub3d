@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 02:05:43 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:04:39 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void						render_wall_column(t_wall *wall, int *img,
 void						update_rays_hard(t_cubed *game);
 
 void						update_player_position(t_player *player,
-								char **map);
+								const t_map *t_map);
 void						update_player_orientation(t_player *player);
 
 #endif

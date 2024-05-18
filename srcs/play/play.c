@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 02:52:43 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/18 12:16:08 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	prepare_game(t_cubed *cubed)
 
 static void	update_vars(t_cubed *cubed)
 {
-	update_player_position(&cubed->player, cubed->scene.map.grid);
+	update_player_position(&cubed->player, &cubed->scene.map);
 	update_player_orientation(&cubed->player);
 	// update_rays_hard(cubed);
 	update_rays(cubed);
