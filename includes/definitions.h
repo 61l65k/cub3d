@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 20:42:01 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:44:18 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define ERR_MISSING_MAP "Error: map is missing\n"
 # define ERR_START_POSITION "Error: map has invalid start position\n"
 # define VALID_CHARS "012NSEW "
+# define GUN_TEXTURE_PATH "assets/player/akimbos.xpm"
 
 # ifndef LINUX
 #  define LINUX 0
@@ -40,7 +41,7 @@
 # define MAX_X_RES 1000
 # define MAX_Y_RES 500
 # define VIEW_ANGLE 60
-
+# define TAB_SIZE 4
 # ifndef linux
 #  define K_ESC 53
 #  define K_W 13
