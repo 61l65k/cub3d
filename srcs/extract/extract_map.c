@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:21:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 13:56:33 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/20 20:34:13 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	get_map_width(char **strs)
 		while (strs[i][j])
 		{
 			if (strs[i][j] == '\t')
-				length += 4;
+				length += TAB_SIZE;
 			else
 				length++;
 			j++;
