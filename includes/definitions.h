@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   definitions.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 18:30:18 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:29:23 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define ERR_MISSING_MAP "Error: map is missing\n"
 # define ERR_START_POSITION "Error: map has invalid start position\n"
 # define VALID_CHARS "012NSEW "
+
+# define TAB_SIZE 4
 
 # ifndef LINUX
 #  define LINUX 0

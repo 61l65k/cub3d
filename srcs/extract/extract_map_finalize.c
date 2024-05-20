@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:11:42 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/20 20:14:23 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/20 20:32:15 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,9 @@ int	strcpy_tab_to_space(const char *src, char *dst, size_t size)
 	{
 		if (src[i] == '\t')
 		{
-			if (j + 4 >= size)
-				return (-1);
 			dst[j++] = ' ';
-			dst[j++] = ' ';
-			dst[j++] = ' ';
-			dst[j++] = ' ';
+			while (j % TAB_SIZE != 0 && j < size)
+				dst[j++] = ' ';
 		}
 		else
 			dst[j++] = src[i];
