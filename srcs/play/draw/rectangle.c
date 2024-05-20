@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   floor_ceiling.c                                    :+:      :+:    :+:   */
+/*   rectangle.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:24:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 01:22:02 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 23:20:07 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	draw_rectangle(t_floor_ceiling *rec, int *img, int res_x)
+void	draw_rectangle(t_rectangle *rec, int *img, int res_x)
 {
 	int	i;
 	int	j;
@@ -36,7 +36,7 @@ static void	draw_rectangle(t_floor_ceiling *rec, int *img, int res_x)
 
 void	draw_floor(t_cubed *cubed)
 {
-	t_floor_ceiling	floor;
+	t_rectangle	floor;
 
 	floor.x = 0;
 	floor.y = cubed->scene.resolution.height / 2;
@@ -50,7 +50,7 @@ void	draw_floor(t_cubed *cubed)
 
 void	draw_ceiling(t_cubed *cubed)
 {
-	t_floor_ceiling	ceiling;
+	t_rectangle	ceiling;
 
 	ceiling.x = 0;
 	ceiling.y = 0;

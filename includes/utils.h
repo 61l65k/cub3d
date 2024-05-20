@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 20:09:05 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 23:35:36 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_ray		t_ray;
 typedef struct s_wall		t_wall;
 typedef struct s_resolution	t_resolution;
 typedef struct s_player		t_player;
+typedef struct s_animation	t_animation;
 
 typedef enum e_helpers
 {
@@ -56,5 +57,8 @@ int							is_ray_facing_south(double angle);
 int							is_ray_facing_west(double angle);
 double						normalize_radian(double radian);
 int							is_wall(t_map *map, double x, double y, t_ray *ray);
+void						draw_rectangle(t_floor_ceiling *rec, int *img,
+								int res_x);
+void						update_animation(t_animation *animation);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 21:55:01 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 23:20:07 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef struct s_rectangle
 	int				fill_color;
 	int				border_color;
 	int				border_width;
-}					t_floor_ceiling;
+}					t_rectangle;
 
 typedef struct s_wall
 {

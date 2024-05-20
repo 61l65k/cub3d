@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 22:25:26 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 23:15:36 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@
 #  define K_A 97
 #  define K_S 115
 #  define K_D 100
+#  define K_M 109
 #  define K_LEFT_ARROW 65361
 #  define K_RIGHT_ARROW 65363
 # endif
