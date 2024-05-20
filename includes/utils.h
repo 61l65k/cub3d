@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 14:38:00 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 15:36:53 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ typedef struct s_ray		t_ray;
 typedef struct s_wall		t_wall;
 typedef struct s_resolution	t_resolution;
 typedef struct s_player		t_player;
+
+typedef enum e_helpers
+{
+	IS_PERFECT_ANGLE = 1,
+	IS_NOT_PERFECT_ANGLE = 0
+}							t_helpers;
 
 int							has_extension(char *file, char *ext);
 void						ft_clean_exit(t_cubed *cubed, char *msg);
@@ -43,11 +49,12 @@ int							has_one_start_position(char **map);
 double						deg2rad(double deg);
 void						render_wall_column(t_wall *wall, int *img,
 								t_resolution *res, t_ray *ray);
-
-void						update_rays_hard(t_cubed *game);
-
 void						update_player_position(t_player *player,
 								const t_map *t_map);
 void						update_player_orientation(t_player *player);
+int							is_south(double angle);
+int							is_west(double angle);
+double						normalize_radian(double radian);
+int							is_wall(t_map *map, double x, double y, t_ray *ray);
 
 #endif

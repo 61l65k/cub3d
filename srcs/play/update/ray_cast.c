@@ -6,168 +6,123 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 19:33:15 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 15:44:38 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-double	normalize_radian(double radian)
+static t_helpers	init_raycast_helper_hrzn(t_raycast_helper *rh, t_ray *ray,
+		t_player *player)
 {
-	double	full_circle;
-
-	full_circle = deg2rad(360);
-	radian = fmod(radian, full_circle);
-	if (radian < 0)
-		radian += full_circle;
-	return (radian);
-}
-
-int	is_south(double angle)
-{
-	if (0 <= angle && angle < M_PI)
-		return (1);
-	else
-		return (0);
-}
-
-int	is_west(double angle)
-{
-	if (M_PI / 2 <= angle && angle < M_PI * 1.5)
-		return (1);
-	else
-		return (0);
-}
-
-char	get_wall_orientation(t_map *map, int x, int y, t_ray *ray)
-{
-	if (x == 0)
-		return ('E');
-	else if (x == (int)map->width)
-		return ('W');
-	else if (y == 0)
-		return ('S');
-	else if (y == (int)map->height - 1)
-		return ('N');
-	if (ray->side == 'H')
-	{
-		if (map->grid[y - 1][x] != '1' && is_south(ray->angle))
-			return ('N');
-		else if (map->grid[y + 1][x] != '1' && !is_south(ray->angle))
-			return ('S');
-	}
-	else
-	{
-		if (map->grid[y][x - 1] != '1' && !is_west(ray->angle))
-			return ('W');
-		else if (map->grid[y][x + 1] != '1' && is_west(ray->angle))
-			return ('E');
-	}
-	return (0);
-}
-
-int	is_wall(t_map *map, double x, double y, t_ray *ray)
-{
-	ray->x = x;
-	ray->y = y;
-	if ((int)x < 0 || (int)map->width < (int)x || (int)y < 0
-		|| (int)map->height < (int)y)
+	if (ray->angle == deg2rad(180) || ray->angle == deg2rad(360))
 	{
 		ray->size = INT_MAX;
-		return (1);
+		return (IS_PERFECT_ANGLE);
 	}
-	if ((int)map->height == (int)y)
+	rh->is_south_direction = is_south(ray->angle);
+	ray->size = 0;
+	if (rh->is_south_direction)
 	{
-		ray->obstacle = '1';
-		ray->orientation = 'N';
-		return (1);
+		rh->a_y = ceil(player->y);
+		rh->y_step = rh->a_y - player->y;
+		rh->x_step = rh->y_step / tan(ray->angle);
+		rh->a_x = player->x + rh->x_step;
 	}
-	ray->obstacle = map->grid[(int)y][(int)x];
-	if (ray->obstacle == '1')
+	else
 	{
-		ray->orientation = get_wall_orientation(map, (int)x, (int)y, ray);
-		return (1);
+		rh->a_y = floor(player->y);
+		rh->y_step = player->y - rh->a_y;
+		rh->x_step = rh->y_step / tan(ray->angle);
+		rh->a_x = player->x - rh->x_step;
 	}
-	return (0);
+	ray->size += sqrt(pow(rh->x_step, 2) + pow(rh->y_step, 2));
+	return (IS_NOT_PERFECT_ANGLE);
+}
+
+static t_helpers	init_raycast_helper_vrtl(t_raycast_helper *rh, t_ray *ray,
+		t_player *player)
+{
+	if (ray->angle == deg2rad(90) || ray->angle == deg2rad(270))
+	{
+		ray->size = INT_MAX;
+		return (IS_PERFECT_ANGLE);
+	}
+	rh->is_west_direction = is_west(ray->angle);
+	ray->size = 0;
+	if (rh->is_west_direction)
+	{
+		rh->a_x = floor(player->x);
+		rh->x_step = player->x - rh->a_x;
+		rh->y_step = rh->x_step * tan(ray->angle);
+		rh->a_y = player->y - rh->y_step;
+	}
+	else
+	{
+		rh->a_x = ceil(player->x);
+		rh->x_step = rh->a_x - player->x;
+		rh->y_step = rh->x_step * tan(ray->angle);
+		rh->a_y = player->y + rh->y_step;
+	}
+	ray->size += sqrt(pow(rh->x_step, 2) + pow(rh->y_step, 2));
+	return (IS_NOT_PERFECT_ANGLE);
 }
 
 void	get_hrzn_intersection(t_ray *ray, t_map *map, t_player *player)
 {
-	const int	is_south_direction = is_south(ray->angle);
+	t_raycast_helper	rh;
 
-	double a_x, a_y, x_step, y_step, ray_section;
-	ray->size = 0;
-	if (ray->angle == deg2rad(180) || ray->angle == deg2rad(360))
-	{
-		ray->size = INT_MAX;
+	if (init_raycast_helper_hrzn(&rh, ray, player) == IS_PERFECT_ANGLE
+		|| (rh.is_south_direction && is_wall(map, rh.a_x, rh.a_y, ray))
+		|| (!rh.is_south_direction && is_wall(map, rh.a_x, rh.a_y - 1, ray)))
 		return ;
-	}
-	if (is_south_direction)
-	{
-		a_y = ceil(player->y);
-		y_step = a_y - player->y;
-		x_step = y_step / tan(ray->angle);
-		a_x = player->x + x_step;
-	}
+	if (rh.is_south_direction)
+		rh.y_step = 1;
 	else
+		rh.y_step = -1;
+	rh.x_step = rh.y_step / tan(ray->angle);
+	rh.ray_section = sqrt(pow(rh.x_step, 2) + pow(rh.y_step, 2));
+	while (1)
 	{
-		a_y = floor(player->y);
-		y_step = player->y - a_y;
-		x_step = y_step / tan(ray->angle);
-		a_x = player->x - x_step;
-	}
-	ray->size += sqrt(pow(x_step, 2) + pow(y_step, 2));
-	if (is_wall(map, a_x, is_south_direction ? a_y : a_y - 1, ray))
-		return ;
-	y_step = is_south_direction ? 1 : -1;
-	x_step = y_step / tan(ray->angle);
-	ray_section = sqrt(pow(x_step, 2) + pow(y_step, 2));
-	while (!is_wall(map, a_x, is_south_direction ? a_y : a_y - 1, ray))
-	{
-		a_x += x_step;
-		a_y += y_step;
-		ray->size += ray_section;
+		if (rh.is_south_direction)
+		{
+			if (is_wall(map, rh.a_x, rh.a_y, ray))
+				break ;
+		}
+		if (is_wall(map, rh.a_x, rh.a_y - 1, ray))
+			break ;
+		rh.a_x += rh.x_step;
+		rh.a_y += rh.y_step;
+		ray->size += rh.ray_section;
 	}
 }
 
 void	get_vrtl_intersection(t_ray *ray, t_map *map, t_player *player)
 {
-	const int	is_west_direction = is_west(ray->angle);
+	t_raycast_helper	rh;
 
-	double a_x, a_y, x_step, y_step, ray_section;
-	ray->size = 0;
-	if (ray->angle == deg2rad(90) || ray->angle == deg2rad(270))
-	{
-		ray->size = INT_MAX;
+	if (init_raycast_helper_vrtl(&rh, ray, player) == IS_PERFECT_ANGLE
+		|| (rh.is_west_direction && is_wall(map, rh.a_x - 1, rh.a_y, ray))
+		|| (!rh.is_west_direction && is_wall(map, rh.a_x, rh.a_y, ray)))
 		return ;
-	}
-	if (is_west_direction)
-	{
-		a_x = floor(player->x);
-		x_step = player->x - a_x;
-		y_step = x_step * tan(ray->angle);
-		a_y = player->y - y_step;
-	}
+	if (rh.is_west_direction)
+		rh.x_step = -1;
 	else
+		rh.x_step = 1;
+	rh.y_step = rh.x_step * tan(ray->angle);
+	rh.ray_section = sqrt(pow(rh.x_step, 2) + pow(rh.y_step, 2));
+	while (1)
 	{
-		a_x = ceil(player->x);
-		x_step = a_x - player->x;
-		y_step = x_step * tan(ray->angle);
-		a_y = player->y + y_step;
-	}
-	ray->size += sqrt(pow(x_step, 2) + pow(y_step, 2));
-	if (is_west_direction ? is_wall(map, a_x - 1, a_y, ray) : is_wall(map, a_x,
-			a_y, ray))
-		return ;
-	x_step = is_west_direction ? -1 : 1;
-	y_step = x_step * tan(ray->angle);
-	ray_section = sqrt(pow(x_step, 2) + pow(y_step, 2));
-	while (!(is_west_direction ? is_wall(map, a_x - 1, a_y, ray) : is_wall(map,
-				a_x, a_y, ray)))
-	{
-		a_x += x_step;
-		a_y += y_step;
-		ray->size += ray_section;
+		if (rh.is_west_direction)
+		{
+			if (is_wall(map, rh.a_x - 1, rh.a_y, ray))
+				break ;
+		}
+		if (is_wall(map, rh.a_x, rh.a_y, ray))
+			break ;
+		rh.a_x += rh.x_step;
+		rh.a_y += rh.y_step;
+		ray->size += rh.ray_section;
 	}
 }
 

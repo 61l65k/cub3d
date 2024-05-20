@@ -6,13 +6,14 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 02:24:24 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 15:24:54 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATASTRUCTS_H
 # define DATASTRUCTS_H
 
+# include <stdbool.h>
 # include <stddef.h>
 
 typedef struct s_resolution
@@ -123,6 +124,17 @@ typedef struct s_wall
 	double			height;
 	t_texture		texture;
 }					t_wall;
+
+typedef struct s_raycast_helper
+{
+	double			a_x;
+	double			a_y;
+	double			x_step;
+	double			y_step;
+	double			ray_section;
+	bool			is_west_direction;
+	bool			is_south_direction;
+}					t_raycast_helper;
 
 typedef struct s_scenedata
 {
