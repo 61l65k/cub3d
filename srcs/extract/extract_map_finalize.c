@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:11:42 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/20 19:08:18 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/20 20:14:23 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,28 @@ int	calloc_final_grid_strings(char **final_grid, size_t height, size_t width)
 static
 int	strcpy_tab_to_space(const char *src, char *dst, size_t size)
 {
-	const size_t	len = ft_strlen(src);
 	size_t			i;
-	size_t			offset;
+	size_t			j;
 
 	i = 0;
-	offset = 0;
-	while (i + offset < size && i < len)
+	j = 0;
+	while (src[i] != '\0' && j < size)
 	{
 		if (src[i] == '\t')
 		{
-			dst[i + offset++] = ' ';
-			while (offset % 4 != 0 && i + offset < size && i < len)
-				dst[i + offset++] = ' ';
+			if (j + 4 >= size)
+				return (-1);
+			dst[j++] = ' ';
+			dst[j++] = ' ';
+			dst[j++] = ' ';
+			dst[j++] = ' ';
 		}
 		else
-			dst[i + offset] = src[i];
+			dst[j++] = src[i];
 		i++;
 	}
-	if (dst[size + offset] != '\0')
+	dst[j] = '\0';
+	if (src[i] != '\0')
 		return (-1);
 	return (0);
 }
