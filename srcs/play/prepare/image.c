@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:36 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 17:55:51 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:16:00 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,4 @@ void	prepare_rays(t_cubed *cubed)
 	cubed->rays.view_angle = deg2rad(VIEW_ANGLE);
 	cubed->rays.proj_plane_dist = ((double)cubed->scene.resolution.width / 2)
 		/ tan(cubed->rays.view_angle / 2);
-	printf("DIST: %f\n", cubed->rays.proj_plane_dist);
 }

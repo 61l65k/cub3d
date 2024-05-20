@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:03:21 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 14:41:34 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:18:20 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static int	player_coordinates_are_within_bounds(double x, double y,
 {
 	if (x < 0 || y < 0 || y >= t_map->height || x >= t_map->width)
 	{
-		printf("Player out of bounds: x=%f map_w=%lu, y=%f map_h=%lu\n", x,
-			t_map->width, y, t_map->height);
+		// printf("Player out of bounds: x=%f map_w=%lu, y=%f map_h=%lu\n", x,
+		//		t_map->width, y, t_map->height);
 		return (0);
 	}
 	return (1);
