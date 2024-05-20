@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:21:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 20:34:13 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/20 21:34:29 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	get_map(int fd, char **line, t_map *map)
 		gnl_ret = gnl(fd, line);
 		if (gnl_ret < 0)
 			return (perror("get_map(): gnl() fail"), -1);
-		if (gnl_ret == 0)
+		if (gnl_ret == 0 && !**line)
 			break ;
 	}
 	free_null(line);
