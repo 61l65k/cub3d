@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 03:30:52 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 21:22:06 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ static int	key_press(int keycode, t_cubed *cubed)
 	{
 		printf("D pressed\n");
 		cubed->player.walk_direction = 'd';
+	}
+	else if (keycode == K_SPACE)
+	{
+		printf("Space pressed\n");
+		cubed->player.shooting = 1;
+		cubed->scene.shooting_animation.current_frame = 0;
+		cubed->scene.shooting_animation.frame_timer = cubed->scene.shooting_animation.frame_delay;
 	}
 	else if (keycode == K_LEFT_ARROW)
 		cubed->player.turn_direction = -1;

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 20:21:31 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 21:35:22 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static int	render_frames(void *data)
 			&cubed->mlx.img.endian);
 	update_vars(cubed);
 	draw_img(cubed);
+	// update_animation(&cubed->scene.shooting_animation);
 	mlx_put_image_to_window(cubed->mlx.mlx_ptr, cubed->mlx.win,
 		cubed->mlx.img.img_ptr, 0, 0);
 	mlx_destroy_image(cubed->mlx.mlx_ptr, cubed->mlx.img.img_ptr);

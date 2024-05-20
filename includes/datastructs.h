@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 20:15:22 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 21:21:07 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_player
 	int				turn_direction;
 	double			rotation_angle;
 	double			rotation_speed;
+	bool			shooting;
 }					t_player;
 
 typedef struct s_ray
@@ -136,6 +137,15 @@ typedef struct s_raycast_helper
 	bool			is_south_direction;
 }					t_raycast_helper;
 
+typedef struct s_animation
+{
+	t_texture		*frames;
+	int				frame_count;
+	int				current_frame;
+	int				frame_delay;
+	int				frame_timer;
+}					t_animation;
+
 typedef struct s_scenedata
 {
 	t_resolution	resolution;
@@ -146,6 +156,7 @@ typedef struct s_scenedata
 	t_texture		west_texture;
 	t_texture		east_texture;
 	t_texture		gun_texture;
+	t_animation		shooting_animation;
 	t_map			map;
 	int				mini_map_tile_size;
 }					t_scenedata;
