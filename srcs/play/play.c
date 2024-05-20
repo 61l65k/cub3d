@@ -6,11 +6,28 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 21:35:22 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 21:55:50 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	update_animation(t_animation *animation)
+{
+	if (animation->frame_timer == 0)
+	{
+		animation->curr_frame++;
+		if (animation->curr_frame >= animation->frame_count)
+		{
+			animation->curr_frame = 0; // Loop the animation
+		}
+		animation->frame_timer = animation->frame_delay; // Reset the timer
+	}
+	else
+	{
+		animation->frame_timer--;
+	}
+}
 
 static void	prepare_game(t_cubed *cubed)
 {
@@ -32,7 +49,7 @@ static void	draw_img(t_cubed *cubed)
 	draw_ceiling(cubed);
 	draw_floor(cubed);
 	draw_walls(cubed);
-	draw_gun(cubed);
+	draw_gun_shooting(cubed);
 }
 
 static int	render_frames(void *data)
@@ -47,7 +64,7 @@ static int	render_frames(void *data)
 			&cubed->mlx.img.endian);
 	update_vars(cubed);
 	draw_img(cubed);
-	// update_animation(&cubed->scene.shooting_animation);
+	update_animation(&cubed->scene.shooting_animation);
 	mlx_put_image_to_window(cubed->mlx.mlx_ptr, cubed->mlx.win,
 		cubed->mlx.img.img_ptr, 0, 0);
 	mlx_destroy_image(cubed->mlx.mlx_ptr, cubed->mlx.img.img_ptr);

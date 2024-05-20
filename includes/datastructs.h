@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 21:21:07 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 21:55:01 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ typedef struct s_animation
 {
 	t_texture		*frames;
 	int				frame_count;
-	int				current_frame;
+	int				curr_frame;
 	int				frame_delay;
 	int				frame_timer;
 }					t_animation;
