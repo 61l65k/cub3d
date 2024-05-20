@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 16:41:05 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:45:33 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	ft_clean_exit(t_cubed *cubed, char *msg)
 		free_texture(&cubed->mlx, &cubed->scene.south_texture);
 		free_texture(&cubed->mlx, &cubed->scene.east_texture);
 		free_texture(&cubed->mlx, &cubed->scene.west_texture);
+		free_texture(&cubed->mlx, &cubed->scene.gun_texture);
 		free_2d_array(cubed->scene.map.grid);
 		if (cubed->mlx.mlx_ptr)
 			free_all_mlx(&cubed->mlx);
