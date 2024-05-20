@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 20:45:33 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 23:01:40 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,22 @@ static void	free_all_mlx(t_mlx *mlx)
 	}
 }
 
+static void	free_animation(void *mlx, t_animation *animation)
+{
+	int	i;
+
+	i = 0;
+	if (!animation)
+		return ;
+	if (animation->frames)
+	{
+		while (i < animation->frame_count)
+			free_texture(mlx, &animation->frames[i++]);
+		free(animation->frames);
+		animation->frames = 0;
+	}
+}
+
 void	ft_clean_exit(t_cubed *cubed, char *msg)
 {
 	if (msg)
@@ -52,6 +68,7 @@ void	ft_clean_exit(t_cubed *cubed, char *msg)
 		free_texture(&cubed->mlx, &cubed->scene.east_texture);
 		free_texture(&cubed->mlx, &cubed->scene.west_texture);
 		free_texture(&cubed->mlx, &cubed->scene.gun_texture);
+		free_animation(&cubed->mlx, &cubed->scene.shooting_animation);
 		free_2d_array(cubed->scene.map.grid);
 		if (cubed->mlx.mlx_ptr)
 			free_all_mlx(&cubed->mlx);
