@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 17:50:23 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:09:07 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_helpers	init_raycast_helper_hrzn(t_raycast_helper *rh, t_ray *ray,
 		ray->size = INT_MAX;
 		return (IS_PERFECT_ANGLE);
 	}
-	rh->is_south_direction = is_south(ray->angle);
+	rh->is_south_direction = is_ray_facing_south(ray->angle);
 	ray->size = 0;
 	if (rh->is_south_direction)
 	{
@@ -48,7 +48,7 @@ static t_helpers	init_raycast_helper_vrtl(t_raycast_helper *rh, t_ray *ray,
 		ray->size = INT_MAX;
 		return (IS_PERFECT_ANGLE);
 	}
-	rh->is_west_direction = is_west(ray->angle);
+	rh->is_west_direction = is_ray_facing_west(ray->angle);
 	ray->size = 0;
 	if (rh->is_west_direction)
 	{

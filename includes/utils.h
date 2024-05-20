@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 15:36:53 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:09:05 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void						render_wall_column(t_wall *wall, int *img,
 void						update_player_position(t_player *player,
 								const t_map *t_map);
 void						update_player_orientation(t_player *player);
-int							is_south(double angle);
-int							is_west(double angle);
+int							is_ray_facing_south(double angle);
+int							is_ray_facing_west(double angle);
 double						normalize_radian(double radian);
 int							is_wall(t_map *map, double x, double y, t_ray *ray);
 

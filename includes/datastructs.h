@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 15:24:54 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:15:22 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ typedef struct s_scenedata
 	t_texture		south_texture;
 	t_texture		west_texture;
 	t_texture		east_texture;
+	t_texture		gun_texture;
 	t_map			map;
 	int				mini_map_tile_size;
 }					t_scenedata;

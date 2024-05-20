@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:36 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 16:16:00 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:17:29 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,29 @@ static void	load_texture(t_cubed *cubed, void *mlx, t_texture *texture)
 		texture->width, texture->height);
 }
 
+static void	load_gun_texture(t_cubed *cubed, void *mlx, t_texture *texture,
+		const char *path)
+{
+	texture->img.img_ptr = mlx_xpm_file_to_image(mlx, (char *)path,
+			&texture->width, &texture->height);
+	if (!texture->img.img_ptr)
+		ft_clean_exit(cubed, "mlx_xpm_file_to_image() failed for gun image\n");
+	texture->img.data = (int *)mlx_get_data_addr(texture->img.img_ptr,
+			&texture->img.bpp, &texture->img.size_l, &texture->img.endian);
+	if (!texture->img.data)
+		ft_clean_exit(cubed, "mlx_get_data_addr() failed for gun image\n");
+	printf("Loaded gun image %s, width: %d, height: %d\n", path, texture->width,
+		texture->height);
+}
+
 void	prepare_textures(t_cubed *cubed)
 {
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.north_texture);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.south_texture);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.west_texture);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.east_texture);
+	load_gun_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.gun_texture,
+		GUN_TEXTURE_PATH);
 }
 
 void	prepare_rays(t_cubed *cubed)

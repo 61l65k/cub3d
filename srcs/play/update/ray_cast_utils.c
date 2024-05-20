@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:30:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 17:33:14 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:27:10 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 double	normalize_radian(double radian)
 {
-	double	full_circle;
+	const double	full_circle = deg2rad(360);
 
-	full_circle = deg2rad(360);
 	radian = fmod(radian, full_circle);
 	if (radian < 0)
 		radian += full_circle;
 	return (radian);
 }
 
-int	is_south(double angle)
+int	is_ray_facing_south(double angle)
 {
 	if (0 <= angle && angle < M_PI)
 		return (1);
@@ -31,7 +30,7 @@ int	is_south(double angle)
 		return (0);
 }
 
-int	is_west(double angle)
+int	is_ray_facing_west(double angle)
 {
 	if (M_PI / 2 <= angle && angle < M_PI * 1.5)
 		return (1);
@@ -51,16 +50,16 @@ static char	get_wall_orientation(t_map *map, int x, int y, t_ray *ray)
 		return ('N');
 	if (ray->side == 'H')
 	{
-		if (map->grid[y - 1][x] != '1' && is_south(ray->angle))
+		if (map->grid[y - 1][x] != '1' && is_ray_facing_south(ray->angle))
 			return ('N');
-		else if (map->grid[y + 1][x] != '1' && !is_south(ray->angle))
+		else if (map->grid[y + 1][x] != '1' && !is_ray_facing_south(ray->angle))
 			return ('S');
 	}
 	else
 	{
-		if (map->grid[y][x - 1] != '1' && !is_west(ray->angle))
+		if (map->grid[y][x - 1] != '1' && !is_ray_facing_west(ray->angle))
 			return ('W');
-		else if (map->grid[y][x + 1] != '1' && is_west(ray->angle))
+		else if (map->grid[y][x + 1] != '1' && is_ray_facing_west(ray->angle))
 			return ('E');
 	}
 	return (0);
