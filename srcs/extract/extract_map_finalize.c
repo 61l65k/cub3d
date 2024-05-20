@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:11:42 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/18 15:16:38 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/20 19:08:18 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,18 @@ int	calloc_final_grid_strings(char **final_grid, size_t height, size_t width)
 static
 int	strcpy_tab_to_space(const char *src, char *dst, size_t size)
 {
-	size_t	i;
-	size_t	offset;
+	const size_t	len = ft_strlen(src);
+	size_t			i;
+	size_t			offset;
 
 	i = 0;
 	offset = 0;
-	while (i + offset < size)
+	while (i + offset < size && i < len)
 	{
 		if (src[i] == '\t')
 		{
 			dst[i + offset++] = ' ';
-			while (offset % 4 != 0 && i + offset < size)
+			while (offset % 4 != 0 && i + offset < size && i < len)
 				dst[i + offset++] = ' ';
 		}
 		else
@@ -61,7 +62,7 @@ int	finalize_map(t_map *map)
 {
 	char			**final_grid;
 	const size_t	new_size = map->height + 2;
-	size_t	i;
+	size_t			i;
 
 	final_grid = ft_calloc(new_size, sizeof(char *));
 	if (!final_grid)
