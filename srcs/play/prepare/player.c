@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:17:14 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 21:22:08 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:08:21 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ static void	get_starting_position(t_player *player, char **grid)
 
 void	prepare_player(t_cubed *cubed)
 {
-	cubed->player.walk_direction = 0;
-	cubed->player.move_speed = 0.05;
+	cubed->player.x_move = 0;
+	cubed->player.z_move = 0;
+	cubed->player.move_speed = 0.02;
 	cubed->player.turn_direction = 0;
 	cubed->player.rotation_speed = deg2rad(0.5);
 	get_starting_position(&cubed->player, cubed->scene.map.grid);

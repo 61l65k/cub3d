@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_pos.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:03:21 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 21:09:56 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:01:22 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,15 @@ static void	move(t_player *player, double angle, double move_step,
 
 void	update_player_position(t_player *player, const t_map *map)
 {
-	double	move_step;
-
-	if (player->walk_direction != 0)
+	if (player->z_move)
 	{
-		move_step = player->move_speed;
-		if (player->walk_direction == 's' || player->walk_direction == 'a')
-			move_step = -player->move_speed;
-		if (player->walk_direction == 'w' || player->walk_direction == 's')
-		{
-			move(player, player->rotation_angle, move_step, map);
-		}
-		else if (player->walk_direction == 'a' || player->walk_direction == 'd')
-		{
-			move(player, player->rotation_angle + deg2rad(90), move_step, map);
-		}
+		move(player, player->rotation_angle, (double)player->z_move
+			* player->move_speed, map);
+	}
+	if (player->x_move)
+	{
+		move(player, player->rotation_angle + deg2rad(90), (double)player->x_move
+			* player->move_speed, map);
 	}
 }
 

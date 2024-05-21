@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 23:24:45 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:13:50 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,50 +26,70 @@ static int	key_press(int keycode, t_cubed *cubed)
 	if (keycode == K_W)
 	{
 		printf("W pressed\n");
-		cubed->player.walk_direction = 'w';
+		cubed->player.z_move += 1;
 	}
-	else if (keycode == K_A)
-	{
-		printf("a pressed\n");
-		cubed->player.walk_direction = 'a';
-	}
-	else if (keycode == K_S)
+	if (keycode == K_S)
 	{
 		printf("S pressed\n");
-		cubed->player.walk_direction = 's';
+		cubed->player.z_move -= 1;
 	}
-	else if (keycode == K_D)
+	if (keycode == K_D)
 	{
 		printf("D pressed\n");
-		cubed->player.walk_direction = 'd';
+		cubed->player.x_move += 1;
 	}
-	else if (keycode == K_SPACE)
+	if (keycode == K_A)
+	{
+		printf("A pressed\n");
+		cubed->player.x_move -= 1;
+	}
+	if (keycode == K_SPACE)
 	{
 		printf("Space pressed\n");
 		cubed->player.shooting = 1;
 		cubed->scene.shooting_animation.curr_frame = 0;
 		cubed->scene.shooting_animation.frame_timer = cubed->scene.shooting_animation.frame_delay;
 	}
-	else if (keycode == K_M)
+	if (keycode == K_M)
 	{
 		if (cubed->game_state == GAME_STATE_RUNNING)
 			cubed->game_state = GAME_STATE_MENU;
 		else
 			cubed->game_state = GAME_STATE_RUNNING;
 	}
-	else if (keycode == K_LEFT_ARROW)
-		cubed->player.turn_direction = -1;
-	else if (keycode == K_RIGHT_ARROW)
-		cubed->player.turn_direction = 1;
+	if (keycode == K_LEFT_ARROW)
+		cubed->player.turn_direction -= 1;
+	if (keycode == K_RIGHT_ARROW)
+		cubed->player.turn_direction += 1;
 	return (1);
 }
 
 static int	key_released(int keycode, t_cubed *cubed)
 {
-	if (keycode == K_W || keycode == K_A || keycode == K_S || keycode == K_D)
-		cubed->player.walk_direction = 0;
-	else if (keycode == K_LEFT_ARROW || keycode == K_RIGHT_ARROW)
-		cubed->player.turn_direction = 0;
+	if (keycode == K_LEFT_ARROW)
+		cubed->player.turn_direction += 1;
+	if (keycode == K_RIGHT_ARROW)
+		cubed->player.turn_direction -= 1;
+	if (keycode == K_W)
+	{
+		printf("W released\n");
+		cubed->player.z_move -= 1;
+	}
+	if (keycode == K_S)
+	{
+		printf("S released\n");
+		cubed->player.z_move += 1;
+	}
+	else if (keycode == K_D)
+	{
+		printf("D released\n");
+		cubed->player.x_move -= 1;
+	}
+	if (keycode == K_A)
+	{
+		printf("A released\n");
+		cubed->player.x_move += 1;
+	}
 	return (1);
 }
 

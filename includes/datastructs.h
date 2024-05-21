@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   datastructs.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 23:20:07 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:42:41 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ typedef struct s_player
 {
 	double			x;
 	double			y;
-	char			walk_direction;
+	int				x_move;
+	int				z_move;
 	double			move_speed;
 	int				turn_direction;
 	double			rotation_angle;
