@@ -50,6 +50,8 @@
 #  define K_D 2
 #  define K_LEFT_ARROW 123
 #  define K_RIGHT_ARROW 124
+#  define K_SPACE 49
+#  define K_M 46
 # else
 #  define K_SPACE 32
 #  define K_ESC 65307
