@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 11:18:41 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 11:59:36 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void				draw_gun_shooting(t_cubed *cubed);
 void				draw_menu(t_cubed *cubed);
 void				handle_shooting(t_cubed *cubed);
 void				hook_mouse(t_cubed *cubed);
+int					handle_weapon_switch(int button, t_cubed *cubed);
 
 #endif
