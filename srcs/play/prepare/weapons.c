@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 11:51:42 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 13:28:19 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:44:26 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	load_weapons(t_cubed *cubed, void *mlx, t_weapon_map *weapon_map)
 	const char *weapon_textures[] = {
 		"./assets/weapons/akimbos/akimbos.xpm",
 		"./assets/weapons/hammer/hammer.xpm",
+		"./assets/weapons/raygun/raygun.xpm",
 	};
 	const char *weapon1_animation_paths[] = {
 		"./assets/weapons/akimbos/cloud_fire0.xpm",
@@ -94,11 +95,16 @@ void	load_weapons(t_cubed *cubed, void *mlx, t_weapon_map *weapon_map)
 		"./assets/weapons/hammer/cloud_magic_trail2.xpm",
 		"./assets/weapons/hammer/cloud_magic_trail3.xpm",
 	};
-	weapon_map->total_weapons = 2;
+	const char *weapon3_animation_paths[] = {
+		"./assets/weapons/raygun/cloud_poison0.xpm",
+		"./assets/weapons/raygun/cloud_poison1.xpm",
+		"./assets/weapons/raygun/cloud_poison2.xpm",
+	};
+	weapon_map->total_weapons = 3;
 	weapon_map->current_weapon = 0;
-	frame_count = 3;
 	for (int i = 0; i < weapon_map->total_weapons; i++)
 	{
+		frame_count = 3;
 		if (i == 0)
 			animation_paths = weapon1_animation_paths;
 		if (i == 1)
@@ -106,6 +112,8 @@ void	load_weapons(t_cubed *cubed, void *mlx, t_weapon_map *weapon_map)
 			animation_paths = weapon2_animation_paths;
 			frame_count = 4;
 		}
+		if (i == 2)
+			animation_paths = weapon3_animation_paths;
 		load_weapon(cubed, mlx, &weapon_map->weapons[i], weapon_textures[i],
 			animation_paths, frame_count);
 	}
