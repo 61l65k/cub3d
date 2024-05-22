@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 14:42:44 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:06:44 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ static int	render_frames(void *data)
 	cubed = data;
 	update_vars(cubed);
 	draw_img(cubed);
-	if (cubed->game_state == GAME_STATE_MENU)
-		draw_menu(cubed);
 	mlx_put_image_to_window(cubed->mlx.mlx_ptr, cubed->mlx.win,
 		cubed->mlx.img.img_ptr, 0, 0);
+	if (cubed->game_state == GAME_STATE_MENU)
+		draw_menu(cubed);
 	return (1);
 }
 
