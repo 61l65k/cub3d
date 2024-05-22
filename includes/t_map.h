@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_shooting.c                                  :+:      :+:    :+:   */
+/*   t_map.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 09:19:20 by apyykone          #+#    #+#             */
+/*   Created: 2024/05/22 12:03:55 by ttakala           #+#    #+#             */
 /*   Updated: 2024/05/22 12:20:44 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef T_MAP_H
+# define T_MAP_H
 
-void	handle_shooting(t_cubed *cubed)
-{
-	const int	middle_ray_index = cubed->scene.resolution.width / 2;
-	t_ray		*middle_ray;
-	int			map_x;
-	int			map_y;
+typedef struct s_map	t_map;
 
-	middle_ray = &cubed->rays.ray_array[middle_ray_index];
-	map_x = (int)middle_ray->x;
-	map_y = (int)middle_ray->y;
-	if (t_map_get(&cubed->scene.map, map_x, map_y) == '1')
-	{
-		t_map_insert(&cubed->scene.map, map_x, map_y, '0');
-	}
-}
+char	t_map_get(const t_map *t_map, int x, int y);
+void	t_map_print(const t_map *t_map);
+char	t_map_insert(t_map *t_map, int x, int y, char new_value);
+
+#endif

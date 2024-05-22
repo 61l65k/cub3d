@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:30:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 20:27:10 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:20:44 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,20 @@ static char	get_wall_orientation(t_map *map, int x, int y, t_ray *ray)
 		return ('W');
 	else if (y == 0)
 		return ('S');
-	else if (y == (int)map->height - 1)
+	else if (y == (int)map->height)
 		return ('N');
 	if (ray->side == 'H')
 	{
-		if (map->grid[y - 1][x] != '1' && is_ray_facing_south(ray->angle))
+		if (t_map_get(map, x, y - 1) != '1' && is_ray_facing_south(ray->angle))
 			return ('N');
-		else if (map->grid[y + 1][x] != '1' && !is_ray_facing_south(ray->angle))
+		else if (t_map_get(map, x, y + 1) != '1' && !is_ray_facing_south(ray->angle))
 			return ('S');
 	}
 	else
 	{
-		if (map->grid[y][x - 1] != '1' && !is_ray_facing_west(ray->angle))
+		if (t_map_get(map, x - 1, y) != '1' && !is_ray_facing_west(ray->angle))
 			return ('W');
-		else if (map->grid[y][x + 1] != '1' && is_ray_facing_west(ray->angle))
+		else if (t_map_get(map, x + 1, y) != '1' && is_ray_facing_west(ray->angle))
 			return ('E');
 	}
 	return (0);
