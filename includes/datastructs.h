@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 11:19:37 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:08:45 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdbool.h>
 # include <stddef.h>
+# define MAX_WEAPONS 10
 
 typedef struct s_resolution
 {
@@ -147,6 +148,19 @@ typedef struct s_animation
 	int				frame_timer;
 }					t_animation;
 
+typedef struct s_weapon
+{
+	t_texture		texture;
+	t_animation		shooting_animation;
+}					t_weapon;
+
+typedef struct s_weapon_map
+{
+	t_weapon		weapons[MAX_WEAPONS];
+	int				current_weapon;
+	int				total_weapons;
+}					t_weapon_map;
+
 typedef struct s_scenedata
 {
 	t_resolution	resolution;
@@ -160,6 +174,7 @@ typedef struct s_scenedata
 	t_animation		shooting_animation;
 	t_map			map;
 	int				mini_map_tile_size;
+	t_weapon_map	weapon_map;
 }					t_scenedata;
 
 typedef struct s_mouse

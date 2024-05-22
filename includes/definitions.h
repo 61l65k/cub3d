@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 11:32:44 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 11:56:27 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 # endif
 
 # define RIGHT_CLICK 3
+# define SCROLL_UP 4
+# define SCROLL_DOWN 5
 # define GRID_UNIT_SCALE 64
 # define MAX_X_RES 1000
 # define MAX_Y_RES 500
