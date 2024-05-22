@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 11:35:32 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:30:37 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,13 @@ static int	render_frames(void *data)
 	t_cubed	*cubed;
 
 	cubed = data;
-	cubed->mlx.img.img_ptr = mlx_new_image(cubed->mlx.mlx_ptr,
-			cubed->scene.resolution.width, cubed->scene.resolution.height);
-	cubed->mlx.img.data = (int *)mlx_get_data_addr(cubed->mlx.img.img_ptr,
-			&cubed->mlx.img.bpp, &cubed->mlx.img.size_l,
-			&cubed->mlx.img.endian);
 	update_vars(cubed);
 	draw_img(cubed);
 	update_animation(&cubed->scene.shooting_animation);
-	mlx_put_image_to_window(cubed->mlx.mlx_ptr, cubed->mlx.win,
-		cubed->mlx.img.img_ptr, 0, 0);
 	if (cubed->game_state == GAME_STATE_MENU)
 		draw_menu(cubed);
-	mlx_destroy_image(cubed->mlx.mlx_ptr, cubed->mlx.img.img_ptr);
+	mlx_put_image_to_window(cubed->mlx.mlx_ptr, cubed->mlx.win,
+		cubed->mlx.img.img_ptr, 0, 0);
 	return (1);
 }
 
@@ -70,6 +64,11 @@ void	start_game(t_cubed *cubed)
 	if (!mlx_data->win)
 		ft_clean_exit(cubed, "mlx_new_window() failed\n");
 	prepare_game(cubed);
+	cubed->mlx.img.img_ptr = mlx_new_image(cubed->mlx.mlx_ptr,
+			cubed->scene.resolution.width, cubed->scene.resolution.height);
+	cubed->mlx.img.data = (int *)mlx_get_data_addr(cubed->mlx.img.img_ptr,
+			&cubed->mlx.img.bpp, &cubed->mlx.img.size_l,
+			&cubed->mlx.img.endian);
 	mlx_loop_hook(mlx_data->mlx_ptr, render_frames, cubed);
 	mlx_loop(mlx_data->mlx_ptr);
 }
