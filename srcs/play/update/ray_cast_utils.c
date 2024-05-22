@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:30:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 12:20:44 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/22 13:05:10 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,6 @@ int	is_wall(t_map *map, double x, double y, t_ray *ray)
 		|| (int)map->height < (int)y)
 	{
 		ray->size = INT_MAX;
-		return (1);
-	}
-	if ((int)map->height == (int)y)
-	{
-		ray->obstacle = '1';
-		ray->orientation = 'N';
 		return (1);
 	}
 	ray->obstacle = map->grid[(int)y][(int)x];
