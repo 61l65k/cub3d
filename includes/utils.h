@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 08:46:36 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:01:38 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ double						normalize_radian(double radian);
 int							is_wall(t_map *map, double x, double y, t_ray *ray);
 void						draw_rectangle(t_floor_ceiling *rec, int *img,
 								int res_x);
-void						update_animation(t_animation *animation);
 double						get_hypotenuse(double a, double b);
 
 #endif

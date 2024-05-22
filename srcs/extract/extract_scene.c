@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_scene.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 17:09:18 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/22 14:23:50 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	extract_game_data(t_scenedata *scene, char **data)
 	else if (is_valid_game_identifier("F", data))
 		return (get_validate_rgb(data[1], &scene->floor_color));
 	else if (is_valid_game_identifier("R", data))
-		return (get_resolution(data[1], &scene->resolution));
+		return (get_resolution(data[1], &scene->resol));
 	else if (is_valid_game_identifier("NO", data))
 		return (fill_texture(data[1], &scene->north_texture));
 	else if (is_valid_game_identifier("SO", data))

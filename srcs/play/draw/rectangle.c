@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:24:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 23:20:07 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:23:50 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void	draw_floor(t_cubed *cubed)
 	t_rectangle	floor;
 
 	floor.x = 0;
-	floor.y = cubed->scene.resolution.height / 2;
-	floor.width = cubed->scene.resolution.width;
-	floor.height = (double)cubed->scene.resolution.height / 2;
+	floor.y = cubed->scene.resol.height / 2;
+	floor.width = cubed->scene.resol.width;
+	floor.height = (double)cubed->scene.resol.height / 2;
 	floor.border_width = 0;
 	floor.fill_color = cubed->scene.floor_color.argb;
 	floor.border_color = 0;
-	draw_rectangle(&floor, cubed->mlx.img.data, cubed->scene.resolution.width);
+	draw_rectangle(&floor, cubed->mlx.img.data, cubed->scene.resol.width);
 }
 
 void	draw_ceiling(t_cubed *cubed)
@@ -54,11 +54,10 @@ void	draw_ceiling(t_cubed *cubed)
 
 	ceiling.x = 0;
 	ceiling.y = 0;
-	ceiling.width = cubed->scene.resolution.width;
-	ceiling.height = (double)cubed->scene.resolution.height / 2;
+	ceiling.width = cubed->scene.resol.width;
+	ceiling.height = (double)cubed->scene.resol.height / 2;
 	ceiling.border_width = 0;
 	ceiling.fill_color = cubed->scene.ceiling_color.argb;
 	ceiling.border_color = 0;
-	draw_rectangle(&ceiling, cubed->mlx.img.data,
-		cubed->scene.resolution.width);
+	draw_rectangle(&ceiling, cubed->mlx.img.data, cubed->scene.resol.width);
 }

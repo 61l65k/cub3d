@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 12:08:45 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:25:40 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,15 +163,13 @@ typedef struct s_weapon_map
 
 typedef struct s_scenedata
 {
-	t_resolution	resolution;
+	t_resolution	resol;
 	t_color			floor_color;
 	t_color			ceiling_color;
 	t_texture		north_texture;
 	t_texture		south_texture;
 	t_texture		west_texture;
 	t_texture		east_texture;
-	t_texture		gun_texture;
-	t_animation		shooting_animation;
 	t_map			map;
 	int				mini_map_tile_size;
 	t_weapon_map	weapon_map;

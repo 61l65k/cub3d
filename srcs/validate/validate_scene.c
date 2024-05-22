@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:58:18 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/15 18:15:04 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:23:50 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	validate_map(t_cubed *cubed)
 
 void	validate_scene(t_cubed *cubed)
 {
-	validate_resolution(&cubed->scene.resolution);
+	validate_resolution(&cubed->scene.resol);
 	validate_textures(cubed);
 	validate_map(cubed);
 }

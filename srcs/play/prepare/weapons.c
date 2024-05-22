@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 11:51:42 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 13:44:26 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:51:07 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	load_weapons(t_cubed *cubed, void *mlx, t_weapon_map *weapon_map)
 	{
 		frame_count = 3;
 		if (i == 0)
-			animation_paths = weapon1_animation_paths;
+			animation_paths = weapon1_animation_paths; 
 		if (i == 1)
 		{
 			animation_paths = weapon2_animation_paths;

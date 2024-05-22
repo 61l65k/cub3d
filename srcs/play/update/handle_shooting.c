@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_shooting.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 12:20:44 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/22 14:23:50 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	handle_shooting(t_cubed *cubed)
 {
-	const int	middle_ray_index = cubed->scene.resolution.width / 2;
+	const int	middle_ray_index = cubed->scene.resol.width / 2;
 	t_ray		*middle_ray;
 	int			map_x;
 	int			map_y;

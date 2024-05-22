@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 23:13:41 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 23:39:58 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:23:50 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	draw_menu_image(t_cubed *cubed)
 {
 	t_rectangle	menu;
-	const int	screen_width = cubed->scene.resolution.width;
-	const int	screen_height = cubed->scene.resolution.height;
+	const int	screen_width = cubed->scene.resol.width;
+	const int	screen_height = cubed->scene.resol.height;
 
 	menu.width = screen_width / 3;
 	menu.height = screen_height / 3;
@@ -39,8 +39,8 @@ static void	draw_menu_choices(t_cubed *cubed)
 
 	if (cubed->game_state == GAME_STATE_MENU)
 	{
-		screen_width = cubed->scene.resolution.width;
-		screen_height = cubed->scene.resolution.height;
+		screen_width = cubed->scene.resol.width;
+		screen_height = cubed->scene.resol.height;
 		menu_x = (screen_width - (screen_width / 3)) / 2;
 		menu_y = (screen_height - (screen_height / 3)) / 2;
 		mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, menu_x + 20, menu_y

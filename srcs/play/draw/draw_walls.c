@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 03:18:22 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/18 17:58:29 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:25:27 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ double	get_wall_height(t_cubed *cubed, t_ray *ray)
 
 int	get_y_wall_position(t_cubed *cubed, double wall_height)
 {
-	const int	center_screen = cubed->scene.resolution.height / 2;
+	const int	center_screen = cubed->scene.resol.height / 2;
 	int			y;
 
 	y = center_screen - (wall_height / 2);
@@ -53,15 +53,14 @@ void	draw_walls(t_cubed *game)
 
 	i = 0;
 	wall = (t_wall){0};
-	while (i < game->scene.resolution.width)
+	while (i < game->scene.resol.width)
 	{
 		ray = &game->rays.ray_array[i];
 		wall.x = i;
 		wall.height = get_wall_height(game, ray);
 		wall.y = get_y_wall_position(game, wall.height);
 		wall.texture = get_wall_texture(&game->scene, ray->orientation);
-		render_wall_column(&wall, game->mlx.img.data, &game->scene.resolution,
-			ray);
+		render_wall_column(&wall, game->mlx.img.data, &game->scene.resol, ray);
 		i++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:01:33 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 17:11:04 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/22 14:23:50 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	printalldata(t_cubed *cubed)
 {
-	ft_printf("Resolution: %d x %d\n", cubed->scene.resolution.width,
-		cubed->scene.resolution.height);
+	ft_printf("Resolution: %d x %d\n", cubed->scene.resol.width,
+		cubed->scene.resol.height);
 	ft_printf("North texture: %s\n", cubed->scene.north_texture.path);
 	ft_printf("South texture: %s\n", cubed->scene.south_texture.path);
 	ft_printf("West texture: %s\n", cubed->scene.west_texture.path);

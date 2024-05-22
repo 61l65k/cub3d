@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:03:11 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 12:01:42 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:35:09 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static void	update_rotation_angle(t_player *player, int delta_x)
 static int	handle_mouse_move(int x, int y, t_cubed *cubed)
 {
 	t_mouse		*mouse;
-	const int	width = cubed->scene.resolution.width;
-	const int	height = cubed->scene.resolution.height;
+	const int	width = cubed->scene.resol.width;
+	const int	height = cubed->scene.resol.height;
 	int			delta_x;
 
 	mouse = &cubed->mouse;
@@ -71,8 +71,8 @@ static int	handle_mouse_move(int x, int y, t_cubed *cubed)
 
 static int	handle_mouse_button(int button, int x, int y, t_cubed *cubed)
 {
-	const int	x_half = cubed->scene.resolution.width / 2;
-	const int	y_half = cubed->scene.resolution.height / 2;
+	const int	x_half = cubed->scene.resol.width / 2;
+	const int	y_half = cubed->scene.resol.height / 2;
 
 	(void)x;
 	(void)y;
