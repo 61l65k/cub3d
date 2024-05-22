@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 14:35:25 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:47:47 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	free_texture(t_mlx *mlx, t_texture *texture)
 
 static void	free_all_mlx(t_mlx *mlx)
 {
+	if (mlx->img.img_ptr)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->img.img_ptr);
 	if (mlx->win)
 		mlx_destroy_window(mlx->mlx_ptr, mlx->win);
 	if (LINUX)
