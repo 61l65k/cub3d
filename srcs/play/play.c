@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 10:01:38 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:07:14 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ static void	draw_img(t_cubed *cubed)
 	draw_ceiling(cubed);
 	draw_floor(cubed);
 	draw_walls(cubed);
-	if (cubed->player.shooting)
-		handle_shooting(cubed);
 	draw_gun_shooting(cubed);
 }
 

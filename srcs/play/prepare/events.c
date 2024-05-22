@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 09:46:07 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:07:32 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int	key_press(int keycode, t_cubed *cubed)
 		cubed->player.shooting = 1;
 		cubed->scene.shooting_animation.curr_frame = 0;
 		cubed->scene.shooting_animation.frame_timer = cubed->scene.shooting_animation.frame_delay;
+		handle_shooting(cubed);
 	}
 	if (keycode == K_M)
 	{
