@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 10:03:51 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 11:35:32 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ static void	draw_img(t_cubed *cubed)
 	draw_ceiling(cubed);
 	draw_floor(cubed);
 	draw_walls(cubed);
-	if (cubed->player.shooting)
-		handle_shooting(cubed);
 	draw_gun_shooting(cubed);
 }
 

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 10:16:58 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 11:35:21 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int	key_press(int keycode, t_cubed *cubed)
 		cubed->player.shooting = 1;
 		cubed->scene.shooting_animation.curr_frame = 0;
 		cubed->scene.shooting_animation.frame_timer = cubed->scene.shooting_animation.frame_delay;
+		handle_shooting(cubed);
 	}
 	if (keycode == K_M)
 	{
