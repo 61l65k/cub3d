@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:03:21 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 12:20:44 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/22 13:47:13 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ static void	move(t_player *player, double angle, double move_step,
 	if (map_val != '\0' && map_val != '1')
 	{
 		player->x = new_x;
+		if (player->x < 0)
+			player->x = 0;
 		player->y = new_y;
+		if (player->y < 0)
+			player->y = 0;
 	}
 }
 
