@@ -6,11 +6,13 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 09:26:30 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:01:38 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+#define MOUSE_SENSITIVITY 0.001
 
 static void	prepare_game(t_cubed *cubed)
 {
@@ -32,7 +34,8 @@ static void	draw_img(t_cubed *cubed)
 	draw_ceiling(cubed);
 	draw_floor(cubed);
 	draw_walls(cubed);
-	handle_shooting(cubed);
+	if (cubed->player.shooting)
+		handle_shooting(cubed);
 	draw_gun_shooting(cubed);
 }
 
