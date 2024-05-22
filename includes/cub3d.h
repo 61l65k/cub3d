@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 09:23:02 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 11:18:41 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_cubed
 	t_mlx			mlx;
 	t_rays			rays;
 	t_player		player;
+	t_mouse			mouse;
 }					t_cubed;
 
 void				validate_scene(t_cubed *cubed);
@@ -56,5 +57,6 @@ void				update_rays(t_cubed *game);
 void				draw_gun_shooting(t_cubed *cubed);
 void				draw_menu(t_cubed *cubed);
 void				handle_shooting(t_cubed *cubed);
+void				hook_mouse(t_cubed *cubed);
 
 #endif

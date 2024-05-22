@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   datastructs.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:03:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/21 19:42:41 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/22 11:19:37 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,5 +161,13 @@ typedef struct s_scenedata
 	t_map			map;
 	int				mini_map_tile_size;
 }					t_scenedata;
+
+typedef struct s_mouse
+{
+	bool			active;
+	int				last_x;
+	bool			mouse_was_reset;
+	bool			mouse_skip_update;
+}					t_mouse;
 
 #endif

@@ -6,13 +6,11 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 10:01:38 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:03:51 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-#define MOUSE_SENSITIVITY 0.001
 
 static void	prepare_game(t_cubed *cubed)
 {
