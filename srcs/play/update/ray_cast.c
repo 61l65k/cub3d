@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 21:19:14 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 08:49:18 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_helpers	init_raycast_helper_hrzn(t_raycast_helper *rh, t_ray *ray,
 		rh->x_step = rh->y_step / tan(ray->angle);
 		rh->a_x = player->x - rh->x_step;
 	}
-	ray->size += sqrt(pow(rh->x_step, 2) + pow(rh->y_step, 2));
+	ray->size += get_hypotenuse(rh->x_step, rh->y_step);
 	return (IS_NOT_PERFECT_ANGLE);
 }
 
@@ -64,7 +64,7 @@ static t_helpers	init_raycast_helper_vrtl(t_raycast_helper *rh, t_ray *ray,
 		rh->y_step = rh->x_step * tan(ray->angle);
 		rh->a_y = player->y + rh->y_step;
 	}
-	ray->size += sqrt(pow(rh->x_step, 2) + pow(rh->y_step, 2));
+	ray->size += get_hypotenuse(rh->x_step, rh->y_step);
 	return (IS_NOT_PERFECT_ANGLE);
 }
 
@@ -81,7 +81,7 @@ void	get_hrzn_intersection(t_ray *ray, t_map *map, t_player *player)
 	else
 		rh.y_step = -1;
 	rh.x_step = rh.y_step / tan(ray->angle);
-	rh.ray_section = sqrt(pow(rh.x_step, 2) + pow(rh.y_step, 2));
+	rh.ray_section = get_hypotenuse(rh.x_step, rh.y_step);
 	while (1)
 	{
 		if (rh.is_south_direction)
@@ -110,7 +110,7 @@ void	get_vrtl_intersection(t_ray *ray, t_map *map, t_player *player)
 	else
 		rh.x_step = 1;
 	rh.y_step = rh.x_step * tan(ray->angle);
-	rh.ray_section = sqrt(pow(rh.x_step, 2) + pow(rh.y_step, 2));
+	rh.ray_section = get_hypotenuse(rh.x_step, rh.y_step);
 	while (1)
 	{
 		if (rh.is_west_direction)
