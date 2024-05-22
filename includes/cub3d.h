@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 23:33:39 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:23:02 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ void				cast_ray(t_ray *ray, t_map *map, t_player *player);
 void				update_rays(t_cubed *game);
 void				draw_gun_shooting(t_cubed *cubed);
 void				draw_menu(t_cubed *cubed);
+void				handle_shooting(t_cubed *cubed);
 
 #endif
