@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 11:59:36 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:42:24 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "definitions.h"
 # include "libft.h"
 # include "utils.h"
+# include "t_map.h"
 # include <ctype.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -27,7 +28,7 @@
 # include <string.h>
 # include <unistd.h>
 
-typedef enum
+typedef enum e_game_state
 {
 	GAME_STATE_RUNNING,
 	GAME_STATE_MENU
