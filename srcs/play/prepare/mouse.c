@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:03:11 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 14:35:09 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:32:53 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,16 @@ static int	handle_mouse_button(int button, int x, int y, t_cubed *cubed)
 		handle_weapon_switch(button, cubed);
 	if (button == RIGHT_CLICK)
 	{
-		cubed->mouse.active = 1;
-		mlx_mouse_hide(cubed->mlx.mlx_ptr, cubed->mlx.win);
+		if (!cubed->mouse.active)
+		{
+			cubed->mouse.active = 1;
+			mlx_mouse_hide(cubed->mlx.mlx_ptr, cubed->mlx.win);
+		}
+		else
+		{
+			cubed->mouse.active = 0;
+			mlx_mouse_show(cubed->mlx.mlx_ptr, cubed->mlx.win);
+		}
 		mlx_mouse_move(cubed->mlx.mlx_ptr, cubed->mlx.win, x_half, y_half);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 14:47:47 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:30:26 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ static void	free_texture(t_mlx *mlx, t_texture *texture)
 	}
 }
 
-static void	free_all_mlx(t_mlx *mlx)
+static void	free_all_mlx(t_cubed *cubed)
 {
-	if (mlx->img.img_ptr)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->img.img_ptr);
-	if (mlx->win)
-		mlx_destroy_window(mlx->mlx_ptr, mlx->win);
+	if (cubed->mlx.img.img_ptr)
+		mlx_destroy_image(cubed->mlx.mlx_ptr, cubed->mlx.img.img_ptr);
+	if (cubed->mlx.win)
+		mlx_destroy_window(cubed->mlx.mlx_ptr, cubed->mlx.win);
 	if (LINUX)
-		mlx_destroy_display(mlx->mlx_ptr);
-	if (mlx->mlx_ptr)
+		mlx_destroy_display(cubed->mlx.mlx_ptr);
+	if (cubed->mlx.mlx_ptr)
 	{
-		free(mlx->mlx_ptr);
-		mlx->mlx_ptr = 0;
+		free(cubed->mlx.mlx_ptr);
+		cubed->mlx.mlx_ptr = 0;
 	}
 }
 
@@ -82,7 +82,7 @@ void	ft_clean_exit(t_cubed *cubed, char *msg)
 		free_weapons(&cubed->mlx, &cubed->scene.weapon_map);
 		free_2d_array(cubed->scene.map.grid);
 		if (cubed->mlx.mlx_ptr)
-			free_all_mlx(&cubed->mlx);
+			free_all_mlx(cubed);
 		if (cubed->rays.ray_array)
 			free(cubed->rays.ray_array);
 	}
