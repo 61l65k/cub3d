@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:15:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 15:21:23 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:30:31 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 # define WEAPON_PATHS \
 	"./assets/weapons/akimbos/akimbos.xpm:\
 ./assets/weapons/hammer/wwrench.xpm:\
-./assets/weapons/raygun/raygun.xpm:"
+./assets/weapons/raygun/raygun.xpm:\
+./assets/weapons/minigun/minigunner.xpm"
 
 # define W_ANIMATION_PATHS \
 	"./assets/weapons/akimbos/cloud_fire0.xpm:\
@@ -31,7 +32,10 @@
 ./assets/weapons/hammer/cloud_magic_trail3.xpm:\
 ./assets/weapons/raygun/cloud_poison0.xpm:\
 ./assets/weapons/raygun/cloud_poison1.xpm:\
-./assets/weapons/raygun/cloud_poison2.xpm"
+./assets/weapons/raygun/cloud_poison2.xpm:\
+./assets/weapons/minigun/cloud_fire0.xpm:\
+./assets/weapons/minigun/cloud_fire1.xpm:\
+./assets/weapons/minigun/cloud_fire2.xpm"
 
 typedef struct s_cubed	t_cubed;
 

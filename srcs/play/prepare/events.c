@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 14:01:00 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:17:11 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static int	key_press(int keycode, t_cubed *cubed)
 	if (keycode == K_SPACE)
 	{
 		cubed->player.shooting = 1;
-		handle_shooting(cubed);
 	}
 	if (keycode == K_M)
 	{
@@ -79,6 +78,10 @@ static int	key_released(int keycode, t_cubed *cubed)
 	if (keycode == K_A)
 	{
 		cubed->player.x_move += 1;
+	}
+	if (keycode == K_SPACE)
+	{
+		cubed->player.shooting = 0;
 	}
 	return (1);
 }

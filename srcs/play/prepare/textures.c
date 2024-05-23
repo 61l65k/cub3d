@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:36 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 10:45:25 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:14:25 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	prepare_textures(t_cubed *cubed)
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.south_texture);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.west_texture);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.east_texture);
-	load_weapons(cubed, &cubed->scene.weapon_map);
+	load_weapons(cubed, &cubed->weapon_map);
 }
 
 void	prepare_rays(t_cubed *cubed)

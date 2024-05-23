@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 09:34:35 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:14:06 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_scenedata
 	t_texture		east_texture;
 	t_map			map;
 	int				mini_map_tile_size;
-	t_weapon_map	weapon_map;
 }					t_scenedata;
 
 typedef struct s_cubed
@@ -70,6 +69,7 @@ typedef struct s_cubed
 	t_rays			rays;
 	t_player		player;
 	t_mouse			mouse;
+	t_weapon_map	weapon_map;
 }					t_cubed;
 
 void				validate_scene(t_cubed *cubed);

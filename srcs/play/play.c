@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 08:27:00 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:02:15 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ static void	prepare_game(t_cubed *cubed)
 	prepare_rays(cubed);
 }
 
-static void	update_vars(t_cubed *cubed)
+static void	update_data(t_cubed *cubed)
 {
 	update_player_position(&cubed->player, &cubed->scene.map);
 	update_player_orientation(&cubed->player);
 	update_rays(cubed);
 }
 
-static void	draw_img(t_cubed *cubed)
+static void	draw_image(t_cubed *cubed)
 {
 	draw_ceiling(cubed);
 	draw_floor(cubed);
@@ -40,8 +40,8 @@ static int	render_frames(void *data)
 	t_cubed	*cubed;
 
 	cubed = data;
-	update_vars(cubed);
-	draw_img(cubed);
+	update_data(cubed);
+	draw_image(cubed);
 	mlx_put_image_to_window(cubed->mlx.mlx_ptr, cubed->mlx.win,
 		cubed->mlx.img.img_ptr, 0, 0);
 	if (cubed->game_state == GAME_STATE_MENU)

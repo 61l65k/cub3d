@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 20:20:45 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 14:06:22 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:14:35 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	draw_shooting_effect(t_cubed *cubed, t_weapon *weapon)
 	}
 }
 
-static void	update_shooting_animation(t_cubed *cubed, t_weapon *weapon)
+static void	update_shooting_animation(t_weapon *weapon)
 {
 	t_animation	*animation;
 
@@ -80,10 +80,7 @@ static void	update_shooting_animation(t_cubed *cubed, t_weapon *weapon)
 		animation->frame_timer = 0;
 		animation->curr_frame++;
 		if (animation->curr_frame >= animation->frame_count)
-		{
 			animation->curr_frame = 0;
-			cubed->player.shooting = 0;
-		}
 	}
 }
 
@@ -92,12 +89,13 @@ void	draw_gun_shooting(t_cubed *cubed)
 	t_weapon_map	*weapon_map;
 	t_weapon		*current_weapon;
 
-	weapon_map = &cubed->scene.weapon_map;
+	weapon_map = &cubed->weapon_map;
 	current_weapon = &weapon_map->weapons[weapon_map->current_weapon];
 	draw_gun(cubed, current_weapon);
 	if (cubed->player.shooting)
 	{
 		draw_shooting_effect(cubed, current_weapon);
-		update_shooting_animation(cubed, current_weapon);
+		handle_shooting(cubed);
+		update_shooting_animation(current_weapon);
 	}
 }
