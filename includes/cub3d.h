@@ -6,18 +6,19 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 12:45:21 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 07:49:42 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "datastructs.h"
 # include "definitions.h"
 # include "libft.h"
-# include "utils.h"
+# include "raycast.h"
 # include "t_map.h"
+# include "utils.h"
+# include "weapon.h"
 # include <ctype.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -33,6 +34,33 @@ typedef enum e_game_state
 	GAME_STATE_RUNNING,
 	GAME_STATE_MENU
 }					t_game_state;
+
+typedef struct s_player
+{
+	double			x;
+	double			y;
+	int				x_move;
+	int				z_move;
+	double			move_speed;
+	int				turn_direction;
+	double			rotation_angle;
+	double			rotation_speed;
+	bool			shooting;
+}					t_player;
+
+typedef struct s_scenedata
+{
+	t_resolution	resol;
+	t_color			floor_color;
+	t_color			ceiling_color;
+	t_texture		north_texture;
+	t_texture		south_texture;
+	t_texture		west_texture;
+	t_texture		east_texture;
+	t_map			map;
+	int				mini_map_tile_size;
+	t_weapon_map	weapon_map;
+}					t_scenedata;
 
 typedef struct s_cubed
 {

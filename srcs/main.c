@@ -6,30 +6,13 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:01:33 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 14:23:50 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:13:07 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	printalldata(t_cubed *cubed)
-{
-	ft_printf("Resolution: %d x %d\n", cubed->scene.resol.width,
-		cubed->scene.resol.height);
-	ft_printf("North texture: %s\n", cubed->scene.north_texture.path);
-	ft_printf("South texture: %s\n", cubed->scene.south_texture.path);
-	ft_printf("West texture: %s\n", cubed->scene.west_texture.path);
-	ft_printf("East texture: %s\n", cubed->scene.east_texture.path);
-	// ft_printf("Sprite texture: %s\n", cubed->scene.sprite_texture.path);
-	ft_printf("Floor color: %d, %d, %d\n", cubed->scene.floor_color.red,
-		cubed->scene.floor_color.green, cubed->scene.floor_color.blue);
-	ft_printf("Ceiling color: %d, %d, %d\n", cubed->scene.ceiling_color.red,
-		cubed->scene.ceiling_color.green, cubed->scene.ceiling_color.blue);
-	for (size_t i = 0; i < cubed->scene.map.height; i++)
-		printf("%s\n", cubed->scene.map.grid[i]);
-}
-
-void	extract_from_cub_file(t_cubed *cubed, const char *path);
+void		extract_from_cub_file(t_cubed *cubed, const char *path);
 
 static int	run_cub3d(char **av)
 {
@@ -37,7 +20,6 @@ static int	run_cub3d(char **av)
 
 	cubed = (t_cubed){0};
 	extract_from_cub_file(&cubed, av[1]);
-	printalldata(&cubed);
 	validate_scene(&cubed);
 	start_game(&cubed);
 	ft_clean_exit(&cubed, NULL);

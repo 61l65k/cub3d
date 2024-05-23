@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   t_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 11:18:26 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/22 12:20:44 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/23 07:53:35 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "datastructs.h"
-
+#include "t_map.h"
 #include <stdio.h>
 
 int	t_map_insert(t_map *t_map, int x, int y, char new_value)
