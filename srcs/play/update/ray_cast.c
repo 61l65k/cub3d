@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 11:23:15 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:03:48 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static t_helpers	init_raycast_helper_vrtl(t_raycast_helper *rh, t_ray *ray,
 	return (IS_NOT_PERFECT_ANGLE);
 }
 
-void	get_hrzn_intersection(t_ray *ray, t_map *map, t_player *player)
+static
+void	get_x_intersection(t_ray *ray, t_map *map, t_player *player)
 {
 	t_raycast_helper	rh;
 
@@ -98,7 +99,8 @@ void	get_hrzn_intersection(t_ray *ray, t_map *map, t_player *player)
 	}
 }
 
-void	get_vrtl_intersection(t_ray *ray, t_map *map, t_player *player)
+static
+void	get_y_intersection(t_ray *ray, t_map *map, t_player *player)
 {
 	t_raycast_helper	rh;
 
@@ -127,19 +129,29 @@ void	get_vrtl_intersection(t_ray *ray, t_map *map, t_player *player)
 	}
 }
 
-void	cast_ray(t_ray *ray, t_map *map, t_player *player)
+void	update_rays(t_cubed *cubed)
 {
+	double	ray_angle;
+	int		i;
 	t_ray	hrzn_intersection;
 	t_ray	vrtl_intersection;
 
-	hrzn_intersection.angle = normalize_radian(ray->angle);
-	vrtl_intersection.angle = normalize_radian(ray->angle);
 	hrzn_intersection.side = 'H';
 	vrtl_intersection.side = 'V';
-	get_hrzn_intersection(&hrzn_intersection, map, player);
-	get_vrtl_intersection(&vrtl_intersection, map, player);
-	if (hrzn_intersection.size <= vrtl_intersection.size)
-		*ray = hrzn_intersection;
-	else
-		*ray = vrtl_intersection;
+	ray_angle = cubed->player.rotation_angle - cubed->rays.field_of_view / 2;
+	i = -1;
+	while (++i < cubed->scene.resol.width)
+	{
+		hrzn_intersection.angle = normalize_radian(ray_angle);
+		vrtl_intersection.angle = normalize_radian(ray_angle);
+		hrzn_intersection.orientation = 0;
+		vrtl_intersection.orientation = 0;
+		get_x_intersection(&hrzn_intersection, &cubed->scene.map, &cubed->player);
+		get_y_intersection(&vrtl_intersection, &cubed->scene.map, &cubed->player);
+		if (hrzn_intersection.size <= vrtl_intersection.size)
+			cubed->rays.ray_array[i] = hrzn_intersection;
+		else
+			cubed->rays.ray_array[i] = vrtl_intersection;
+		ray_angle += cubed->rays.field_of_view / cubed->scene.resol.width;
+	}
 }
