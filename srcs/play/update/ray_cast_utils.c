@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:30:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 13:05:10 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/23 14:34:57 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,6 @@ int	is_ray_facing_west(double angle)
 
 static char	get_wall_orientation(t_map *map, int x, int y, t_ray *ray)
 {
-	if (x == 0)
-		return ('E');
-	else if (x == (int)map->width)
-		return ('W');
-	else if (y == 0)
-		return ('S');
-	else if (y == (int)map->height)
-		return ('N');
 	if (ray->side == 'H')
 	{
 		if (t_map_get(map, x, y - 1) != '1' && is_ray_facing_south(ray->angle))
