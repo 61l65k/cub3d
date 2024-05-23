@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 07:49:35 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 09:36:14 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define ERR_START_POSITION "Error: map has invalid start position\n"
 # define VALID_CHARS "012NSEW "
 # define GUN_TEXTURE_PATH "assets/gun/akimbos.xpm"
+# define ERR_LOAD_WEAPON "Error: load_weapon() - could not load weapon\n"
+# define ERR_LOAD_TEXTURE "Error: load_texture() - could not load texture\n"
 
 # ifndef LINUX
 #  define LINUX 0

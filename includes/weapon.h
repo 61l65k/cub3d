@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:15:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 07:49:23 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 09:44:20 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,23 @@
 # include "display.h"
 
 typedef struct s_cubed	t_cubed;
+
+# define WEAPON_PATHS \
+	"./assets/weapons/akimbos/akimbos.xpm:\
+./assets/weapons/hammer/hammer.xpm:\
+./assets/weapons/raygun/raygun.xpm"
+
+# define W_ANIMATION_PATHS \
+	"./assets/weapons/akimbos/cloud_fire0.xpm:\
+./assets/weapons/akimbos/cloud_fire1.xpm:\
+./assets/weapons/akimbos/cloud_fire2.xpm:\
+./assets/weapons/hammer/cloud_magic_trail0.xpm:\
+./assets/weapons/hammer/cloud_magic_trail1.xpm:\
+./assets/weapons/hammer/cloud_magic_trail2.xpm:\
+./assets/weapons/hammer/cloud_magic_trail3.xpm:\
+./assets/weapons/raygun/cloud_poison0.xpm:\
+./assets/weapons/raygun/cloud_poison1.xpm:\
+./assets/weapons/raygun/cloud_poison2.xpm"
 
 typedef struct s_weapon
 {
@@ -32,6 +49,5 @@ typedef struct s_weapon_map
 }						t_weapon_map;
 
 int						handle_weapon_switch(int button, t_cubed *cubed);
-void					load_weapons(t_cubed *cubed, void *mlx,
-							t_weapon_map *weapon_map);
+void					load_weapons(t_cubed *cubed, t_weapon_map *weapon_map);
 #endif
