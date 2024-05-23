@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 11:51:42 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 09:44:22 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:57:00 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,15 @@ static void	load_weapon(t_cubed *cubed, t_weapon *weapon, char *texture_path,
 	load_weapon_animation(cubed, weapon, animation_paths);
 }
 
+static void get_gun_positions(t_weapon *weapon, t_cubed *cubed)
+{
+	weapon->gun_pos_x = (cubed->scene.resol.width - weapon->texture.width) / 2;
+	weapon->gun_pos_y = cubed->scene.resol.height - weapon->texture.height + 50;
+	weapon->left_gun_tip_x = weapon->gun_pos_x + weapon->texture.width * 0.2;
+	weapon->right_gun_tip_x = weapon->gun_pos_x + weapon->texture.width * 0.78;
+	weapon->gun_tip_y = weapon->gun_pos_y + weapon->texture.height * 0.3;
+}
+
 void	load_weapons(t_cubed *cubed, t_weapon_map *weapon_map)
 {
 	char	**weapon_paths;
@@ -77,6 +86,7 @@ void	load_weapons(t_cubed *cubed, t_weapon_map *weapon_map)
 			+ (i == 1);
 		load_weapon(cubed, &weapon_map->weapons[i], weapon_paths[i],
 			&animation_paths[animation_index]);
+		get_gun_positions(&weapon_map->weapons[i], cubed);
 		animation_index += frame_count;
 	}
 	return (free_2d_array(weapon_paths), free_2d_array(animation_paths));

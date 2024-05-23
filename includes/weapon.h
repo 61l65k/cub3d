@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:15:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 09:44:20 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:55:31 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_cubed	t_cubed;
 
 # define WEAPON_PATHS \
 	"./assets/weapons/akimbos/akimbos.xpm:\
-./assets/weapons/hammer/hammer.xpm:\
+./assets/weapons/hammer/wwrench.xpm:\
 ./assets/weapons/raygun/raygun.xpm"
 
 # define W_ANIMATION_PATHS \
@@ -37,9 +37,15 @@ typedef struct s_cubed	t_cubed;
 
 typedef struct s_weapon
 {
-	t_texture			texture;
-	t_animation			shooting_animation;
-}						t_weapon;
+    t_texture            texture;
+    t_animation          shooting_animation;
+    int                  gun_pos_x;
+    int                  gun_pos_y;
+    int                  left_gun_tip_x;
+    int                  right_gun_tip_x;
+    int                  gun_tip_y;
+}                       t_weapon;
+
 
 typedef struct s_weapon_map
 {
