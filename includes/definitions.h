@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 09:36:14 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 11:56:27 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define GRID_UNIT_SCALE 64
 # define MAX_X_RES 1000
 # define MAX_Y_RES 500
-# define VIEW_ANGLE 60
+# define FOV 60
 # define TAB_SIZE 4
 # ifndef linux
 #  define K_ESC 53

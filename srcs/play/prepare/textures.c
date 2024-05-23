@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:36 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 09:36:32 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 10:45:25 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	prepare_rays(t_cubed *cubed)
 	cubed->rays.ray_array = ft_calloc(cubed->scene.resol.width, sizeof(t_ray));
 	if (!cubed->rays.ray_array)
 		ft_clean_exit(cubed, CUB_ERROR_MALLOC CUB_ERROR_MALLOC);
-	cubed->rays.view_angle = deg2rad(VIEW_ANGLE);
+	cubed->rays.field_of_view = deg2rad(FOV);
 	cubed->rays.proj_plane_dist = ((double)cubed->scene.resol.width / 2)
-		/ tan(cubed->rays.view_angle / 2);
+		/ tan(cubed->rays.field_of_view / 2);
 }

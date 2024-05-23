@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 16:13:55 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 11:23:15 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	get_hrzn_intersection(t_ray *ray, t_map *map, t_player *player)
 		rh.a_x += rh.x_step;
 		rh.a_y += rh.y_step;
 		ray->size += rh.ray_section;
+		//printf("ALL data: %f %f %f %f\n", rh.a_x, rh.a_y, ray->size, rh.ray_section);
 	}
 }
 
