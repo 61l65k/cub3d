@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_walls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 03:18:22 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 11:57:15 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:04:42 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ void	draw_walls(t_cubed *game)
 	while (i < game->scene.resol.width)
 	{
 		ray = &game->rays.ray_array[i];
+		if (!ray->orientation)
+		{
+			i++;
+			continue ;
+		}
 		wall.x = i;
 		wall.height = get_wall_height(game, ray);
 		wall.y = get_y_wall_position(game, wall.height);
