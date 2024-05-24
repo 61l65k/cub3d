@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 01:21:51 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 01:35:35 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static void	handle_akimbos_shooting(t_cubed *cubed)
 static void	handle_wrench_shooting(t_cubed *cubed)
 {
 	const float	distance = 3.0;
-	const float	dir_x = cos(cubed->player.rotation_angle) * distance;
-	const float	dir_y = sin(cubed->player.rotation_angle) * distance;
+	const float	dir_x = cubed->player.dir_x * distance;
+	const float	dir_y = cubed->player.dir_y * distance;
 	const int	map_x = (int)(cubed->player.x + dir_x);
 	const int	map_y = (int)(cubed->player.y + dir_y);
 

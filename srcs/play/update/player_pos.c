@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   player_pos.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:03:21 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 14:57:19 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/25 01:35:34 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static
-void	move(t_player *player, double angle, double move_step,
+static void	move(t_player *player, double angle, double move_step,
 		const t_map *map)
 {
 	double	new_x;
@@ -46,15 +45,13 @@ void	update_player_position(t_player *player, const t_map *map)
 {
 	if (player->z_move)
 	{
-		move(player, player->rotation_angle,
-			(double)player->z_move
+		move(player, player->rotation_angle, (double)player->z_move
 			* player->move_speed, map);
 	}
 	if (player->x_move)
 	{
 		move(player, player->rotation_angle + deg2rad(90),
-			(double)player->x_move
-			* player->move_speed, map);
+			(double)player->x_move * player->move_speed, map);
 	}
 }
 
@@ -65,4 +62,6 @@ void	update_player_orientation(t_player *player)
 		player->rotation_angle += player->turn_direction
 			* player->rotation_speed;
 	}
+	player->dir_x = cos(player->rotation_angle);
+	player->dir_y = sin(player->rotation_angle);
 }
