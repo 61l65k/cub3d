@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 07:49:26 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 02:19:56 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,8 @@ int							is_wall(t_map *map, double x, double y, t_ray *ray);
 void						draw_rectangle(t_floor_ceiling *rec, int *img,
 								int res_x);
 double						get_hypotenuse(double a, double b);
+void						draw_vertical_line(t_cubed *cubed, int draw_x,
+								int draw_y, int color);
+void						draw_spawners(t_cubed *cubed);
 
 #endif

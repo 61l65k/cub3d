@@ -6,14 +6,13 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 20:20:45 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 17:14:35 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 01:37:32 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	draw_vertical_line(t_cubed *cubed, int draw_x, int draw_y,
-		int color)
+void	draw_vertical_line(t_cubed *cubed, int draw_x, int draw_y, int color)
 {
 	if (draw_x >= 0 && draw_x < cubed->scene.resol.width && draw_y >= 0
 		&& draw_y < cubed->scene.resol.height)

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:17:14 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 07:48:40 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 02:32:43 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,17 @@ static void	get_starting_position(t_player *player, char **grid)
 
 void	prepare_player(t_cubed *cubed)
 {
-	cubed->player.x_move = 0;
-	cubed->player.z_move = 0;
-	cubed->player.move_speed = 0.02;
-	cubed->player.turn_direction = 0;
-	cubed->player.rotation_speed = deg2rad(0.5);
+	t_player	*player;
+
+	player = &cubed->player;
+	player->x_move = 0;
+	player->z_move = 0;
+	player->move_speed = 0.02;
+	player->turn_direction = 0;
+	player->rotation_speed = deg2rad(0.5);
+	player->dir_x = cos(player->rotation_angle);
+	player->dir_y = sin(player->rotation_angle);
+	player->plane_x = -player->dir_y * 0.66;
+	player->plane_y = player->dir_x * 0.66;
 	get_starting_position(&cubed->player, cubed->scene.map.grid);
 }
