@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 17:14:19 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 01:21:51 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,9 @@ static void	handle_raygun_shooting(t_cubed *cubed)
 
 void	handle_shooting(t_cubed *cubed)
 {
-	t_weapon_map	*weapon_map;
-	t_weapon		*current_weapon;
+	const t_weapon_map	*weapon_map = &cubed->weapon_map;
+	const t_weapon		*current_weapon = &weapon_map->weapons[weapon_map->current_weapon];
 
-	weapon_map = &cubed->weapon_map;
-	current_weapon = &weapon_map->weapons[weapon_map->current_weapon];
-	printf("Shooting with weapon %d\n", current_weapon->type);
 	if (current_weapon->type == WEAPON_AKIMBOS)
 	{
 		handle_akimbos_shooting(cubed);
@@ -96,7 +93,8 @@ void	handle_shooting(t_cubed *cubed)
 	{
 		handle_akimbos_shooting(cubed);
 	}
-	if (current_weapon->type != WEAPON_MINIGUN)
+	if (current_weapon->type != WEAPON_MINIGUN
+		&& current_weapon->type != WEAPON_WRENCH)
 	{
 		cubed->player.shooting = 0;
 	}

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:36 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 17:14:25 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 01:07:00 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	load_texture(t_cubed *cubed, void *mlx, t_texture *texture)
 {
+	printf("Loading texture HERE %s\n", texture->path);
 	texture->img.img_ptr = mlx_xpm_file_to_image(mlx, texture->path,
 			&texture->width, &texture->height);
 	if (!texture->img.img_ptr)

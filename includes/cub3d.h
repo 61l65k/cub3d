@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 17:14:06 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 00:12:58 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "definitions.h"
 # include "libft.h"
 # include "raycast.h"
+# include "sprites.h"
 # include "t_map.h"
 # include "utils.h"
 # include "weapon.h"
@@ -58,6 +59,7 @@ typedef struct s_scenedata
 	t_texture		west_texture;
 	t_texture		east_texture;
 	t_map			map;
+	t_sprite_info	sprite_info;
 	int				mini_map_tile_size;
 }					t_scenedata;
 
