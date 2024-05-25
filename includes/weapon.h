@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:15:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 10:30:19 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 11:07:36 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct s_weapon_map
 {
 	t_weapon			weapons[WEAPON_MAX];
 	int					current_weapon;
-	int					total_weapons;
 }						t_weapon_map;
 
 int						handle_weapon_switch(int button, t_cubed *cubed);

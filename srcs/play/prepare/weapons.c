@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapons.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 11:51:42 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 17:09:43 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 11:06:41 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,11 @@ void	load_weapons(t_cubed *cubed, t_weapon_map *weapon_map)
 	if (!weapon_paths || !animation_paths)
 		return (free_2d_array(weapon_paths), free_2d_array(animation_paths),
 			ft_clean_exit(cubed, ERR_LOAD_WEAPON));
-	weapon_map->total_weapons = 4;
 	weapon_map->current_weapon = 0;
 	animation_index = 0;
 	frame_count = 3;
 	i = -1;
-	while (++i < weapon_map->total_weapons)
+	while (++i < WEAPON_MAX)
 	{
 		weapon_map->weapons[i].shooting_animation.frame_count = frame_count
 			+ (i == 1);

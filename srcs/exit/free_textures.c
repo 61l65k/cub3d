@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 01:14:51 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 07:40:02 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 11:06:22 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	free_weapons(t_mlx *mlx, t_weapon_map *weapon_map)
 	int	i;
 
 	i = 0;
-	while (i < weapon_map->total_weapons)
+	while (i < WEAPON_MAX)
 	{
 		free_texture(mlx, &weapon_map->weapons[i].texture);
 		free_animation(mlx, &weapon_map->weapons[i].shooting_animation);
