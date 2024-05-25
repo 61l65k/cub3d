@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:30:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 14:34:57 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/25 09:05:54 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,16 @@ static char	get_wall_orientation(t_map *map, int x, int y, t_ray *ray)
 	{
 		if (t_map_get(map, x, y - 1) != '1' && is_ray_facing_south(ray->angle))
 			return ('N');
-		else if (t_map_get(map, x, y + 1) != '1' && !is_ray_facing_south(ray->angle))
+		else if (t_map_get(map, x, y + 1) != '1'
+			&& !is_ray_facing_south(ray->angle))
 			return ('S');
 	}
 	else
 	{
 		if (t_map_get(map, x - 1, y) != '1' && !is_ray_facing_west(ray->angle))
 			return ('W');
-		else if (t_map_get(map, x + 1, y) != '1' && is_ray_facing_west(ray->angle))
+		else if (t_map_get(map, x + 1, y) != '1'
+			&& is_ray_facing_west(ray->angle))
 			return ('E');
 	}
 	return (0);
@@ -64,7 +66,7 @@ int	is_wall(t_map *map, double x, double y, t_ray *ray)
 	if ((int)x < 0 || (int)map->width < (int)x || (int)y < 0
 		|| (int)map->height < (int)y)
 	{
-		ray->size = INT_MAX;
+		ray->distance = INT_MAX;
 		return (1);
 	}
 	ray->obstacle = map->grid[(int)y][(int)x];

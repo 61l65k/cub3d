@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 07:02:29 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 09:41:26 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "definitions.h"
 # include "libft.h"
 # include "raycast.h"
+# include "renderable.h"
 # include "sprites.h"
 # include "t_map.h"
 # include "utils.h"

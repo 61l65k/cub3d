@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 15:03:48 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/25 09:05:54 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static t_helpers	init_raycast_helper_hrzn(t_raycast_helper *rh, t_ray *ray,
 {
 	if (ray->angle == deg2rad(180) || ray->angle == deg2rad(360))
 	{
-		ray->size = INT_MAX;
+		ray->distance = INT_MAX;
 		return (IS_PERFECT_ANGLE);
 	}
 	rh->is_south_direction = is_ray_facing_south(ray->angle);
-	ray->size = 0;
+	ray->distance = 0;
 	if (rh->is_south_direction)
 	{
 		rh->a_y = ceil(player->y);
@@ -36,7 +36,7 @@ static t_helpers	init_raycast_helper_hrzn(t_raycast_helper *rh, t_ray *ray,
 		rh->x_step = rh->y_step / tan(ray->angle);
 		rh->a_x = player->x - rh->x_step;
 	}
-	ray->size += get_hypotenuse(rh->x_step, rh->y_step);
+	ray->distance += get_hypotenuse(rh->x_step, rh->y_step);
 	return (IS_NOT_PERFECT_ANGLE);
 }
 
@@ -45,11 +45,11 @@ static t_helpers	init_raycast_helper_vrtl(t_raycast_helper *rh, t_ray *ray,
 {
 	if (ray->angle == deg2rad(90) || ray->angle == deg2rad(270))
 	{
-		ray->size = INT_MAX;
+		ray->distance = INT_MAX;
 		return (IS_PERFECT_ANGLE);
 	}
 	rh->is_west_direction = is_ray_facing_west(ray->angle);
-	ray->size = 0;
+	ray->distance = 0;
 	if (rh->is_west_direction)
 	{
 		rh->a_x = floor(player->x);
@@ -64,7 +64,7 @@ static t_helpers	init_raycast_helper_vrtl(t_raycast_helper *rh, t_ray *ray,
 		rh->y_step = rh->x_step * tan(ray->angle);
 		rh->a_y = player->y + rh->y_step;
 	}
-	ray->size += get_hypotenuse(rh->x_step, rh->y_step);
+	ray->distance += get_hypotenuse(rh->x_step, rh->y_step);
 	return (IS_NOT_PERFECT_ANGLE);
 }
 
@@ -94,7 +94,7 @@ void	get_x_intersection(t_ray *ray, t_map *map, t_player *player)
 			break ;
 		rh.a_x += rh.x_step;
 		rh.a_y += rh.y_step;
-		ray->size += rh.ray_section;
+		ray->distance += rh.ray_section;
 		//printf("ALL data: %f %f %f %f\n", rh.a_x, rh.a_y, ray->size, rh.ray_section);
 	}
 }
@@ -125,7 +125,7 @@ void	get_y_intersection(t_ray *ray, t_map *map, t_player *player)
 			break ;
 		rh.a_x += rh.x_step;
 		rh.a_y += rh.y_step;
-		ray->size += rh.ray_section;
+		ray->distance += rh.ray_section;
 	}
 }
 
@@ -148,7 +148,7 @@ void	update_rays(t_cubed *cubed)
 		vrtl_intersection.orientation = 0;
 		get_x_intersection(&hrzn_intersection, &cubed->scene.map, &cubed->player);
 		get_y_intersection(&vrtl_intersection, &cubed->scene.map, &cubed->player);
-		if (hrzn_intersection.size <= vrtl_intersection.size)
+		if (hrzn_intersection.distance <= vrtl_intersection.distance)
 			cubed->rays.ray_array[i] = hrzn_intersection;
 		else
 			cubed->rays.ray_array[i] = vrtl_intersection;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_walls.c                                       :+:      :+:    :+:   */
+/*   get_wall_data_ray.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 03:18:22 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 07:38:05 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 09:39:40 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ double	get_wall_height(t_cubed *cubed, t_ray *ray)
 {
 	const double	fisheye_adjustment = cos(ray->angle
 				- cubed->player.rotation_angle);
-	const double	scaled_distance = ray->size * GRID_UNIT_SCALE
+	const double	scaled_distance = ray->distance * GRID_UNIT_SCALE
 			* fisheye_adjustment;
 
 	// printf("ROTA: %f\n", cubed->player.rotation_angle);
@@ -44,29 +44,4 @@ t_texture	get_wall_texture(t_scenedata *scene, char orientation)
 	else if (orientation == 'E')
 		return (scene->east_texture);
 	return (scene->west_texture);
-}
-
-void	draw_walls(t_cubed *game)
-{
-	int		i;
-	t_wall	wall;
-	t_ray	*ray;
-
-	i = 0;
-	wall = (t_wall){0};
-	while (i < game->scene.resol.width)
-	{
-		ray = &game->rays.ray_array[i];
-		if (!ray->orientation)
-		{
-			i++;
-			continue ;
-		}
-		wall.x = i;
-		wall.height = get_wall_height(game, ray);
-		wall.y = get_y_wall_position(game, wall.height);
-		wall.texture = get_wall_texture(&game->scene, ray->orientation);
-		render_wall_column(&wall, game->mlx.img.data, &game->scene.resol, ray);
-		i++;
-	}
 }

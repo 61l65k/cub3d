@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 06:14:08 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 09:44:56 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ static void	draw_image(t_cubed *cubed)
 {
 	draw_ceiling(cubed);
 	draw_floor(cubed);
-	draw_walls(cubed);
-	draw_sprites(cubed);
+	sort_and_draw_renderables(cubed);
 	draw_gun_shooting(cubed);
 }
 

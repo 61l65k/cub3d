@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 07:57:27 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 09:37:33 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	draw_vertical_sprite_line(t_cubed *cubed, int stripe,
 	}
 }
 
-static void	draw_any_sprite(t_cubed *cubed, t_sprite_render_info *info,
+void	draw_any_sprite(t_cubed *cubed, t_sprite_render_info *info,
 		t_texture *texture)
 {
 	int	stripe;
@@ -47,36 +47,4 @@ static void	draw_any_sprite(t_cubed *cubed, t_sprite_render_info *info,
 			draw_vertical_sprite_line(cubed, stripe, info, texture);
 		}
 	}
-}
-
-static void	draw_spawners(t_cubed *cubed)
-{
-	t_sprite_spawner	*spawner;
-	int					i;
-
-	i = -1;
-	while (++i < cubed->scene.sprite_info.spawner_count)
-	{
-		spawner = &cubed->scene.sprite_info.spawners[i];
-		draw_any_sprite(cubed, &spawner->info, &spawner->spawner_texture);
-	}
-}
-
-static void	draw_moving_sprites(t_cubed *cubed)
-{
-	t_sprite	*sprite;
-
-	sprite = cubed->scene.sprite_info.sprites;
-	while (sprite)
-	{
-		draw_any_sprite(cubed, &sprite->info, &sprite->texture);
-		sprite = sprite->next;
-	}
-}
-
-void	draw_sprites(t_cubed *cubed)
-{
-	sort_sprites_by_distance(&cubed->scene.sprite_info.sprites);
-	draw_spawners(cubed);
-	draw_moving_sprites(cubed);
 }

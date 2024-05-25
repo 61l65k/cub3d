@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:40:52 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 02:19:57 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 09:06:06 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_ray
 {
 	double	x;
 	double	y;
-	double	size;
+	double	distance;
 	char	obstacle;
 	double	angle;
 	char	orientation;
@@ -34,6 +34,7 @@ typedef struct s_rays
 	t_ray	*ray_array;
 	double	proj_plane_dist;
 	double	field_of_view;
+	int		ray_count;
 }			t_rays;
 
 typedef struct s_raycast_helper

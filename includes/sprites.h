@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 07:57:28 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 09:04:19 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_sprite_info
 {
 	t_sprite_spawner		*spawners;
 	t_sprite				*sprites;
+	int						sprites_count;
 	int						spawner_count;
 }							t_sprite_info;
 
