@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 09:04:19 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 11:33:19 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_sprite
 	double					distance;
 	double					angle;
 	double					speed;
+	int						health;
 	t_sprite_render_info	info;
 	t_texture				texture;
 	struct s_sprite			*next;
@@ -49,6 +50,7 @@ typedef struct s_sprite_spawner
 {
 	double					x;
 	double					y;
+	int						health;
 	t_sprite_render_info	info;
 	t_texture				spawner_texture;
 	t_texture				sprite_texture;
@@ -76,5 +78,8 @@ t_sprite					*create_sprite_node(t_cubed *cubed, double x,
 								double y, t_texture *texture);
 void						free_all_sprites(t_sprite *sprites);
 void						sort_sprites_by_distance(t_sprite **sprites);
+void						apply_damage_to_sprite(t_cubed *cubed,
+								t_sprite *sprite, t_sprite *prev_sprite,
+								int damage);
 
 #endif

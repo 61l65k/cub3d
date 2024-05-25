@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 09:41:26 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 10:52:13 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_player
 	float			plane_y;
 	int				x_move;
 	int				z_move;
+	int				health;
 	double			move_speed;
 	int				turn_direction;
 	double			rotation_angle;

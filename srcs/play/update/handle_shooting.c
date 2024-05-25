@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 01:35:35 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 11:54:16 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,21 @@ static void	handle_akimbos_shooting(t_cubed *cubed)
 	const t_ray	*middle_ray = &cubed->rays.ray_array[middle_ray_index];
 	const int	map_x = (int)middle_ray->x;
 	const int	map_y = (int)middle_ray->y;
+	t_sprite	*sprite;
+	t_sprite	*prev_sprite;
 
+	sprite = cubed->scene.sprite_info.sprites;
+	prev_sprite = NULL;
+	while (sprite)
+	{
+		if ((int)sprite->x == map_x && (int)sprite->y == map_y)
+		{
+			apply_damage_to_sprite(cubed, sprite, prev_sprite, 10);
+			return ;
+		}
+		prev_sprite = sprite;
+		sprite = sprite->next;
+	}
 	if (t_map_get(&cubed->scene.map, map_x, map_y) == '1')
 	{
 		t_map_insert(&cubed->scene.map, map_x, map_y, '0');
@@ -67,9 +81,25 @@ static void	handle_raygun_shooting(t_cubed *cubed)
 	const t_ray	*middle_ray = &cubed->rays.ray_array[middle_ray_index];
 	const int	map_x = (int)middle_ray->x;
 	const int	map_y = (int)middle_ray->y;
+	t_sprite	*sprite;
+	t_sprite	*prev_sprite;
 
+	sprite = cubed->scene.sprite_info.sprites;
+	prev_sprite = NULL;
+	while (sprite)
+	{
+		if ((int)sprite->x == map_x && (int)sprite->y == map_y)
+		{
+			apply_damage_to_sprite(cubed, sprite, prev_sprite, 10);
+			return ;
+		}
+		prev_sprite = sprite;
+		sprite = sprite->next;
+	}
 	if (t_map_get(&cubed->scene.map, map_x, map_y) == '1')
+	{
 		destroy_adjacent_walls(cubed, map_x, map_y, 0);
+	}
 }
 
 void	handle_shooting(t_cubed *cubed)

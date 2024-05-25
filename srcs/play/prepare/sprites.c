@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 03:05:49 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 10:13:22 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 10:53:30 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	prepare_spawner(t_cubed *cubed, int x, int y)
 	spawner->y = y + 0.5;
 	spawner->spawn_interval = 5.0;        // Create some random time interval
 	spawner->time_since_last_spawn = 0.0; // make the spawner & sprite text rand
+	spawner->health = 100;
 	spawner->spawner_texture.path = ft_strdup("./assets/sprites/spawner.xpm");
 	spawner->sprite_texture.path = ft_strdup("./assets/sprites/boggart.xpm");
 	if (!spawner->spawner_texture.path)
