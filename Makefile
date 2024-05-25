@@ -4,7 +4,7 @@ PATH_BUILD			:=		build
 PATH_LIBFT			:=		libft
 PATH_LIBMLX_MAC		:=		minilibx-macos
 PATH_LIBMLX_LINUX	:=		minilibx-linux
-
+PATH_LIBMLX42		:=		MLX42/
 SRCS				:=		$(shell find srcs -name *.c)
 SRCS_OBJS			:=		$(shell find srcs -name *.o)
 OBJS				:=		$(SRCS:%.c=$(PATH_BUILD)/%.o)
@@ -16,18 +16,22 @@ RM 					:=		rm -rf
 
 OS					:=		$(shell uname -s)
 
-FLAG_INC			:= 		$(addprefix -I, includes libft minilibx-linux minilibx-macos)
+FLAG_INC			:= 		$(addprefix -I, includes libft minilibx-linux minilibx-macos MLX42/include)
 FLAGS_COMP			:= 		-O3 -Wall -Wextra -Werror $(FLAG_INC) -MMD -MP -g 
 
 FLAG_LIBFT			:=		-L$(PATH_LIBFT) -lft 
 FLAG_LIBMLX_MAC		:=		-L$(PATH_LIBMLX_MAC) -lmlx -framework OpenGL -framework AppKit -lz
 FLAG_LIBMLX_LINUX	:=		-L$(PATH_LIBMLX_LINUX) -lmlx -lX11 -lXext
+FLAG_LIBMLX42		:= 		-lglfw -ldl
 ifeq ($(OS),Linux)
-	FLAGS_LINKINKG := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_LINUX)
+	FLAGS_LINKINKG := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_LINUX) $(FLAG_LIBMLX42)
 	FLAGS_COMP += -D LINUX
 else
-	FLAGS_LINKINKG := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_MAC)
-	
+	FLAGS_LINKINKG := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_MAC) $(FLAG_LIBMLX42)
+	GLFW_PATH_MAC = -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+	if [ -d "$(GLFW_PATH_MAC)" ]; then
+		LINKER_LIB_FLAGS += $(GLFW_PATH_MAC)
+	fi
 endif
 
 all:						init $(NAME)
@@ -36,9 +40,11 @@ all:						init $(NAME)
 init:
 							@ make -s -C $(PATH_LIBFT)
 ifeq ($(OS),Linux)
-	@ make -s -C $(PATH_LIBMLX_LINUX)
+	@ make -C $(PATH_LIBMLX_LINUX)
+	@ cmake $(PATH_LIBMLX42) -B $(PATH_LIBMLX42)build && make -C $(PATH_LIBMLX42)build -j4
 else
-	@ make -s -C $(PATH_LIBMLX_MAC)
+	@ make -C $(PATH_LIBMLX_MAC)
+	@ cmake $(PATH_LIBMLX42) -B $(PATH_LIBMLX42)build && make -C $(PATH_LIBMLX42)build -j4
 endif
 
 $(NAME):					$(OBJS)
@@ -62,6 +68,7 @@ clean:
 fclean:						clean
 							@ $(RM) $(NAME)
 							@ make -s -C $(PATH_LIBFT) fclean
+							@ rm -rf $(PATH_LIBMLX42)build
 
 re:							fclean all
 
