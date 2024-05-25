@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_error.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/12/28 02:51:54 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/11/22 08:50:15 by jvan-hal      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_error.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/28 02:51:54 by W2Wizard          #+#    #+#             */
+/*   Updated: 2024/05/25 04:48:04 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ bool mlx_error(mlx_errno_t val)
 
 //= Public =//
 
-const char* mlx_strerror(mlx_errno_t val)
+const char* mlx42_strerror(mlx_errno_t val)
 {
 	MLX_ASSERT(val >= 0, "Index must be positive");
 	MLX_ASSERT(val < MLX_ERRMAX, "Index out of bounds");

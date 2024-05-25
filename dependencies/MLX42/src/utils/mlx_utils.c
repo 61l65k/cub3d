@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_utils.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/01/03 20:13:17 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/11/22 10:56:09 by jvan-hal      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/03 20:13:17 by W2Wizard          #+#    #+#             */
+/*   Updated: 2024/05/25 04:48:43 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,12 +118,12 @@ uint32_t mlx_rgba_to_mono(uint32_t color)
 
 //= Public =//
 
-double mlx_get_time(void)
+double mlx42_get_time(void)
 {
 	return (glfwGetTime());
 }
 
-void mlx_focus(mlx_t* mlx)
+void mlx42_focus(mlx_t* mlx)
 {
 	MLX_NONNULL(mlx);
 

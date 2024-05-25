@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_png.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/16 23:11:29 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/06/27 19:55:06 by lde-la-h      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_png.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/16 23:11:29 by W2Wizard          #+#    #+#             */
+/*   Updated: 2024/05/25 04:51:31 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //= Public =//
 
-mlx_texture_t* mlx_load_png(const char* path)
+mlx_texture_t* mlx42_load_png(const char* path)
 {
 	MLX_NONNULL(path);
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_monitor.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/01/19 17:18:59 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/06/27 20:02:38 by lde-la-h      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_monitor.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/19 17:18:59 by W2Wizard          #+#    #+#             */
+/*   Updated: 2024/05/25 04:49:01 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //= Public =//
 
-void mlx_get_monitor_size(int32_t index, int32_t* width, int32_t* height)
+void mlx42_get_monitor_size(int32_t index, int32_t* width, int32_t* height)
 {
 	MLX_ASSERT(index >= 0, "Index out of bounds");
 	MLX_NONNULL(width);

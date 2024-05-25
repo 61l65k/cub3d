@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_texture.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/17 01:02:24 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2023/03/09 11:03:47 by W2Wizard      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_texture.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/17 01:02:24 by W2Wizard          #+#    #+#             */
+/*   Updated: 2024/05/25 04:51:23 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 //= Public =//
 
-mlx_image_t* mlx_texture_to_image(mlx_t* mlx, mlx_texture_t* texture)
+mlx_image_t* mlx42_texture_to_image(mlx_t* mlx, mlx_texture_t* texture)
 {
 	MLX_NONNULL(mlx);
 	MLX_NONNULL(texture);
 
-	mlx_image_t* image = mlx_new_image(mlx, texture->width, texture->height);
+	mlx_image_t* image = mlx42_new_image(mlx, texture->width, texture->height);
 	if (image == NULL)
 		return (NULL);
 
@@ -34,7 +34,7 @@ mlx_image_t* mlx_texture_to_image(mlx_t* mlx, mlx_texture_t* texture)
 	return (image);
 }
 
-void mlx_delete_texture(mlx_texture_t* texture)
+void mlx42_delete_texture(mlx_texture_t* texture)
 {
 	MLX_NONNULL(texture);
 

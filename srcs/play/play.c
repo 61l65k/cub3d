@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 03:31:54 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 04:26:34 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static int	render_frames(void *data)
 		cubed->mlx.img.img_ptr, 0, 0);
 	if (cubed->game_state == GAME_STATE_MENU)
 		draw_menu(cubed);
+	// printf("TIME NOW %ld\n", mlx_get_time());
 	return (1);
 }
 

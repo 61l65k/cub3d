@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_init.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/12/28 00:24:30 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2023/06/08 18:16:19 by XEDGit        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_init.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/28 00:24:30 by W2Wizard          #+#    #+#             */
+/*   Updated: 2024/05/25 04:48:33 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ int32_t mlx_settings[MLX_SETTINGS_MAX] = {false, false, false, true, false};
 mlx_errno_t mlx_errno = MLX_SUCCESS;
 bool sort_queue = false;
 
-mlx_t* mlx_init(int32_t width, int32_t height, const char* title, bool resize)
+mlx_t* mlx42_init(int32_t width, int32_t height, const char* title, bool resize)
 {
 	MLX_NONNULL(title);
 	MLX_ASSERT(width > 0, "Window width must be positive");
@@ -190,13 +190,13 @@ mlx_t* mlx_init(int32_t width, int32_t height, const char* title, bool resize)
 #endif
 	glfwWindowHint(GLFW_RESIZABLE, resize);
 	if (!(mlx->window = glfwCreateWindow(width, height, title, mlx_settings[MLX_FULLSCREEN] ? glfwGetPrimaryMonitor() : NULL, NULL)))
-		return (mlx_terminate(mlx), (void*)mlx_error(MLX_WINFAIL));
+		return (mlx42_terminate(mlx), (void*)mlx_error(MLX_WINFAIL));
 	if (!mlx_init_render(mlx) || !mlx_create_buffers(mlx))
-		return (mlx_terminate(mlx), NULL);
+		return (mlx42_terminate(mlx), NULL);
 	return (mlx);
 }
 
-void mlx_set_setting(mlx_settings_t setting, int32_t value)
+void mlx42_set_setting(mlx_settings_t setting, int32_t value)
 {
 	MLX_ASSERT(setting >= 0 && setting < MLX_SETTINGS_MAX, "Invalid settings value");
 	mlx_settings[setting] = value;

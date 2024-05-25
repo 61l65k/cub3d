@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_mouse.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/01/01 23:20:13 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/06/29 15:34:25 by lde-la-h      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_mouse.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/01 23:20:13 by W2Wizard          #+#    #+#             */
+/*   Updated: 2024/05/25 04:52:04 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void mlx_cursor_cb(GLFWwindow* window, double xpos, double ypos)
 
 //= Public =//
 
-void mlx_scroll_hook(mlx_t* mlx, mlx_scrollfunc func, void* param)
+void mlx42_scroll_hook(mlx_t* mlx, mlx_scrollfunc func, void* param)
 {
 	MLX_NONNULL(mlx);
 	MLX_NONNULL(func);
@@ -51,7 +51,7 @@ void mlx_scroll_hook(mlx_t* mlx, mlx_scrollfunc func, void* param)
 	glfwSetScrollCallback(mlx->window, mlx_scroll_cb);
 }
 
-void mlx_mouse_hook(mlx_t* mlx, mlx_mousefunc func, void* param)
+void mlx42_mouse_hook(mlx_t* mlx, mlx_mousefunc func, void* param)
 {
 	MLX_NONNULL(mlx);
 	MLX_NONNULL(func);
@@ -62,7 +62,7 @@ void mlx_mouse_hook(mlx_t* mlx, mlx_mousefunc func, void* param)
 	glfwSetMouseButtonCallback(mlx->window, mlx_mouse_cb);
 }
 
-void mlx_cursor_hook(mlx_t* mlx, mlx_cursorfunc func, void* param)
+void mlx42_cursor_hook(mlx_t* mlx, mlx_cursorfunc func, void* param)
 {
 	MLX_NONNULL(mlx);
 	MLX_NONNULL(func);
@@ -73,21 +73,21 @@ void mlx_cursor_hook(mlx_t* mlx, mlx_cursorfunc func, void* param)
 	glfwSetCursorPosCallback(mlx->window, mlx_cursor_cb);
 }
 
-bool mlx_is_mouse_down(mlx_t* mlx, mouse_key_t key)
+bool mlx42_is_mouse_down(mlx_t* mlx, mouse_key_t key)
 {
 	MLX_NONNULL(mlx);
 
 	return (glfwGetMouseButton(mlx->window, key) == GLFW_PRESS);
 }
 
-void mlx_set_mouse_pos(mlx_t* mlx, int32_t x, int32_t y)
+void mlx42_set_mouse_pos(mlx_t* mlx, int32_t x, int32_t y)
 {
 	MLX_NONNULL(mlx);
 
 	glfwSetCursorPos(mlx->window, (double)x, (double)y);
 }
 
-void mlx_get_mouse_pos(mlx_t* mlx, int32_t* x, int32_t* y)
+void mlx42_get_mouse_pos(mlx_t* mlx, int32_t* x, int32_t* y)
 {
 	MLX_NONNULL(mlx);
 	MLX_NONNULL(x);

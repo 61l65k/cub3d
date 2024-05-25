@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_xpm42.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/12/28 03:42:29 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/06/27 19:58:33 by lde-la-h      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_xpm42.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/28 03:42:29 by W2Wizard          #+#    #+#             */
+/*   Updated: 2024/05/25 04:51:27 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ static bool mlx_read_xpm_header(xpm_t* xpm, FILE *file)
 
 //= Public =//
 
-xpm_t* mlx_load_xpm42(const char* path)
+xpm_t* mlx42_load_xpm42(const char* path)
 {
 	FILE* file;
 	xpm_t* xpm = NULL;
@@ -200,7 +200,7 @@ xpm_t* mlx_load_xpm42(const char* path)
 	return (xpm);
 }
 
-void mlx_delete_xpm42(xpm_t* xpm)
+void mlx42_delete_xpm42(xpm_t* xpm)
 {
 	MLX_NONNULL(xpm);
 	free(xpm->texture.pixels);

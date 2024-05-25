@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_window.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/08 01:14:59 by W2wizard      #+#    #+#                 */
-/*   Updated: 2022/11/22 09:06:54 by jvan-hal      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_window.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/08 01:14:59 by W2wizard          #+#    #+#             */
+/*   Updated: 2024/05/25 04:51:45 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void mlx_close_callback(GLFWwindow* window)
 
 //= Public =//
 
-void mlx_close_hook(mlx_t* mlx, mlx_closefunc func, void* param)
+void mlx42_close_hook(mlx_t* mlx, mlx_closefunc func, void* param)
 {
 	MLX_NONNULL(mlx);
 	MLX_NONNULL(func);
@@ -71,7 +71,7 @@ void mlx_close_hook(mlx_t* mlx, mlx_closefunc func, void* param)
 	glfwSetWindowCloseCallback(mlx->window, mlx_close_callback);
 }
 
-void mlx_resize_hook(mlx_t* mlx, mlx_resizefunc func, void* param)
+void mlx42_resize_hook(mlx_t* mlx, mlx_resizefunc func, void* param)
 {
 	MLX_NONNULL(mlx);
 	MLX_NONNULL(func);
@@ -82,7 +82,7 @@ void mlx_resize_hook(mlx_t* mlx, mlx_resizefunc func, void* param)
 	glfwSetWindowSizeCallback(mlx->window, mlx_resize_callback);
 }
 
-void mlx_set_icon(mlx_t* mlx, mlx_texture_t* image)
+void mlx42_set_icon(mlx_t* mlx, mlx_texture_t* image)
 {
 	MLX_NONNULL(mlx);
 	MLX_NONNULL(image);
@@ -96,14 +96,14 @@ void mlx_set_icon(mlx_t* mlx, mlx_texture_t* image)
 	glfwSetWindowIcon(mlx->window, 1, &icon);
 }
 
-void mlx_set_window_pos(mlx_t* mlx, int32_t xpos, int32_t ypos)
+void mlx42_set_window_pos(mlx_t* mlx, int32_t xpos, int32_t ypos)
 {
 	MLX_NONNULL(mlx);
 
 	glfwSetWindowPos(mlx->window, xpos, ypos);
 }
 
-void mlx_get_window_pos(mlx_t* mlx, int32_t* xpos, int32_t* ypos)
+void mlx42_get_window_pos(mlx_t* mlx, int32_t* xpos, int32_t* ypos)
 {
 	MLX_NONNULL(mlx);
 	MLX_NONNULL(xpos);
@@ -112,7 +112,7 @@ void mlx_get_window_pos(mlx_t* mlx, int32_t* xpos, int32_t* ypos)
 	glfwGetWindowPos(mlx->window, xpos, ypos);
 }
 
-void mlx_set_window_size(mlx_t* mlx, int32_t new_width, int32_t new_height)
+void mlx42_set_window_size(mlx_t* mlx, int32_t new_width, int32_t new_height)
 {
 	MLX_NONNULL(mlx);
 
@@ -121,14 +121,14 @@ void mlx_set_window_size(mlx_t* mlx, int32_t new_width, int32_t new_height)
 	glfwSetWindowSize(mlx->window, new_width, new_height);
 }
 
-void mlx_set_window_limit(mlx_t* mlx, int32_t min_w, int32_t min_h, int32_t max_w, int32_t max_h)
+void mlx42_set_window_limit(mlx_t* mlx, int32_t min_w, int32_t min_h, int32_t max_w, int32_t max_h)
 {
 	MLX_NONNULL(mlx);
 
 	glfwSetWindowSizeLimits(mlx->window, min_w, min_h, max_w, max_h);
 }
 
-void mlx_set_window_title(mlx_t* mlx, const char* title)
+void mlx42_set_window_title(mlx_t* mlx, const char* title)
 {
 	MLX_NONNULL(mlx);
 	MLX_NONNULL(title);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_images.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/12/28 02:29:06 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2023/03/30 16:36:39 by ntamayo-      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_images.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/28 02:29:06 by W2Wizard          #+#    #+#             */
+/*   Updated: 2024/05/25 04:50:59 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ mlx_instance_t* mlx_grow_instances(mlx_image_t* img, bool* did_realloc)
 
 //= Public =//
 
-void mlx_set_instance_depth(mlx_instance_t* instance, int32_t zdepth)
+void mlx42_set_instance_depth(mlx_instance_t* instance, int32_t zdepth)
 {
 	MLX_NONNULL(instance);
 
@@ -118,7 +118,7 @@ void mlx_set_instance_depth(mlx_instance_t* instance, int32_t zdepth)
 	sort_queue = true;
 }
 
-int32_t mlx_image_to_window(mlx_t* mlx, mlx_image_t* img, int32_t x, int32_t y)
+int32_t mlx42_image_to_window(mlx_t* mlx, mlx_image_t* img, int32_t x, int32_t y)
 {
 	MLX_NONNULL(mlx);
 	MLX_NONNULL(img);
@@ -158,7 +158,7 @@ int32_t mlx_image_to_window(mlx_t* mlx, mlx_image_t* img, int32_t x, int32_t y)
 	return (mlx_freen(2, instances, queue), mlx_error(MLX_MEMFAIL), -1);
 }
 
-mlx_image_t* mlx_new_image(mlx_t* mlx, uint32_t width, uint32_t height)
+mlx_image_t* mlx42_new_image(mlx_t* mlx, uint32_t width, uint32_t height)
 {
 	MLX_NONNULL(mlx);
 
@@ -201,7 +201,7 @@ mlx_image_t* mlx_new_image(mlx_t* mlx, uint32_t width, uint32_t height)
 	return (newimg);
 }
 
-void mlx_delete_image(mlx_t* mlx, mlx_image_t* image)
+void mlx42_delete_image(mlx_t* mlx, mlx_image_t* image)
 {
 	MLX_NONNULL(mlx);
 	MLX_NONNULL(image);
@@ -221,7 +221,7 @@ void mlx_delete_image(mlx_t* mlx, mlx_image_t* image)
 	}
 }
 
-bool mlx_resize_image(mlx_image_t* img, uint32_t nwidth, uint32_t nheight)
+bool mlx42_resize_image(mlx_image_t* img, uint32_t nwidth, uint32_t nheight)
 {
 	MLX_NONNULL(img);
 

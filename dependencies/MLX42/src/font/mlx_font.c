@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_font.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/02/22 12:01:37 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/06/27 19:53:36 by lde-la-h      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_font.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/22 12:01:37 by W2Wizard          #+#    #+#             */
+/*   Updated: 2024/05/25 04:50:59 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ static void mlx_draw_char(mlx_image_t* image, int32_t texoffset, int32_t imgoffs
 
 //= Public =//
 
-const mlx_texture_t* mlx_get_font(void)
+const mlx_texture_t* mlx42_get_font(void)
 {
     return ((const mlx_texture_t*)&font_atlas);
 }
 
-int32_t mlx_get_texoffset(char c)
+int32_t mlx42_get_texoffset(char c)
 {
     const bool _isprint = isprint(c);
 
@@ -57,7 +57,7 @@ int32_t mlx_get_texoffset(char c)
     return (-1 * !_isprint + ((FONT_WIDTH + 2) * (c - 32)) * _isprint);
 }
 
-mlx_image_t* mlx_put_string(mlx_t* mlx, const char* str, int32_t x, int32_t y)
+mlx_image_t* mlx42_put_string(mlx_t* mlx, const char* str, int32_t x, int32_t y)
 {
 	MLX_NONNULL(mlx);
 	MLX_NONNULL(str);
@@ -66,15 +66,15 @@ mlx_image_t* mlx_put_string(mlx_t* mlx, const char* str, int32_t x, int32_t y)
 	const size_t len = strlen(str);
 	if (len > MLX_MAX_STRING)
 		return ((void*)mlx_error(MLX_STRTOOBIG));	
-	if (!(strimage = mlx_new_image(mlx, len * FONT_WIDTH, FONT_HEIGHT)))
+	if (!(strimage = mlx42_new_image(mlx, len * FONT_WIDTH, FONT_HEIGHT)))
 		return (NULL);
 
 	// Draw the text itself
 	int32_t imgoffset = 0;
 	for (size_t i = 0; i < len; i++, imgoffset += FONT_WIDTH)
-		mlx_draw_char(strimage, mlx_get_texoffset(str[i]), imgoffset);
+		mlx_draw_char(strimage, mlx42_get_texoffset(str[i]), imgoffset);
 
-	if (mlx_image_to_window(mlx, strimage, x, y) == -1)
-		return (mlx_delete_image(mlx, strimage), NULL);
+	if (mlx42_image_to_window(mlx, strimage, x, y) == -1)
+		return (mlx42_delete_image(mlx, strimage), NULL);
 	return (strimage);
 }

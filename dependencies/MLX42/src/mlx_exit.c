@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_exit.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/12/28 02:43:22 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2023/06/08 18:12:20 by XEDGit        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_exit.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/28 02:43:22 by W2Wizard          #+#    #+#             */
+/*   Updated: 2024/05/25 04:48:33 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void mlx_free_image(void* content)
 
 //= Public =//
 
-void mlx_close_window(mlx_t* mlx)
+void mlx42_close_window(mlx_t* mlx)
 {
 	MLX_NONNULL(mlx);
 	glfwSetWindowShouldClose(mlx->window, true);
@@ -33,7 +33,7 @@ void mlx_close_window(mlx_t* mlx)
  * All of glfw & glads resources are cleaned up by the terminate function.
  * Now it's time to clean up our own mess.
  */
-void mlx_terminate(mlx_t* mlx)
+void mlx42_terminate(mlx_t* mlx)
 {
 	MLX_NONNULL(mlx);
 
