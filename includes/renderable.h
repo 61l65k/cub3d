@@ -6,12 +6,13 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:40:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 09:52:58 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 10:26:38 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDERABLE_H
 # define RENDERABLE_H
+# define NO_WALL 1
 
 typedef struct s_ray				t_ray;
 typedef struct s_sprite				t_sprite;
