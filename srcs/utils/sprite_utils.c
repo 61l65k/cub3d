@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 06:58:43 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 07:37:43 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 07:57:14 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,35 @@ void	free_all_sprites(t_sprite *sprites)
 		current_sprite = NULL;
 		current_sprite = next_sprite;
 	}
+}
+
+void	sort_sprites_by_distance(t_sprite **sprites)
+{
+	t_sprite	*head;
+	t_sprite	*sorted;
+	t_sprite	*current;
+	t_sprite	*next;
+
+	sorted = NULL;
+	head = *sprites;
+	while (head != NULL)
+	{
+		current = head;
+		head = head->next;
+		if (sorted == NULL || sorted->distance <= current->distance)
+		{
+			current->next = sorted;
+			sorted = current;
+		}
+		else
+		{
+			next = sorted;
+			while (next->next != NULL
+				&& next->next->distance > current->distance)
+				next = next->next;
+			current->next = next->next;
+			next->next = current;
+		}
+	}
+	*sprites = sorted;
 }

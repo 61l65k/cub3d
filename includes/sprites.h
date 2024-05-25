@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 07:37:44 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 07:57:28 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void						update_render_info(t_cubed *cubed, double sprite_x,
 t_sprite					*create_sprite_node(t_cubed *cubed, double x,
 								double y, t_texture *texture);
 void						free_all_sprites(t_sprite *sprites);
+void						sort_sprites_by_distance(t_sprite **sprites);
 
 #endif

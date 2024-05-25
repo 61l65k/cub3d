@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 07:30:08 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 07:57:27 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ static void	draw_moving_sprites(t_cubed *cubed)
 
 void	draw_sprites(t_cubed *cubed)
 {
+	sort_sprites_by_distance(&cubed->scene.sprite_info.sprites);
 	draw_spawners(cubed);
 	draw_moving_sprites(cubed);
 }
