@@ -6,70 +6,72 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 03:35:02 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 06:42:19 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	calculate_transform(t_cubed *cubed, double sprite_x, double sprite_y,
-		t_sprite_render_info *transform)
+static void	spawn_sprites(t_cubed *cubed, t_sprite_spawner *spawner)
 {
-	double	inv_det;
+	t_sprite	*new_sprite;
 
-	sprite_x -= cubed->player.x;
-	sprite_y -= cubed->player.y;
-	inv_det = 1.0 / (cubed->player.plane_x * cubed->player.dir_y
-			- cubed->player.dir_x * cubed->player.plane_y);
-	transform->transform_x = inv_det * (cubed->player.dir_y * sprite_x
-			- cubed->player.dir_x * sprite_y);
-	transform->transform_y = inv_det * (-cubed->player.plane_y * sprite_x
-			+ cubed->player.plane_x * sprite_y);
-	transform->sprite_screen_x = (int)((cubed->scene.resol.width / 2) * (1
-				+ transform->transform_x / transform->transform_y));
+	spawner->time_since_last_spawn += 0.0005;
+	if (spawner->time_since_last_spawn >= spawner->spawn_interval)
+	{
+		new_sprite = malloc(sizeof(t_sprite));
+		if (!new_sprite)
+			ft_clean_exit(cubed, "Failed to allocate memory for new sprite");
+		new_sprite->x = spawner->x;
+		new_sprite->y = spawner->y;
+		new_sprite->texture = spawner->texture;
+		new_sprite->speed = 0.01;
+		new_sprite->next = cubed->scene.sprite_info.sprites;
+		cubed->scene.sprite_info.sprites = new_sprite;
+		spawner->time_since_last_spawn = 0;
+		spawner->spawn_interval = (rand() % 10) + 5;
+	}
 }
 
-void	calculate_draw_boundaries(t_cubed *cubed,
-		t_sprite_render_info *transform)
-{
-	transform->sprite_height = abs((int)(cubed->scene.resol.height
-				/ transform->transform_y));
-	transform->sprite_width = transform->sprite_height;
-	transform->draw_start_y = -transform->sprite_height / 2
-		+ cubed->scene.resol.height / 2;
-	if (transform->draw_start_y < 0)
-		transform->draw_start_y = 0;
-	transform->draw_end_y = transform->sprite_height / 2
-		+ cubed->scene.resol.height / 2;
-	if (transform->draw_end_y >= cubed->scene.resol.height)
-		transform->draw_end_y = cubed->scene.resol.height - 1;
-	transform->draw_start_x = -transform->sprite_width / 2
-		+ transform->sprite_screen_x;
-	if (transform->draw_start_x < 0)
-		transform->draw_start_x = 0;
-	transform->draw_end_x = transform->sprite_width / 2
-		+ transform->sprite_screen_x;
-	if (transform->draw_end_x >= cubed->scene.resol.width)
-		transform->draw_end_x = cubed->scene.resol.width - 1;
-}
-
-void	update_render_info(t_cubed *cubed, double sprite_x, double sprite_y,
-		t_sprite_render_info *transform)
-{
-	calculate_transform(cubed, sprite_x, sprite_y, transform);
-	calculate_draw_boundaries(cubed, transform);
-}
-
-void	update_sprite_render_info(t_cubed *cubed)
+static void	update_spawners(t_cubed *cubed)
 {
 	t_sprite_spawner	*spawner;
 	int					i;
 
-	// t_sprite			*sprite;
 	i = -1;
 	while (++i < cubed->scene.sprite_info.spawner_count)
 	{
 		spawner = &cubed->scene.sprite_info.spawners[i];
 		update_render_info(cubed, spawner->x, spawner->y, &spawner->info);
+		spawn_sprites(cubed, spawner);
 	}
+}
+
+static void	update_all_sprites(t_cubed *cubed)
+{
+	t_sprite	*sprite;
+
+	double direction_x, direction_y, distance;
+	sprite = cubed->scene.sprite_info.sprites;
+	while (sprite)
+	{
+		direction_x = cubed->player.x - sprite->x;
+		direction_y = cubed->player.y - sprite->y;
+		distance = sqrt(direction_x * direction_x + direction_y * direction_y);
+		if (distance > 0)
+		{
+			direction_x /= distance;
+			direction_y /= distance;
+		}
+		sprite->x += direction_x * sprite->speed * SPRITE_SPEED_FACTOR;
+		sprite->y += direction_y * sprite->speed * SPRITE_SPEED_FACTOR;
+		update_render_info(cubed, sprite->x, sprite->y, &sprite->info);
+		sprite = sprite->next;
+	}
+}
+
+void	update_sprite_render_info(t_cubed *cubed)
+{
+	update_spawners(cubed);
+	update_all_sprites(cubed);
 }

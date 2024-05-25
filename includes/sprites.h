@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 03:31:57 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 06:42:11 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define SPRITES_H
 
 # include "display.h"
+
+# define SPRITE_SPEED_FACTOR 0.1
 
 typedef struct s_cubed		t_cubed;
 
@@ -36,7 +38,10 @@ typedef struct s_sprite
 	double					y;
 	double					distance;
 	double					angle;
+	double					speed;
+	t_sprite_render_info	info;
 	t_texture				texture;
+	struct s_sprite			*next;
 }							t_sprite;
 
 typedef struct s_sprite_spawner
@@ -45,11 +50,14 @@ typedef struct s_sprite_spawner
 	double					y;
 	t_sprite_render_info	info;
 	t_texture				texture;
+	double					spawn_interval;
+	double					time_since_last_spawn;
 }							t_sprite_spawner;
 
-typedef struct s_sprite_spawners
+typedef struct s_sprite_info
 {
 	t_sprite_spawner		*spawners;
+	t_sprite				*sprites;
 	int						spawner_count;
 }							t_sprite_info;
 
@@ -58,5 +66,8 @@ void						update_sprite_render_info(t_cubed *cubed);
 void						draw_sprites(t_cubed *cubed);
 int							calculate_tex_x(int stripe,
 								t_sprite_render_info *info, t_texture *texture);
+void						update_render_info(t_cubed *cubed, double sprite_x,
+								double sprite_y,
+								t_sprite_render_info *transform);
 
 #endif
