@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 02:33:24 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 03:31:54 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	update_data(t_cubed *cubed)
 	update_player_position(&cubed->player, &cubed->scene.map);
 	update_player_orientation(&cubed->player);
 	update_rays(cubed);
+	update_sprite_render_info(cubed);
 }
 
 static void	draw_image(t_cubed *cubed)
@@ -33,7 +34,7 @@ static void	draw_image(t_cubed *cubed)
 	draw_ceiling(cubed);
 	draw_floor(cubed);
 	draw_walls(cubed);
-	// draw_spawners(cubed);
+	draw_sprites(cubed);
 	draw_gun_shooting(cubed);
 }
 

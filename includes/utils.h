@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 02:19:56 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 03:31:08 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ void						draw_rectangle(t_floor_ceiling *rec, int *img,
 double						get_hypotenuse(double a, double b);
 void						draw_vertical_line(t_cubed *cubed, int draw_x,
 								int draw_y, int color);
-void						draw_spawners(t_cubed *cubed);
+bool						is_not_transparent(int color);
 
 #endif

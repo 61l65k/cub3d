@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 20:20:45 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 01:37:32 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 03:08:18 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	draw_shooting_effect(t_cubed *cubed, t_weapon *weapon)
 		while (++x < current_frame->width)
 		{
 			color = current_frame->img.data[y * current_frame->width + x];
-			if ((unsigned int)color != 0xFF000000)
+			if (is_not_transparent(color))
 			{
 				draw_vertical_line(cubed, weapon->left_gun_tip_x + x,
 					weapon->gun_tip_y + y, color);
