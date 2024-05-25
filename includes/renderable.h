@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:40:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 09:47:36 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 09:52:58 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,8 @@ int									get_y_wall_position(t_cubed *cubed,
 										double wall_height);
 t_texture							get_wall_texture(t_scenedata *scene,
 										char orientation);
-
+void								insertion_sort_renderables(t_renderable *arr,
+										int n);
+t_renderable						*collect_renderables(t_cubed *cubed,
+										int *count);
 #endif
