@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 07:15:08 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 18:02:48 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_resolution	t_resolution;
 typedef struct s_player		t_player;
 typedef struct s_animation	t_animation;
 typedef struct s_texture	t_texture;
+typedef struct s_mlx		t_mlx;
 
 typedef enum e_helpers
 {
@@ -66,5 +67,6 @@ void						draw_vertical_line(t_cubed *cubed, int draw_x,
 bool						is_not_transparent(int color);
 void						load_texture(t_cubed *cubed, void *mlx,
 								t_texture *texture);
+void						free_texture(t_mlx *mlx, t_texture *texture);
 
 #endif

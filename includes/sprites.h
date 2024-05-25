@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 17:17:22 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 17:50:45 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_sprite_spawner
 	t_texture				sprite_texture;
 	double					spawn_interval;
 	double					time_since_last_spawn;
+	struct s_sprite_spawner	*next;
 }							t_sprite_spawner;
 
 typedef struct s_sprite_info

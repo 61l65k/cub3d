@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:52:03 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 09:59:56 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 17:47:55 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,17 @@ t_renderable	*collect_wall_renderables(t_cubed *cubed,
 t_renderable	*collect_spawner_renderables(t_cubed *cubed,
 		t_renderable *renderables, int *idx)
 {
-	int					i;
 	t_sprite_spawner	*spawner;
 
-	i = 0;
-	while (i < cubed->scene.sprite_info.spawner_count)
+	spawner = cubed->scene.sprite_info.spawners;
+	while (spawner)
 	{
-		spawner = &cubed->scene.sprite_info.spawners[i];
 		renderables[*idx].distance = sqrt(pow(cubed->player.x - spawner->x, 2)
 				+ pow(cubed->player.y - spawner->y, 2));
 		renderables[*idx].type = RENDERABLE_SPAWNER;
 		renderables[*idx].data.spawner = spawner;
 		(*idx)++;
-		i++;
+		spawner = spawner->next;
 	}
 	return (renderables);
 }
