@@ -6,33 +6,23 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 11:54:16 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 17:15:38 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	handle_akimbos_shooting(t_cubed *cubed)
+void		apply_damage_to_sprite(t_cubed *cubed, t_sprite *sprite,
+				t_sprite *prev_sprite, int damage);
+
+static void	handle_gun_shooting(t_cubed *cubed, float damage)
 {
 	const int	middle_ray_index = cubed->scene.resol.width / 2;
 	const t_ray	*middle_ray = &cubed->rays.ray_array[middle_ray_index];
 	const int	map_x = (int)middle_ray->x;
 	const int	map_y = (int)middle_ray->y;
-	t_sprite	*sprite;
-	t_sprite	*prev_sprite;
 
-	sprite = cubed->scene.sprite_info.sprites;
-	prev_sprite = NULL;
-	while (sprite)
-	{
-		if ((int)sprite->x == map_x && (int)sprite->y == map_y)
-		{
-			apply_damage_to_sprite(cubed, sprite, prev_sprite, 10);
-			return ;
-		}
-		prev_sprite = sprite;
-		sprite = sprite->next;
-	}
+	traverse_and_apply_damage(cubed, middle_ray, 100, damage);
 	if (t_map_get(&cubed->scene.map, map_x, map_y) == '1')
 	{
 		t_map_insert(&cubed->scene.map, map_x, map_y, '0');
@@ -81,25 +71,10 @@ static void	handle_raygun_shooting(t_cubed *cubed)
 	const t_ray	*middle_ray = &cubed->rays.ray_array[middle_ray_index];
 	const int	map_x = (int)middle_ray->x;
 	const int	map_y = (int)middle_ray->y;
-	t_sprite	*sprite;
-	t_sprite	*prev_sprite;
 
-	sprite = cubed->scene.sprite_info.sprites;
-	prev_sprite = NULL;
-	while (sprite)
-	{
-		if ((int)sprite->x == map_x && (int)sprite->y == map_y)
-		{
-			apply_damage_to_sprite(cubed, sprite, prev_sprite, 10);
-			return ;
-		}
-		prev_sprite = sprite;
-		sprite = sprite->next;
-	}
+	traverse_and_apply_damage(cubed, middle_ray, 100, 10);
 	if (t_map_get(&cubed->scene.map, map_x, map_y) == '1')
-	{
 		destroy_adjacent_walls(cubed, map_x, map_y, 0);
-	}
 }
 
 void	handle_shooting(t_cubed *cubed)
@@ -109,7 +84,7 @@ void	handle_shooting(t_cubed *cubed)
 
 	if (current_weapon->type == WEAPON_AKIMBOS)
 	{
-		handle_akimbos_shooting(cubed);
+		handle_gun_shooting(cubed, 10);
 	}
 	else if (current_weapon->type == WEAPON_WRENCH)
 	{
@@ -121,7 +96,7 @@ void	handle_shooting(t_cubed *cubed)
 	}
 	else if (current_weapon->type == WEAPON_MINIGUN)
 	{
-		handle_akimbos_shooting(cubed);
+		handle_gun_shooting(cubed, 0.1);
 	}
 	if (current_weapon->type != WEAPON_MINIGUN
 		&& current_weapon->type != WEAPON_WRENCH)

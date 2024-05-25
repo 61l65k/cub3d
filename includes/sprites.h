@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 11:33:19 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 17:17:22 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,20 @@
 # define ERR_SPRITE_ALLOC "Error: sprite allocation failed"
 
 typedef struct s_cubed		t_cubed;
+typedef struct s_ray		t_ray;
+
+typedef struct s_apply_damage_helper
+{
+	double					delta_dist_x;
+	double					delta_dist_y;
+	double					current_distance;
+	int						map_x;
+	int						map_y;
+	double					side_dist_x;
+	double					side_dist_y;
+	int						step_x;
+	int						step_y;
+}							t_apply_damage_helper;
 
 typedef struct s_sprite_render_info
 {
@@ -40,7 +54,7 @@ typedef struct s_sprite
 	double					distance;
 	double					angle;
 	double					speed;
-	int						health;
+	float					health;
 	t_sprite_render_info	info;
 	t_texture				texture;
 	struct s_sprite			*next;
@@ -50,7 +64,7 @@ typedef struct s_sprite_spawner
 {
 	double					x;
 	double					y;
-	int						health;
+	float					health;
 	t_sprite_render_info	info;
 	t_texture				spawner_texture;
 	t_texture				sprite_texture;
@@ -78,8 +92,7 @@ t_sprite					*create_sprite_node(t_cubed *cubed, double x,
 								double y, t_texture *texture);
 void						free_all_sprites(t_sprite *sprites);
 void						sort_sprites_by_distance(t_sprite **sprites);
-void						apply_damage_to_sprite(t_cubed *cubed,
-								t_sprite *sprite, t_sprite *prev_sprite,
-								int damage);
-
+bool						traverse_and_apply_damage(t_cubed *cubed,
+								const t_ray *ray, double max_distance,
+								float damage);
 #endif

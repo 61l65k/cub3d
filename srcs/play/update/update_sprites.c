@@ -6,29 +6,11 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 11:35:19 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 16:24:28 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	apply_damage_to_sprite(t_cubed *cubed, t_sprite *sprite,
-		t_sprite *prev_sprite, int damage)
-{
-	sprite->health -= damage;
-	if (sprite->health <= 0)
-	{
-		if (prev_sprite == NULL)
-		{
-			cubed->scene.sprite_info.sprites = sprite->next;
-		}
-		else
-		{
-			prev_sprite->next = sprite->next;
-		}
-		free(sprite);
-	}
-}
 
 static void	spawn_sprites(t_cubed *cubed, t_sprite_spawner *spawner)
 {
