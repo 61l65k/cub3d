@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:15:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 16:30:31 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 10:25:21 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "display.h"
 
-# define MAX_WEAPONS 10
 # define WEAPON_PATHS \
 	"./assets/weapons/akimbos/akimbos.xpm:\
 ./assets/weapons/hammer/wwrench.xpm:\
@@ -44,7 +43,8 @@ typedef enum e_weapon_type
 	WEAPON_AKIMBOS,
 	WEAPON_WRENCH,
 	WEAPON_RAYGUN,
-	WEAPON_MINIGUN
+	WEAPON_MINIGUN,
+	WEAPON_MAX
 }						t_weapon_type;
 
 typedef struct s_weapon
@@ -61,7 +61,7 @@ typedef struct s_weapon
 
 typedef struct s_weapon_map
 {
-	t_weapon			weapons[MAX_WEAPONS];
+	t_weapon			weapons[WEAPON_MAX];
 	int					current_weapon;
 	int					total_weapons;
 }						t_weapon_map;
