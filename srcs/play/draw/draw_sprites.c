@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 06:38:34 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 07:30:08 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	draw_spawners(t_cubed *cubed)
 	while (++i < cubed->scene.sprite_info.spawner_count)
 	{
 		spawner = &cubed->scene.sprite_info.spawners[i];
-		draw_any_sprite(cubed, &spawner->info, &spawner->texture);
+		draw_any_sprite(cubed, &spawner->info, &spawner->spawner_texture);
 	}
 }
 

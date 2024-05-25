@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 06:42:11 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 07:37:44 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "display.h"
 
 # define SPRITE_SPEED_FACTOR 0.1
+# define ERR_SPRITE_ALLOC "Error: sprite allocation failed"
 
 typedef struct s_cubed		t_cubed;
 
@@ -49,7 +50,8 @@ typedef struct s_sprite_spawner
 	double					x;
 	double					y;
 	t_sprite_render_info	info;
-	t_texture				texture;
+	t_texture				spawner_texture;
+	t_texture				sprite_texture;
 	double					spawn_interval;
 	double					time_since_last_spawn;
 }							t_sprite_spawner;
@@ -69,5 +71,8 @@ int							calculate_tex_x(int stripe,
 void						update_render_info(t_cubed *cubed, double sprite_x,
 								double sprite_y,
 								t_sprite_render_info *transform);
+t_sprite					*create_sprite_node(t_cubed *cubed, double x,
+								double y, t_texture *texture);
+void						free_all_sprites(t_sprite *sprites);
 
 #endif

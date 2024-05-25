@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 06:42:19 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/25 07:38:53 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,11 @@ static void	spawn_sprites(t_cubed *cubed, t_sprite_spawner *spawner)
 {
 	t_sprite	*new_sprite;
 
-	spawner->time_since_last_spawn += 0.0005;
+	spawner->time_since_last_spawn += 0.05;
 	if (spawner->time_since_last_spawn >= spawner->spawn_interval)
 	{
-		new_sprite = malloc(sizeof(t_sprite));
-		if (!new_sprite)
-			ft_clean_exit(cubed, "Failed to allocate memory for new sprite");
-		new_sprite->x = spawner->x;
-		new_sprite->y = spawner->y;
-		new_sprite->texture = spawner->texture;
-		new_sprite->speed = 0.01;
+		new_sprite = create_sprite_node(cubed, spawner->x, spawner->y,
+				&spawner->sprite_texture);
 		new_sprite->next = cubed->scene.sprite_info.sprites;
 		cubed->scene.sprite_info.sprites = new_sprite;
 		spawner->time_since_last_spawn = 0;

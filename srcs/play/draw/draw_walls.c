@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_walls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 03:18:22 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 15:04:42 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/25 07:38:05 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ double	get_wall_height(t_cubed *cubed, t_ray *ray)
 	const double	fisheye_adjustment = cos(ray->angle
 				- cubed->player.rotation_angle);
 	const double	scaled_distance = ray->size * GRID_UNIT_SCALE
-		* fisheye_adjustment;
+			* fisheye_adjustment;
 
 	// printf("ROTA: %f\n", cubed->player.rotation_angle);
-	return ((GRID_UNIT_SCALE / scaled_distance) * (cubed->rays.proj_plane_dist));
+	return ((GRID_UNIT_SCALE / scaled_distance)
+		* (cubed->rays.proj_plane_dist));
 }
 
 int	get_y_wall_position(t_cubed *cubed, double wall_height)
