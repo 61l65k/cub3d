@@ -6,11 +6,13 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 23:13:41 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 15:06:46 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:55:35 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int			get_menu_option_color(t_cubed *cubed, int option_index);
 
 static void	draw_menu_image(t_cubed *cubed)
 {
@@ -32,24 +34,20 @@ static void	draw_menu_image(t_cubed *cubed)
 
 static void	draw_menu_choices(t_cubed *cubed)
 {
-	int	screen_width;
-	int	screen_height;
-	int	menu_x;
-	int	menu_y;
+	const int	screen_width = cubed->scene.resol.width;
+	const int	screen_height = cubed->scene.resol.height;
+	const int	menu_x = (screen_width - (screen_width / 3)) / 2;
+	const int	menu_y = (screen_height - (screen_height / 3)) / 2;
+	const int	resume_color = get_menu_option_color(cubed, 0);
+	const int	settings_color = get_menu_option_color(cubed, 1);
+	const int	exit_color = get_menu_option_color(cubed, 2);
 
-	if (cubed->game_state == GAME_STATE_MENU)
-	{
-		screen_width = cubed->scene.resol.width;
-		screen_height = cubed->scene.resol.height;
-		menu_x = (screen_width - (screen_width / 3)) / 2;
-		menu_y = (screen_height - (screen_height / 3)) / 2;
-		mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, menu_x + 20, menu_y
-			+ 30, 0xFFFFFF, "Resume");
-		mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, menu_x + 20, menu_y
-			+ 70, 0xFFFFFF, "Settings");
-		mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, menu_x + 20, menu_y
-			+ 110, 0xFFFFFF, "Exit");
-	}
+	mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, menu_x + 20, menu_y + 30,
+		resume_color, "Resume");
+	mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, menu_x + 20, menu_y + 70,
+		settings_color, "Settings");
+	mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, menu_x + 20, menu_y
+		+ 110, exit_color, "Exit");
 }
 
 void	draw_menu(t_cubed *cubed)

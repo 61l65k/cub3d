@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 09:21:39 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:58:40 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static int	key_press(int keycode, t_cubed *cubed)
 {
 	if (cubed->game_state == GAME_STATE_OVER)
 		return (key_press_game_over(keycode, cubed));
+	if (cubed->game_state == GAME_STATE_MENU)
+		return (key_press_game_menu(keycode, cubed));
 	printf("keycode: %d\n", keycode);
 	if (keycode == K_ESC)
 		ft_clean_exit(cubed, NULL, 0);
@@ -47,10 +49,7 @@ static int	key_press(int keycode, t_cubed *cubed)
 	}
 	if (keycode == K_M)
 	{
-		if (cubed->game_state == GAME_STATE_RUNNING)
-			cubed->game_state = GAME_STATE_MENU;
-		else
-			cubed->game_state = GAME_STATE_RUNNING;
+		cubed->game_state = GAME_STATE_MENU;
 	}
 	if (keycode == K_LEFT_ARROW)
 		cubed->player.turn_direction -= 1;
