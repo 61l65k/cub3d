@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:36 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 09:20:38 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 11:55:11 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,39 @@ void	load_texture(t_cubed *cubed, void *mlx, t_texture *texture)
 		texture->width, texture->height);
 }
 
+static void	load_sprite_textures(t_cubed *cubed)
+{
+	if (cubed->scene.sprite_info.sprite_texture.path)
+		load_texture(cubed, cubed->mlx.mlx_ptr,
+			&cubed->scene.sprite_info.sprite_texture);
+	else
+	{
+		cubed->scene.sprite_info.sprite_texture.path = ft_strdup("./assets/sprites/boggart.xpm");
+		if (!cubed->scene.sprite_info.sprite_texture.path)
+			ft_clean_exit(cubed, CUB_ERROR_MALLOC CUB_ERROR_MALLOC, 0);
+		load_texture(cubed, cubed->mlx.mlx_ptr,
+			&cubed->scene.sprite_info.sprite_texture);
+	}
+	if (cubed->scene.sprite_info.spawner_texture.path)
+		load_texture(cubed, cubed->mlx.mlx_ptr,
+			&cubed->scene.sprite_info.spawner_texture);
+	else
+	{
+		cubed->scene.sprite_info.spawner_texture.path = ft_strdup("./assets/sprites/spawner.xpm");
+		if (!cubed->scene.sprite_info.spawner_texture.path)
+			ft_clean_exit(cubed, CUB_ERROR_MALLOC CUB_ERROR_MALLOC, 0);
+		load_texture(cubed, cubed->mlx.mlx_ptr,
+			&cubed->scene.sprite_info.spawner_texture);
+	}
+}
+
 void	prepare_textures(t_cubed *cubed)
 {
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.north_texture);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.south_texture);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.west_texture);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.east_texture);
+	load_sprite_textures(cubed);
 	load_game_over_image(cubed);
 	load_weapons(cubed, &cubed->weapon_map);
 }

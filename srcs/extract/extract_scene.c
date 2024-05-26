@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/22 14:23:50 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 11:49:08 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@ static int	extract_game_data(t_scenedata *scene, char **data)
 		return (fill_texture(data[1], &scene->west_texture));
 	else if (is_valid_game_identifier("EA", data))
 		return (fill_texture(data[1], &scene->east_texture));
+	else if (is_valid_game_identifier("SPRITE", data))
+		return (fill_texture(data[1], &scene->sprite_info.sprite_texture));
+	else if (is_valid_game_identifier("SPAWNER", data))
+		return (fill_texture(data[1], &scene->sprite_info.spawner_texture));
 	else if (data[0][0] != '\n')
 		return (ft_fprintf(2, "Error\nUnknown identifier: %s", data[0]), -1);
 	return (0);
@@ -83,7 +87,7 @@ static int	extract_game_data(t_scenedata *scene, char **data)
 
 int	extract_scene(t_cubed *cubed, char *line)
 {
-	char		**splitted_data;
+	char	**splitted_data;
 
 	splitted_data = ft_splits(line, CUB_MAP_SPLIT_DELIMITERS);
 	if (!splitted_data)

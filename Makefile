@@ -16,7 +16,7 @@ RM 					:=		rm -rf
 OS					:=		$(shell uname -s)
 
 FLAG_INC			:= 		$(addprefix -I, includes $(PATH_LIBFT) $(PATH_LIBMLX_LINUX) $(PATH_LIBMLX_MAC) $(PATH_LIBMLX42)include)
-FLAGS_COMP			:= 		-O3 -Wall -Wextra -Werror $(FLAG_INC) -MMD -MP -g
+FLAGS_COMP			:= 		-O3 -Wall -Wextra -Werror $(FLAG_INC) -MMD -MP -g 
 
 FLAG_LIBFT			:=		-L$(PATH_LIBFT) -lft 
 FLAG_LIBMLX_MAC		:=		-L$(PATH_LIBMLX_MAC) -lmlx -framework OpenGL -framework AppKit -lz

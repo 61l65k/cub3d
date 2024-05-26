@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:37:14 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 18:10:42 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 11:33:25 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ static void	apply_damage_to_spawner(t_cubed *cubed, t_sprite_spawner *spawner,
 		{
 			prev_spawner->next = spawner->next;
 		}
-		free_texture(&cubed->mlx, &spawner->spawner_texture);
-		free_texture(&cubed->mlx, &spawner->sprite_texture);
 		free(spawner);
 		spawner = NULL;
 	}

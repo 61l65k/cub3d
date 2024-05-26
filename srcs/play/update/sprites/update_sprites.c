@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 09:42:10 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 11:26:36 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	spawn_sprites(t_cubed *cubed, t_sprite_spawner *spawner)
 	if (spawner->time_since_last_spawn >= spawner->spawn_interval)
 	{
 		new_sprite = create_sprite_node(cubed, spawner->x, spawner->y,
-				&spawner->sprite_texture);
+				&cubed->scene.sprite_info.sprite_texture);
 		new_sprite->next = cubed->scene.sprite_info.sprites;
 		cubed->scene.sprite_info.sprites = new_sprite;
 		spawner->time_since_last_spawn = 0;
