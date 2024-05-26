@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 17:43:50 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 05:26:11 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ static void	update_spawners(t_cubed *cubed)
 static void	update_all_sprites(t_cubed *cubed)
 {
 	t_sprite	*sprite;
+	double		direction_x;
+	double		direction_y;
 
-	double direction_x, direction_y;
 	sprite = cubed->scene.sprite_info.sprites;
 	while (sprite)
 	{
