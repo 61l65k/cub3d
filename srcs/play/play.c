@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 09:22:30 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 21:16:44 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ static void	update_data(t_cubed *cubed)
 	update_sprite_render_info(cubed);
 }
 
+void	draw_minimap(t_img *img, const t_resolution *res,
+				const t_map *map, const t_player *player);
+
 static void	draw_image(t_cubed *cubed)
 {
 	draw_ceiling(cubed);
@@ -36,6 +39,8 @@ static void	draw_image(t_cubed *cubed)
 	sort_and_draw_renderables(cubed);
 	draw_gun_shooting(cubed);
 	draw_take_damage(cubed);
+	draw_minimap(&cubed->mlx.img, &cubed->scene.resol,
+		&cubed->scene.map, &cubed->player);
 }
 
 static int	render_frames(void *data)
