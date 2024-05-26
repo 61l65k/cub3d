@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:16:13 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/17 03:16:21 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:25:22 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	extract_from_cub_file(t_cubed *cubed, const char *path)
 	char		*line;
 
 	if (fd < 0)
-		ft_clean_exit(cubed, "extract_from_cub() open()");
+		ft_clean_exit(cubed, "extract_from_cub() open()", 0);
 	status = 0;
 	gnl_ret = gnl(fd, &line);
 	while (gnl_ret > 0)
@@ -41,5 +41,5 @@ void	extract_from_cub_file(t_cubed *cubed, const char *path)
 	close(fd);
 	free_null(&line);
 	if (status || gnl_ret < 0)
-		ft_clean_exit(cubed, "extract_from_cub():");
+		ft_clean_exit(cubed, "extract_from_cub():", 0);
 }

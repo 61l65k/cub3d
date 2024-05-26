@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 08:45:22 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:22:30 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ void	start_game(t_cubed *cubed)
 	mlx_data = &cubed->mlx;
 	mlx_data->mlx_ptr = mlx_init();
 	if (!cubed->mlx.mlx_ptr)
-		ft_clean_exit(cubed, "mlx_init() failed\n");
+		ft_clean_exit(cubed, "mlx_init() failed\n", 0);
 	mlx_data->win = mlx_new_window(mlx_data->mlx_ptr, cubed->scene.resol.width,
 			cubed->scene.resol.height, "cub3D");
 	if (!mlx_data->win)
-		ft_clean_exit(cubed, "mlx_new_window() failed\n");
+		ft_clean_exit(cubed, "mlx_new_window() failed\n", 0);
 	prepare_game(cubed);
 	cubed->mlx.img.img_ptr = mlx_new_image(cubed->mlx.mlx_ptr,
 			cubed->scene.resol.width, cubed->scene.resol.height);

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 06:58:43 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 16:01:49 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:19:50 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_sprite	*create_sprite_node(t_cubed *cubed, double x, double y,
 
 	new_sprite = malloc(sizeof(t_sprite));
 	if (!new_sprite)
-		ft_clean_exit(cubed, ERR_SPRITE_ALLOC);
+		ft_clean_exit(cubed, ERR_SPRITE_ALLOC, 0);
 	new_sprite->x = x;
 	new_sprite->y = y;
 	if (!texture->is_loaded)

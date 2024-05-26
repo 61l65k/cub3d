@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:17:14 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 08:06:16 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:10:31 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	prepare_player(t_cubed *cubed)
 	t_player	*player;
 
 	player = &cubed->player;
+	ft_memset(player, 0, sizeof(t_player));
 	player->x_move = 0;
 	player->z_move = 0;
 	player->move_speed = 0.02;

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:52:03 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 17:47:55 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:24:55 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ t_renderable	*collect_renderables(t_cubed *cubed, int *count)
 	}
 	renderables = malloc(total_count * sizeof(t_renderable));
 	if (!renderables)
-		ft_clean_exit(cubed, "Failed to allocate memory for renderables");
+		ft_clean_exit(cubed, "Failed to allocate memory for renderables", 0);
 	idx = 0;
 	renderables = collect_wall_renderables(cubed, renderables, &idx);
 	renderables = collect_spawner_renderables(cubed, renderables, &idx);

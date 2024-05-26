@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 09:04:01 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:22:11 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	free_all_mlx(t_cubed *cubed)
 	}
 }
 
-void	ft_clean_exit(t_cubed *cubed, char *msg)
+void	ft_clean_exit(t_cubed *cubed, char *msg, bool reset)
 {
 	if (msg)
 		perror(msg);
@@ -53,5 +53,6 @@ void	ft_clean_exit(t_cubed *cubed, char *msg)
 	}
 	if (msg)
 		exit(EXIT_FAILURE);
-	exit(EXIT_SUCCESS);
+	if (!reset)
+		exit(EXIT_SUCCESS);
 }

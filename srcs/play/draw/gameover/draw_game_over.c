@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 07:26:13 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 09:04:01 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:10:37 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	clear_screen(t_cubed *cubed)
 	}
 }
 
-int	get_menu_option_color(t_cubed *cubed, int option_index)
+static int	get_menu_option_color(t_cubed *cubed, int option_index)
 {
 	if (cubed->game_over_selected_option == option_index)
 		return (RED);

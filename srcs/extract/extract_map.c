@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:21:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 21:34:29 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/26 09:25:32 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ static int	realloc_map(t_map *map)
 	size_t	new_alloc_size;
 
 	new_alloc_size = map->grid_alloc_size * 2;
-	map->grid = ft_realloc(map->grid,
-			map->grid_alloc_size * sizeof(char *),
+	map->grid = ft_realloc(map->grid, map->grid_alloc_size * sizeof(char *),
 			new_alloc_size * sizeof(char *));
 	if (!map->grid)
 	{
@@ -86,7 +85,7 @@ static int	get_map_width(char **strs)
 	return (max_length);
 }
 
-int	finalize_map(t_map *map);
+int			finalize_map(t_map *map);
 
 int	extract_map(t_cubed *cubed, int fd, char **line)
 {
@@ -94,8 +93,8 @@ int	extract_map(t_cubed *cubed, int fd, char **line)
 
 	status = 0;
 	cubed->scene.map.grid_alloc_size = 80;
-	cubed->scene.map.grid
-		= ft_calloc(cubed->scene.map.grid_alloc_size, sizeof(char *));
+	cubed->scene.map.grid = ft_calloc(cubed->scene.map.grid_alloc_size,
+			sizeof(char *));
 	if (!cubed->scene.map.grid)
 		return (perror(CUB_ERROR_MALLOC "extract_map(1) malloc fail"), -1);
 	status = get_map(fd, line, &cubed->scene.map);

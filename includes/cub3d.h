@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 08:05:14 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:23:21 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_cubed
 	t_weapon_map	weapon_map;
 	t_texture		game_over_texture;
 	int				game_over_selected_option;
+	bool			reset;
 }					t_cubed;
 
 void				validate_scene(t_cubed *cubed);

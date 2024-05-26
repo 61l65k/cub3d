@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 08:54:31 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:19:40 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ typedef enum e_helpers
 }							t_helpers;
 
 int							has_extension(char *file, char *ext);
-void						ft_clean_exit(t_cubed *cubed, char *msg);
+void						ft_clean_exit(t_cubed *cubed, char *msg,
+								bool reset);
 int							is_start_of_map(char *line);
 void						free_2d_array(char **array);
 void						free_null(char **ptr_to_ptr);
