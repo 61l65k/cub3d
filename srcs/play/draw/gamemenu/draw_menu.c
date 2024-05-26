@@ -6,11 +6,13 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 23:13:41 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 09:55:35 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:00:32 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+#define GREY 0x555555
 
 int			get_menu_option_color(t_cubed *cubed, int option_index);
 
@@ -25,7 +27,7 @@ static void	draw_menu_image(t_cubed *cubed)
 	menu.x = (screen_width - menu.width) / 2;
 	menu.y = (screen_height - menu.height) / 2;
 	menu.border_width = 0;
-	menu.fill_color = 0x555555;
+	menu.fill_color = GREY;
 	menu.border_color = 0;
 	draw_rectangle(&menu, cubed->mlx.img.data, screen_width);
 	mlx_put_image_to_window(cubed->mlx.mlx_ptr, cubed->mlx.win,
