@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:17:14 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 05:58:32 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 08:06:16 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ void	prepare_player(t_cubed *cubed)
 	player->dir_y = sin(player->rotation_angle);
 	player->plane_x = -player->dir_y * 0.66;
 	player->plane_y = player->dir_x * 0.66;
-	player->health = 200;
+	player->health = 1;
 	get_starting_position(&cubed->player, cubed->scene.map.grid);
 }

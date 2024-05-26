@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 05:37:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 06:16:35 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 07:25:22 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ void					check_sprite_hit_player(t_cubed *cubed,
 							t_sprite *sprite);
 void					prepare_player(t_cubed *cubed);
 void					draw_take_damage(t_cubed *cubed);
+void					clear_screen(t_cubed *cubed);
+void					draw_game_over_screen(t_cubed *cubed);
 
 #endif

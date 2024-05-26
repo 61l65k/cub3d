@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 06:24:58 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 07:55:55 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@
 #  define K_SPACE 49
 #  define K_M 46
 # else
+#  define K_ENTER 65293
 #  define K_SPACE 32
 #  define K_ESC 65307
 #  define K_W 119

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 05:56:51 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 08:05:14 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@
 typedef enum e_game_state
 {
 	GAME_STATE_RUNNING,
-	GAME_STATE_MENU
+	GAME_STATE_MENU,
+	GAME_STATE_OVER,
 }					t_game_state;
 
 typedef struct s_scenedata
@@ -64,6 +65,8 @@ typedef struct s_cubed
 	t_player		player;
 	t_mouse			mouse;
 	t_weapon_map	weapon_map;
+	t_texture		game_over_texture;
+	int				game_over_selected_option;
 }					t_cubed;
 
 void				validate_scene(t_cubed *cubed);
@@ -78,5 +81,6 @@ void				cast_ray(t_ray *ray, t_map *map, t_player *player);
 void				update_rays(t_cubed *game);
 void				draw_menu(t_cubed *cubed);
 void				hook_mouse(t_cubed *cubed);
+int					key_press_game_over(int keycode, t_cubed *cubed);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 05:51:57 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 08:45:22 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,19 @@ static int	render_frames(void *data)
 	t_cubed	*cubed;
 
 	cubed = data;
-	update_data(cubed);
-	draw_image(cubed);
-	mlx_put_image_to_window(cubed->mlx.mlx_ptr, cubed->mlx.win,
-		cubed->mlx.img.img_ptr, 0, 0);
+	if (cubed->game_state == GAME_STATE_RUNNING)
+	{
+		update_data(cubed);
+		draw_image(cubed);
+		mlx_put_image_to_window(cubed->mlx.mlx_ptr, cubed->mlx.win,
+			cubed->mlx.img.img_ptr, 0, 0);
+	}
+	if (cubed->game_state == GAME_STATE_OVER)
+	{
+		clear_screen(cubed);
+		draw_game_over_screen(cubed);
+		return (1);
+	}
 	if (cubed->game_state == GAME_STATE_MENU)
 		draw_menu(cubed);
 	return (1);

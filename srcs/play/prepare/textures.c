@@ -6,15 +6,32 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:36 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 17:45:03 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 08:54:40 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	load_game_over_image(t_cubed *cubed)
+{
+	cubed->game_over_texture.path = ft_strdup("assets/gameover.xpm");
+	if (!cubed->game_over_texture.path)
+		ft_clean_exit(cubed, ERR_LOAD_TEXTURE);
+	cubed->game_over_texture.img.img_ptr = mlx_xpm_file_to_image(cubed->mlx.mlx_ptr,
+			cubed->game_over_texture.path, &cubed->game_over_texture.width,
+			&cubed->game_over_texture.height);
+	if (!cubed->game_over_texture.img.img_ptr)
+		ft_clean_exit(cubed, ERR_LOAD_TEXTURE);
+	cubed->game_over_texture.img.data = (int *)mlx_get_data_addr(cubed->game_over_texture.img.img_ptr,
+			&cubed->game_over_texture.img.bpp,
+			&cubed->game_over_texture.img.size_l,
+			&cubed->game_over_texture.img.endian);
+	if (!cubed->game_over_texture.img.data)
+		ft_clean_exit(cubed, ERR_LOAD_TEXTURE);
+}
+
 void	load_texture(t_cubed *cubed, void *mlx, t_texture *texture)
 {
-	printf("Loading texture HERE %s\n", texture->path);
 	texture->img.img_ptr = mlx_xpm_file_to_image(mlx, texture->path,
 			&texture->width, &texture->height);
 	if (!texture->img.img_ptr)
@@ -33,6 +50,7 @@ void	prepare_textures(t_cubed *cubed)
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.south_texture);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.west_texture);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.east_texture);
+	load_game_over_image(cubed);
 	load_weapons(cubed, &cubed->weapon_map);
 }
 

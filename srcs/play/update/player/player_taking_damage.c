@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 05:35:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 06:21:28 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 07:25:18 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	apply_damage_to_player(t_cubed *cubed, int damage)
 	{
 		cubed->player.health = 0;
 		cubed->player.taking_damage = false;
-		// kill_player(cubed);
+		cubed->game_state = GAME_STATE_OVER;
 	}
 	else
 	{

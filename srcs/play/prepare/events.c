@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 17:17:11 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 08:05:02 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ static int	close_game_x(t_cubed *cubed)
 
 static int	key_press(int keycode, t_cubed *cubed)
 {
-	printf("Key pressed: %d\n", keycode);
+	if (cubed->game_state == GAME_STATE_OVER)
+		return (key_press_game_over(keycode, cubed));
+	printf("keycode: %d\n", keycode);
 	if (keycode == K_ESC)
 		ft_clean_exit(cubed, NULL);
 	if (keycode == K_W || keycode == K_FORWARD_ARROW)
