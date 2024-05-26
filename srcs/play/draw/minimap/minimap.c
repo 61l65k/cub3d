@@ -6,12 +6,29 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:36:38 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/26 21:13:22 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/26 21:54:47 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "minimap.h"
+
+static int	map_color(double x, double y, const t_map *map)
+{
+	const char	c = t_map_get(map, x, y);
+
+	if (c == '1')
+		return (0x000000);
+	else if (c == '0' || c == ' ')
+		return (0xFFFFFF);
+	else if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (0xFFFFFF);
+	else if (c == 'Z')
+		return (0xFF0000);
+	else if (c == '\0')
+		return (0x808080);
+	return (0x00FF00);
+}
 
 void	draw_minimap(t_img *img,
 	const t_resolution *res,
@@ -20,10 +37,9 @@ void	draw_minimap(t_img *img,
 {
 	const t_minimap	m = {
 		.start = {player->x - MMAP_SIZE / 2.0, player->y - MMAP_SIZE / 2.0},
-		.dimension = res->width / 4,
+		.dimension = res->width / 8,
 		.scale = (double)MMAP_SIZE / m.dimension
 	};
-	char			c;
 	int				i;
 	int				j;
 
@@ -33,12 +49,10 @@ void	draw_minimap(t_img *img,
 		j = -1;
 		while (++j < m.dimension)
 		{
-			c = t_map_get(map, m.start.x + i * m.scale,
-					m.start.y + j * m.scale);
-			if (c == '1')
-				img->data[j * res->width + i] = 0x000000;
-			else
-				img->data[j * res->width + i] = 0xFFFFFF;
+			img->data[j * res->width + i]
+				= map_color(m.start.x + i * m.scale,
+					m.start.y + j * m.scale,
+					map);
 		}
 	}
 }

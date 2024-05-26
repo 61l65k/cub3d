@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 20:45:17 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/26 21:14:06 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/26 21:55:07 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINIMAP_H
 
 // Minimap size in map units drawn around the player
-# define MMAP_SIZE 10
+# define MMAP_SIZE 16
 
 typedef struct t_coords
 {
