@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:15:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 11:07:36 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/26 05:39:31 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,7 @@ int						handle_weapon_switch(int button, t_cubed *cubed);
 void					load_weapons(t_cubed *cubed, t_weapon_map *weapon_map);
 void					get_gun_positions(t_weapon *weapon, t_cubed *cubed,
 							int i);
+void					handle_shooting(t_cubed *cubed);
+void					draw_gun_shooting(t_cubed *cubed);
+
 #endif

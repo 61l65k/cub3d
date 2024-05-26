@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 05:26:11 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 05:46:25 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static void	update_all_sprites(t_cubed *cubed)
 		sprite->x += direction_x * sprite->speed * SPRITE_SPEED_FACTOR;
 		sprite->y += direction_y * sprite->speed * SPRITE_SPEED_FACTOR;
 		update_render_info(cubed, sprite->x, sprite->y, &sprite->info);
+		check_sprite_hit_player(cubed, sprite);
 		sprite = sprite->next;
 	}
 }

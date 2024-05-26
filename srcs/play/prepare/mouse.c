@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:03:11 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 17:45:27 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 06:26:00 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ static int	handle_mouse_button(int button, int x, int y, t_cubed *cubed)
 	(void)y;
 	if (button == SCROLL_UP || button == SCROLL_DOWN)
 		handle_weapon_switch(button, cubed);
+	if (button == LEFT_CLICK)
+		cubed->player.shooting = 1;
 	if (button == RIGHT_CLICK)
 	{
 		if (!cubed->mouse.active)

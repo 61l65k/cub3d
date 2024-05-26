@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/23 11:56:27 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 06:24:58 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 #  define LINUX 0
 # endif
 
+# define LEFT_CLICK 1
 # define RIGHT_CLICK 3
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 18:11:28 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 05:56:51 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "MLX42/MLX42.h"
 # include "definitions.h"
 # include "libft.h"
+# include "player.h"
 # include "raycast.h"
 # include "renderable.h"
 # include "sprites.h"
@@ -32,29 +33,13 @@
 # include <string.h>
 # include <unistd.h>
 
+# define FIXED_FRAME_TIME 0.01667
+
 typedef enum e_game_state
 {
 	GAME_STATE_RUNNING,
 	GAME_STATE_MENU
 }					t_game_state;
-
-typedef struct s_player
-{
-	double			x;
-	double			y;
-	float			dir_x;
-	float			dir_y;
-	float			plane_x;
-	float			plane_y;
-	int				x_move;
-	int				z_move;
-	int				health;
-	double			move_speed;
-	int				turn_direction;
-	double			rotation_angle;
-	double			rotation_speed;
-	bool			shooting;
-}					t_player;
 
 typedef struct s_scenedata
 {
@@ -85,17 +70,13 @@ void				validate_scene(t_cubed *cubed);
 void				start_game(t_cubed *cubed);
 void				prepare_textures(t_cubed *cubed);
 void				prepare_rays(t_cubed *cubed);
-void				prepare_player(t_cubed *cubed);
 void				prepare_rays(t_cubed *cubed);
 void				draw_floor(t_cubed *cubed);
 void				draw_ceiling(t_cubed *cubed);
 void				draw_walls(t_cubed *game);
 void				cast_ray(t_ray *ray, t_map *map, t_player *player);
 void				update_rays(t_cubed *game);
-void				draw_gun_shooting(t_cubed *cubed);
 void				draw_menu(t_cubed *cubed);
-void				handle_shooting(t_cubed *cubed);
 void				hook_mouse(t_cubed *cubed);
-int					handle_weapon_switch(int button, t_cubed *cubed);
 
 #endif
