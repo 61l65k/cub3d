@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/27 20:13:19 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/27 20:37:45 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static void	handle_gun_shooting(t_cubed *cubed, float damage)
 	const int	map_x = (int)middle_ray->x;
 	const int	map_y = (int)middle_ray->y;
 
-	traverse_and_apply_damage(cubed, middle_ray, 100, damage);
+	if (traverse_and_apply_damage(cubed, middle_ray, 100, damage))
+		return ;
 	if (t_map_get(&cubed->scene.map, map_x, map_y) == '1')
 	{
 		t_map_insert(&cubed->scene.map, map_x, map_y, '0');
@@ -70,7 +71,8 @@ static void	handle_raygun_shooting(t_cubed *cubed)
 	const int	map_x = (int)middle_ray->x;
 	const int	map_y = (int)middle_ray->y;
 
-	traverse_and_apply_damage(cubed, middle_ray, 100, 10);
+	if (traverse_and_apply_damage(cubed, middle_ray, 100, 10))
+		return ;
 	if (t_map_get(&cubed->scene.map, map_x, map_y) == '1')
 		destroy_adjacent_walls(cubed, map_x, map_y, 0);
 }

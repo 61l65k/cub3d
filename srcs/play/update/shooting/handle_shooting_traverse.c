@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 16:21:41 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/27 15:07:54 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/27 20:34:40 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ bool	traverse_and_apply_damage(t_cubed *cubed, const t_ray *ray,
 		double max_distance, float damage)
 {
 	t_apply_damage_helper	helper;
+	char					c;
 
 	helper = (t_apply_damage_helper){0};
 	helper.current_distance = 0.0;
@@ -73,9 +74,14 @@ bool	traverse_and_apply_damage(t_cubed *cubed, const t_ray *ray,
 	determine_steps_and_initial_side_distances(cubed, ray, &helper);
 	while (helper.current_distance < max_distance)
 	{
-		perform_dda_step(&helper);
+		c = t_map_get(&cubed->scene.map, helper.map_x, helper.map_y);
+		if (c == '1' || c == '\0')
+		{
+			return (false);
+		}
 		if (check_for_hits(cubed, helper.map_x, helper.map_y, damage))
 			return (true);
+		perform_dda_step(&helper);
 	}
 	return (false);
 }
