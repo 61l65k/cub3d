@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 11:18:26 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/27 14:14:56 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/27 14:44:30 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ char	t_map_get(const t_map *t_map, int x, int y)
 	if (!t_map->grid[y][x])
 		return (' ');
 	return (t_map->grid[y][x]);
+}
+
+char	t_map_get_f(const t_map *t_map, double x, double y)
+{
+	if (x < 0 || y < 0 || x >= (int)t_map->width || y >= (int)t_map->height)
+		return ('\0');
+	if (!t_map->grid[(int)y][(int)x])
+		return (' ');
+	return (t_map->grid[(int)y][(int)x]);
 }
 
 void	t_map_print(const t_map *t_map)
