@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 20:45:17 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/26 21:55:07 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/27 12:36:43 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ typedef struct t_coords
 
 typedef struct s_minimap
 {
-	t_coords	start;
 	int			dimension;
 	double		scale;
+	double		cos_angle;
+	double		sin_angle;
 }				t_minimap;
 
 #endif
