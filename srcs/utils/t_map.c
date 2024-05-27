@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 11:18:26 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/27 14:44:30 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/27 19:59:51 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ int	t_map_insert(t_map *t_map, int x, int y, char new_value)
 	if (x < 0 || y < 0 || x >= (int)t_map->width || y >= (int)t_map->height)
 		return (-1);
 	t_map->grid[y][x] = new_value;
+	return (0);
+}
+
+int	t_map_insert_f(t_map *t_map, double x, double y, char new_value)
+{
+	if (x < 0 || y < 0 || x >= (int)t_map->width || y >= (int)t_map->height)
+		return (-1);
+	t_map->grid[(int)y][(int)x] = new_value;
 	return (0);
 }
 

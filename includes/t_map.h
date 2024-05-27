@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:03:55 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/27 14:44:59 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/27 20:00:44 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ char		t_map_get(const t_map *t_map, int x, int y);
 char		t_map_get_f(const t_map *t_map, double x, double y);
 void		t_map_print(const t_map *t_map);
 int			t_map_insert(t_map *t_map, int x, int y, char new_value);
+int			t_map_insert_f(t_map *t_map, double x, double y, char new_value);
 
 #endif
