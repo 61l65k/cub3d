@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:03:21 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/27 12:44:22 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/27 15:48:30 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ void	update_player_orientation(t_player *player)
 	{
 		player->rotation_angle += player->turn_direction
 			* player->rotation_speed;
-		player->dir_x = cos(player->rotation_angle);
-		player->dir_y = sin(player->rotation_angle);
-		player->plane_x = -player->dir_y * 0.66;
-		player->plane_y = player->dir_x * 0.66;
 	}
+	player->dir_x = cos(player->rotation_angle);
+	player->dir_y = sin(player->rotation_angle);
+	player->plane_x = -player->dir_y * 0.66;
+	player->plane_y = player->dir_x * 0.66;
 }
