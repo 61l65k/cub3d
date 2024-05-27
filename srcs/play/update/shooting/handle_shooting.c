@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_shooting.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 17:15:38 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/27 20:13:19 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,13 @@ static void	handle_gun_shooting(t_cubed *cubed, float damage)
 static void	handle_wrench_shooting(t_cubed *cubed)
 {
 	const float	distance = 3.0;
-	const float	dir_x = cubed->player.dir_x * distance;
-	const float	dir_y = cubed->player.dir_y * distance;
-	const int	map_x = (int)(cubed->player.x + dir_x);
-	const int	map_y = (int)(cubed->player.y + dir_y);
+	const double dir[2] = {cubed->player.dir_x * distance,
+		cubed->player.dir_y * distance};
+	const double coor[2] = {cubed->player.x + dir[0], cubed->player.y + dir[1]};
+	const char	map_char = t_map_get_f(&cubed->scene.map, coor[0], coor[1]);
 
-	if (t_map_get(&cubed->scene.map, map_x, map_y) == '0')
-	{
-		t_map_insert(&cubed->scene.map, map_x, map_y, '1');
-	}
+	if (map_char == '0' || map_char == ' ')
+		t_map_insert_f(&cubed->scene.map, coor[0], coor[1], '1');
 }
 
 static void	destroy_adjacent_walls(t_cubed *cubed, int map_x, int map_y,
@@ -98,8 +96,7 @@ void	handle_shooting(t_cubed *cubed)
 	{
 		handle_gun_shooting(cubed, 0.1);
 	}
-	if (current_weapon->type != WEAPON_MINIGUN
-		&& current_weapon->type != WEAPON_WRENCH)
+	if (current_weapon->type != WEAPON_MINIGUN)
 	{
 		cubed->player.shooting = 0;
 	}
