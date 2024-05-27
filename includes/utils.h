@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 09:50:29 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:07:45 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ void						load_texture(t_cubed *cubed, void *mlx,
 								t_texture *texture);
 void						free_texture(t_mlx *mlx, t_texture *texture);
 int							key_press_game_menu(int keycode, t_cubed *cubed);
+int							blend_colors(int c1, int c2, double alpha);
 
 #endif

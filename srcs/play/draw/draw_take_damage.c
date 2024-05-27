@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_take_damage.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 05:48:08 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 06:09:27 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:08:50 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static int	blend_color(int original_color, int overlay_color, float alpha)
-{
-	const int	original_r = (original_color >> 16) & 0xFF;
-	const int	original_g = (original_color >> 8) & 0xFF;
-	const int	original_b = original_color & 0xFF;
-	const int	overlay_r = (overlay_color >> 16) & 0xFF;
-	const int	overlay_g = (overlay_color >> 8) & 0xFF;
-	const int	overlay_b = overlay_color & 0xFF;
-	const int	blended_r = (int)((alpha * overlay_r) + ((1 - alpha)
-					* original_r));
-	const int	blended_g = (int)((alpha * overlay_g) + ((1 - alpha)
-					* original_g));
-	const int	blended_b = (int)((alpha * overlay_b) + ((1 - alpha)
-					* original_b));
-
-	return ((blended_r << 16) | (blended_g << 8) | blended_b);
-}
 
 static void	draw_red_frame(t_cubed *cubed, float alpha)
 {
@@ -45,7 +27,7 @@ static void	draw_red_frame(t_cubed *cubed, float alpha)
 		j = -1;
 		while (++j < width)
 		{
-			data[i * width + j] = blend_color(data[i * width + j], 0xFF0000,
+			data[i * width + j] = blend_colors(data[i * width + j], 0xFF0000,
 					alpha);
 		}
 	}

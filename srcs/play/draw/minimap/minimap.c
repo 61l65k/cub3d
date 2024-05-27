@@ -6,33 +6,12 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:36:38 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/27 14:45:34 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/27 18:08:21 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "minimap.h"
-
-static int	blend_colors(int c1, int c2, double alpha)
-{
-	const t_uint8_rgb	color1 = {
-		.r = (c1 >> 16) & 0xFF,
-		.g = (c1 >> 8) & 0xFF,
-		.b = c1 & 0xFF
-	};
-	const t_uint8_rgb	color2 = {
-		.r = (c2 >> 16) & 0xFF,
-		.g = (c2 >> 8) & 0xFF,
-		.b = c2 & 0xFF
-	};
-	const t_uint8_rgb	blend = {
-		.r = (1 - alpha) * color1.r + alpha * color2.r,
-		.g = (1 - alpha) * color1.g + alpha * color2.g,
-		.b = (1 - alpha) * color1.b + alpha * color2.b
-	};
-
-	return ((blend.r << 16) | (blend.g << 8) | blend.b);
-}
 
 static int	map_color(int cur_color, t_coords cur_map,
 	const t_player *player, const t_map *map)
