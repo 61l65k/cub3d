@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:01:33 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 11:51:49 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/27 21:30:42 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ static int	run_cub3d(char **av)
 
 int	main(int ac, char **av)
 {
-	if (ac > 1 && (av + 1) && *(av + 1))
+	if (ac == 2)
 	{
 		if (!has_extension(av[1], ".cub"))
 		{
 			ft_fprintf(STDERR_FILENO, ERR_INVALID_EXTENSION, av[1]);
-			ft_clean_exit(NULL, CUB_OPEN_ERROR_MSG, 0);
+			return (0);
 		}
 		while (run_cub3d(av))
 			;
@@ -41,5 +41,6 @@ int	main(int ac, char **av)
 	else if (ac < 2)
 		ft_fprintf(STDERR_FILENO, ARG_ERROR_MSG);
 	else
-		ft_fprintf(STDERR_FILENO, "WRONG");
+		ft_fprintf(STDERR_FILENO, "Too many arguments\n");
+	return (0);
 }

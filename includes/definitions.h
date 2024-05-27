@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   definitions.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 07:55:55 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/27 21:29:02 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define CUB_MAP_SPLIT_DELIMITERS " \n\t\v\f\r"
 # define ERR_RGB "Error: get_color_rgb() - invalid rgb value\n"
 # define ERR_RESOLUTION "Error: get_resolution() - invalid resolution value\n"
-# define ERR_INVALID_EXTENSION "Error: invalid file extension %s\n"
+# define ERR_INVALID_EXTENSION "Error: invalid file extension \'%s\'\n"
 # define ERR_POORLY_FORMATTED "Error: poorly formatted %s \n"
 # define ERR_OPENTEXT "Error\nCould not open the %s: %s.\n"
 # define ERR_MAP_NOT_SURROUNDED "Error: map is not surrounded by walls\n"
