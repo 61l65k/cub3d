@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 15:57:14 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:02:38 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,6 @@ void	update_rays(t_cubed *cubed)
 	int		i;
 	t_ray	hrzn_intersection;
 	t_ray	vrtl_intersection;
-	double	dir_x;
-	double	dir_y;
 
 	hrzn_intersection.side = 'H';
 	vrtl_intersection.side = 'V';
@@ -145,8 +143,6 @@ void	update_rays(t_cubed *cubed)
 		vrtl_intersection.angle = normalize_radian(ray_angle);
 		hrzn_intersection.orientation = 0;
 		vrtl_intersection.orientation = 0;
-		dir_x = cos(ray_angle);
-		dir_y = sin(ray_angle);
 		get_x_intersection(&hrzn_intersection, &cubed->scene.map,
 			&cubed->player);
 		get_y_intersection(&vrtl_intersection, &cubed->scene.map,
@@ -155,8 +151,8 @@ void	update_rays(t_cubed *cubed)
 			cubed->rays.ray_array[i] = hrzn_intersection;
 		else
 			cubed->rays.ray_array[i] = vrtl_intersection;
-		cubed->rays.ray_array[i].dir_x = dir_x;
-		cubed->rays.ray_array[i].dir_y = dir_y;
+		cubed->rays.ray_array[i].dir_x = cos(ray_angle);
+		cubed->rays.ray_array[i].dir_y = sin(ray_angle);
 		ray_angle += cubed->rays.field_of_view / cubed->scene.resol.width;
 	}
 }
