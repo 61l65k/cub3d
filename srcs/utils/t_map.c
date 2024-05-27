@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 11:18:26 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/23 07:53:35 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:14:56 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ char	t_map_get(const t_map *t_map, int x, int y)
 {
 	if (x < 0 || y < 0 || x >= (int)t_map->width || y >= (int)t_map->height)
 		return ('\0');
+	if (!t_map->grid[y][x])
+		return (' ');
 	return (t_map->grid[y][x]);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:36:38 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/27 13:52:48 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/27 14:17:37 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ static int	map_color(int cur_color, t_coords cur_map,
 		return (0x000000);
 	if (is_player)
 		return (0x80FF80);
-	if (c == '0' || c == ' ')
+	if (c == '0')
 		return (0xFFFFFF);
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 		return (0xFFFFFF);
 	if (c == 'Z')
 		return (0xFF0000);
-	if (c == '\0')
+	if (c == ' ')
 		return (blend_colors(cur_color, 0x808080, 0.5));
 	return (cur_color);
 }
