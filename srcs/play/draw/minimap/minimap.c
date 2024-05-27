@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:36:38 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/27 14:17:37 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/27 14:45:34 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	blend_colors(int c1, int c2, double alpha)
 static int	map_color(int cur_color, t_coords cur_map,
 	const t_player *player, const t_map *map)
 {
-	const char	c = t_map_get(map, cur_map.x, cur_map.y);
+	const char	c = t_map_get_f(map, cur_map.x, cur_map.y);
 	const bool	is_player = (fabs(cur_map.x - player->x) < 0.5
 			&& fabs(cur_map.y - player->y) < 0.5);
 
