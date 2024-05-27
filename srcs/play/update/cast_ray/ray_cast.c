@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/27 15:02:38 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/27 15:08:09 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,6 @@ void	update_rays(t_cubed *cubed)
 			cubed->rays.ray_array[i] = hrzn_intersection;
 		else
 			cubed->rays.ray_array[i] = vrtl_intersection;
-		cubed->rays.ray_array[i].dir_x = cos(ray_angle);
-		cubed->rays.ray_array[i].dir_y = sin(ray_angle);
 		ray_angle += cubed->rays.field_of_view / cubed->scene.resol.width;
 	}
 }

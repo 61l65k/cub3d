@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:40:52 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 15:50:32 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:06:39 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ typedef struct s_ray
 	char	side;
 	double	x_step;
 	double	y_step;
-	double	dir_x;
-	double	dir_y;
 }			t_ray;
 
 typedef struct s_rays
