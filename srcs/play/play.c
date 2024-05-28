@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 21:27:59 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:24:06 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	prepare_game(t_cubed *cubed)
 {
 	prepare_player(cubed);
-	prepare_sprites(cubed);
+	prepare_map_specials(cubed);
 	prepare_events(cubed);
 	prepare_textures(cubed);
 	prepare_rays(cubed);
@@ -29,8 +29,8 @@ static void	update_data(t_cubed *cubed)
 	update_sprite_render_info(cubed);
 }
 
-void	draw_minimap(t_img *img, const t_resolution *res,
-				const t_map *map, const t_player *player);
+void		draw_minimap(t_img *img, const t_resolution *res, const t_map *map,
+				const t_player *player);
 
 static void	draw_image(t_cubed *cubed)
 {
@@ -39,8 +39,8 @@ static void	draw_image(t_cubed *cubed)
 	sort_and_draw_renderables(cubed);
 	draw_gun_shooting(cubed);
 	draw_take_damage(cubed);
-	draw_minimap(&cubed->mlx.img, &cubed->scene.resol,
-		&cubed->scene.map, &cubed->player);
+	draw_minimap(&cubed->mlx.img, &cubed->scene.resol, &cubed->scene.map,
+		&cubed->player);
 }
 
 static int	render_frames(void *data)

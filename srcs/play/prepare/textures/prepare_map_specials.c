@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_sprites.c                                     :+:      :+:    :+:   */
+/*   prepare_map_specials.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 03:05:49 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 13:20:47 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:24:20 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	prepare_door(t_cubed *cubed, int x, int y)
 		&cubed->scene.sprite_info.door_open_texture);
 }
 
-void	prepare_sprites(t_cubed *cubed)
+void	prepare_map_specials(t_cubed *cubed)
 {
 	const t_map	*map = &cubed->scene.map;
 	int			x;

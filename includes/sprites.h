@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 11:52:46 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:24:06 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_sprite_info
 	int						spawner_count;
 }							t_sprite_info;
 
-void						prepare_sprites(t_cubed *cubed);
+void						prepare_map_specials(t_cubed *cubed);
 void						update_sprite_render_info(t_cubed *cubed);
 void						draw_sprites(t_cubed *cubed);
 int							calculate_tex_x(int stripe,

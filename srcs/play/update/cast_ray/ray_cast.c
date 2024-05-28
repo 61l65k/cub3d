@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 13:17:30 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:25:28 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,28 +134,26 @@ void	update_rays(t_cubed *cubed)
 {
 	double	ray_angle;
 	int		i;
-	t_ray	hrzn_intersection;
-	t_ray	vrtl_intersection;
+	t_ray	x_intersection;
+	t_ray	y_intersection;
 	t_ray	*closest_intersection;
 
-	hrzn_intersection.side = 'H';
-	vrtl_intersection.side = 'V';
+	x_intersection.side = 'H';
+	y_intersection.side = 'V';
 	ray_angle = cubed->player.rotation_angle - cubed->rays.field_of_view / 2;
 	i = -1;
 	while (++i < cubed->scene.resol.width)
 	{
-		hrzn_intersection.angle = normalize_radian(ray_angle);
-		vrtl_intersection.angle = normalize_radian(ray_angle);
-		hrzn_intersection.orientation = 0;
-		vrtl_intersection.orientation = 0;
-		get_x_intersection(&hrzn_intersection, &cubed->scene.map,
-			&cubed->player);
-		get_y_intersection(&vrtl_intersection, &cubed->scene.map,
-			&cubed->player);
-		if (hrzn_intersection.distance <= vrtl_intersection.distance)
-			closest_intersection = &hrzn_intersection;
+		x_intersection.angle = normalize_radian(ray_angle);
+		y_intersection.angle = normalize_radian(ray_angle);
+		x_intersection.orientation = 0;
+		y_intersection.orientation = 0;
+		get_x_intersection(&x_intersection, &cubed->scene.map, &cubed->player);
+		get_y_intersection(&y_intersection, &cubed->scene.map, &cubed->player);
+		if (x_intersection.distance <= y_intersection.distance)
+			closest_intersection = &x_intersection;
 		else
-			closest_intersection = &vrtl_intersection;
+			closest_intersection = &y_intersection;
 		if (ray_check_door(cubed, closest_intersection, i,
 				&ray_angle) == DOOR_FOUND)
 			continue ;
