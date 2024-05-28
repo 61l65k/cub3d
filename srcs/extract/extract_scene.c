@@ -6,12 +6,14 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 11:49:08 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 09:54:37 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx.h"
+
+int			extract_scene_extras(t_scenedata *scene, char **data);
 
 static int	get_resolution(char *res_buffer, t_resolution *resolution)
 {
@@ -28,7 +30,7 @@ static int	get_resolution(char *res_buffer, t_resolution *resolution)
 	return (free_2d_array(res), 0);
 }
 
-static int	fill_texture(char *texture_path, t_texture *texture)
+int	fill_texture(char *texture_path, t_texture *texture)
 {
 	if (!texture->path)
 	{
@@ -76,10 +78,8 @@ static int	extract_game_data(t_scenedata *scene, char **data)
 		return (fill_texture(data[1], &scene->west_texture));
 	else if (is_valid_game_identifier("EA", data))
 		return (fill_texture(data[1], &scene->east_texture));
-	else if (is_valid_game_identifier("SPRITE", data))
-		return (fill_texture(data[1], &scene->sprite_info.sprite_texture));
-	else if (is_valid_game_identifier("SPAWNER", data))
-		return (fill_texture(data[1], &scene->sprite_info.spawner_texture));
+	else if (extract_scene_extras(scene, data) < 0)
+		return (-1);
 	else if (data[0][0] != '\n')
 		return (ft_fprintf(2, "Error\nUnknown identifier: %s", data[0]), -1);
 	return (0);

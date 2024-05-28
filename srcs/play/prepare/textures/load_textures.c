@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures.c                                         :+:      :+:    :+:   */
+/*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:36 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 11:55:11 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 09:59:50 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,22 @@ void	load_texture(t_cubed *cubed, void *mlx, t_texture *texture)
 
 static void	load_sprite_textures(t_cubed *cubed)
 {
-	if (cubed->scene.sprite_info.sprite_texture.path)
-		load_texture(cubed, cubed->mlx.mlx_ptr,
-			&cubed->scene.sprite_info.sprite_texture);
-	else
+	if (!cubed->scene.sprite_info.sprite_texture.path)
 	{
 		cubed->scene.sprite_info.sprite_texture.path = ft_strdup("./assets/sprites/boggart.xpm");
 		if (!cubed->scene.sprite_info.sprite_texture.path)
 			ft_clean_exit(cubed, CUB_ERROR_MALLOC CUB_ERROR_MALLOC, 0);
-		load_texture(cubed, cubed->mlx.mlx_ptr,
-			&cubed->scene.sprite_info.sprite_texture);
 	}
-	if (cubed->scene.sprite_info.spawner_texture.path)
-		load_texture(cubed, cubed->mlx.mlx_ptr,
-			&cubed->scene.sprite_info.spawner_texture);
-	else
+	if (!cubed->scene.sprite_info.spawner_texture.path)
 	{
 		cubed->scene.sprite_info.spawner_texture.path = ft_strdup("./assets/sprites/spawner.xpm");
 		if (!cubed->scene.sprite_info.spawner_texture.path)
 			ft_clean_exit(cubed, CUB_ERROR_MALLOC CUB_ERROR_MALLOC, 0);
-		load_texture(cubed, cubed->mlx.mlx_ptr,
-			&cubed->scene.sprite_info.spawner_texture);
 	}
+	load_texture(cubed, cubed->mlx.mlx_ptr,
+		&cubed->scene.sprite_info.sprite_texture);
+	load_texture(cubed, cubed->mlx.mlx_ptr,
+		&cubed->scene.sprite_info.spawner_texture);
 }
 
 void	prepare_textures(t_cubed *cubed)

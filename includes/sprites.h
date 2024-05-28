@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 09:15:55 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 09:38:20 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ typedef struct s_door
 {
 	double					x;
 	double					y;
-	t_texture				texture;
+	t_texture				closed_texture;
+	t_texture				open_texture;
 	struct s_door			*next;
 }							t_door;
 
@@ -85,7 +86,8 @@ typedef struct s_sprite_info
 	t_sprite_spawner		*spawners;
 	t_sprite				*sprites;
 	t_door					*doors;
-	t_texture				door_texture;
+	t_texture				door_closed_texture;
+	t_texture				door_open_texture;
 	t_texture				spawner_texture;
 	t_texture				sprite_texture;
 	int						sprites_count;
