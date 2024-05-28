@@ -6,11 +6,15 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 11:38:44 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:17:30 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+t_door				*find_door(t_cubed *cubed, int map_x, int map_y);
+int					ray_check_door(t_cubed *cubed, t_ray *closest_intersection,
+						int i, double *ray_angle);
 
 static t_helpers	init_raycast_helper_hrzn(t_raycast_helper *rh, t_ray *ray,
 		t_player *player)
@@ -132,6 +136,7 @@ void	update_rays(t_cubed *cubed)
 	int		i;
 	t_ray	hrzn_intersection;
 	t_ray	vrtl_intersection;
+	t_ray	*closest_intersection;
 
 	hrzn_intersection.side = 'H';
 	vrtl_intersection.side = 'V';
@@ -148,9 +153,14 @@ void	update_rays(t_cubed *cubed)
 		get_y_intersection(&vrtl_intersection, &cubed->scene.map,
 			&cubed->player);
 		if (hrzn_intersection.distance <= vrtl_intersection.distance)
-			cubed->rays.ray_array[i] = hrzn_intersection;
+			closest_intersection = &hrzn_intersection;
 		else
-			cubed->rays.ray_array[i] = vrtl_intersection;
+			closest_intersection = &vrtl_intersection;
+		if (ray_check_door(cubed, closest_intersection, i,
+				&ray_angle) == DOOR_FOUND)
+			continue ;
+		closest_intersection->is_door = false;
+		cubed->rays.ray_array[i] = *closest_intersection;
 		ray_angle += cubed->rays.field_of_view / cubed->scene.resol.width;
 	}
 }

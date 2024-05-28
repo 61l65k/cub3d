@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:52:03 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 11:45:52 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 12:55:04 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,6 @@ t_renderable	*collect_sprite_renderables(t_cubed *cubed,
 	return (renderables);
 }
 
-t_renderable	*collect_door_renderables(t_cubed *cubed,
-		t_renderable *renderables, int *idx)
-{
-	t_door	*door;
-
-	door = cubed->scene.sprite_info.doors;
-	while (door)
-	{
-		renderables[*idx].distance = door->distance;
-		renderables[*idx].type = RENDERABLE_DOOR;
-		renderables[*idx].data.door = door;
-		(*idx)++;
-		door = door->next;
-	}
-	return (renderables);
-}
-
 t_renderable	*collect_renderables(t_cubed *cubed, int *count)
 {
 	int				total_count;
@@ -112,7 +95,6 @@ t_renderable	*collect_renderables(t_cubed *cubed, int *count)
 	renderables = collect_wall_renderables(cubed, renderables, &idx);
 	renderables = collect_spawner_renderables(cubed, renderables, &idx);
 	renderables = collect_sprite_renderables(cubed, renderables, &idx);
-	renderables = collect_door_renderables(cubed, renderables, &idx);
 	*count = idx;
 	return (renderables);
 }

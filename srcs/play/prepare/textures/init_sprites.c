@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 03:05:49 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 11:34:50 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:20:47 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ static void	prepare_door(t_cubed *cubed, int x, int y)
 	if (!cubed->scene.sprite_info.door_open_texture.path
 		|| !cubed->scene.sprite_info.door_closed_texture.path)
 	{
-		cubed->scene.sprite_info.door_closed_texture.path = ft_strdup("./assets/sprites/portal_closed.xpm");
+		cubed->scene.sprite_info.door_closed_texture.path = ft_strdup("./assets/sprites/runed_door.xpm");
 		if (!cubed->scene.sprite_info.door_closed_texture.path)
 			ft_clean_exit(cubed, CUB_ERROR_MALLOC, 0);
-		cubed->scene.sprite_info.door_open_texture.path = ft_strdup("./assets/sprites/portal_open.xpm");
+		cubed->scene.sprite_info.door_open_texture.path = ft_strdup("./assets/sprites/open_door.xpm");
 	}
 	load_texture(cubed, cubed->mlx.mlx_ptr,
 		&cubed->scene.sprite_info.door_closed_texture);

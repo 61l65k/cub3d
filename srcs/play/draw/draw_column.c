@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 13:53:30 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/20 16:16:42 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 12:34:46 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static int	get_texture_x_offset(t_ray *ray, int texture_width)
 	offset = texture_width * remainder;
 	return (offset);
 }
-
 void	render_wall_column(t_wall *wall, int *img, t_resolution *res,
 		t_ray *ray)
 {
@@ -36,8 +35,6 @@ void	render_wall_column(t_wall *wall, int *img, t_resolution *res,
 	double	step;
 	double	tex_pos;
 
-	// printf("Rendering wall at x: %d, height: %f, texture: %p\n", wall->x,
-	//		wall->height, (void *)wall->texture.img.data);
 	step = 1.0 * wall->texture.height / wall->height;
 	tex_pos = (wall->y - res->height / 2 + wall->height / 2) * step;
 	x_tex = get_texture_x_offset(ray, wall->texture.width);

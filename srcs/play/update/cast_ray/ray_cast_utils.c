@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:30:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/27 14:54:21 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/28 13:04:24 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,24 @@ int	is_ray_facing_west(double angle)
 		return (0);
 }
 
-static char	get_wall_orientation(t_map *map, int x, int y, t_ray *ray)
+char	get_wall_orientation(t_map *map, int x, int y, t_ray *ray)
 {
 	if (ray->side == 'H')
 	{
-		if (t_map_get(map, x, y - 1) != '1' && is_ray_facing_south(ray->angle))
-			return ('N');
-		else if (t_map_get(map, x, y + 1) != '1'
-			&& !is_ray_facing_south(ray->angle))
+		if (is_ray_facing_south(ray->angle) && t_map_get(map, x, y - 1) != '1'
+			&& t_map_get(map, x, y - 1) != 'D')
 			return ('S');
+		else if (!is_ray_facing_south(ray->angle) && t_map_get(map, x, y
+				+ 1) != '1' && t_map_get(map, x, y + 1) != 'D')
+			return ('N');
 	}
 	else
 	{
-		if (t_map_get(map, x - 1, y) != '1' && !is_ray_facing_west(ray->angle))
+		if (is_ray_facing_west(ray->angle) && t_map_get(map, x + 1, y) != '1'
+			&& t_map_get(map, x + 1, y) != 'D')
 			return ('W');
-		else if (t_map_get(map, x + 1, y) != '1'
-			&& is_ray_facing_west(ray->angle))
+		else if (!is_ray_facing_west(ray->angle) && t_map_get(map, x - 1,
+				y) != '1' && t_map_get(map, x - 1, y) != 'D')
 			return ('E');
 	}
 	return (0);
@@ -69,9 +71,10 @@ int	is_wall(t_map *map, double x, double y, t_ray *ray)
 		ray->distance = INT_MAX;
 		return (1);
 	}
-	if (ray->obstacle == '1')
+	if (ray->obstacle == '1' || ray->obstacle == 'D')
 	{
 		ray->orientation = get_wall_orientation(map, x, y, ray);
+		ray->is_door = (ray->obstacle == 'D');
 		return (1);
 	}
 	return (0);

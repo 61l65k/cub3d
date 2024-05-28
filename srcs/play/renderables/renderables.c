@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:43:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 11:41:09 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 12:53:43 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,14 @@ static int	render_wall(t_cubed *cubed, t_ray *ray, int *i)
 	wall.x = x;
 	wall.height = get_wall_height(cubed, ray);
 	wall.y = get_y_wall_position(cubed, wall.height);
-	wall.texture = get_wall_texture(&cubed->scene, ray->orientation);
+	if (ray->is_door)
+	{
+		wall.texture = ray->door->is_open ? cubed->scene.sprite_info.door_open_texture : cubed->scene.sprite_info.door_closed_texture;
+	}
+	else
+	{
+		wall.texture = get_wall_texture(&cubed->scene, ray->orientation);
+	}
 	render_wall_column(&wall, cubed->mlx.img.data, &cubed->scene.resol, ray);
 	return (0);
 }
@@ -57,14 +64,16 @@ static int	render_wall(t_cubed *cubed, t_ray *ray, int *i)
 static void	draw_renderables(t_cubed *cubed, t_renderable *renderables,
 		int count)
 {
-	int	i;
+	int		i;
+	t_ray	*ray;
 
 	i = -1;
 	while (++i < count)
 	{
 		if (renderables[i].type == RENDERABLE_WALL)
 		{
-			if (render_wall(cubed, renderables[i].data.ray, &i) == NO_WALL)
+			ray = renderables[i].data.ray;
+			if (render_wall(cubed, ray, &i) == NO_WALL)
 				continue ;
 		}
 		else if (renderables[i].type == RENDERABLE_SPRITE)
@@ -76,19 +85,6 @@ static void	draw_renderables(t_cubed *cubed, t_renderable *renderables,
 		{
 			draw_any_sprite(cubed, &renderables[i].data.spawner->info,
 				&cubed->scene.sprite_info.spawner_texture);
-		}
-		else if (renderables[i].type == RENDERABLE_DOOR)
-		{
-			if (renderables[i].data.door->is_open)
-			{
-				draw_any_sprite(cubed, &renderables[i].data.door->info,
-					&cubed->scene.sprite_info.door_open_texture);
-			}
-			else
-			{
-				draw_any_sprite(cubed, &renderables[i].data.door->info,
-					&cubed->scene.sprite_info.door_closed_texture);
-			}
 		}
 	}
 }
