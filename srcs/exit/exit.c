@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 10:20:45 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 10:39:19 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,29 @@ static void	free_all_mlx(t_cubed *cubed)
 	}
 }
 
+void	free_cubed(t_cubed *cubed)
+{
+	free_texture(&cubed->mlx, &cubed->scene.north_texture);
+	free_texture(&cubed->mlx, &cubed->scene.south_texture);
+	free_texture(&cubed->mlx, &cubed->scene.east_texture);
+	free_texture(&cubed->mlx, &cubed->scene.west_texture);
+	free_texture(&cubed->mlx, &cubed->game_over_texture);
+	free_weapons(&cubed->mlx, &cubed->weapon_map);
+	free_sprites(&cubed->mlx, &cubed->scene.sprite_info);
+	free_doors(&cubed->mlx, &cubed->scene.sprite_info);
+	free_2d_array(cubed->scene.map.grid);
+	if (cubed->mlx.mlx_ptr)
+		free_all_mlx(cubed);
+	if (cubed->rays.ray_array)
+		free(cubed->rays.ray_array);
+}
+
 void	ft_clean_exit(t_cubed *cubed, char *msg, bool reset)
 {
 	if (msg)
 		perror(msg);
 	if (cubed)
-	{
-		free_texture(&cubed->mlx, &cubed->scene.north_texture);
-		free_texture(&cubed->mlx, &cubed->scene.south_texture);
-		free_texture(&cubed->mlx, &cubed->scene.east_texture);
-		free_texture(&cubed->mlx, &cubed->scene.west_texture);
-		free_texture(&cubed->mlx, &cubed->game_over_texture);
-		free_weapons(&cubed->mlx, &cubed->weapon_map);
-		free_sprites(&cubed->mlx, &cubed->scene.sprite_info);
-		free_doors(&cubed->mlx, &cubed->scene.sprite_info);
-		free_2d_array(cubed->scene.map.grid);
-		if (cubed->mlx.mlx_ptr)
-			free_all_mlx(cubed);
-		if (cubed->rays.ray_array)
-			free(cubed->rays.ray_array);
-	}
+		free_cubed(cubed);
 	if (msg)
 		exit(EXIT_FAILURE);
 	if (!reset)
