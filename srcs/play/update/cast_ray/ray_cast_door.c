@@ -29,14 +29,12 @@ t_door	*find_door(t_cubed *cubed, int map_x, int map_y)
 int	ray_check_door(t_cubed *cubed, t_ray *ray, int i, double *ray_angle)
 {
 	t_door	*door;
-	int		map_x;
-	int		map_y;
+	char	c;
 
-	map_x = (int)ray->x;
-	map_y = (int)ray->y;
-	if (cubed->scene.map.grid[map_y][map_x] == 'D')
+	c = t_map_get_f(&cubed->scene.map, ray->x, ray->y);
+	if (c == 'D')
 	{
-		door = find_door(cubed, map_x, map_y);
+		door = find_door(cubed, ray->x, ray->y);
 		if (door)
 		{
 			ray->orientation = 'D';
