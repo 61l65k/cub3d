@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 11:23:55 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:45:50 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static void	update_spawners(t_cubed *cubed)
 	spawner = cubed->scene.sprite_info.spawners;
 	while (spawner)
 	{
+		spawner->distance = sqrt(pow(cubed->player.x - spawner->x, 2)
+				+ pow(cubed->player.y - spawner->y, 2));
 		update_render_info(cubed, spawner->x, spawner->y, &spawner->info);
 		spawn_sprites(cubed, spawner);
 		spawner = spawner->next;
@@ -74,6 +76,8 @@ static void	update_all_doors(t_cubed *cubed)
 	door = cubed->scene.sprite_info.doors;
 	while (door)
 	{
+		door->distance = sqrt(pow(cubed->player.x - door->x, 2)
+				+ pow(cubed->player.y - door->y, 2));
 		update_render_info(cubed, door->x, door->y, &door->info);
 		door = door->next;
 	}

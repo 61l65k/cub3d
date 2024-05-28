@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 03:05:49 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 10:07:57 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:34:50 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	prepare_door(t_cubed *cubed, int x, int y)
 {
 	t_door	*new_door;
 
-	new_door = (t_door *)malloc(sizeof(t_door));
+	new_door = ft_calloc(1, sizeof(t_door));
 	if (!new_door)
 		ft_clean_exit(cubed, CUB_ERROR_MALLOC, 0);
 	new_door->x = x + 0.5;

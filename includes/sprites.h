@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 11:12:14 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:45:19 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_sprite_spawner
 	double					spawn_interval;
 	double					time_since_last_spawn;
 	t_texture				texture;
+	double					distance;
 	struct s_sprite_spawner	*next;
 }							t_sprite_spawner;
 
@@ -78,8 +79,9 @@ typedef struct s_door
 	double					y;
 	t_texture				closed_texture;
 	t_texture				open_texture;
-	bool 					is_open;
+	bool					is_open;
 	t_sprite_render_info	info;
+	double					distance;
 	struct s_door			*next;
 }							t_door;
 
