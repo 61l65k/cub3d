@@ -40,7 +40,6 @@
 # endif
 
 # define LEFT_CLICK 1
-# define RIGHT_CLICK 3
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
 # define GRID_UNIT_SCALE 64
@@ -49,6 +48,7 @@
 # define FOV 60
 # define TAB_SIZE 4
 # ifndef linux
+#  define RIGHT_CLICK 2
 #  define K_ESC 53
 #  define K_W 13
 #  define K_A 0
@@ -62,6 +62,7 @@
 #  define K_FORWARD_ARROW 126
 #  define K_BACK_ARROW 125
 # else
+#  define RIGHT_CLICK 3
 #  define K_ENTER 65293
 #  define K_SPACE 32
 #  define K_ESC 65307
