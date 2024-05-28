@@ -28,10 +28,8 @@ ifeq ($(OS),Linux)
 	FLAGS_COMP += -D LINUX
 else
 	FLAGS_LINKING := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_MAC) $(FLAG_LIBMLX42)
-	GLFW_PATH_MAC = -L"/Users/$(USER)/.brew/opt/glfw/lib/"
-	if [ -d "$(GLFW_PATH_MAC)" ]; then
-		FLAGS_LINKING += $(GLFW_PATH_MAC)
-	fi
+	GLFW_PATH_MAC = /Users/$(USER)/.brew/opt/glfw/lib/
+	FLAGS_LINKING += -L$(GLFW_PATH_MAC)
 endif
 
 all:						init $(NAME)

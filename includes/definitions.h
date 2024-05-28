@@ -58,6 +58,9 @@
 #  define K_RIGHT_ARROW 124
 #  define K_SPACE 49
 #  define K_M 46
+#  define K_ENTER 36
+#  define K_FORWARD_ARROW 126
+#  define K_BACK_ARROW 125
 # else
 #  define K_ENTER 65293
 #  define K_SPACE 32

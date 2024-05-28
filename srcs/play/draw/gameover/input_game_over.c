@@ -15,7 +15,8 @@
 static void	restart_game(t_cubed *cubed)
 {
 	cubed->reset = true;
-	mlx_loop_end(cubed->mlx.mlx_ptr);
+	if (LINUX)
+		mlx_loop_end(cubed->mlx.mlx_ptr);
 }
 
 static void	switch_map(t_cubed *cubed)
