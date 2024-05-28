@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:36:17 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 07:27:14 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 09:28:40 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ typedef struct s_texture
 	t_img		img;
 	int			width;
 	int			height;
-	bool		is_loaded;
 }				t_texture;
 
 typedef struct s_wall

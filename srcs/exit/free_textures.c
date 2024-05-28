@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 01:14:51 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 11:57:20 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/26 12:34:24 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	free_sprites(t_mlx *mlx, t_sprite_info *sprite_info)
 	t_sprite_spawner	*curr_spawner;
 	t_sprite_spawner	*next_spawner;
 
+	free_texture(mlx, &sprite_info->spawner_texture);
+	free_texture(mlx, &sprite_info->sprite_texture);
 	if (sprite_info->spawners)
 	{
-		free_texture(mlx, &sprite_info->spawner_texture);
-		free_texture(mlx, &sprite_info->sprite_texture);
 		curr_spawner = sprite_info->spawners;
 		while (curr_spawner)
 		{
