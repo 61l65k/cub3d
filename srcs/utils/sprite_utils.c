@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 06:58:43 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 09:28:39 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 10:20:18 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,12 @@ void	sort_sprites_by_distance(t_sprite **sprites)
 		}
 	}
 	*sprites = sorted;
+}
+
+int	calculate_tex_x(int stripe, t_sprite_render_info *info,
+		t_texture *texture)
+{
+	return ((int)(256 * (stripe - (-info->sprite_width / 2
+					+ info->sprite_screen_x)) * texture->width
+			/ info->sprite_width) / 256);
 }
