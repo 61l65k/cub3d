@@ -6,11 +6,33 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:43:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 11:34:26 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:23:09 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "renderable.h"
+
+static void	insertion_sort_renderables(t_renderable *arr, int n)
+{
+	t_renderable	key;
+	int				i;
+	int				j;
+
+	i = 1;
+	while (i < n)
+	{
+		key = arr[i];
+		j = i - 1;
+		while (j >= 0 && arr[j].distance < key.distance)
+		{
+			arr[j + 1] = arr[j];
+			j = j - 1;
+		}
+		arr[j + 1] = key;
+		i++;
+	}
+}
 
 static int	render_wall(t_cubed *cubed, t_ray *ray, int *i)
 {
@@ -46,11 +68,28 @@ static void	draw_renderables(t_cubed *cubed, t_renderable *renderables,
 				continue ;
 		}
 		else if (renderables[i].type == RENDERABLE_SPRITE)
+		{
 			draw_any_sprite(cubed, &renderables[i].data.sprite->info,
 				&cubed->scene.sprite_info.sprite_texture);
+		}
 		else if (renderables[i].type == RENDERABLE_SPAWNER)
+		{
 			draw_any_sprite(cubed, &renderables[i].data.spawner->info,
 				&cubed->scene.sprite_info.spawner_texture);
+		}
+		else if (renderables[i].type == RENDERABLE_DOOR)
+		{
+			if (renderables[i].data.door->is_open)
+			{
+				draw_any_sprite(cubed, &renderables[i].data.door->info,
+					&cubed->scene.sprite_info.door_open_texture);
+			}
+			else
+			{
+				draw_any_sprite(cubed, &renderables[i].data.door->info,
+					&cubed->scene.sprite_info.door_closed_texture);
+			}
+		}
 	}
 }
 

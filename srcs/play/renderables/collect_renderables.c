@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderable_utils.c                                 :+:      :+:    :+:   */
+/*   collect_renderables.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:52:03 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 12:59:33 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:20:55 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "renderable.h"
 
 t_renderable	*collect_wall_renderables(t_cubed *cubed,
 		t_renderable *renderables, int *idx)
@@ -67,49 +68,52 @@ t_renderable	*collect_sprite_renderables(t_cubed *cubed,
 	return (renderables);
 }
 
-t_renderable	*collect_renderables(t_cubed *cubed, int *count)
+t_renderable *collect_door_renderables(t_cubed *cubed, t_renderable *renderables, int *idx)
 {
-	int				total_count;
-	t_renderable	*renderables;
-	int				idx;
-	t_sprite		*sprite;
-
-	total_count = cubed->rays.ray_count
-		+ cubed->scene.sprite_info.spawner_count;
-	sprite = cubed->scene.sprite_info.sprites;
-	while (sprite)
-	{
-		total_count++;
-		sprite = sprite->next;
-	}
-	renderables = malloc(total_count * sizeof(t_renderable));
-	if (!renderables)
-		ft_clean_exit(cubed, "Failed to allocate memory for renderables", 0);
-	idx = 0;
-	renderables = collect_wall_renderables(cubed, renderables, &idx);
-	renderables = collect_spawner_renderables(cubed, renderables, &idx);
-	renderables = collect_sprite_renderables(cubed, renderables, &idx);
-	*count = idx;
-	return (renderables);
+    t_door *door = cubed->scene.sprite_info.doors;
+    while (door)
+    {
+        renderables[*idx].distance = sqrt(pow(cubed->player.x - door->x, 2)
+				+ pow(cubed->player.y - door->y, 2));
+        renderables[*idx].type = RENDERABLE_DOOR;
+        renderables[*idx].data.door = door;
+        (*idx)++;
+        door = door->next;
+    }
+    return (renderables);
 }
 
-void	insertion_sort_renderables(t_renderable *arr, int n)
+t_renderable *collect_renderables(t_cubed *cubed, int *count)
 {
-	t_renderable	key;
-	int				i;
-	int				j;
+    int total_count;
+    t_renderable *renderables;
+    int idx;
+    t_sprite *sprite;
 
-	i = 1;
-	while (i < n)
-	{
-		key = arr[i];
-		j = i - 1;
-		while (j >= 0 && arr[j].distance < key.distance)
-		{
-			arr[j + 1] = arr[j];
-			j = j - 1;
-		}
-		arr[j + 1] = key;
-		i++;
-	}
+    total_count = cubed->rays.ray_count + cubed->scene.sprite_info.spawner_count;
+    sprite = cubed->scene.sprite_info.sprites;
+    while (sprite)
+    {
+        total_count++;
+        sprite = sprite->next;
+    }
+
+    t_door *door = cubed->scene.sprite_info.doors;
+    while (door)
+    {
+        total_count++;
+        door = door->next;
+    }
+
+    renderables = malloc(total_count * sizeof(t_renderable));
+    if (!renderables)
+        ft_clean_exit(cubed, "Failed to allocate memory for renderables", 0);
+
+    idx = 0;
+    renderables = collect_wall_renderables(cubed, renderables, &idx);
+    renderables = collect_spawner_renderables(cubed, renderables, &idx);
+    renderables = collect_sprite_renderables(cubed, renderables, &idx);
+    renderables = collect_door_renderables(cubed, renderables, &idx); // Add this line
+    *count = idx;
+    return (renderables);
 }

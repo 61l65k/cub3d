@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 09:38:20 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:12:14 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ typedef struct s_door
 	double					y;
 	t_texture				closed_texture;
 	t_texture				open_texture;
+	bool 					is_open;
+	t_sprite_render_info	info;
 	struct s_door			*next;
 }							t_door;
 

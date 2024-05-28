@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 09:58:15 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:23:55 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,21 @@ static void	update_all_sprites(t_cubed *cubed)
 	}
 }
 
+static void	update_all_doors(t_cubed *cubed)
+{
+	t_door	*door;
+
+	door = cubed->scene.sprite_info.doors;
+	while (door)
+	{
+		update_render_info(cubed, door->x, door->y, &door->info);
+		door = door->next;
+	}
+}
+
 void	update_sprite_render_info(t_cubed *cubed)
 {
 	update_spawners(cubed);
 	update_all_sprites(cubed);
+	update_all_doors(cubed);
 }

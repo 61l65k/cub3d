@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 09:50:58 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:16:14 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "libft.h"
 # include "player.h"
 # include "raycast.h"
-# include "renderable.h"
 # include "sprites.h"
 # include "t_map.h"
 # include "utils.h"
@@ -83,5 +82,6 @@ void				update_rays(t_cubed *game);
 void				draw_menu(t_cubed *cubed);
 void				hook_mouse(t_cubed *cubed);
 int					key_press_game_over(int keycode, t_cubed *cubed);
+void				sort_and_draw_renderables(t_cubed *cubed);
 
 #endif
