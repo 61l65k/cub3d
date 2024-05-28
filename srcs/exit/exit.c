@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 11:58:35 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 10:20:45 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void		free_texture(t_mlx *mlx, t_texture *texture);
 void		free_sprites(t_mlx *mlx, t_sprite_info *sprite_info);
 void		free_animation(t_mlx *mlx, t_animation *animation);
 void		free_weapons(t_mlx *mlx, t_weapon_map *weapon_map);
+void		free_doors(t_mlx *mlx, t_sprite_info *sprite_info);
 
 static void	free_all_mlx(t_cubed *cubed)
 {
@@ -45,6 +46,7 @@ void	ft_clean_exit(t_cubed *cubed, char *msg, bool reset)
 		free_texture(&cubed->mlx, &cubed->game_over_texture);
 		free_weapons(&cubed->mlx, &cubed->weapon_map);
 		free_sprites(&cubed->mlx, &cubed->scene.sprite_info);
+		free_doors(&cubed->mlx, &cubed->scene.sprite_info);
 		free_2d_array(cubed->scene.map.grid);
 		if (cubed->mlx.mlx_ptr)
 			free_all_mlx(cubed);

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 03:05:49 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 10:01:46 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/28 10:07:57 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,4 @@ void	prepare_sprites(t_cubed *cubed)
 			}
 		}
 	}
-	if (cubed->scene.sprite_info.spawner_count == 0)
-		printf("Warning: No special sprites found!\n");
 }
