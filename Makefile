@@ -1,19 +1,75 @@
-NAME				:=		cub3D
+NAME                :=      cub3D
+CC					:=		gcc
+RM 					:=		rm -rf
+OS					:=		$(shell uname -s)
 
-PATH_BUILD			:=		build
-PATH_LIBFT			:=		libft
-PATH_LIBMLX_MAC		:=		dependencies/minilibx-macos
-PATH_LIBMLX_LINUX	:=		dependencies/minilibx-linux
-PATH_LIBMLX42		:=		dependencies/MLX42/
-SRCS				:=		$(shell find srcs -name *.c)
+PATH_BUILD          :=      build
+PATH_LIBFT          :=      libft
+PATH_LIBMLX_MAC     :=      dependencies/minilibx-macos
+PATH_LIBMLX_LINUX   :=      dependencies/minilibx-linux
+PATH_LIBMLX42       :=      dependencies/MLX42/
+
+SRCS_COMMON := \
+    srcs/exit/free_textures.c \
+    srcs/extract/extract_main.c \
+    srcs/extract/extract_map.c \
+    srcs/extract/extract_map_finalize.c \
+    srcs/extract/extract_scene.c \
+    srcs/extract/extract_scene_extras.c \
+    srcs/extract/extract_utils.c \
+    srcs/extract/validate_map.c \
+    srcs/extract/validate_scene.c \
+    srcs/main.c \
+    srcs/play/draw/draw_column.c \
+    srcs/play/draw/draw_gun.c \
+    srcs/play/draw/draw_sprites.c \
+    srcs/play/draw/draw_take_damage.c \
+    srcs/play/draw/gamemenu/draw_menu.c \
+    srcs/play/draw/gamemenu/input_game_menu.c \
+    srcs/play/draw/gameover/draw_game_over.c \
+    srcs/play/draw/gameover/input_game_over.c \
+    srcs/play/draw/get_wall_data_ray.c \
+    srcs/play/draw/minimap/minimap.c \
+    srcs/play/draw/rectangle.c \
+    srcs/play/play.c \
+    srcs/play/prepare/player.c \
+    srcs/play/prepare/textures/load_textures.c \
+    srcs/play/prepare/textures/load_weapons.c \
+    srcs/play/prepare/textures/prepare_map_specials.c \
+    srcs/play/prepare/textures/weapon_positions.c \
+	srcs/play/prepare/hooks/events.c \
+    srcs/play/renderables/collect_renderables.c \
+    srcs/play/renderables/renderables.c \
+    srcs/play/update/cast_ray/ray_cast.c \
+    srcs/play/update/cast_ray/ray_cast_door.c \
+    srcs/play/update/cast_ray/ray_cast_utils.c \
+    srcs/play/update/player/player_pos.c \
+    srcs/play/update/player/player_taking_damage.c \
+    srcs/play/update/shooting/handle_shooting.c \
+    srcs/play/update/shooting/handle_shooting_hits.c \
+    srcs/play/update/shooting/handle_shooting_traverse.c \
+    srcs/play/update/shooting/switch_weapon.c \
+    srcs/play/update/sprites/update_sprite_render_info.c \
+    srcs/play/update/sprites/update_sprites.c \
+    srcs/utils/blend_colors.c \
+    srcs/utils/free_str_utils.c \
+    srcs/utils/math_utils.c \
+    srcs/utils/sprite_utils.c \
+    srcs/utils/t_map.c
+
+ifeq ($(OS),Linux)
+    SRCS_PLATFORM := \
+        srcs/exit/exit_linux.c \
+        srcs/play/prepare/hooks/mouse_linux.c
+else
+    SRCS_PLATFORM := \
+        srcs/exit/exit_macos.c \
+        srcs/play/prepare/hooks/mouse_macos.c
+endif
+
+SRCS := $(SRCS_COMMON) $(SRCS_PLATFORM)
 OBJS				:=		$(SRCS:%.c=$(PATH_BUILD)/%.o)
 DEPS				:=		$(OBJS:.o=.d)
-
-CC					:=		gcc
-
-RM 					:=		rm -rf
-
-OS					:=		$(shell uname -s)
 
 FLAG_INC			:= 		$(addprefix -I, includes $(PATH_LIBFT) $(PATH_LIBMLX_LINUX) $(PATH_LIBMLX_MAC) $(PATH_LIBMLX42)include)
 FLAGS_COMP			:= 		-O3 -Wall -Wextra -Werror $(FLAG_INC) -MMD -MP -g 
