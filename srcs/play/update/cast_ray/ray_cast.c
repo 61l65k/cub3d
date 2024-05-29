@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 17:31:51 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/29 18:49:33 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ static void	get_y_intersection(t_ray *ray, t_map *map, t_player *player)
 	t_raycast_helper	rh;
 
 	init_raycast_helper_vrtl(&rh, ray, player);
-	if (!rh.is_east_direction)
-		rh.x_step = -1;
-	else
+	if (rh.is_east_direction)
 		rh.x_step = 1;
+	else
+		rh.x_step = -1;
 	rh.y_step = rh.x_step * tan(ray->angle);
 	rh.ray_section = get_hypotenuse(rh.x_step, rh.y_step);
 	while (1)
