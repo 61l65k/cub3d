@@ -6,14 +6,11 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 07:26:13 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 09:50:58 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:52:46 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-#define RED 0xFF0000
-#define WHITE 0xFFFFFF
 
 void	clear_screen(t_cubed *cubed)
 {

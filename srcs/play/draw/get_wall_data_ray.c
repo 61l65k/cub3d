@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 03:18:22 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 09:39:40 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:52:16 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ double	get_wall_height(t_cubed *cubed, t_ray *ray)
 	const double	scaled_distance = ray->distance * GRID_UNIT_SCALE
 			* fisheye_adjustment;
 
-	// printf("ROTA: %f\n", cubed->player.rotation_angle);
 	return ((GRID_UNIT_SCALE / scaled_distance)
 		* (cubed->rays.proj_plane_dist));
 }

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 13:53:30 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 11:39:42 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:52:25 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ static int	get_texture_x_offset(t_ray *ray, int texture_width)
 	double	remainder;
 	int		offset;
 
-	// printf("rayx %f rayy %f floorx %f floory %f\n", ray->x, ray->y,
-	//		floor(ray->x), floor(ray->y));
 	if (ray->side == 'H')
 		remainder = ray->x - floor(ray->x);
 	else

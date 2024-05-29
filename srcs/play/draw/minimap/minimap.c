@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:36:38 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/27 18:08:21 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/29 12:51:50 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,20 @@ static int	map_color(int cur_color, t_coords cur_map,
 			&& fabs(cur_map.y - player->y) < 0.5);
 
 	if (is_player && c == '1')
-		return (0x008000);
+		return (GREEN);
 	if (c == '1')
-		return (0x000000);
+		return (BLACK);
 	if (is_player)
-		return (0x80FF80);
-	if (c == '0')
-		return (0xFFFFFF);
-	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-		return (0xFFFFFF);
+		return (LIGHT_GREEN);
+	if (c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (WHITE);
 	if (c == 'Z')
-		return (0xFF0000);
+		return (RED);
 	if (c == ' ')
-		return (blend_colors(cur_color, 0x808080, 0.5));
+		return (blend_colors(cur_color, GRAY, 0.5));
 	return (cur_color);
 }
+
 
 static t_minimap	get_minimap(const t_resolution *res, const t_player *player)
 {

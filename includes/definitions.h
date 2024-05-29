@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   definitions.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/27 21:29:02 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/29 12:54:05 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,17 @@
 # define GUN_TEXTURE_PATH "assets/gun/akimbos.xpm"
 # define ERR_LOAD_WEAPON "Error: load_weapon() - could not load weapon\n"
 # define ERR_LOAD_TEXTURE "Error: load_texture() - could not load texture\n"
-
+# define DEFAULT_RESOL_MSG "Invalid resolution or no resolution found from .cub file\nDefaulting to 1920x1080\n"
 # ifndef LINUX
 #  define LINUX 0
 # endif
 
+# define GREEN 0x008000
+# define BLACK 0x000000
+# define LIGHT_GREEN 0x80FF80
+# define WHITE 0xFFFFFF
+# define RED 0xFF0000
+# define GRAY 0x808080
 # define LEFT_CLICK 1
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5

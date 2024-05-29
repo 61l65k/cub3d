@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:58:18 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 09:25:51 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:54:15 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static void	validate_resolution(t_resolution *resolution)
 {
 	if (resolution->width < 1 || resolution->height < 1)
 	{
-		printf("Invalid resolution or no resolution found from .cub file\n");
-		printf("Defaulting to 1920x1080\n");
+		printf(DEFAULT_RESOL_MSG);
 		resolution->width = 1920;
 		resolution->height = 1080;
 	}

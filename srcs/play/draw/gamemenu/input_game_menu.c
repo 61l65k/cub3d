@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 09:44:44 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 09:56:45 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:53:13 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	key_press_game_menu(int keycode, t_cubed *cubed)
 {
 	if (keycode == K_ENTER || keycode == K_SPACE)
 	{
-		if (cubed->selected_option == 0) // "Resume"
+		if (cubed->selected_option == 0)
 			cubed->game_state = GAME_STATE_RUNNING;
-		else if (cubed->selected_option == 1) // "Settings"
+		else if (cubed->selected_option == 1)
 			settings(cubed);
-		else if (cubed->selected_option == 2) // "Exit"
+		else if (cubed->selected_option == 2)
 			ft_clean_exit(cubed, NULL, 0);
 	}
 	else if (keycode == K_FORWARD_ARROW || keycode == K_W)
