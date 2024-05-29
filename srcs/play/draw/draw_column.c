@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 13:53:30 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 12:34:46 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:39:42 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,20 @@ static int	get_texture_x_offset(t_ray *ray, int texture_width)
 	offset = texture_width * remainder;
 	return (offset);
 }
+
 void	render_wall_column(t_wall *wall, int *img, t_resolution *res,
 		t_ray *ray)
 {
-	int		y;
-	int		y_tex;
-	int		x_tex;
-	double	step;
-	double	tex_pos;
+	int			y;
+	int			y_tex;
+	const int	x_tex = get_texture_x_offset(ray, wall->texture.width);
+	double		step;
+	double		tex_pos;
 
+	if (!wall->texture.img.data)
+		return ;
 	step = 1.0 * wall->texture.height / wall->height;
 	tex_pos = (wall->y - res->height / 2 + wall->height / 2) * step;
-	x_tex = get_texture_x_offset(ray, wall->texture.width);
 	y = 0;
 	while (y < wall->height && wall->y + y < res->height)
 	{
@@ -45,9 +47,12 @@ void	render_wall_column(t_wall *wall, int *img, t_resolution *res,
 		{
 			y_tex = (int)tex_pos & (wall->texture.height - 1);
 			tex_pos += step;
-			img[(wall->y + y) * res->width
-				+ wall->x] = wall->texture.img.data[y_tex * wall->texture.width
-				+ x_tex];
+			if (y_tex >= 0 && y_tex < wall->texture.height)
+			{
+				img[(wall->y + y) * res->width
+					+ wall->x] = wall->texture.img.data[y_tex
+					* wall->texture.width + x_tex];
+			}
 		}
 		y++;
 	}

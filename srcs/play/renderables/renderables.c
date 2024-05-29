@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:43:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 12:53:43 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:40:03 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ static int	render_wall(t_cubed *cubed, t_ray *ray, int *i)
 	wall.y = get_y_wall_position(cubed, wall.height);
 	if (ray->is_door)
 	{
-		wall.texture = ray->door->is_open ? cubed->scene.sprite_info.door_open_texture : cubed->scene.sprite_info.door_closed_texture;
+		if (ray->door->is_open)
+			wall.texture = cubed->scene.sprite_info.door_open_texture;
+		else
+			wall.texture = cubed->scene.sprite_info.door_closed_texture;
 	}
 	else
 	{

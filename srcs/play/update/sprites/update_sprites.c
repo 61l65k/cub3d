@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 11:45:50 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:42:46 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void	update_spawners(t_cubed *cubed)
 	spawner = cubed->scene.sprite_info.spawners;
 	while (spawner)
 	{
-		spawner->distance = sqrt(pow(cubed->player.x - spawner->x, 2)
-				+ pow(cubed->player.y - spawner->y, 2));
+		spawner->distance = get_distance(cubed->player.x, cubed->player.y,
+				spawner->x, spawner->y);
 		update_render_info(cubed, spawner->x, spawner->y, &spawner->info);
 		spawn_sprites(cubed, spawner);
 		spawner = spawner->next;
@@ -54,8 +54,8 @@ static void	update_all_sprites(t_cubed *cubed)
 	{
 		direction_x = cubed->player.x - sprite->x;
 		direction_y = cubed->player.y - sprite->y;
-		sprite->distance = sqrt(direction_x * direction_x + direction_y
-				* direction_y);
+		sprite->distance = get_distance(cubed->player.x, cubed->player.y,
+				sprite->x, sprite->y);
 		if (sprite->distance > 0)
 		{
 			direction_x /= sprite->distance;
@@ -76,9 +76,8 @@ static void	update_all_doors(t_cubed *cubed)
 	door = cubed->scene.sprite_info.doors;
 	while (door)
 	{
-		door->distance = sqrt(pow(cubed->player.x - door->x, 2)
-				+ pow(cubed->player.y - door->y, 2));
-		update_render_info(cubed, door->x, door->y, &door->info);
+		door->distance = get_distance(cubed->player.x, cubed->player.y, door->x,
+				door->y);
 		door = door->next;
 	}
 }

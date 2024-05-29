@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 20:14:59 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 10:17:07 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/29 10:32:54 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,9 @@ bool	is_not_transparent(int color)
 int	argb_to_int(int a, int r, int g, int b)
 {
 	return (a << 24 | r << 16 | g << 8 | b);
+}
+
+double	get_distance(double x1, double y1, double x2, double y2)
+{
+	return (sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2)));
 }
