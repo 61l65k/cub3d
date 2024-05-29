@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 18:49:33 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/29 21:11:32 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	init_raycast_helper_hrzn(t_raycast_helper *rh, t_ray *ray,
 	ray->distance += get_hypotenuse(rh->x_step, rh->y_step);
 }
 
-static void init_raycast_helper_vrtl(t_raycast_helper *rh, t_ray *ray,
+static void	init_raycast_helper_vrtl(t_raycast_helper *rh, t_ray *ray,
 		t_player *player)
 {
 	rh->is_east_direction = (M_PI / 2 > ray->angle || ray->angle > M_PI * 1.5);
@@ -111,10 +111,12 @@ static void	get_y_intersection(t_ray *ray, t_map *map, t_player *player)
 
 void	update_rays(t_cubed *cubed)
 {
-	double	ray_angle;
-	int		i;
-	t_ray	x_intersection;
-	t_ray	y_intersection;
+	double			ray_angle;
+	int				i;
+	t_ray			x_intersection;
+	t_ray			y_intersection;
+	const double	ray_angle_step = cubed->rays.field_of_view
+		/ cubed->scene.resol.width;
 
 	x_intersection.side = 'H';
 	y_intersection.side = 'V';
@@ -132,6 +134,6 @@ void	update_rays(t_cubed *cubed)
 			cubed->rays.ray_array[i] = x_intersection;
 		else
 			cubed->rays.ray_array[i] = y_intersection;
-		ray_angle += cubed->rays.field_of_view / cubed->scene.resol.width;
+		ray_angle += ray_angle_step;
 	}
 }

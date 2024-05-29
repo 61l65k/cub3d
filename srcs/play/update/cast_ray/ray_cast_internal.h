@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast_internal.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:24:01 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/29 18:49:38 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/29 18:56:36 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
