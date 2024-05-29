@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:40:52 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 13:04:23 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:08:49 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,16 @@
 # define RAYCAST_H
 
 # include <stdbool.h>
-# include <stddef.h>
-
-# define DOOR_FOUND 1
-# define DOOR_NOT_FOUND 0
-
-typedef struct s_door	t_door;
 
 typedef struct s_ray
 {
 	double				x;
 	double				y;
 	double				distance;
-	char				obstacle;
 	double				angle;
+	char				obstacle;
 	char				orientation;
 	char				side;
-	t_door				*door;
-	bool				is_door;
 }						t_ray;
 
 typedef struct s_rays

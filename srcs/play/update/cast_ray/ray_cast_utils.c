@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:30:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 12:50:31 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:04:31 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	is_wall(t_map *map, double x, double y, t_ray *ray)
 	if (ray->obstacle == '1' || ray->obstacle == 'D')
 	{
 		ray->orientation = get_wall_orientation(map, x, y, ray);
-		ray->is_door = (ray->obstacle == 'D');
 		return (1);
 	}
 	return (0);

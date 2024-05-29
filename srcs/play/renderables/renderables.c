@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderables.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:43:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 11:40:03 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:11:11 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,15 @@ static int	render_wall(t_cubed *cubed, t_ray *ray, int *i)
 	wall.x = x;
 	wall.height = get_wall_height(cubed, ray);
 	wall.y = get_y_wall_position(cubed, wall.height);
-	if (ray->is_door)
+	if (ray->obstacle == 'D')
 	{
-		if (ray->door->is_open)
+		if (get_distance(cubed->player.x, cubed->player.y, ray->x, ray->y) < 3)
 			wall.texture = cubed->scene.sprite_info.door_open_texture;
 		else
 			wall.texture = cubed->scene.sprite_info.door_closed_texture;
 	}
 	else
-	{
 		wall.texture = get_wall_texture(&cubed->scene, ray->orientation);
-	}
 	render_wall_column(&wall, cubed->mlx.img.data, &cubed->scene.resol, ray);
 	return (0);
 }

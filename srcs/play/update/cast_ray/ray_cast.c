@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 10:24:38 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:57:15 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ void	update_rays(t_cubed *cubed)
 	int		i;
 	t_ray	x_intersection;
 	t_ray	y_intersection;
-	t_ray	*closest_intersection;
 
 	x_intersection.side = 'H';
 	y_intersection.side = 'V';
@@ -151,14 +150,9 @@ void	update_rays(t_cubed *cubed)
 		get_x_intersection(&x_intersection, &cubed->scene.map, &cubed->player);
 		get_y_intersection(&y_intersection, &cubed->scene.map, &cubed->player);
 		if (x_intersection.distance <= y_intersection.distance)
-			closest_intersection = &x_intersection;
+			cubed->rays.ray_array[i] = x_intersection;
 		else
-			closest_intersection = &y_intersection;
-		if (ray_check_door(cubed, closest_intersection, i,
-				&ray_angle) == DOOR_FOUND)
-			continue ;
-		closest_intersection->is_door = false;
-		cubed->rays.ray_array[i] = *closest_intersection;
+			cubed->rays.ray_array[i] = y_intersection;
 		ray_angle += cubed->rays.field_of_view / cubed->scene.resol.width;
 	}
 }
