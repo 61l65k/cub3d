@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:30:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 16:04:31 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/29 19:20:05 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,23 @@ int	is_ray_facing_west(double angle)
 		return (0);
 }
 
-char	get_wall_orientation(t_map *map, int x, int y, t_ray *ray)
+char	get_wall_orientation(t_ray *ray)
 {
 	const bool is_south_facing = is_ray_facing_south(ray->angle);
 	const bool is_west_facing = is_ray_facing_west(ray->angle);
-	const char north_check = t_map_get(map, x, y - 1);
-	const char south_check = t_map_get(map, x, y + 1);
-	const char west_check = t_map_get(map, x + 1, y);
-	const char east_check = t_map_get(map, x - 1, y);
 
 	if (ray->side == 'H')
 	{
-		if (is_south_facing && north_check != '1' && north_check != 'D')
+		if (is_south_facing)
 			return ('S');
-		else if (!is_south_facing && south_check != '1' && south_check != 'D')
+		else
 			return ('N');
 	}
 	else
 	{
-		if (is_west_facing && west_check != '1' && west_check != 'D')
+		if (is_west_facing)
 			return ('W');
-		else if (!is_west_facing && east_check != '1' && east_check != 'D')
+		else
 			return ('E');
 	}
 	return (0);
@@ -76,7 +72,7 @@ int	is_wall(t_map *map, double x, double y, t_ray *ray)
 	}
 	if (ray->obstacle == '1' || ray->obstacle == 'D')
 	{
-		ray->orientation = get_wall_orientation(map, x, y, ray);
+		ray->orientation = get_wall_orientation(ray);
 		return (1);
 	}
 	return (0);
