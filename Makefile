@@ -41,7 +41,6 @@ SRCS_COMMON := \
     srcs/play/renderables/collect_renderables.c \
     srcs/play/renderables/renderables.c \
     srcs/play/update/cast_ray/ray_cast.c \
-    srcs/play/update/cast_ray/ray_cast_door.c \
     srcs/play/update/cast_ray/ray_cast_utils.c \
     srcs/play/update/player/player_pos.c \
     srcs/play/update/player/player_taking_damage.c \
