@@ -6,24 +6,16 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 15:57:15 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/29 16:44:24 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "ray_cast_internal.h"
 
-t_door				*find_door(t_cubed *cubed, int map_x, int map_y);
-int					ray_check_door(t_cubed *cubed, t_ray *closest_intersection,
-						int i, double *ray_angle);
-
-static t_helpers	init_raycast_helper_hrzn(t_raycast_helper *rh, t_ray *ray,
+static void	init_raycast_helper_hrzn(t_raycast_helper *rh, t_ray *ray,
 		t_player *player)
 {
-	if (ray->angle == deg2rad(180) || ray->angle == deg2rad(360))
-	{
-		ray->distance = INT_MAX;
-		return (IS_PERFECT_ANGLE);
-	}
 	rh->is_south_direction = is_ray_facing_south(ray->angle);
 	ray->distance = 0;
 	if (rh->is_south_direction)
@@ -41,17 +33,11 @@ static t_helpers	init_raycast_helper_hrzn(t_raycast_helper *rh, t_ray *ray,
 		rh->a_x = player->x - rh->x_step;
 	}
 	ray->distance += get_hypotenuse(rh->x_step, rh->y_step);
-	return (IS_NOT_PERFECT_ANGLE);
 }
 
-static t_helpers	init_raycast_helper_vrtl(t_raycast_helper *rh, t_ray *ray,
+static void init_raycast_helper_vrtl(t_raycast_helper *rh, t_ray *ray,
 		t_player *player)
 {
-	if (ray->angle == deg2rad(90) || ray->angle == deg2rad(270))
-	{
-		ray->distance = INT_MAX;
-		return (IS_PERFECT_ANGLE);
-	}
 	rh->is_west_direction = is_ray_facing_west(ray->angle);
 	ray->distance = 0;
 	if (rh->is_west_direction)
@@ -69,17 +55,13 @@ static t_helpers	init_raycast_helper_vrtl(t_raycast_helper *rh, t_ray *ray,
 		rh->a_y = player->y + rh->y_step;
 	}
 	ray->distance += get_hypotenuse(rh->x_step, rh->y_step);
-	return (IS_NOT_PERFECT_ANGLE);
 }
 
 static void	get_x_intersection(t_ray *ray, t_map *map, t_player *player)
 {
 	t_raycast_helper	rh;
 
-	if (init_raycast_helper_hrzn(&rh, ray, player) == IS_PERFECT_ANGLE
-		|| (rh.is_south_direction && is_wall(map, rh.a_x, rh.a_y, ray))
-		|| (!rh.is_south_direction && is_wall(map, rh.a_x, rh.a_y - 1, ray)))
-		return ;
+	init_raycast_helper_hrzn(&rh, ray, player);
 	if (rh.is_south_direction)
 		rh.y_step = 1;
 	else
@@ -105,10 +87,7 @@ static void	get_y_intersection(t_ray *ray, t_map *map, t_player *player)
 {
 	t_raycast_helper	rh;
 
-	if (init_raycast_helper_vrtl(&rh, ray, player) == IS_PERFECT_ANGLE
-		|| (rh.is_west_direction && is_wall(map, rh.a_x - 1, rh.a_y, ray))
-		|| (!rh.is_west_direction && is_wall(map, rh.a_x, rh.a_y, ray)))
-		return ;
+	init_raycast_helper_vrtl(&rh, ray, player);
 	if (rh.is_west_direction)
 		rh.x_step = -1;
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 10:30:48 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:35:10 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ typedef struct s_player		t_player;
 typedef struct s_animation	t_animation;
 typedef struct s_texture	t_texture;
 typedef struct s_mlx		t_mlx;
-
-typedef enum e_helpers
-{
-	IS_PERFECT_ANGLE = 1,
-	IS_NOT_PERFECT_ANGLE = 0
-}							t_helpers;
 
 int							has_extension(char *file, char *ext);
 void						ft_clean_exit(t_cubed *cubed, char *msg,
