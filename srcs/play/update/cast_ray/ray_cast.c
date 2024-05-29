@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 16:44:24 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/29 17:31:51 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static void	init_raycast_helper_hrzn(t_raycast_helper *rh, t_ray *ray,
 		t_player *player)
 {
-	rh->is_south_direction = is_ray_facing_south(ray->angle);
+	rh->is_south_direction = (0 <= ray->angle && ray->angle < M_PI);
 	ray->distance = 0;
 	if (rh->is_south_direction)
 	{
@@ -38,21 +38,21 @@ static void	init_raycast_helper_hrzn(t_raycast_helper *rh, t_ray *ray,
 static void init_raycast_helper_vrtl(t_raycast_helper *rh, t_ray *ray,
 		t_player *player)
 {
-	rh->is_west_direction = is_ray_facing_west(ray->angle);
+	rh->is_east_direction = (M_PI / 2 > ray->angle || ray->angle > M_PI * 1.5);
 	ray->distance = 0;
-	if (rh->is_west_direction)
-	{
-		rh->a_x = floor(player->x);
-		rh->x_step = player->x - rh->a_x;
-		rh->y_step = rh->x_step * tan(ray->angle);
-		rh->a_y = player->y - rh->y_step;
-	}
-	else
+	if (rh->is_east_direction)
 	{
 		rh->a_x = ceil(player->x);
 		rh->x_step = rh->a_x - player->x;
 		rh->y_step = rh->x_step * tan(ray->angle);
 		rh->a_y = player->y + rh->y_step;
+	}
+	else
+	{
+		rh->a_x = floor(player->x);
+		rh->x_step = player->x - rh->a_x;
+		rh->y_step = rh->x_step * tan(ray->angle);
+		rh->a_y = player->y - rh->y_step;
 	}
 	ray->distance += get_hypotenuse(rh->x_step, rh->y_step);
 }
@@ -88,7 +88,7 @@ static void	get_y_intersection(t_ray *ray, t_map *map, t_player *player)
 	t_raycast_helper	rh;
 
 	init_raycast_helper_vrtl(&rh, ray, player);
-	if (rh.is_west_direction)
+	if (!rh.is_east_direction)
 		rh.x_step = -1;
 	else
 		rh.x_step = 1;
@@ -96,12 +96,12 @@ static void	get_y_intersection(t_ray *ray, t_map *map, t_player *player)
 	rh.ray_section = get_hypotenuse(rh.x_step, rh.y_step);
 	while (1)
 	{
-		if (rh.is_west_direction)
+		if (rh.is_east_direction)
 		{
-			if (is_wall(map, rh.a_x - 1, rh.a_y, ray))
+			if (is_wall(map, rh.a_x, rh.a_y, ray))
 				break ;
 		}
-		if (is_wall(map, rh.a_x, rh.a_y, ray))
+		if (is_wall(map, rh.a_x - 1, rh.a_y, ray))
 			break ;
 		rh.a_x += rh.x_step;
 		rh.a_y += rh.y_step;
