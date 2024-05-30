@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:36:17 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 17:36:37 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 23:21:40 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define DISPLAY_H
 
 # include <stdbool.h>
+
+typedef struct s_point
+{
+	double		x;
+	double		y;
+}				t_point;
 
 typedef struct s_rectangle
 {
@@ -83,13 +89,13 @@ typedef struct s_wall
 
 typedef struct s_health_bar
 {
-	int					bar_x;
-	int					bar_y;
-	int					bar_width;
-	int					bar_height;
-	float				health_percentage;
-	bool				initialized;
-}						t_health_bar;
+	int			bar_x;
+	int			bar_y;
+	int			bar_width;
+	int			bar_height;
+	float		health_percentage;
+	bool		initialized;
+}				t_health_bar;
 
 typedef struct s_animation
 {
