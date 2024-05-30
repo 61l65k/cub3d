@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   definitions.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 19:08:27 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 21:34:27 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@
 #  define K_RIGHT_ARROW 65363
 #  define K_FORWARD_ARROW 65362
 #  define K_BACK_ARROW 65364
+#  define K_SHIFT 65505
 # endif
 
 # ifndef linux

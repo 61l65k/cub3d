@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 19:09:02 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 21:38:11 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static int	key_press_game_running(t_cubed *cubed, int keycode)
 		cubed->player.x_move += 1;
 	if (keycode == K_A)
 		cubed->player.x_move -= 1;
+	if (keycode == K_SHIFT)
+		cubed->player.move_speed *= 2;
 	if (keycode == K_SPACE)
 		cubed->player.shooting = 1;
 	if (keycode == K_M)
@@ -71,6 +73,8 @@ static int	key_released(int keycode, t_cubed *cubed)
 		cubed->player.x_move -= 1;
 	if (keycode == K_A)
 		cubed->player.x_move += 1;
+	if (keycode == K_SHIFT)
+		cubed->player.move_speed /= 2;
 	if (keycode == K_SPACE)
 		cubed->player.shooting = 0;
 	return (1);
