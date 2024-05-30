@@ -51,6 +51,7 @@ SRCS_COMMON := \
     srcs/play/update/shooting/switch_weapon.c \
     srcs/play/update/sprites/update_sprite_render_info.c \
     srcs/play/update/sprites/update_sprites.c \
+    srcs/play/update/sprites/update_sprite_position.c \
     srcs/utils/blend_colors.c \
     srcs/utils/free_str_utils.c \
     srcs/utils/math_utils.c \

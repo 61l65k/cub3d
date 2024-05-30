@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_sprites.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 16:56:29 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 18:21:55 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,29 +61,20 @@ static void	update_spawners(t_cubed *cubed)
 	}
 }
 
+void	update_sprite_position(t_sprite *sprite,
+				const t_player *player, const t_map *map);
+
 static void	update_all_sprites(t_cubed *cubed)
 {
-	t_sprite	*sprite;
-	double		direction_x;
-	double		direction_y;
+	t_sprite	*spr;
 
-	sprite = cubed->scene.sprite_info.sprites;
-	while (sprite)
+	spr = cubed->scene.sprite_info.sprites;
+	while (spr)
 	{
-		direction_x = cubed->player.x - sprite->x;
-		direction_y = cubed->player.y - sprite->y;
-		sprite->distance = get_distance(cubed->player.x, cubed->player.y,
-				sprite->x, sprite->y);
-		if (sprite->distance > 0)
-		{
-			direction_x /= sprite->distance;
-			direction_y /= sprite->distance;
-		}
-		sprite->x += direction_x * sprite->speed * SPRITE_SPEED_FACTOR;
-		sprite->y += direction_y * sprite->speed * SPRITE_SPEED_FACTOR;
-		update_render_info(cubed, sprite->x, sprite->y, &sprite->info);
-		check_sprite_hit_player(cubed, sprite);
-		sprite = sprite->next;
+		update_sprite_position(spr, &cubed->player, &cubed->scene.map);
+		update_render_info(cubed, spr->x, spr->y, &spr->info);
+		check_sprite_hit_player(cubed, spr);
+		spr = spr->next;
 	}
 }
 
