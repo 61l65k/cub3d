@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 11:53:24 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:15:22 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_sprite	*create_sprite_node(t_cubed *cubed, double x, double y,
 	cubed->scene.sprite_info.sprites_count++;
 	new_sprite->texture = *texture;
 	new_sprite->speed = 0.01;
-	new_sprite->health = 50;
+	new_sprite->health = SPRITE_MAX_HEALTH;
 	new_sprite->next = NULL;
 	return (new_sprite);
 }

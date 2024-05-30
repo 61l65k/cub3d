@@ -6,13 +6,13 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:24:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 13:34:21 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:05:07 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_rectangle(t_rectangle *rec, int *img, int res_x)
+void	draw_rectangle(const t_rectangle *rec, int *img, int res_x)
 {
 	int	i;
 	int	j;

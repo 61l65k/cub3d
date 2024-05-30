@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 11:59:28 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:15:17 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # define SPRITE_SPEED_FACTOR 0.1
 # define ERR_SPRITE_ALLOC "Error: sprite allocation failed"
+# define SPRITE_MAX_HEALTH 50
 
 typedef struct s_cubed		t_cubed;
 typedef struct s_ray		t_ray;

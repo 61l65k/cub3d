@@ -27,6 +27,7 @@ SRCS_COMMON := \
     srcs/play/draw/extras/draw_gun.c \
     srcs/play/draw/extras/draw_sprites.c \
     srcs/play/draw/extras/draw_take_damage.c \
+    srcs/play/draw/extras/draw_healthbars.c \
     srcs/play/draw/gamemenu/draw_menu.c \
     srcs/play/draw/gamemenu/input_game_menu.c \
     srcs/play/draw/gameover/draw_game_over.c \

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:17:14 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 09:10:17 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:11:47 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	prepare_player(t_cubed *cubed)
 	player->dir_y = sin(player->rotation_angle);
 	player->plane_x = -player->dir_y * 0.66;
 	player->plane_y = player->dir_x * 0.66;
-	player->health = 200;
+	player->health = PLAYER_MAX_HEALTH;
+	player->damage_cooldown = TAKE_DAMAGE_COOLDOWN_TIME;
 	get_starting_position(&cubed->player, cubed->scene.map.grid);
 }

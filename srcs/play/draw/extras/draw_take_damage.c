@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_take_damage.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 05:48:08 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/27 18:08:50 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/30 16:09:13 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@ static void	draw_red_frame(t_cubed *cubed, float alpha)
 
 void	draw_take_damage(t_cubed *cubed)
 {
-	float	alpha;
+	float		alpha;
+	const int	critical_health = 35;
 
 	alpha = 0.3;
-	if (cubed->player.health <= 20)
+	if (cubed->player.health <= critical_health)
 		alpha = 0.5;
-	if (cubed->player.taking_damage || cubed->player.health <= 20)
+	if (cubed->player.taking_damage || cubed->player.health <= critical_health)
 	{
 		draw_red_frame(cubed, alpha);
 		if (cubed->player.taking_damage)

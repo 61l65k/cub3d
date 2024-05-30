@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 05:37:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 15:22:23 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:05:20 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdbool.h>
 
+# define PLAYER_MAX_HEALTH 200
 # define TAKE_DAMAGE_THRESHOLD 0.5
 # define TAKE_DAMAGE_DISPLAY_TIME 10.0
 # define TAKE_DAMAGE_COOLDOWN_TIME 7.0

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 14:30:46 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/30 16:05:00 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct s_cubed		t_cubed;
 typedef struct s_map		t_map;
-typedef struct s_rectangle	t_floor_ceiling;
+typedef struct s_rectangle	t_rectangle;
 typedef struct s_ray		t_ray;
 typedef struct s_wall		t_wall;
 typedef struct s_resolution	t_resolution;
@@ -52,7 +52,7 @@ void						update_player_position(t_player *player,
 								const t_map *t_map);
 void						update_player_orientation(t_player *player);
 double						normalize_radian(double radian);
-void						draw_rectangle(t_floor_ceiling *rec, int *img,
+void						draw_rectangle(const t_rectangle *rec, int *img,
 								int res_x);
 double						get_hypotenuse(double a, double b);
 void						draw_vertical_line(t_cubed *cubed, int draw_x,
