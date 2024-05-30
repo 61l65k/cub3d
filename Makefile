@@ -53,7 +53,8 @@ SRCS_COMMON := \
     srcs/utils/blend_colors.c \
     srcs/utils/free_str_utils.c \
     srcs/utils/math_utils.c \
-    srcs/utils/t_map.c
+    srcs/utils/t_map.c \
+    srcs/utils/str_to_long.c
 
 ifeq ($(OS),Linux)
     SRCS_PLATFORM := \

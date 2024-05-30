@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   definitions.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 13:47:10 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:45:21 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,17 @@
 # define GUN_TEXTURE_PATH "assets/gun/akimbos.xpm"
 # define ERR_LOAD_WEAPON "Error: load_weapon() - could not load weapon\n"
 # define ERR_LOAD_TEXTURE "Error: load_texture() - could not load texture\n"
-# define DEFAULT_RESOL_MSG "Invalid resolution or no resolution found from .cub file\nDefaulting to 1920x1080\n"
+
+# define RES_MAX_W 1920
+# define RES_MAX_H 1080
+# define RES_MAX_STR "1920x1080"
+# define RES_DEFAULT_W 1280
+# define RES_DEFAULT_H 720
+# define RES_DEFAULT_STR "1280x720"
+# define RES_MIN_W 320
+# define RES_MIN_H 240
+# define RES_MIN_STR "320x240"
+
 # ifndef LINUX
 #  define LINUX 0
 # endif
@@ -51,8 +61,6 @@
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
 # define GRID_UNIT_SCALE 1
-# define MAX_X_RES 1000
-# define MAX_Y_RES 500
 # define FOV 60
 # define TAB_SIZE 4
 # ifndef linux

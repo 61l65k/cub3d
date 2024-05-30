@@ -3,30 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   extract_scene.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 09:54:37 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:49:26 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "mlx.h"
 
 int			extract_scene_extras(t_scenedata *scene, char **data);
 
 static int	get_resolution(char *res_buffer, t_resolution *resolution)
 {
 	char	**res;
+	long	tmp_res[2];
 
+	if (resolution->width != 0 || resolution->height != 0)
+		return (ft_fprintf(2, ERR_RESOLUTION"Found more than 1\n"), -1);
 	res = ft_splits(res_buffer, "x");
 	if (!res)
 		return (perror(CUB_ERROR_MALLOC "get_resolution()"), -1);
 	if (ft_2d_array_len(res) != 2 || !ft_strisdigit(res[0])
 		|| !ft_strisdigit(res[1]))
-		return (perror(ERR_RESOLUTION), free_2d_array(res), -1);
-	resolution->width = ft_atoi(res[0]);
-	resolution->height = ft_atoi(res[1]);
+		return (ft_fprintf(2, ERR_RESOLUTION), free_2d_array(res), -1);
+	tmp_res[0] = str_to_long(res[0]);
+	tmp_res[1] = str_to_long(res[1]);
+	if (tmp_res[0] < 0 || tmp_res[1] < 0
+		|| tmp_res[0] > INT_MAX || tmp_res[1] > INT_MAX)
+		return (ft_fprintf(2, ERR_RESOLUTION), free_2d_array(res), -1);
+	resolution->width = tmp_res[0];
+	resolution->height = tmp_res[1];
 	return (free_2d_array(res), 0);
 }
 

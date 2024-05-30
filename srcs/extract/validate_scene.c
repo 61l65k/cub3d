@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_scene.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:58:18 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 12:54:15 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:21:02 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,27 @@
 
 static void	validate_resolution(t_resolution *resolution)
 {
-	if (resolution->width < 1 || resolution->height < 1)
+	if (resolution->width == 0 || resolution->height == 0)
 	{
-		printf(DEFAULT_RESOL_MSG);
-		resolution->width = 1920;
-		resolution->height = 1080;
+		printf("No resolution found from .cub file\n");
+		printf("Defaulting to %s\n", RES_DEFAULT_STR);
+		resolution->width = RES_DEFAULT_W;
+		resolution->height = RES_DEFAULT_H;
 	}
-	if (resolution->width > MAX_X_RES)
-		resolution->width = MAX_X_RES;
-	if (resolution->height > MAX_Y_RES)
-		resolution->height = MAX_Y_RES;
+	else if (resolution->width > RES_MAX_W || resolution->height > RES_MAX_H)
+	{
+		printf("Resolution in .cub file is too high\n");
+		printf("Defaulting to the maximum %s\n", RES_MAX_STR);
+		resolution->width = RES_MAX_W;
+		resolution->height = RES_MAX_H;
+	}
+	else if (resolution->width < RES_MIN_W || resolution->height < RES_MIN_H)
+	{
+		printf("Resolution in .cub file is too low\n");
+		printf("Defaulting to the minimum %s\n", RES_MIN_STR);
+		resolution->width = RES_MIN_W;
+		resolution->height = RES_MIN_H;
+	}
 }
 
 static void	validate_textures(t_cubed *cubed)
