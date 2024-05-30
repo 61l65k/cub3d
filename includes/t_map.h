@@ -21,17 +21,17 @@ typedef struct s_coords
 	double		y;
 }				t_coords;
 
-typedef enum e_entity_t
+typedef enum e_ent_type
 {
 	ENT_NONE,
 	ENT_GENERIC,
 	ENT_MAX
-}				t_ent_t;
+}				t_ent_type;
 
-typedef struct s_entity
+typedef struct s_ent
 {
 	t_coords	pos;
-	t_ent_t		type;
+	t_ent_type	type;
 }				t_ent;
 
 # define MAX_ENTITY_COUNT 100
@@ -53,6 +53,6 @@ int			t_map_insert_f(t_map *t_map, double x, double y, char new_value);
 t_coords	t_map_get_collision_checked_coords(const t_map *t_map,
 				t_coords new, t_coords old);
 int			t_map_add_entity(t_map *t_map, t_ent new_entity);
-t_ent_t		t_map_get_entity_type_at(const t_map *t_map, t_coords pos);
+t_ent_type	t_map_get_entity_type_at(const t_map *t_map, t_coords pos);
 
 #endif

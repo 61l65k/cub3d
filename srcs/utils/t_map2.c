@@ -22,7 +22,7 @@ int	t_map_add_entity(t_map *t_map, t_ent new_entity)
 	return (0);
 }
 
-t_ent_t	t_map_get_entity_type_at(const t_map *t_map, t_coords pos)
+t_ent_type	t_map_get_entity_type_at(const t_map *t_map, t_coords pos)
 {
 	int		i;
 

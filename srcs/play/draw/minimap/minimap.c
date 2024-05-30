@@ -16,10 +16,10 @@
 static int	map_color(int cur_color, t_coords cur_map,
 	const t_player *player, const t_map *map)
 {
-	const char		c = t_map_get_f(map, cur_map.x, cur_map.y);
-	const bool		is_player = (fabs(cur_map.x - player->x) < 0.5
+	const char			c = t_map_get_f(map, cur_map.x, cur_map.y);
+	const bool			is_player = (fabs(cur_map.x - player->x) < 0.5
 			&& fabs(cur_map.y - player->y) < 0.5);
-	const t_ent_t	npc = t_map_get_entity_type_at(map, cur_map);
+	const t_ent_type	npc = t_map_get_entity_type_at(map, cur_map);
 
 	if (is_player && c == '1')
 		return (GREEN);
