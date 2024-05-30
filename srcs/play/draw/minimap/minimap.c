@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:36:38 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/29 12:51:50 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:21:07 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ static int	map_color(int cur_color, t_coords cur_map,
 		return (RED);
 	if (c == ' ')
 		return (blend_colors(cur_color, GRAY, 0.5));
+	if (c == 'D')
+		return (PURPLE);
 	return (cur_color);
 }
-
 
 static t_minimap	get_minimap(const t_resolution *res, const t_player *player)
 {

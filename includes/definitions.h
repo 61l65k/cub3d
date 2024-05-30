@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   definitions.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 11:44:14 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:20:38 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # define WHITE 0xFFFFFF
 # define RED 0xFF0000
 # define GRAY 0x808080
+# define PURPLE 0xAA08AA
 # define LEFT_CLICK 1
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
