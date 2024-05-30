@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 21:34:27 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/30 21:40:42 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@
 #  define K_RIGHT_ARROW 65363
 #  define K_FORWARD_ARROW 65362
 #  define K_BACK_ARROW 65364
-#  define K_SHIFT 65505
+#  define K_LEFT_SHIFT 65505
 # endif
 
 # ifndef linux
