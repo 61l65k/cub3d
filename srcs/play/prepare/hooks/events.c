@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events_linux.c                                     :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 10:14:30 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:56:04 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int			handle_mouse_move(int x, int y, t_cubed *cubed);
+int			handle_mouse_button(int button, int x, int y, t_cubed *cubed);
 
 static int	close_game_x(t_cubed *cubed)
 {
@@ -74,10 +77,14 @@ static int	key_released(int keycode, t_cubed *cubed)
 void	prepare_events(t_cubed *cubed)
 {
 	const t_mlx	*mlx = &cubed->mlx;
+	t_mouse		*mouse;
 
+	mouse = &cubed->mouse;
+	mouse->last_x = -1;
 	mlx_do_key_autorepeatoff(cubed->mlx.mlx_ptr);
 	mlx_hook(mlx->win, KEY_PRESS, M_KEY_PRESS, key_press, cubed);
 	mlx_hook(mlx->win, DESTROY_NOTIFY, M_DESTROY_NOTIFY, close_game_x, cubed);
 	mlx_hook(cubed->mlx.win, KEY_RELEASE, M_KEY_RELEASE, key_released, cubed);
-	hook_mouse(cubed);
+	mlx_hook(mlx->win, 4, 1L << 2, handle_mouse_button, cubed);
+	mlx_hook(mlx->win, 6, 1L << 6, handle_mouse_move, cubed);
 }

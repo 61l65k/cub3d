@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon_positions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:15:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 11:05:25 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/30 12:09:35 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	initialize_minigun_positions(t_weapon *weapon, t_cubed *cubed)
 void	get_gun_positions(t_weapon *weapon, t_cubed *cubed, int i)
 {
 	const t_weapon_type	weapon_types[WEAPON_MAX] = {WEAPON_AKIMBOS,
-			WEAPON_WRENCH, WEAPON_RAYGUN, WEAPON_MINIGUN};
+		WEAPON_WRENCH, WEAPON_RAYGUN, WEAPON_MINIGUN};
 
 	weapon->type = weapon_types[i];
 	if (weapon->type == WEAPON_AKIMBOS)

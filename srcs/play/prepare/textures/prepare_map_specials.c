@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 03:05:49 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 11:40:51 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:20:42 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,24 @@ static void	prepare_spawner(t_cubed *cubed, int x, int y)
 	cubed->scene.sprite_info.spawner_count++;
 }
 
+static void	prepare_door_textures(t_cubed *cubed)
+{
+	t_sprite_info	*i;
+	const char		*closed = "./assets/sprites/runed_door.xpm";
+	const char		*open = "./assets/sprites/open_door.xpm";
+
+	i = &cubed->scene.sprite_info;
+	if (!i->door_open_texture.path || !i->door_closed_texture.path)
+	{
+		i->door_closed_texture.path = ft_strdup(closed);
+		i->door_open_texture.path = ft_strdup(open);
+		if (!i->door_open_texture.path || !i->door_closed_texture.path)
+			ft_clean_exit(cubed, CUB_ERROR_MALLOC, 0);
+	}
+	load_texture(cubed, cubed->mlx.mlx_ptr, &i->door_closed_texture);
+	load_texture(cubed, cubed->mlx.mlx_ptr, &i->door_open_texture);
+}
+
 static void	prepare_door(t_cubed *cubed, int x, int y)
 {
 	t_door	*new_door;
@@ -48,18 +66,7 @@ static void	prepare_door(t_cubed *cubed, int x, int y)
 	new_door->y = y + 0.5;
 	new_door->next = cubed->scene.sprite_info.doors;
 	cubed->scene.sprite_info.doors = new_door;
-	if (!cubed->scene.sprite_info.door_open_texture.path
-		|| !cubed->scene.sprite_info.door_closed_texture.path)
-	{
-		cubed->scene.sprite_info.door_closed_texture.path = ft_strdup("./assets/sprites/runed_door.xpm");
-		if (!cubed->scene.sprite_info.door_closed_texture.path)
-			ft_clean_exit(cubed, CUB_ERROR_MALLOC, 0);
-		cubed->scene.sprite_info.door_open_texture.path = ft_strdup("./assets/sprites/open_door.xpm");
-	}
-	load_texture(cubed, cubed->mlx.mlx_ptr,
-		&cubed->scene.sprite_info.door_closed_texture);
-	load_texture(cubed, cubed->mlx.mlx_ptr,
-		&cubed->scene.sprite_info.door_open_texture);
+	prepare_door_textures(cubed);
 }
 
 void	prepare_map_specials(t_cubed *cubed)

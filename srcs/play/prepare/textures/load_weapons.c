@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   weapons.c                                          :+:      :+:    :+:   */
+/*   load_weapons.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 11:51:42 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 09:20:15 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:15:11 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ static void	load_weapon_animation(t_cubed *cubed, t_weapon *weapon,
 static void	load_weapon(t_cubed *cubed, t_weapon *weapon, char *texture_path,
 		char **animation_paths)
 {
-	weapon->texture.img.img_ptr = mlx_xpm_file_to_image(cubed->mlx.mlx_ptr,
-			texture_path, &weapon->texture.width, &weapon->texture.height);
+	t_texture	*text;
+
+	text = &weapon->texture;
+	text->img.img_ptr = mlx_xpm_file_to_image(cubed->mlx.mlx_ptr, texture_path,
+			&text->width, &text->height);
 	if (!weapon->texture.img.img_ptr)
 		ft_clean_exit(cubed, ERR_LOAD_WEAPON, 0);
-	weapon->texture.img.data = (int *)mlx_get_data_addr(weapon->texture.img.img_ptr,
-			&weapon->texture.img.bpp, &weapon->texture.img.size_l,
-			&weapon->texture.img.endian);
-	if (!weapon->texture.img.data)
+	text->img.data = (int *)mlx_get_data_addr(text->img.img_ptr, &text->img.bpp,
+			&text->img.size_l, &text->img.endian);
+	if (!text->img.data)
 		ft_clean_exit(cubed, ERR_LOAD_WEAPON, 0);
-	printf("Loaded weapon texture %s, width: %d, height: %d\n", texture_path,
-		weapon->texture.width, weapon->texture.height);
 	weapon->shooting_animation.frames = ft_calloc(sizeof(t_texture),
 			weapon->shooting_animation.frame_count);
 	if (!weapon->shooting_animation.frames)

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:36 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 09:59:50 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:29:38 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 
 static void	load_game_over_image(t_cubed *cubed)
 {
-	cubed->game_over_texture.path = ft_strdup("assets/gameover.xpm");
-	if (!cubed->game_over_texture.path)
+	t_texture	*gme;
+	const char	*gme_path = "./assets/gameover.xpm";
+
+	gme = &cubed->game_over_texture;
+	gme->path = ft_strdup(gme_path);
+	if (!gme->path)
 		ft_clean_exit(cubed, ERR_LOAD_TEXTURE, 0);
-	cubed->game_over_texture.img.img_ptr = mlx_xpm_file_to_image(cubed->mlx.mlx_ptr,
-			cubed->game_over_texture.path, &cubed->game_over_texture.width,
-			&cubed->game_over_texture.height);
-	if (!cubed->game_over_texture.img.img_ptr)
+	gme->img.img_ptr = mlx_xpm_file_to_image(cubed->mlx.mlx_ptr, gme->path,
+			&gme->width, &gme->height);
+	if (!gme->img.img_ptr)
 		ft_clean_exit(cubed, ERR_LOAD_TEXTURE, 0);
-	cubed->game_over_texture.img.data = (int *)mlx_get_data_addr(cubed->game_over_texture.img.img_ptr,
-			&cubed->game_over_texture.img.bpp,
-			&cubed->game_over_texture.img.size_l,
-			&cubed->game_over_texture.img.endian);
-	if (!cubed->game_over_texture.img.data)
+	gme->img.data = (int *)mlx_get_data_addr(gme->img.img_ptr, &gme->img.bpp,
+			&gme->img.size_l, &gme->img.endian);
+	if (!gme->img.data)
 		ft_clean_exit(cubed, ERR_LOAD_TEXTURE, 0);
 }
 
@@ -40,28 +41,29 @@ void	load_texture(t_cubed *cubed, void *mlx, t_texture *texture)
 			&texture->img.bpp, &texture->img.size_l, &texture->img.endian);
 	if (!texture->img.data)
 		ft_clean_exit(cubed, ERR_LOAD_TEXTURE, 0);
-	printf("Loaded texture %s, width: %d, height: %d\n", texture->path,
-		texture->width, texture->height);
 }
 
 static void	load_sprite_textures(t_cubed *cubed)
 {
-	if (!cubed->scene.sprite_info.sprite_texture.path)
+	t_sprite_info	*i;
+	const char		*sprite = "./assets/sprites/boggart.xpm";
+	const char		*spawner = "./assets/sprites/spawner.xpm";
+
+	i = &cubed->scene.sprite_info;
+	if (!i->sprite_texture.path)
 	{
-		cubed->scene.sprite_info.sprite_texture.path = ft_strdup("./assets/sprites/boggart.xpm");
-		if (!cubed->scene.sprite_info.sprite_texture.path)
+		i->sprite_texture.path = ft_strdup(sprite);
+		if (!i->sprite_texture.path)
 			ft_clean_exit(cubed, CUB_ERROR_MALLOC CUB_ERROR_MALLOC, 0);
 	}
-	if (!cubed->scene.sprite_info.spawner_texture.path)
+	if (!i->spawner_texture.path)
 	{
-		cubed->scene.sprite_info.spawner_texture.path = ft_strdup("./assets/sprites/spawner.xpm");
-		if (!cubed->scene.sprite_info.spawner_texture.path)
+		i->spawner_texture.path = ft_strdup(spawner);
+		if (!i->spawner_texture.path)
 			ft_clean_exit(cubed, CUB_ERROR_MALLOC CUB_ERROR_MALLOC, 0);
 	}
-	load_texture(cubed, cubed->mlx.mlx_ptr,
-		&cubed->scene.sprite_info.sprite_texture);
-	load_texture(cubed, cubed->mlx.mlx_ptr,
-		&cubed->scene.sprite_info.spawner_texture);
+	load_texture(cubed, cubed->mlx.mlx_ptr, &i->sprite_texture);
+	load_texture(cubed, cubed->mlx.mlx_ptr, &i->spawner_texture);
 }
 
 void	prepare_textures(t_cubed *cubed)
