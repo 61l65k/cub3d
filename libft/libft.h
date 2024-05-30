@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:55:43 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/05 19:44:39 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:54:17 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char				*ft_strncat(char *dest, const char *src, size_t n);
 char				*ft_strncpy(char *dest, char *src, size_t n);
 void				*ft_realloc(void *old_ptr, size_t old_size,
 						size_t new_size);
-char				**ft_splits(char *str, char *charset);
+char				**ft_splits(const char *str, const char *charset);
 int					ft_isalnum(int c);
 int					ft_isenv_var(int c);
 int					ft_strcmp(const char *s1, const char *s2);

@@ -3,57 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   ft_splits.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 23:23:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/01 23:26:17 by apyykone         ###   ########.fr       */
+/*   Created: 2023/10/27 15:33:06 by ttakala           #+#    #+#             */
+/*   Updated: 2024/05/30 15:56:21 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	find_length(char *str, char *charset)
+static int	count_words(char const *s, const char *charset);
+static int	split_words(char const *s, const char *charset, char **result);
+
+char	**ft_splits(char const *s, const char *charset)
 {
-	int	count;
+	char	**result;
+	int		word_count;
 
-	count = 0;
-	while (*str)
-		if (!ft_strchr(charset, *str++))
-			count++;
-	return (count);
-}
-
-static void	import_str(char **dest, char *src, int start, int end)
-{
-	if (!(*dest = malloc(((end - start + 1) * sizeof(char)))))
-		return ;
-	ft_strncpy(*dest, src, end - start);
-	(*dest)[end - start] = '\0';
-}
-
-char	**ft_splits(char *str, char *charset)
-{
-	char	**strs;
-	int		i;
-	int		j;
-	int		k;
-
-	j = 0;
-	k = 0;
-	if (str == 0)
-		return (0);
-	if (!(strs = malloc((find_length(str, charset) + 1) * sizeof(char *))))
-		return (0);
-	while (str[j] != '\0')
+	if (s == NULL)
+		return (NULL);
+	word_count = count_words(s, charset);
+	result = malloc(sizeof(char *) * (word_count + 1));
+	if (result == NULL)
+		return (NULL);
+	if (!split_words(s, charset, result))
 	{
-		i = j;
-		while (!ft_strchr(charset, str[j]) && str[j] != '\0')
-			j++;
-		if (i != j)
-			import_str(&strs[k++], &str[i], i, j);
-		else
-			j++;
+		free(result);
+		result = NULL;
+		return (NULL);
 	}
-	strs[k] = 0;
-	return (strs);
+	result[word_count] = NULL;
+	return (result);
+}
+
+static int	count_words(char const *s, const char *charset)
+{
+	int	word_count;
+
+	word_count = 0;
+	while (*s)
+	{
+		while (ft_strchr(charset, *s))
+			s++;
+		if (*s)
+			word_count++;
+		while (*s && ft_strchr(charset, *s) == NULL)
+			s++;
+	}
+	return (word_count);
+}
+
+static int	split_words(char const *s, const char *charset, char **result)
+{
+	int			i;
+	char const	*start_of_word;
+
+	i = 0;
+	while (*s)
+	{
+		while (ft_strchr(charset, *s))
+			s++;
+		if (*s)
+		{
+			start_of_word = s;
+			while (*s && ft_strchr(charset, *s) == NULL)
+				s++;
+			result[i] = ft_substr(start_of_word, 0, s - start_of_word);
+			if (result[i] == NULL)
+			{
+				while (--i >= 0)
+					free(result[i]);
+				return (0);
+			}
+			i++;
+		}
+	}
+	return (1);
 }
