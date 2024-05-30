@@ -56,6 +56,7 @@ SRCS_COMMON := \
     srcs/utils/free_str_utils.c \
     srcs/utils/math_utils.c \
     srcs/utils/t_map.c \
+	srcs/utils/t_map2.c \
     srcs/utils/str_to_long.c
 
 ifeq ($(OS),Linux)

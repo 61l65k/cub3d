@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:03:55 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/30 18:30:50 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/30 22:22:49 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,29 @@ typedef struct s_coords
 	double		y;
 }				t_coords;
 
+typedef enum e_entity_t
+{
+	ENT_NONE,
+	ENT_GENERIC,
+	ENT_MAX
+}				t_ent_t;
+
+typedef struct s_entity
+{
+	t_coords	pos;
+	t_ent_t		type;
+}				t_ent;
+
+# define MAX_ENTITY_COUNT 100
+
 typedef struct s_map
 {
-	char	**grid;
-	size_t	grid_alloc_size;
-	size_t	width;
-	size_t	height;
+	char		**grid;
+	size_t		grid_alloc_size;
+	size_t		width;
+	size_t		height;
+	t_ent		entity[MAX_ENTITY_COUNT];
+	int			entity_count;
 }			t_map;
 
 char		t_map_get(const t_map *t_map, int x, int y);
@@ -35,5 +52,7 @@ int			t_map_insert(t_map *t_map, int x, int y, char new_value);
 int			t_map_insert_f(t_map *t_map, double x, double y, char new_value);
 t_coords	t_map_get_collision_checked_coords(const t_map *t_map,
 				t_coords new, t_coords old);
+int			t_map_add_entity(t_map *t_map, t_ent new_entity);
+t_ent_t		t_map_get_entity_type_at(const t_map *t_map, t_coords pos);
 
 #endif

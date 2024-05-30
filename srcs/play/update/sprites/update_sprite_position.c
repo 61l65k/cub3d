@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:55:16 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/30 18:22:06 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/30 22:28:14 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_coords	get_direction(const t_sprite *sprite, const t_player *player,
 }
 
 void	update_sprite_position(t_sprite *sprite,
-	const t_player *player, const t_map *map)
+	const t_player *player, t_map *map)
 {
 	const t_coords	old_pos = {sprite->x, sprite->y};
 	const double	distance
@@ -43,6 +43,7 @@ void	update_sprite_position(t_sprite *sprite,
 	const t_coords	new_pos
 		= t_map_get_collision_checked_coords(map, proposed_pos, old_pos);
 
+	t_map_add_entity(map, (t_ent){new_pos, ENT_GENERIC});
 	sprite->x = new_pos.x;
 	sprite->y = new_pos.y;
 	sprite->distance = distance;

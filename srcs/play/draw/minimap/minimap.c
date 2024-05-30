@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:36:38 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/30 13:21:07 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/30 22:27:51 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@
 static int	map_color(int cur_color, t_coords cur_map,
 	const t_player *player, const t_map *map)
 {
-	const char	c = t_map_get_f(map, cur_map.x, cur_map.y);
-	const bool	is_player = (fabs(cur_map.x - player->x) < 0.5
+	const char		c = t_map_get_f(map, cur_map.x, cur_map.y);
+	const bool		is_player = (fabs(cur_map.x - player->x) < 0.5
 			&& fabs(cur_map.y - player->y) < 0.5);
+	const t_ent_t	npc = t_map_get_entity_type_at(map, cur_map);
 
 	if (is_player && c == '1')
 		return (GREEN);
+	if (npc == ENT_GENERIC)
+		return (RED);
 	if (c == '1')
 		return (BLACK);
 	if (is_player)
@@ -29,7 +32,7 @@ static int	map_color(int cur_color, t_coords cur_map,
 	if (c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E')
 		return (WHITE);
 	if (c == 'Z')
-		return (RED);
+		return (0xFFFF00);
 	if (c == ' ')
 		return (blend_colors(cur_color, GRAY, 0.5));
 	if (c == 'D')
@@ -51,7 +54,7 @@ static t_minimap	get_minimap(const t_resolution *res, const t_player *player)
 
 void	draw_minimap(t_img *img,
 	const t_resolution *res,
-	const t_map *map,
+	t_map *map,
 	const t_player *player)
 {
 	const t_minimap	m = get_minimap(res, player);
@@ -74,4 +77,5 @@ void	draw_minimap(t_img *img,
 				= map_color(img->data[i * res->width + j], rotate, player, map);
 		}
 	}
+	map->entity_count = 0;
 }
