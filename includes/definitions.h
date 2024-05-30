@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 15:26:27 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:37:09 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 # define GREY 0x555555
 # define GREEN 0x008000
 # define BLACK 0x000000
+# define HBAR_GREEN 0x00FF00
 # define LIGHT_GREEN 0x80FF80
 # define WHITE 0xFFFFFF
 # define RED 0xFF0000

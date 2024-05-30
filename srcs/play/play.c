@@ -6,13 +6,13 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 16:26:03 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:18:35 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		draw_player_health_bar(t_cubed *cubed);
+void		draw_healthbars(t_cubed *cubed);
 void		draw_minimap(t_img *img, const t_resolution *res, const t_map *map,
 				const t_player *player);
 
@@ -42,7 +42,7 @@ static void	draw_image(t_cubed *cubed)
 	draw_take_damage(cubed);
 	draw_minimap(&cubed->mlx.img, &cubed->scene.resol, &cubed->scene.map,
 		&cubed->player);
-	draw_player_health_bar(cubed);
+	draw_healthbars(cubed);
 }
 
 static int	render_frames(void *data)

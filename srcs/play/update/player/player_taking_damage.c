@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 05:35:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 16:33:41 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:35:47 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,21 @@
 
 static void	apply_damage_to_player(t_cubed *cubed, int damage)
 {
-	cubed->player.health -= damage;
-	if (cubed->player.health <= 0)
+	t_player	*p;
+
+	p = &cubed->player;
+	p->health -= damage;
+	if (p->health <= 0)
 	{
-		cubed->player.health = 0;
-		cubed->player.taking_damage = false;
+		p->health = 0;
+		p->taking_damage = false;
 		cubed->game_state = GAME_STATE_OVER;
 	}
 	else
 	{
-		cubed->player.damage_cooldown = TAKE_DAMAGE_COOLDOWN_TIME;
+		p->health_bar.health_percentage = (float)p->health
+			/ (float)PLAYER_MAX_HEALTH;
+		p->damage_cooldown = TAKE_DAMAGE_COOLDOWN_TIME;
 	}
 }
 

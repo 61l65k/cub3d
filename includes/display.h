@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:36:17 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 16:44:40 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:36:37 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,16 @@ typedef struct s_wall
 	double		height;
 	t_texture	texture;
 }				t_wall;
+
+typedef struct s_health_bar
+{
+	int					bar_x;
+	int					bar_y;
+	int					bar_width;
+	int					bar_height;
+	float 				health_percentage;
+	bool				initialized;
+}						t_health_bar;
 
 typedef struct s_animation
 {

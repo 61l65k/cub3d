@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 05:37:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 16:05:20 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:36:59 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PLAYER_H
 
 # include <stdbool.h>
+# include "display.h"
 
 # define PLAYER_MAX_HEALTH 200
 # define TAKE_DAMAGE_THRESHOLD 0.5
@@ -42,6 +43,7 @@ typedef struct s_player
 	bool				taking_damage;
 	int					damage_timer;
 	double				damage_cooldown;
+	t_health_bar		health_bar;
 }						t_player;
 
 void					check_sprite_hit_player(t_cubed *cubed,
