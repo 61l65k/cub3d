@@ -6,13 +6,13 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 23:53:26 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/16 13:21:43 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/30 15:23:20 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-
-#define INIT_CAPACITY 80
+#include "gnl_new_internal.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 static size_t	line_realloc(char **line, size_t old_cap)
 {
