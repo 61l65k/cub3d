@@ -62,7 +62,7 @@ static void	update_spawners(t_cubed *cubed)
 }
 
 void	update_sprite_position(t_sprite *sprite,
-				const t_player *player, const t_map *map);
+				const t_player *player, t_map *map);
 
 static void	update_all_sprites(t_cubed *cubed)
 {

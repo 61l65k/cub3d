@@ -13,7 +13,7 @@
 #include "cub3d.h"
 
 void		draw_healthbars(t_cubed *cubed);
-void		draw_minimap(t_img *img, const t_resolution *res, const t_map *map,
+void		draw_minimap(t_img *img, const t_resolution *res, t_map *map,
 				const t_player *player);
 
 static void	prepare_game(t_cubed *cubed)

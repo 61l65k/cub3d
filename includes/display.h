@@ -87,7 +87,7 @@ typedef struct s_health_bar
 	int					bar_y;
 	int					bar_width;
 	int					bar_height;
-	float 				health_percentage;
+	float				health_percentage;
 	bool				initialized;
 }						t_health_bar;
 

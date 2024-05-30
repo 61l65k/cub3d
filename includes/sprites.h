@@ -50,7 +50,6 @@ typedef struct s_sprite_render_info
 	t_health_bar			health_bar;
 }							t_sprite_render_info;
 
-
 typedef struct s_sprite
 {
 	double					x;
