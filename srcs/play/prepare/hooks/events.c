@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 12:56:04 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:09:02 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static int	close_game_x(t_cubed *cubed)
 
 static int	key_press_game_running(t_cubed *cubed, int keycode)
 {
+	if (keycode == K_Q)
+		handle_weapon_switch(K_Q, cubed);
 	if (keycode == K_ESC)
 		ft_clean_exit(cubed, NULL, 0);
 	if (keycode == K_W || keycode == K_FORWARD_ARROW)

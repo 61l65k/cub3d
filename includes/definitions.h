@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 17:37:09 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:08:27 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@
 # else
 #  define RIGHT_CLICK 3
 #  define K_ENTER 65293
+#  define K_Q 113
 #  define K_SPACE 32
 #  define K_ESC 65307
 #  define K_W 119
