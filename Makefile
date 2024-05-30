@@ -10,7 +10,8 @@ PATH_LIBMLX_LINUX   :=      dependencies/minilibx-linux
 PATH_LIBMLX42       :=      dependencies/MLX42/
 
 SRCS_COMMON := \
-    srcs/exit/free_textures.c \
+    srcs/exit/free_texture.c \
+    srcs/exit/free_all.c \
     srcs/extract/extract_main.c \
     srcs/extract/extract_map.c \
     srcs/extract/extract_map_finalize.c \
@@ -20,17 +21,17 @@ SRCS_COMMON := \
     srcs/extract/validate_map.c \
     srcs/extract/validate_scene.c \
     srcs/main.c \
-    srcs/play/draw/draw_column.c \
-    srcs/play/draw/draw_gun.c \
-    srcs/play/draw/draw_sprites.c \
-    srcs/play/draw/draw_take_damage.c \
+    srcs/play/draw/walls_ceiling_floor/draw_column.c \
+    srcs/play/draw/walls_ceiling_floor/draw_floor_ceiling.c \
+    srcs/play/draw/walls_ceiling_floor/get_wall_data_ray.c \
+    srcs/play/draw/extras/draw_gun.c \
+    srcs/play/draw/extras/draw_sprites.c \
+    srcs/play/draw/extras/draw_take_damage.c \
     srcs/play/draw/gamemenu/draw_menu.c \
     srcs/play/draw/gamemenu/input_game_menu.c \
     srcs/play/draw/gameover/draw_game_over.c \
     srcs/play/draw/gameover/input_game_over.c \
-    srcs/play/draw/get_wall_data_ray.c \
     srcs/play/draw/minimap/minimap.c \
-    srcs/play/draw/rectangle.c \
     srcs/play/play.c \
     srcs/play/prepare/player.c \
     srcs/play/prepare/textures/load_textures.c \
@@ -53,7 +54,6 @@ SRCS_COMMON := \
     srcs/utils/blend_colors.c \
     srcs/utils/free_str_utils.c \
     srcs/utils/math_utils.c \
-    srcs/utils/sprite_utils.c \
     srcs/utils/t_map.c
 
 ifeq ($(OS),Linux)

@@ -6,11 +6,29 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 11:42:46 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:53:24 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+t_sprite	*create_sprite_node(t_cubed *cubed, double x, double y,
+		t_texture *texture)
+{
+	t_sprite	*new_sprite;
+
+	new_sprite = malloc(sizeof(t_sprite));
+	if (!new_sprite)
+		ft_clean_exit(cubed, ERR_SPRITE_ALLOC, 0);
+	new_sprite->x = x;
+	new_sprite->y = y;
+	cubed->scene.sprite_info.sprites_count++;
+	new_sprite->texture = *texture;
+	new_sprite->speed = 0.01;
+	new_sprite->health = 50;
+	new_sprite->next = NULL;
+	return (new_sprite);
+}
 
 static void	spawn_sprites(t_cubed *cubed, t_sprite_spawner *spawner)
 {
@@ -69,10 +87,12 @@ static void	update_all_sprites(t_cubed *cubed)
 	}
 }
 
-static void	update_all_doors(t_cubed *cubed)
+void	update_sprite_render_info(t_cubed *cubed)
 {
 	t_door	*door;
 
+	update_spawners(cubed);
+	update_all_sprites(cubed);
 	door = cubed->scene.sprite_info.doors;
 	while (door)
 	{
@@ -80,11 +100,4 @@ static void	update_all_doors(t_cubed *cubed)
 				door->y);
 		door = door->next;
 	}
-}
-
-void	update_sprite_render_info(t_cubed *cubed)
-{
-	update_spawners(cubed);
-	update_all_sprites(cubed);
-	update_all_doors(cubed);
 }

@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_textures.c                                    :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 01:14:51 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 10:19:42 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:52:10 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_texture(t_mlx *mlx, t_texture *texture)
+void	free_all_sprites(t_sprite *sprites)
 {
-	if (!texture)
-		return ;
-	if (texture->path)
+	t_sprite	*current_sprite;
+	t_sprite	*next_sprite;
+
+	current_sprite = sprites;
+	while (current_sprite)
 	{
-		free(texture->path);
-		texture->path = 0;
-	}
-	if (texture->img.img_ptr)
-	{
-		mlx_destroy_image(mlx->mlx_ptr, texture->img.img_ptr);
-		texture->img.img_ptr = 0;
+		next_sprite = current_sprite->next;
+		free(current_sprite);
+		current_sprite = NULL;
+		current_sprite = next_sprite;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 11:40:45 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:59:28 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,6 @@ typedef struct s_sprite_info
 void						prepare_map_specials(t_cubed *cubed);
 void						update_sprite_render_info(t_cubed *cubed);
 void						draw_sprites(t_cubed *cubed);
-int							calculate_tex_x(int stripe,
-								t_sprite_render_info *info, t_texture *texture);
 void						update_render_info(t_cubed *cubed, double sprite_x,
 								double sprite_y,
 								t_sprite_render_info *transform);

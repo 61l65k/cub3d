@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 20:48:41 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:44:14 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define LEFT_CLICK 1
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
-# define GRID_UNIT_SCALE 64
+# define GRID_UNIT_SCALE 1
 # define MAX_X_RES 1000
 # define MAX_Y_RES 500
 # define FOV 60

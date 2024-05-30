@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 21:11:32 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:15:47 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ static void	get_x_intersection(t_ray *ray, t_map *map, t_player *player)
 
 	init_raycast_helper_hrzn(&rh, ray, player);
 	if (rh.is_south_direction)
-		rh.y_step = 1;
+		rh.y_step = GRID_UNIT_SCALE;
 	else
-		rh.y_step = -1;
+		rh.y_step = -GRID_UNIT_SCALE;
 	rh.x_step = rh.y_step / tan(ray->angle);
 	rh.ray_section = get_hypotenuse(rh.x_step, rh.y_step);
 	while (1)
@@ -89,9 +89,9 @@ static void	get_y_intersection(t_ray *ray, t_map *map, t_player *player)
 
 	init_raycast_helper_vrtl(&rh, ray, player);
 	if (rh.is_east_direction)
-		rh.x_step = 1;
+		rh.x_step = GRID_UNIT_SCALE;
 	else
-		rh.x_step = -1;
+		rh.x_step = -GRID_UNIT_SCALE;
 	rh.y_step = rh.x_step * tan(ray->angle);
 	rh.ray_section = get_hypotenuse(rh.x_step, rh.y_step);
 	while (1)
@@ -111,12 +111,10 @@ static void	get_y_intersection(t_ray *ray, t_map *map, t_player *player)
 
 void	update_rays(t_cubed *cubed)
 {
-	double			ray_angle;
-	int				i;
-	t_ray			x_intersection;
-	t_ray			y_intersection;
-	const double	ray_angle_step = cubed->rays.field_of_view
-		/ cubed->scene.resol.width;
+	double	ray_angle;
+	int		i;
+	t_ray	x_intersection;
+	t_ray	y_intersection;
 
 	x_intersection.side = 'H';
 	y_intersection.side = 'V';
@@ -134,6 +132,6 @@ void	update_rays(t_cubed *cubed)
 			cubed->rays.ray_array[i] = x_intersection;
 		else
 			cubed->rays.ray_array[i] = y_intersection;
-		ray_angle += ray_angle_step;
+		ray_angle += cubed->rays.field_of_view / cubed->scene.resol.width;
 	}
 }

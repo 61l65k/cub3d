@@ -6,30 +6,39 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 11:36:00 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:59:06 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static int	calculate_tex_x(int stripe, t_sprite_render_info *info,
+		t_texture *texture)
+{
+	return ((int)(256 * (stripe - (-info->sprite_width / 2
+					+ info->sprite_screen_x)) * texture->width
+			/ info->sprite_width) / 256);
+}
+
 static void	draw_vertical_sprite_line(t_cubed *cubed, int stripe,
 		t_sprite_render_info *info, t_texture *texture)
 {
-	int			d;
-	int			tex_y;
 	int			y;
-	const int	tex_x = calculate_tex_x(stripe, info, texture);
 	int			color;
+	int			tex_y;
+	int			d;
+	const int	tex_x = calculate_tex_x(stripe, info, texture);
 
-	y = info->draw_start_y - 1;
-	while (++y < info->draw_end_y)
+	for (y = info->draw_start_y; y < info->draw_end_y; y++)
 	{
 		d = y * 256 - cubed->scene.resol.height * 128 + info->sprite_height
 			* 128;
 		tex_y = ((d * texture->height) / info->sprite_height) / 256;
 		color = texture->img.data[texture->width * tex_y + tex_x];
 		if (is_not_transparent(color))
+		{
 			draw_vertical_line(cubed, stripe, y, color);
+		}
 	}
 }
 

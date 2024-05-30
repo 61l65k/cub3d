@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:30:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 19:20:05 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/30 11:05:26 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	is_ray_facing_west(double angle)
 
 char	get_wall_orientation(t_ray *ray)
 {
-	const bool is_south_facing = is_ray_facing_south(ray->angle);
-	const bool is_west_facing = is_ray_facing_west(ray->angle);
+	const bool	is_south_facing = is_ray_facing_south(ray->angle);
+	const bool	is_west_facing = is_ray_facing_west(ray->angle);
 
 	if (ray->side == 'H')
 	{
@@ -64,7 +64,7 @@ int	is_wall(t_map *map, double x, double y, t_ray *ray)
 {
 	ray->x = x;
 	ray->y = y;
-	ray->obstacle = t_map_get_f(map, x, y);
+	ray->obstacle = t_map_get_f(map, x / GRID_UNIT_SCALE, y / GRID_UNIT_SCALE);
 	if (ray->obstacle == '\0')
 	{
 		ray->distance = INT_MAX;
