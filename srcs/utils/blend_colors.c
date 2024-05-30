@@ -6,11 +6,12 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:00:30 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/27 18:07:58 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/30 13:05:13 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdint.h>
+#include <stdbool.h>
 
 int	blend_colors(int c1, int c2, double alpha)
 {
@@ -31,4 +32,9 @@ int	blend_colors(int c1, int c2, double alpha)
 	};
 
 	return ((blend[0] << 16) | (blend[1] << 8) | blend[2]);
+}
+
+bool	is_not_transparent(int color)
+{
+	return ((color & 0x00FFFFFF) != 0);
 }
