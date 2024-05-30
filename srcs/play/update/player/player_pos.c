@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:03:21 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/27 15:48:30 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/30 17:52:34 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,14 @@
 static void	move(t_player *player, double angle, double move_step,
 		const t_map *map)
 {
-	double	new_x;
-	double	new_y;
-	char	map_char;
+	t_coords	new;
 
-	new_x = player->x + cos(angle) * move_step;
-	new_y = player->y + sin(angle) * move_step;
-	new_x = fmin(fmax(new_x, 0.01), map->width - 0.01);
-	new_y = fmin(fmax(new_y, 0.01), map->height - 0.01);
-	map_char = t_map_get(map, new_x, new_y);
-	if (map_char != '1')
-	{
-		player->x = new_x;
-		player->y = new_y;
-		return ;
-	}
-	map_char = t_map_get(map, player->x, new_y);
-	if (map_char != '1')
-	{
-		player->y = new_y;
-		return ;
-	}
-	map_char = t_map_get(map, new_x, player->y);
-	if (map_char != '1')
-		player->x = new_x;
+	new.x = player->x + cos(angle) * move_step;
+	new.y = player->y + sin(angle) * move_step;
+	new = t_map_get_collision_checked_coords(map, new,
+			(t_coords){player->x, player->y});
+	player->x = new.x;
+	player->y = new.y;
 }
 
 void	update_player_position(t_player *player, const t_map *map)

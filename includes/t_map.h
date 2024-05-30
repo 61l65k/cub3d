@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:03:55 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/27 20:00:44 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/30 17:52:44 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define T_MAP_H
 
 # include <stddef.h>
+
+typedef struct s_coords
+{
+	double		x;
+	double		y;
+}				t_coords;
 
 typedef struct s_map
 {
@@ -28,5 +34,7 @@ char		t_map_get_f(const t_map *t_map, double x, double y);
 void		t_map_print(const t_map *t_map);
 int			t_map_insert(t_map *t_map, int x, int y, char new_value);
 int			t_map_insert_f(t_map *t_map, double x, double y, char new_value);
+t_coords	t_map_get_collision_checked_coords(const t_map *t_map,
+				t_coords new, t_coords old);
 
 #endif
