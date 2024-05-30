@@ -29,8 +29,8 @@ t_ent_t	t_map_get_entity_type_at(const t_map *t_map, t_coords pos)
 	i = 0;
 	while (i < t_map->entity_count)
 	{
-		if (fabs(t_map->entity[i].pos.x - pos.x) < 0.5
-			&& fabs(t_map->entity[i].pos.y - pos.y) < 0.5)
+		if (fabs(t_map->entity[i].pos.x - pos.x) < 0.25
+			&& fabs(t_map->entity[i].pos.y - pos.y) < 0.25)
 			return (t_map->entity[i].type);
 		i++;
 	}
