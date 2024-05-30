@@ -6,11 +6,27 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 06:02:32 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 17:12:47 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:03:00 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	update_health_bar(t_sprite_render_info *info, int screen_width,
+		int screen_height)
+{
+	info->health_bar.bar_width = screen_width / 20;
+	info->health_bar.bar_height = screen_height / 100;
+	info->health_bar.bar_x = info->sprite_screen_x - info->health_bar.bar_width
+		/ 2;
+	info->health_bar.bar_y = info->draw_start_y - info->health_bar.bar_height
+		- 5;
+	if (info->health_bar.initialized == false)
+	{
+		info->health_bar.health_percentage = 1.0;
+		info->health_bar.initialized = true;
+	}
+}
 
 static void	calculate_transform(t_cubed *cubed, double sprite_x,
 		double sprite_y, t_sprite_render_info *transform)
@@ -48,6 +64,8 @@ static void	calculate_draw_boundaries(t_cubed *cubed,
 	info->draw_end_x = info->sprite_width / 2 + info->sprite_screen_x;
 	if (info->draw_end_x >= cubed->scene.resol.width)
 		info->draw_end_x = cubed->scene.resol.width - 1;
+	update_health_bar(info, cubed->scene.resol.width,
+		cubed->scene.resol.height);
 }
 
 void	update_render_info(t_cubed *cubed, double sprite_x, double sprite_y,

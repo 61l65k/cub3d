@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:37:14 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 17:30:48 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 18:37:19 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ static bool	hit_sprite(t_cubed *cubed, t_sprite *sprite, t_sprite *prev_sprite,
 		free(sprite);
 		sprite = NULL;
 	}
+	else
+		sprite->info.health_bar.health_percentage = sprite->health
+			/ SPRITE_MAX_HEALTH;
 	return (true);
 }
 
@@ -40,6 +43,9 @@ static bool	hit_spawner(t_cubed *cubed, t_sprite_spawner *spawner,
 			prev_spawner->next = spawner->next;
 		free(spawner);
 	}
+	else
+		spawner->info.health_bar.health_percentage = spawner->health
+			/ SPAWNER_MAX_HEALTH;
 	return (true);
 }
 

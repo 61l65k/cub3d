@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_map_specials.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 03:05:49 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 15:09:37 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/30 18:21:29 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	prepare_spawner(t_cubed *cubed, int x, int y)
 	new_spawner->x = x + 0.5;
 	new_spawner->y = y + 0.5;
 	new_spawner->spawn_interval = 5.0;
-	new_spawner->health = 100;
+	new_spawner->health = SPAWNER_MAX_HEALTH;
 	new_spawner->texture = cubed->scene.sprite_info.sprite_texture;
 	if (cubed->scene.sprite_info.spawners == NULL)
 		cubed->scene.sprite_info.spawners = new_spawner;

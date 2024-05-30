@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 17:25:45 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:01:26 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	sprite_calculate_tex_x(int stripe, t_sprite_render_info *info,
 	return (tex_x);
 }
 
-static void	draw_vertical_sprite_line(t_cubed *cubed, int stripe,
+static void	draw_sprite_line(t_cubed *cubed, int stripe,
 		t_sprite_render_info *info, t_texture *texture)
 {
 	int			y;
@@ -47,6 +47,42 @@ static void	draw_vertical_sprite_line(t_cubed *cubed, int stripe,
 	}
 }
 
+static void	draw_healthbar_line(t_cubed *cubed, int stripe,
+		t_sprite_render_info *info)
+{
+	int	health_bar_end_x;
+	int	health_y;
+	int	health_color;
+
+	if (stripe >= info->health_bar.bar_x && stripe < info->health_bar.bar_x
+		+ info->health_bar.bar_width)
+	{
+		health_bar_end_x = info->health_bar.bar_x
+			+ (int)(info->health_bar.bar_width
+				* info->health_bar.health_percentage);
+		health_y = info->health_bar.bar_y;
+		while (health_y < info->health_bar.bar_y + info->health_bar.bar_height)
+		{
+			if (health_y >= 0 && health_y < cubed->scene.resol.height)
+			{
+				health_color = RED;
+				if (stripe < health_bar_end_x)
+					health_color = HBAR_GREEN;
+				cubed->mlx.img.data[health_y * cubed->scene.resol.width
+					+ stripe] = health_color;
+			}
+			health_y++;
+		}
+	}
+}
+
+static void	draw_line(t_cubed *cubed, int stripe, t_sprite_render_info *info,
+		t_texture *texture)
+{
+	draw_sprite_line(cubed, stripe, info, texture);
+	draw_healthbar_line(cubed, stripe, info);
+}
+
 void	draw_any_sprite(t_cubed *cubed, t_sprite_render_info *info,
 		t_texture *texture)
 {
@@ -58,7 +94,7 @@ void	draw_any_sprite(t_cubed *cubed, t_sprite_render_info *info,
 		if (info->transform_y > 0 && stripe > 0
 			&& stripe < cubed->scene.resol.width)
 		{
-			draw_vertical_sprite_line(cubed, stripe, info, texture);
+			draw_line(cubed, stripe, info, texture);
 		}
 	}
 }
