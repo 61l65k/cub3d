@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_map_specials.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 03:05:49 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 12:20:42 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:09:37 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static void	prepare_door_textures(t_cubed *cubed)
 		i->door_open_texture.path = ft_strdup(open);
 		if (!i->door_open_texture.path || !i->door_closed_texture.path)
 			ft_clean_exit(cubed, CUB_ERROR_MALLOC, 0);
+		load_texture(cubed, cubed->mlx.mlx_ptr, &i->door_closed_texture);
+		load_texture(cubed, cubed->mlx.mlx_ptr, &i->door_open_texture);
 	}
-	load_texture(cubed, cubed->mlx.mlx_ptr, &i->door_closed_texture);
-	load_texture(cubed, cubed->mlx.mlx_ptr, &i->door_open_texture);
 }
 
 static void	prepare_door(t_cubed *cubed, int x, int y)
