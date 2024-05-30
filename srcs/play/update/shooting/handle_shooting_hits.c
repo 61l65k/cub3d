@@ -6,48 +6,41 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:37:14 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 11:33:25 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:21:03 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	apply_damage_to_sprite(t_cubed *cubed, t_sprite *sprite,
-		t_sprite *prev_sprite, float damage)
+static bool	hit_sprite(t_cubed *cubed, t_sprite *sprite, t_sprite *prev_sprite,
+		float damage)
 {
 	sprite->health -= damage;
 	if (sprite->health <= 0)
 	{
 		if (prev_sprite == NULL)
-		{
 			cubed->scene.sprite_info.sprites = sprite->next;
-		}
 		else
-		{
 			prev_sprite->next = sprite->next;
-		}
 		free(sprite);
 		sprite = NULL;
 	}
+	return (true);
 }
 
-static void	apply_damage_to_spawner(t_cubed *cubed, t_sprite_spawner *spawner,
+static bool	hit_spawner(t_cubed *cubed, t_sprite_spawner *spawner,
 		t_sprite_spawner *prev_spawner, float damage)
 {
 	spawner->health -= damage;
 	if (spawner->health <= 0)
 	{
 		if (prev_spawner == NULL)
-		{
 			cubed->scene.sprite_info.spawners = spawner->next;
-		}
 		else
-		{
 			prev_spawner->next = spawner->next;
-		}
 		free(spawner);
-		spawner = NULL;
 	}
+	return (true);
 }
 
 bool	check_for_hits(t_cubed *cubed, int map_x, int map_y, float damage)
@@ -62,10 +55,7 @@ bool	check_for_hits(t_cubed *cubed, int map_x, int map_y, float damage)
 	while (sprite)
 	{
 		if ((int)sprite->x == map_x && (int)sprite->y == map_y)
-		{
-			apply_damage_to_sprite(cubed, sprite, prev_sprite, damage);
-			return (true);
-		}
+			return (hit_sprite(cubed, sprite, prev_sprite, damage));
 		prev_sprite = sprite;
 		sprite = sprite->next;
 	}
@@ -74,10 +64,7 @@ bool	check_for_hits(t_cubed *cubed, int map_x, int map_y, float damage)
 	while (spawner)
 	{
 		if ((int)spawner->x == map_x && (int)spawner->y == map_y)
-		{
-			apply_damage_to_spawner(cubed, spawner, prev_spawner, damage);
-			return (true);
-		}
+			return (hit_spawner(cubed, spawner, prev_spawner, damage));
 		prev_spawner = spawner;
 		spawner = spawner->next;
 	}

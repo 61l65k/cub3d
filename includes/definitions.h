@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   definitions.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 14:45:21 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/30 15:26:27 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define ERR_LOAD_WEAPON "Error: load_weapon() - could not load weapon\n"
 # define ERR_LOAD_TEXTURE "Error: load_texture() - could not load texture\n"
 
+# define MOUSE_SENSITIVITY 0.001
+# define MOUSE_ESCAPE_THRESHOLD 20
 # define RES_MAX_W 1920
 # define RES_MAX_H 1080
 # define RES_MAX_STR "1920x1080"

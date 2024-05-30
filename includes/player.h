@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 05:37:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 07:25:22 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:22:23 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define PLAYER_H
 
 # include <stdbool.h>
+
+# define TAKE_DAMAGE_THRESHOLD 0.5
+# define TAKE_DAMAGE_DISPLAY_TIME 10.0
+# define TAKE_DAMAGE_COOLDOWN_TIME 7.0
 
 typedef struct s_cubed	t_cubed;
 typedef struct s_sprite	t_sprite;

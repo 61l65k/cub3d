@@ -6,14 +6,11 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:03:11 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 12:55:55 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:26:06 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-#define MOUSE_SENSITIVITY 0.001
-#define MOUSE_ESCAPE_THRESHOLD 20
 
 static void	reset_mouse_position(t_cubed *cubed, int width, int height,
 		t_mouse *mouse)
