@@ -6,13 +6,14 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:40:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 13:04:56 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:07:55 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDERABLE_H
 # define RENDERABLE_H
 # define NO_WALL 1
+# define ERR_ALLOC_RENDERABLES "Failed to allocate memory for renderables"
 
 typedef struct s_ray				t_ray;
 typedef struct s_sprite				t_sprite;
@@ -33,7 +34,7 @@ typedef struct s_renderable
 {
 	double							distance;
 	t_renderable_type				type;
-	union
+	union							u_data
 	{
 		t_ray						*ray;
 		t_sprite					*sprite;

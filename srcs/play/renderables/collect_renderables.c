@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:52:03 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 12:55:04 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:07:46 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,11 @@ t_renderable	*collect_sprite_renderables(t_cubed *cubed,
 	return (renderables);
 }
 
-t_renderable	*collect_renderables(t_cubed *cubed, int *count)
+static int	count_total_renderables(t_cubed *cubed)
 {
-	int				total_count;
-	t_renderable	*renderables;
-	int				idx;
-	t_sprite		*sprite;
-	t_door			*door;
+	int			total_count;
+	t_sprite	*sprite;
+	t_door		*door;
 
 	total_count = cubed->rays.ray_count
 		+ cubed->scene.sprite_info.spawner_count;
@@ -88,9 +86,18 @@ t_renderable	*collect_renderables(t_cubed *cubed, int *count)
 		total_count++;
 		door = door->next;
 	}
+	return (total_count);
+}
+
+t_renderable	*collect_renderables(t_cubed *cubed, int *count)
+{
+	const int		total_count = count_total_renderables(cubed);
+	t_renderable	*renderables;
+	int				idx;
+
 	renderables = malloc(total_count * sizeof(t_renderable));
 	if (!renderables)
-		ft_clean_exit(cubed, "Failed to allocate memory for renderables", 0);
+		ft_clean_exit(cubed, ERR_ALLOC_RENDERABLES, 0);
 	idx = 0;
 	renderables = collect_wall_renderables(cubed, renderables, &idx);
 	renderables = collect_spawner_renderables(cubed, renderables, &idx);
