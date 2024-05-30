@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 16:35:10 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/30 13:08:19 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ void						render_wall_column(t_wall *wall, int *img,
 void						update_player_position(t_player *player,
 								const t_map *t_map);
 void						update_player_orientation(t_player *player);
-int							is_ray_facing_south(double angle);
-int							is_ray_facing_west(double angle);
 double						normalize_radian(double radian);
-int							is_wall(t_map *map, double x, double y, t_ray *ray);
 void						draw_rectangle(t_floor_ceiling *rec, int *img,
 								int res_x);
 double						get_hypotenuse(double a, double b);
