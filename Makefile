@@ -21,7 +21,7 @@ SRCS_COMMON := \
     srcs/extract/validate_map.c \
     srcs/extract/validate_scene.c \
     srcs/main.c \
-    srcs/play/draw/walls_ceiling_floor/draw_column.c \
+    srcs/play/draw/walls_ceiling_floor/draw_wall_ray.c \
     srcs/play/draw/walls_ceiling_floor/draw_floor_ceiling.c \
     srcs/play/draw/walls_ceiling_floor/get_wall_data_ray.c \
     srcs/play/draw/extras/draw_gun.c \

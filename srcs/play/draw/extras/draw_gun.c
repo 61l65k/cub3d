@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 20:20:45 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 03:08:18 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:38:47 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,18 @@ static void	draw_gun(t_cubed *cubed, t_weapon *weapon)
 static void	draw_shooting_effect(t_cubed *cubed, t_weapon *weapon)
 {
 	const t_animation	*animation = &weapon->shooting_animation;
-	const t_texture		*current_frame = &animation->frames[animation->curr_frame];
+	const t_texture		*curr_frame = &animation->frames[animation->curr_frame];
 	int					color;
 	int					x;
 	int					y;
 
 	y = -1;
-	while (++y < current_frame->height)
+	while (++y < curr_frame->height)
 	{
 		x = -1;
-		while (++x < current_frame->width)
+		while (++x < curr_frame->width)
 		{
-			color = current_frame->img.data[y * current_frame->width + x];
+			color = curr_frame->img.data[y * curr_frame->width + x];
 			if (is_not_transparent(color))
 			{
 				draw_vertical_line(cubed, weapon->left_gun_tip_x + x,

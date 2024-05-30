@@ -6,18 +6,22 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 11:59:06 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:46:32 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	calculate_tex_x(int stripe, t_sprite_render_info *info,
+static int	sprite_calculate_tex_x(int stripe, t_sprite_render_info *info,
 		t_texture *texture)
 {
-	return ((int)(256 * (stripe - (-info->sprite_width / 2
-					+ info->sprite_screen_x)) * texture->width
-			/ info->sprite_width) / 256);
+	const int	center_offset = stripe - (-info->sprite_width / 2
+			+ info->sprite_screen_x);
+	const int	scaled_texture_width = center_offset * texture->width;
+	const int	tex_x = (int)(256 * scaled_texture_width / info->sprite_width)
+		/ 256;
+
+	return (tex_x);
 }
 
 static void	draw_vertical_sprite_line(t_cubed *cubed, int stripe,
@@ -27,9 +31,10 @@ static void	draw_vertical_sprite_line(t_cubed *cubed, int stripe,
 	int			color;
 	int			tex_y;
 	int			d;
-	const int	tex_x = calculate_tex_x(stripe, info, texture);
+	const int	tex_x = sprite_calculate_tex_x(stripe, info, texture);
 
-	for (y = info->draw_start_y; y < info->draw_end_y; y++)
+	y = info->draw_start_y - 1;
+	while (++y < info->draw_end_y)
 	{
 		d = y * 256 - cubed->scene.resol.height * 128 + info->sprite_height
 			* 128;
