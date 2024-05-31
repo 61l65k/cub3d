@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 12:24:06 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 12:59:34 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,22 @@ static void	init_x_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 	rh->is_south_direction = (0 <= ray->angle && ray->angle < M_PI);
 	if (rh->is_south_direction)
 	{
-		rh->a_y = ceil(player->y);
-		rh->y_step = rh->a_y - player->y;
+		ray->y = ceil(player->y);
+		rh->y_step = ray->y - player->y;
 		rh->x_step = rh->y_step / tan(ray->angle);
-		rh->a_x = player->x + rh->x_step;
-	}
-	else
-	{
-		rh->a_y = floor(player->y);
-		rh->y_step = player->y - rh->a_y;
-		rh->x_step = rh->y_step / tan(ray->angle);
-		rh->a_x = player->x - rh->x_step;
-	}
-	ray->distance = get_hypotenuse(rh->x_step, rh->y_step);
-	if (rh->is_south_direction)
+		ray->x = player->x + rh->x_step;
+		ray->distance = get_hypotenuse(rh->x_step, rh->y_step);
 		rh->y_step = 1;
+	}
 	else
 	{
+		ray->y = floor(player->y);
+		rh->y_step = player->y - ray->y;
+		rh->x_step = rh->y_step / tan(ray->angle);
+		ray->x = player->x - rh->x_step;
+		ray->distance = get_hypotenuse(rh->x_step, rh->y_step);
 		rh->y_step = -1;
-		rh->a_y -= 1;
+		ray->y -= 1;
 	}
 	rh->x_step = rh->y_step / tan(ray->angle);
 	rh->ray_section = get_hypotenuse(rh->x_step, rh->y_step);
@@ -49,8 +46,6 @@ static void	get_x_intersection(t_ray *ray, const t_map *map,
 	t_raycast_helper	rh;
 
 	init_x_intersection_helper(&rh, ray, player);
-	ray->x = rh.a_x;
-	ray->y = rh.a_y;
 	while (1)
 	{
 		ray->obstacle = t_map_get_f(map, ray->x, ray->y);
@@ -79,25 +74,22 @@ static void	init_y_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 	rh->is_east_direction = (M_PI / 2 > ray->angle || ray->angle > M_PI * 1.5);
 	if (rh->is_east_direction)
 	{
-		rh->a_x = ceil(player->x);
-		rh->x_step = rh->a_x - player->x;
+		ray->x = ceil(player->x);
+		rh->x_step = ray->x - player->x;
 		rh->y_step = rh->x_step * tan(ray->angle);
-		rh->a_y = player->y + rh->y_step;
-	}
-	else
-	{
-		rh->a_x = floor(player->x);
-		rh->x_step = player->x - rh->a_x;
-		rh->y_step = rh->x_step * tan(ray->angle);
-		rh->a_y = player->y - rh->y_step;
-	}
-	ray->distance = get_hypotenuse(rh->x_step, rh->y_step);
-	if (rh->is_east_direction)
+		ray->y = player->y + rh->y_step;
+		ray->distance = get_hypotenuse(rh->x_step, rh->y_step);
 		rh->x_step = 1;
+	}
 	else
 	{
+		ray->x = floor(player->x);
+		rh->x_step = player->x - ray->x;
+		rh->y_step = rh->x_step * tan(ray->angle);
+		ray->y = player->y - rh->y_step;
+		ray->distance = get_hypotenuse(rh->x_step, rh->y_step);
 		rh->x_step = -1;
-		rh->a_x -= 1;
+		ray->x -= 1;
 	}
 	rh->y_step = rh->x_step * tan(ray->angle);
 	rh->ray_section = get_hypotenuse(rh->x_step, rh->y_step);
@@ -109,8 +101,6 @@ static void	get_y_intersection(t_ray *ray, const t_map *map,
 	t_raycast_helper	rh;
 
 	init_y_intersection_helper(&rh, ray, player);
-	ray->x = rh.a_x;
-	ray->y = rh.a_y;
 	while (1)
 	{
 		ray->obstacle = t_map_get_f(map, ray->x, ray->y);
