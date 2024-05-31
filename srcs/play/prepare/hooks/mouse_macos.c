@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_macos.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 10:03:11 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 12:56:46 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:18:51 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-#define MOUSE_SENSITIVITY 0.001
-#define MOUSE_ESCAPE_THRESHOLD 20
+#include "mouse_macos.h"
 
 static void	reset_mouse_position(t_cubed *cubed, int width, int height,
 		t_mouse *mouse)
