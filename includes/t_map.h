@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:03:55 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/30 22:22:49 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 16:00:42 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char		t_map_get_f(const t_map *t_map, double x, double y);
 int			t_map_insert(t_map *t_map, int x, int y, char new_value);
 int			t_map_insert_f(t_map *t_map, double x, double y, char new_value);
 t_coords	t_map_get_collision_checked_coords(const t_map *t_map,
+				t_coords new, t_coords old);
+t_coords	t_map_get_collision_checked_coords_npc(const t_map *t_map,
 				t_coords new, t_coords old);
 int			t_map_add_entity(t_map *t_map, t_ent new_entity);
 t_ent_type	t_map_get_entity_type_at(const t_map *t_map, t_coords pos);

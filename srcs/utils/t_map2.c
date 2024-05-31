@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 21:51:15 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/30 22:24:15 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 16:00:26 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,54 @@ t_ent_type	t_map_get_entity_type_at(const t_map *t_map, t_coords pos)
 		i++;
 	}
 	return (ENT_NONE);
+}
+
+t_coords	t_map_get_collision_checked_coords(const t_map *t_map,
+	t_coords new, t_coords old)
+{
+	char		map_char;
+
+	new.x = fmin(fmax(new.x, 0.01), t_map->width - 0.01);
+	new.y = fmin(fmax(new.y, 0.01), t_map->height - 0.01);
+	map_char = t_map_get_f(t_map, new.x, new.y);
+	if (map_char != '1')
+		return (new);
+	map_char = t_map_get_f(t_map, old.x, new.y);
+	if (map_char != '1')
+	{
+		new.x = old.x;
+		return (new);
+	}
+	map_char = t_map_get_f(t_map, new.x, old.y);
+	if (map_char != '1')
+	{
+		new.y = old.y;
+		return (new);
+	}
+	return (old);
+}
+
+t_coords	t_map_get_collision_checked_coords_npc(const t_map *t_map,
+	t_coords new, t_coords old)
+{
+	char		map_char;
+
+	new.x = fmin(fmax(new.x, 0.01), t_map->width - 0.01);
+	new.y = fmin(fmax(new.y, 0.01), t_map->height - 0.01);
+	map_char = t_map_get_f(t_map, new.x, new.y);
+	if (map_char != '1' && map_char != 'D')
+		return (new);
+	map_char = t_map_get_f(t_map, old.x, new.y);
+	if (map_char != '1' && map_char != 'D')
+	{
+		new.x = old.x;
+		return (new);
+	}
+	map_char = t_map_get_f(t_map, new.x, old.y);
+	if (map_char != '1' && map_char != 'D')
+	{
+		new.y = old.y;
+		return (new);
+	}
+	return (old);
 }
