@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_scene.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 14:49:26 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 16:22:03 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,8 @@ static int	extract_game_data(t_scenedata *scene, char **data)
 		return (fill_texture(data[1], &scene->west_texture));
 	else if (is_valid_game_identifier("EA", data))
 		return (fill_texture(data[1], &scene->east_texture));
-	else if (extract_scene_extras(scene, data) < 0)
-		return (-1);
-	else if (data[0][0] != '\n')
-		return (ft_fprintf(2, "Error\nUnknown identifier: %s", data[0]), -1);
+	else
+		return (extract_scene_extras(scene, data));
 	return (0);
 }
 

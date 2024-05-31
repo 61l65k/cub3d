@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 03:05:49 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 15:13:02 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:35:16 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static void	prepare_door_textures(t_cubed *cubed)
 		i->door_open_texture.path = ft_strdup(open);
 		if (!i->door_open_texture.path || !i->door_closed_texture.path)
 			ft_clean_exit(cubed, CUB_ERROR_MALLOC, 0);
-		load_texture(cubed, cubed->mlx.mlx_ptr, &i->door_closed_texture);
-		load_texture(cubed, cubed->mlx.mlx_ptr, &i->door_open_texture);
 	}
+	load_texture(cubed, cubed->mlx.mlx_ptr, &i->door_closed_texture);
+	load_texture(cubed, cubed->mlx.mlx_ptr, &i->door_open_texture);
 }
 
 static void	prepare_door(t_cubed *cubed, int x, int y)
@@ -66,7 +66,6 @@ static void	prepare_door(t_cubed *cubed, int x, int y)
 	new_door->y = y + 0.5;
 	new_door->next = cubed->scene.sprite_info.doors;
 	cubed->scene.sprite_info.doors = new_door;
-	prepare_door_textures(cubed);
 }
 
 void	prepare_map_specials(t_cubed *cubed)
@@ -77,6 +76,7 @@ void	prepare_map_specials(t_cubed *cubed)
 
 	cubed->scene.sprite_info.spawner_count = 0;
 	y = -1;
+	prepare_door_textures(cubed);
 	while (++y < (int)map->height)
 	{
 		x = -1;

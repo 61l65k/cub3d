@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_screne_extras.c                            :+:      :+:    :+:   */
+/*   extract_scene_extras.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:47:17 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 09:58:04 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:35:50 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ int	extract_scene_extras(t_scenedata *scene, char **data)
 	else if (is_valid_game_identifier("SPAWNER", data))
 		return (fill_texture(data[1], &scene->sprite_info.spawner_texture));
 	else if (is_valid_game_identifier("DOOR_OPEN", data))
-		return (fill_texture(data[1], &scene->sprite_info.spawner_texture));
+		return (fill_texture(data[1], &scene->sprite_info.door_open_texture));
 	else if (is_valid_game_identifier("DOOR_CLOSED", data))
-		return (fill_texture(data[1], &scene->sprite_info.spawner_texture));
+		return (fill_texture(data[1], &scene->sprite_info.door_closed_texture));
+	else if (data[0][0] != '\n')
+		return (ft_fprintf(2, "Error\nUnknown identifier: %s", data[0]), -1);
 	return (0);
 }
