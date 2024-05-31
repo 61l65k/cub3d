@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   input_game_over_macos.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 07:57:03 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 20:21:06 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 21:38:17 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void restart_game(t_cubed *cubed)
+static void	restart_game(t_cubed *cubed)
 {
 	cubed->reset = true;
 	ft_clean_exit(cubed, NULL, cubed->reset);

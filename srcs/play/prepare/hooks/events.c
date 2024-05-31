@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 23:05:38 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 21:40:03 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int			handle_mouse_move(int x, int y, t_cubed *cubed);
 int			handle_mouse_button(int button, int x, int y, t_cubed *cubed);
+void		key_press_movement(int keycode, t_cubed *cubed);
+void		key_release_movement(int keycode, t_cubed *cubed);
 
 static int	close_game_x(t_cubed *cubed)
 {
@@ -23,28 +25,15 @@ static int	close_game_x(t_cubed *cubed)
 
 static int	key_press_game_running(t_cubed *cubed, int keycode)
 {
+	key_press_movement(keycode, cubed);
 	if (keycode == K_Q)
 		handle_weapon_switch(K_Q, cubed);
 	if (keycode == K_ESC)
 		ft_clean_exit(cubed, NULL, 0);
-	if (keycode == K_W || keycode == K_FORWARD_ARROW)
-		cubed->player.z_move += 1;
-	if (keycode == K_S || keycode == K_BACK_ARROW)
-		cubed->player.z_move -= 1;
-	if (keycode == K_D)
-		cubed->player.x_move += 1;
-	if (keycode == K_A)
-		cubed->player.x_move -= 1;
-	if (keycode == K_LEFT_SHIFT)
-		cubed->player.move_speed *= 2;
 	if (keycode == K_SPACE)
 		cubed->player.shooting = 1;
 	if (keycode == K_M)
 		cubed->game_state = GAME_STATE_MENU;
-	if (keycode == K_LEFT_ARROW)
-		cubed->player.turn_direction -= 1;
-	if (keycode == K_RIGHT_ARROW)
-		cubed->player.turn_direction += 1;
 	return (1);
 }
 
@@ -61,20 +50,7 @@ static int	key_press(int keycode, t_cubed *cubed)
 
 static int	key_released(int keycode, t_cubed *cubed)
 {
-	if (keycode == K_LEFT_ARROW)
-		cubed->player.turn_direction += 1;
-	if (keycode == K_RIGHT_ARROW)
-		cubed->player.turn_direction -= 1;
-	if (keycode == K_W || keycode == K_FORWARD_ARROW)
-		cubed->player.z_move -= 1;
-	if (keycode == K_S || keycode == K_BACK_ARROW)
-		cubed->player.z_move += 1;
-	else if (keycode == K_D)
-		cubed->player.x_move -= 1;
-	if (keycode == K_A)
-		cubed->player.x_move += 1;
-	if (keycode == K_LEFT_SHIFT)
-		cubed->player.move_speed /= 2;
+	key_release_movement(keycode, cubed);
 	if (keycode == K_SPACE)
 		cubed->player.shooting = 0;
 	return (1);
