@@ -18,7 +18,7 @@
 static void	reset_mouse_position(t_cubed *cubed, int width, int height,
 		t_mouse *mouse)
 {
-	mlx_mouse_move(cubed->mlx.mlx_ptr, cubed->mlx.win, width / 2, height / 2);
+	mlx_mouse_move(cubed->mlx.win, width / 2, height / 2);
 	mouse->last_x = width / 2;
 	mouse->mouse_was_reset = 1;
 	mouse->mouse_skip_update = 1;
@@ -99,7 +99,7 @@ int	handle_mouse_button(int button, int x, int y, t_cubed *cubed)
 			cubed->mouse.active = 0;
 			mlx_mouse_show();
 		}
-		mlx_mouse_move(cubed->mlx.mlx_ptr, cubed->mlx.win, x_half, y_half);
+		mlx_mouse_move(cubed->mlx.win, x_half, y_half);
 	}
 	return (0);
 }

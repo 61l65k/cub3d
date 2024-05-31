@@ -73,7 +73,7 @@ SRCS := $(SRCS_COMMON) $(SRCS_PLATFORM)
 OBJS				:=		$(SRCS:%.c=$(PATH_BUILD)/%.o)
 DEPS				:=		$(OBJS:.o=.d)
 
-FLAG_INC			:= 		$(addprefix -I, includes $(PATH_LIBFT) $(PATH_LIBMLX_LINUX) $(PATH_LIBMLX_MAC))
+FLAG_INC			:= 		$(addprefix -I, includes $(PATH_LIBFT) $(PATH_LIBMLX_MAC) $(PATH_LIBMLX_LINUX))
 FLAGS_COMP			:= 		-O3 -Wall -Wextra -Werror $(FLAG_INC) -MMD -MP -g 
 
 FLAG_LIBFT			:=		-L$(PATH_LIBFT) -lft 
