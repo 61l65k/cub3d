@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:52:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 16:22:03 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:48:01 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	get_resolution(char *res_buffer, t_resolution *resolution)
 	long	tmp_res[2];
 
 	if (resolution->width != 0 || resolution->height != 0)
-		return (ft_fprintf(2, ERR_RESOLUTION"Found more than 1\n"), -1);
+		return (ft_fprintf(2, ERR_RESOLUTION "Found more than 1\n"), -1);
 	res = ft_splits(res_buffer, "x");
 	if (!res)
 		return (perror(CUB_ERROR_MALLOC "get_resolution()"), -1);
@@ -29,8 +29,8 @@ static int	get_resolution(char *res_buffer, t_resolution *resolution)
 		return (ft_fprintf(2, ERR_RESOLUTION), free_2d_array(res), -1);
 	tmp_res[0] = str_to_long(res[0]);
 	tmp_res[1] = str_to_long(res[1]);
-	if (tmp_res[0] < 0 || tmp_res[1] < 0
-		|| tmp_res[0] > INT_MAX || tmp_res[1] > INT_MAX)
+	if (tmp_res[0] < 0 || tmp_res[1] < 0 || tmp_res[0] > INT_MAX
+		|| tmp_res[1] > INT_MAX)
 		return (ft_fprintf(2, ERR_RESOLUTION), free_2d_array(res), -1);
 	resolution->width = tmp_res[0];
 	resolution->height = tmp_res[1];
@@ -64,6 +64,7 @@ static int	get_validate_rgb(char *color_buffer, t_color *color)
 		|| !is_valid_color_value(&color->blue, rgb[2]))
 		return (perror(ERR_RGB), free_2d_array(rgb), -1);
 	color->argb = argb_to_int(0, color->red, color->green, color->blue);
+	color->initialized = true;
 	return (free_2d_array(rgb), 0);
 }
 
@@ -71,19 +72,21 @@ static int	extract_game_data(t_scenedata *scene, char **data)
 {
 	if (data[0] == 0)
 		return (0);
-	if (is_valid_game_identifier("C", data))
+	if (is_valid_game_identifier("C", data)
+		&& !scene->ceiling_color.initialized)
 		return (get_validate_rgb(data[1], &scene->ceiling_color));
-	else if (is_valid_game_identifier("F", data))
+	else if (is_valid_game_identifier("F", data)
+		&& !scene->floor_color.initialized)
 		return (get_validate_rgb(data[1], &scene->floor_color));
 	else if (is_valid_game_identifier("R", data))
 		return (get_resolution(data[1], &scene->resol));
-	else if (is_valid_game_identifier("NO", data))
+	else if (is_valid_game_identifier("NO", data) && !scene->north_texture.path)
 		return (fill_texture(data[1], &scene->north_texture));
-	else if (is_valid_game_identifier("SO", data))
+	else if (is_valid_game_identifier("SO", data) && !scene->south_texture.path)
 		return (fill_texture(data[1], &scene->south_texture));
-	else if (is_valid_game_identifier("WE", data))
+	else if (is_valid_game_identifier("WE", data) && !scene->west_texture.path)
 		return (fill_texture(data[1], &scene->west_texture));
-	else if (is_valid_game_identifier("EA", data))
+	else if (is_valid_game_identifier("EA", data) && !scene->east_texture.path)
 		return (fill_texture(data[1], &scene->east_texture));
 	else
 		return (extract_scene_extras(scene, data));

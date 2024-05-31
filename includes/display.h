@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:36:17 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 12:34:31 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:47:44 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_color
 	int			green;
 	int			blue;
 	int			argb;
+	bool 		initialized;
 }				t_color;
 
 typedef struct s_texture
