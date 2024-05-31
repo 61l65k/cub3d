@@ -24,11 +24,6 @@ static void	free_all_mlx(t_cubed *cubed)
 		mlx_destroy_image(cubed->mlx.mlx_ptr, cubed->mlx.img.img_ptr);
 	if (cubed->mlx.win)
 		mlx_destroy_window(cubed->mlx.mlx_ptr, cubed->mlx.win);
-	if (cubed->mlx.mlx_ptr)
-	{
-		free(cubed->mlx.mlx_ptr);
-		cubed->mlx.mlx_ptr = 0;
-	}
 }
 
 void	free_cubed(t_cubed *cubed)
