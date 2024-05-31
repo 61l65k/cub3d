@@ -57,13 +57,17 @@ SRCS_COMMON := \
     srcs/utils/t_map.c \
 	srcs/utils/t_map2.c \
     srcs/utils/str_to_long.c
+    
+FLAG_INC			:= 		$(addprefix -I, includes $(PATH_LIBFT))
 
 ifeq ($(OS),Linux)
+    FLAG_INC += -I$(PATH_LIBMLX_LINUX)
     SRCS_PLATFORM := \
         srcs/exit/exit_linux.c \
         srcs/play/prepare/hooks/mouse_linux.c \
 		srcs/play/draw/gameover/input_game_over_linux.c
 else
+    FLAG_INC += -I$(PATH_LIBMLX_MAC)
     SRCS_PLATFORM := \
         srcs/exit/exit_macos.c \
         srcs/play/prepare/hooks/mouse_macos.c \
@@ -74,7 +78,6 @@ SRCS := $(SRCS_COMMON) $(SRCS_PLATFORM)
 OBJS				:=		$(SRCS:%.c=$(PATH_BUILD)/%.o)
 DEPS				:=		$(OBJS:.o=.d)
 
-FLAG_INC			:= 		$(addprefix -I, includes $(PATH_LIBFT) $(PATH_LIBMLX_MAC) $(PATH_LIBMLX_LINUX))
 FLAGS_COMP			:= 		-O3 -Wall -Wextra -Werror $(FLAG_INC) -MMD -MP -g 
 
 FLAG_LIBFT			:=		-L$(PATH_LIBFT) -lft 
@@ -82,12 +85,10 @@ FLAG_LIBMLX_MAC		:=		-L$(PATH_LIBMLX_MAC) -lmlx -framework OpenGL -framework App
 FLAG_LIBMLX_LINUX	:=		-L$(PATH_LIBMLX_LINUX) -lmlx -lX11 -lXext
 
 ifeq ($(OS),Linux)
-	FLAGS_LINKING := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_LINUX)
-	FLAGS_COMP += -D LINUX
+    FLAGS_LINKING := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_LINUX)
+    FLAGS_COMP += -D LINUX
 else
-	FLAGS_LINKING := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_MAC)
-	GLFW_PATH_MAC = /Users/$(USER)/.brew/opt/glfw/lib/
-	FLAGS_LINKING += -L$(GLFW_PATH_MAC)
+    FLAGS_LINKING := -lm $(FLAG_LIBFT) $(FLAG_LIBMLX_MAC)
 endif
 
 all:						init $(NAME)
