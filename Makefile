@@ -31,7 +31,6 @@ SRCS_COMMON := \
     srcs/play/draw/gamemenu/draw_menu.c \
     srcs/play/draw/gamemenu/input_game_menu.c \
     srcs/play/draw/gameover/draw_game_over.c \
-    srcs/play/draw/gameover/input_game_over.c \
     srcs/play/draw/minimap/minimap.c \
     srcs/play/play.c \
     srcs/play/prepare/player.c \
@@ -62,11 +61,13 @@ SRCS_COMMON := \
 ifeq ($(OS),Linux)
     SRCS_PLATFORM := \
         srcs/exit/exit_linux.c \
-        srcs/play/prepare/hooks/mouse_linux.c
+        srcs/play/prepare/hooks/mouse_linux.c \
+		srcs/play/draw/gameover/input_game_over_linux.c
 else
     SRCS_PLATFORM := \
         srcs/exit/exit_macos.c \
-        srcs/play/prepare/hooks/mouse_macos.c
+        srcs/play/prepare/hooks/mouse_macos.c \
+		srcs/play/draw/gameover/input_game_over_macos.c
 endif
 
 SRCS := $(SRCS_COMMON) $(SRCS_PLATFORM)
