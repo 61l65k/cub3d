@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 14:34:22 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 15:00:51 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	perform_dda(t_ray *ray, const t_map *map, const t_player *player,
 {
 	t_raycast_helper	rh;
 
-	if (side)
+	if (side == Y_AXIS_INTERSECTION)
 		init_y_intersection_helper(&rh, ray, player);
 	else
 		init_x_intersection_helper(&rh, ray, player);
@@ -103,23 +103,19 @@ void	update_rays(t_rays *rays, const t_map *map, const t_player *player)
 {
 	double			ray_angle;
 	int				i;
-	t_ray			x_intersection;
-	t_ray			y_intersection;
-	const double	ray_angle_step = rays->field_of_view
-		/ rays->ray_count;
+	t_ray			y_axis_intersection;
+	const double	ray_angle_step = rays->field_of_view / rays->ray_count;
 
 	ray_angle = player->rotation_angle - rays->field_of_view / 2;
 	i = -1;
 	while (++i < rays->ray_count)
 	{
-		x_intersection.angle = normalize_radian(ray_angle);
-		y_intersection.angle = x_intersection.angle;
-		perform_dda(&x_intersection, map, player, 0);
-		perform_dda(&y_intersection, map, player, 1);
-		if (x_intersection.distance <= y_intersection.distance)
-			rays->ray_array[i] = x_intersection;
-		else
-			rays->ray_array[i] = y_intersection;
+		y_axis_intersection.angle = normalize_radian(ray_angle);
+		rays->ray_array[i].angle = y_axis_intersection.angle;
+		perform_dda(&rays->ray_array[i], map, player, X_AXIS_INTERSECTION);
+		perform_dda(&y_axis_intersection, map, player, Y_AXIS_INTERSECTION);
+		if (y_axis_intersection.distance < rays->ray_array[i].distance)
+			rays->ray_array[i] = y_axis_intersection;
 		ray_angle += ray_angle_step;
 	}
 }
