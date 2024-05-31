@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 13:53:30 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 13:44:40 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 14:10:21 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	get_texture_x_offset(t_ray *ray, int texture_width)
 	double	remainder;
 	int		offset;
 
-	if (ray->y  == (int)ray->y)
+	if (ray->y == (int)ray->y)
 		remainder = ray->x - floor(ray->x);
 	else
 		remainder = ray->y - floor(ray->y);
