@@ -39,6 +39,7 @@ SRCS_COMMON := \
     srcs/play/prepare/textures/prepare_map_specials.c \
     srcs/play/prepare/textures/weapon_positions.c \
 	srcs/play/prepare/hooks/events.c \
+	srcs/play/prepare/hooks/keyboard_movement.c \
     srcs/play/renderables/collect_renderables.c \
     srcs/play/renderables/renderables.c \
     srcs/play/update/cast_ray/ray_cast.c \

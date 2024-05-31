@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 21:40:42 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 21:23:00 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@
 #  define K_S 1
 #  define K_D 2
 #  define K_Q 12
+#  define K_R 15
+#  define K_F 3
 #  define K_LEFT_ARROW 123
 #  define K_RIGHT_ARROW 124
 #  define K_SPACE 49
