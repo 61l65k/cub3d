@@ -68,7 +68,7 @@ typedef struct s_color
 	int			green;
 	int			blue;
 	int			argb;
-	bool 		initialized;
+	bool		initialized;
 }				t_color;
 
 typedef struct s_texture
