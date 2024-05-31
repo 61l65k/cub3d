@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 13:45:20 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 14:10:06 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	init_x_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 		const t_player *player)
 {
 	const bool	is_south = (0 <= ray->angle && ray->angle < M_PI);
-	
+
 	if (is_south)
 	{
 		ray->orientation = 'S';
@@ -43,36 +43,11 @@ static void	init_x_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 	rh->ray_section = get_hypotenuse(rh->x_step, rh->y_step);
 }
 
-static void	get_x_intersection(t_ray *ray, const t_map *map,
-		const t_player *player)
-{
-	t_raycast_helper	rh;
-
-	init_x_intersection_helper(&rh, ray, player);
-	while (1)
-	{
-		ray->obstacle = t_map_get_f(map, ray->x, ray->y);
-		if (ray->obstacle == '\0')
-		{
-			ray->distance = INT_MAX;
-			ray->orientation = 0;
-			break ;
-		}
-		if (ray->obstacle == '1' || ray->obstacle == 'D')
-		{
-			break ;
-		}
-		ray->x += rh.x_step;
-		ray->y += rh.y_step;
-		ray->distance += rh.ray_section;
-	}
-}
-
 static void	init_y_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 		const t_player *player)
 {
 	const bool	is_east = (M_PI / 2 > ray->angle || ray->angle > M_PI * 1.5);
-	
+
 	if (is_east)
 	{
 		ray->orientation = 'E';
@@ -98,12 +73,15 @@ static void	init_y_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 	rh->ray_section = get_hypotenuse(rh->x_step, rh->y_step);
 }
 
-static void	get_y_intersection(t_ray *ray, const t_map *map,
-	const t_player *player)
+static void	perform_dda(t_ray *ray, const t_map *map, const t_player *player,
+	int side)
 {
 	t_raycast_helper	rh;
 
-	init_y_intersection_helper(&rh, ray, player);
+	if (side)
+		init_y_intersection_helper(&rh, ray, player);
+	else
+		init_x_intersection_helper(&rh, ray, player);
 	while (1)
 	{
 		ray->obstacle = t_map_get_f(map, ray->x, ray->y);
@@ -136,8 +114,8 @@ void	update_rays(t_cubed *cubed)
 	{
 		x_intersection.angle = normalize_radian(ray_angle);
 		y_intersection.angle = x_intersection.angle;
-		get_x_intersection(&x_intersection, &cubed->scene.map, &cubed->player);
-		get_y_intersection(&y_intersection, &cubed->scene.map, &cubed->player);
+		perform_dda(&x_intersection, &cubed->scene.map, &cubed->player, 0);
+		perform_dda(&y_intersection, &cubed->scene.map, &cubed->player, 1);
 		if (x_intersection.distance <= y_intersection.distance)
 			cubed->rays.ray_array[i] = x_intersection;
 		else
