@@ -73,6 +73,7 @@
 #  define K_A 0
 #  define K_S 1
 #  define K_D 2
+#  define K_Q 12
 #  define K_LEFT_ARROW 123
 #  define K_RIGHT_ARROW 124
 #  define K_SPACE 49
@@ -80,6 +81,7 @@
 #  define K_ENTER 36
 #  define K_FORWARD_ARROW 126
 #  define K_BACK_ARROW 125
+#  define K_LEFT_SHIFT 257
 # else
 #  define RIGHT_CLICK 3
 #  define K_ENTER 65293
