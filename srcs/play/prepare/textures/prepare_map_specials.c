@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 03:05:49 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 18:21:29 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:13:02 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static void	prepare_spawner(t_cubed *cubed, int x, int y)
 static void	prepare_door_textures(t_cubed *cubed)
 {
 	t_sprite_info	*i;
-	const char		*closed = "./assets/sprites/runed_door.xpm";
-	const char		*open = "./assets/sprites/open_door.xpm";
+	const char		*closed = "./assets/default/runed_door.xpm";
+	const char		*open = "./assets/default/open_door.xpm";
 
 	i = &cubed->scene.sprite_info;
 	if (!i->door_open_texture.path || !i->door_closed_texture.path)

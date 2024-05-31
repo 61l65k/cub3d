@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 20:20:45 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 13:38:47 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:06:04 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	draw_gun(t_cubed *cubed, t_weapon *weapon)
 		while (++x < gun_texture->width)
 		{
 			color = gun_texture->img.data[y * gun_texture->width + x];
-			if ((unsigned int)color != 0xFF000000)
+			if (is_not_transparent(color))
 				draw_vertical_line(cubed, weapon->gun_pos_x + x,
 					weapon->gun_pos_y + y, color);
 		}

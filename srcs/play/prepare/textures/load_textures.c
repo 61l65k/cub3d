@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:36 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 12:29:38 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:14:12 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	load_game_over_image(t_cubed *cubed)
 {
 	t_texture	*gme;
-	const char	*gme_path = "./assets/gameover.xpm";
+	const char	*gme_path = "./assets/default/gameover.xpm";
 
 	gme = &cubed->game_over_texture;
 	gme->path = ft_strdup(gme_path);
@@ -46,8 +46,8 @@ void	load_texture(t_cubed *cubed, void *mlx, t_texture *texture)
 static void	load_sprite_textures(t_cubed *cubed)
 {
 	t_sprite_info	*i;
-	const char		*sprite = "./assets/sprites/boggart.xpm";
-	const char		*spawner = "./assets/sprites/spawner.xpm";
+	const char		*sprite = "./assets/default/boggart.xpm";
+	const char		*spawner = "./assets/default/spawner.xpm";
 
 	i = &cubed->scene.sprite_info;
 	if (!i->sprite_texture.path)
