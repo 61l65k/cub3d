@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:55:16 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/31 19:45:44 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 21:03:43 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	update_sprite_position(t_sprite *sprite,
 		sprite->y + dir.y * sprite->speed * SPRITE_SPEED_FACTOR};
 	const t_coords	new_pos
 		= t_map_get_collision_checked_coords_npc(map, proposed_pos, old_pos);
-	
+
 	if (distance < 32)
 		t_map_add_entity(map, (t_ent){new_pos, ENT_GENERIC});
 	sprite->x = new_pos.x;
