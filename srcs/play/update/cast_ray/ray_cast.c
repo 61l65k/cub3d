@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 15:00:51 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 23:00:38 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,9 @@ static void	perform_dda(t_ray *ray, const t_map *map, const t_player *player,
 			ray->orientation = 0;
 			break ;
 		}
-		if (ray->obstacle == '1' || ray->obstacle == 'D')
+		if (ray->obstacle == '1')
+			break ;
+		if (ray->obstacle == 'D' && ray->distance > DOOR_OPENING_DISTANCE)
 			break ;
 		ray->x += rh.x_step;
 		ray->y += rh.y_step;
