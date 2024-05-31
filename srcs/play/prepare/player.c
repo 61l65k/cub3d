@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:17:14 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 16:11:47 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:28:51 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,14 @@ void	prepare_player(t_cubed *cubed)
 	ft_memset(player, 0, sizeof(t_player));
 	player->x_move = 0;
 	player->z_move = 0;
-	player->move_speed = 0.02;
 	player->turn_direction = 0;
-	player->rotation_speed = deg2rad(0.5);
+	player->move_speed = 0.03;
+	player->rotation_speed = deg2rad(0.6);
+	if (!LINUX)
+	{
+		player->move_speed *= 2.5;
+		player->rotation_speed *= 2.5;
+	}
 	player->dir_x = cos(player->rotation_angle);
 	player->dir_y = sin(player->rotation_angle);
 	player->plane_x = -player->dir_y * 0.66;
