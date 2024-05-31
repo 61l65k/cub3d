@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 19:01:26 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:43:07 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,13 @@ static void	draw_healthbar_line(t_cubed *cubed, int stripe,
 	int	health_y;
 	int	health_color;
 
-	if (stripe >= info->health_bar.bar_x && stripe < info->health_bar.bar_x
-		+ info->health_bar.bar_width)
+	if (stripe >= info->health_bar.x && stripe < info->health_bar.x
+		+ info->health_bar.width)
 	{
-		health_bar_end_x = info->health_bar.bar_x
-			+ (int)(info->health_bar.bar_width
+		health_bar_end_x = info->health_bar.x + (int)(info->health_bar.width
 				* info->health_bar.health_percentage);
-		health_y = info->health_bar.bar_y;
-		while (health_y < info->health_bar.bar_y + info->health_bar.bar_height)
+		health_y = info->health_bar.y;
+		while (health_y < info->health_bar.y + info->health_bar.height)
 		{
 			if (health_y >= 0 && health_y < cubed->scene.resol.height)
 			{

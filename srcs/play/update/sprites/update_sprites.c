@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 18:24:24 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:42:30 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_sprite	*create_sprite_node(t_cubed *cubed, double x, double y,
 {
 	t_sprite	*new_sprite;
 
-	new_sprite = malloc(sizeof(t_sprite));
+	new_sprite = ft_calloc(1, sizeof(t_sprite));
 	if (!new_sprite)
 		ft_clean_exit(cubed, ERR_SPRITE_ALLOC, 0);
 	new_sprite->x = x;
@@ -26,7 +26,6 @@ t_sprite	*create_sprite_node(t_cubed *cubed, double x, double y,
 	new_sprite->texture = *texture;
 	new_sprite->speed = 0.01;
 	new_sprite->health = SPRITE_MAX_HEALTH;
-	new_sprite->next = NULL;
 	return (new_sprite);
 }
 
@@ -61,8 +60,8 @@ static void	update_spawners(t_cubed *cubed)
 	}
 }
 
-void	update_sprite_position(t_sprite *sprite,
-				const t_player *player, t_map *map);
+void		update_sprite_position(t_sprite *sprite, const t_player *player,
+				t_map *map);
 
 static void	update_all_sprites(t_cubed *cubed)
 {

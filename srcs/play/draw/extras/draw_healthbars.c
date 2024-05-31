@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:21:40 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 17:45:48 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:34:29 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	init_health_bar(t_player *p, int screen_width, int screen_height)
 {
-	p->health_bar.bar_width = screen_width / 5;
-	p->health_bar.bar_height = screen_height / 20 - 5;
-	p->health_bar.bar_x = screen_width / 50;
-	p->health_bar.bar_y = screen_height - p->health_bar.bar_height
+	p->health_bar.width = screen_width / 5;
+	p->health_bar.height = screen_height / 20 - 5;
+	p->health_bar.x = screen_width / 50;
+	p->health_bar.y = screen_height - p->health_bar.height
 		- screen_height / 50;
 	p->health_bar.health_percentage = (float)p->health
 		/ (float)PLAYER_MAX_HEALTH;
@@ -27,11 +27,11 @@ void	init_health_bar(t_player *p, int screen_width, int screen_height)
 static void	draw_player_health_bar(t_cubed *cubed)
 {
 	const t_health_bar	*hb = &cubed->player.health_bar;
-	const t_rectangle	background = {hb->bar_x, hb->bar_y, hb->bar_width,
-		hb->bar_height, RED, BLACK, 0};
-	const t_rectangle	foreground = {hb->bar_x, hb->bar_y,
-		(int)(hb->bar_width * hb->health_percentage),
-		hb->bar_height, HBAR_GREEN, BLACK, 0};
+	const t_rectangle	background = {hb->x, hb->y, hb->width,
+		hb->height, RED, BLACK, 0};
+	const t_rectangle	foreground = {hb->x, hb->y,
+		(int)(hb->width * hb->health_percentage),
+		hb->height, HBAR_GREEN, BLACK, 0};
 
 	draw_rectangle(&background, cubed->mlx.img.data, cubed->scene.resol.width);
 	draw_rectangle(&foreground, cubed->mlx.img.data, cubed->scene.resol.width);

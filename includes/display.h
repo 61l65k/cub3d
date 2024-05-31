@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:36:17 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 23:21:40 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:34:31 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ typedef struct s_wall
 
 typedef struct s_health_bar
 {
-	int			bar_x;
-	int			bar_y;
-	int			bar_width;
-	int			bar_height;
+	int			x;
+	int			y;
+	int			width;
+	int			height;
 	float		health_percentage;
 	bool		initialized;
 }				t_health_bar;
