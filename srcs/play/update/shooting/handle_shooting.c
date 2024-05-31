@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_shooting.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 14:01:28 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:45:52 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,6 @@ static void	handle_wrench_shooting(t_cubed *cubed)
 		t_map_insert_f(&cubed->scene.map, coor[0], coor[1], '1');
 }
 
-static void	destroy_adjacent_walls(t_cubed *cubed, int map_x, int map_y,
-		int depth)
-{
-	int	dx;
-	int	dy;
-
-	if (depth == 3 || t_map_get(&cubed->scene.map, map_x, map_y) != '1')
-		return ;
-	t_map_insert(&cubed->scene.map, map_x, map_y, '0');
-	depth = depth + 1;
-	dx = -2;
-	while (++dx <= 1)
-	{
-		dy = -2;
-		while (++dy <= 1)
-		{
-			if (dx != 0 || dy != 0)
-				destroy_adjacent_walls(cubed, map_x + dx, map_y + dy, depth);
-		}
-	}
-}
-
 static void	handle_raygun_shooting(t_cubed *cubed)
 {
 	const int	middle_ray_index = cubed->scene.resol.width / 2;
@@ -69,7 +47,7 @@ static void	handle_raygun_shooting(t_cubed *cubed)
 	if (traverse_and_apply_damage(cubed, middle_ray, 100, 10))
 		return ;
 	if (t_map_get(&cubed->scene.map, map_x, map_y) == '1')
-		destroy_adjacent_walls(cubed, map_x, map_y, 0);
+		t_map_insert(&cubed->scene.map, map_x, map_y, '0');
 }
 
 void	handle_shooting(t_cubed *cubed)

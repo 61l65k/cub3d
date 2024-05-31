@@ -7,7 +7,6 @@ SPAWNER ./assets/themes/hell/hell_spawner.xpm
 SPRITE ./assets/themes/hell/imp.xpm
 DOOR_OPEN ./assets/themes/hell/hell_door_open.xpm
 DOOR_CLOSED ./assets/themes/hell/hell_door_closed.xpm
-DOOR_CLOSED ./assets/themes/hell/hell_door_closed.xpm
 
 F 0,0,0
 C 150,0,0
