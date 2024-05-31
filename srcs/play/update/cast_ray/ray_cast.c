@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 12:59:34 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 13:20:00 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 static void	init_x_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 		const t_player *player)
 {
-	rh->is_south_direction = (0 <= ray->angle && ray->angle < M_PI);
-	if (rh->is_south_direction)
+	const bool	is_south = (0 <= ray->angle && ray->angle < M_PI);
+	
+	if (is_south)
 	{
+		ray->orientation = 'S';
 		ray->y = ceil(player->y);
 		rh->y_step = ray->y - player->y;
 		rh->x_step = rh->y_step / tan(ray->angle);
@@ -28,6 +30,7 @@ static void	init_x_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 	}
 	else
 	{
+		ray->orientation = 'N';
 		ray->y = floor(player->y);
 		rh->y_step = player->y - ray->y;
 		rh->x_step = rh->y_step / tan(ray->angle);
@@ -52,14 +55,11 @@ static void	get_x_intersection(t_ray *ray, const t_map *map,
 		if (ray->obstacle == '\0')
 		{
 			ray->distance = INT_MAX;
+			ray->orientation = 0;
 			break ;
 		}
 		if (ray->obstacle == '1' || ray->obstacle == 'D')
 		{
-			if (rh.is_south_direction)
-				ray->orientation = 'S';
-			else
-				ray->orientation = 'N';
 			break ;
 		}
 		ray->x += rh.x_step;
@@ -71,9 +71,11 @@ static void	get_x_intersection(t_ray *ray, const t_map *map,
 static void	init_y_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 		const t_player *player)
 {
-	rh->is_east_direction = (M_PI / 2 > ray->angle || ray->angle > M_PI * 1.5);
-	if (rh->is_east_direction)
+	const bool	is_east = (M_PI / 2 > ray->angle || ray->angle > M_PI * 1.5);
+	
+	if (is_east)
 	{
+		ray->orientation = 'E';
 		ray->x = ceil(player->x);
 		rh->x_step = ray->x - player->x;
 		rh->y_step = rh->x_step * tan(ray->angle);
@@ -83,6 +85,7 @@ static void	init_y_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 	}
 	else
 	{
+		ray->orientation = 'W';
 		ray->x = floor(player->x);
 		rh->x_step = player->x - ray->x;
 		rh->y_step = rh->x_step * tan(ray->angle);
@@ -107,16 +110,11 @@ static void	get_y_intersection(t_ray *ray, const t_map *map,
 		if (ray->obstacle == '\0')
 		{
 			ray->distance = INT_MAX;
+			ray->orientation = 0;
 			break ;
 		}
 		if (ray->obstacle == '1' || ray->obstacle == 'D')
-		{
-			if (rh.is_east_direction)
-				ray->orientation = 'E';
-			else
-				ray->orientation = 'W';
 			break ;
-		}
 		ray->x += rh.x_step;
 		ray->y += rh.y_step;
 		ray->distance += rh.ray_section;
@@ -140,8 +138,6 @@ void	update_rays(t_cubed *cubed)
 	{
 		x_intersection.angle = normalize_radian(ray_angle);
 		y_intersection.angle = x_intersection.angle;
-		x_intersection.orientation = 0;
-		y_intersection.orientation = 0;
 		get_x_intersection(&x_intersection, &cubed->scene.map, &cubed->player);
 		get_y_intersection(&y_intersection, &cubed->scene.map, &cubed->player);
 		if (x_intersection.distance <= y_intersection.distance)
