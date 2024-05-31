@@ -19,7 +19,6 @@ static void	switch_weapon(t_cubed *cubed, int direction)
 	weapon_map = &cubed->weapon_map;
 	weapon_map->current_weapon = (weapon_map->current_weapon + direction
 			+ WEAPON_MAX) % WEAPON_MAX;
-	printf("Switched to weapon %d\n", weapon_map->current_weapon);
 }
 
 int	handle_weapon_switch(int button, t_cubed *cubed)

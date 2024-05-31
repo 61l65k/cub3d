@@ -100,6 +100,11 @@
 #  define K_FORWARD_ARROW 65362
 #  define K_BACK_ARROW 65364
 #  define K_LEFT_SHIFT 65505
+#  define K_1 49
+#  define K_2 50
+#  define K_3 51
+#  define K_4 52
+#  define K_5 53
 # endif
 
 # ifndef linux

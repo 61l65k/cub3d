@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 21:40:03 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/01 01:47:17 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,23 @@ static int	close_game_x(t_cubed *cubed)
 
 static int	key_press_game_running(t_cubed *cubed, int keycode)
 {
-	key_press_movement(keycode, cubed);
-	if (keycode == K_Q)
-		handle_weapon_switch(K_Q, cubed);
 	if (keycode == K_ESC)
 		ft_clean_exit(cubed, NULL, 0);
+	key_press_movement(keycode, cubed);
 	if (keycode == K_SPACE)
 		cubed->player.shooting = 1;
 	if (keycode == K_M)
 		cubed->game_state = GAME_STATE_MENU;
+	if (keycode == K_Q)
+		handle_weapon_switch(K_Q, cubed);
+	if (keycode == K_1)
+		cubed->weapon_map.current_weapon = WEAPON_AKIMBOS;
+	if (keycode == K_2)
+		cubed->weapon_map.current_weapon = WEAPON_RAYGUN;
+	if (keycode == K_3)
+		cubed->weapon_map.current_weapon = WEAPON_MINIGUN;
+	if (keycode == K_4)
+		cubed->weapon_map.current_weapon = WEAPON_WRENCH;
 	return (1);
 }
 
