@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall_ray.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 13:53:30 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 13:32:35 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 13:44:40 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	get_texture_x_offset(t_ray *ray, int texture_width)
 	double	remainder;
 	int		offset;
 
-	if (ray->side == 'H')
+	if (ray->y  == (int)ray->y)
 		remainder = ray->x - floor(ray->x);
 	else
 		remainder = ray->y - floor(ray->y);

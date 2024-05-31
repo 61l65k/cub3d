@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 13:20:00 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 13:45:20 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,6 @@ void	update_rays(t_cubed *cubed)
 	const double	ray_angle_step = cubed->rays.field_of_view
 		/ cubed->scene.resol.width;
 
-	x_intersection.side = 'H';
-	y_intersection.side = 'V';
 	ray_angle = cubed->player.rotation_angle - cubed->rays.field_of_view / 2;
 	i = -1;
 	while (++i < cubed->scene.resol.width)

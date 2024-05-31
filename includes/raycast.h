@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:40:52 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/29 16:36:20 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 13:45:46 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct s_ray
 	double				angle;
 	char				obstacle;
 	char				orientation;
-	char				side;
 }						t_ray;
 
 typedef struct s_rays
