@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 14:10:06 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 14:34:22 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,27 +99,27 @@ static void	perform_dda(t_ray *ray, const t_map *map, const t_player *player,
 	}
 }
 
-void	update_rays(t_cubed *cubed)
+void	update_rays(t_rays *rays, const t_map *map, const t_player *player)
 {
 	double			ray_angle;
 	int				i;
 	t_ray			x_intersection;
 	t_ray			y_intersection;
-	const double	ray_angle_step = cubed->rays.field_of_view
-		/ cubed->scene.resol.width;
+	const double	ray_angle_step = rays->field_of_view
+		/ rays->ray_count;
 
-	ray_angle = cubed->player.rotation_angle - cubed->rays.field_of_view / 2;
+	ray_angle = player->rotation_angle - rays->field_of_view / 2;
 	i = -1;
-	while (++i < cubed->scene.resol.width)
+	while (++i < rays->ray_count)
 	{
 		x_intersection.angle = normalize_radian(ray_angle);
 		y_intersection.angle = x_intersection.angle;
-		perform_dda(&x_intersection, &cubed->scene.map, &cubed->player, 0);
-		perform_dda(&y_intersection, &cubed->scene.map, &cubed->player, 1);
+		perform_dda(&x_intersection, map, player, 0);
+		perform_dda(&y_intersection, map, player, 1);
 		if (x_intersection.distance <= y_intersection.distance)
-			cubed->rays.ray_array[i] = x_intersection;
+			rays->ray_array[i] = x_intersection;
 		else
-			cubed->rays.ray_array[i] = y_intersection;
+			rays->ray_array[i] = y_intersection;
 		ray_angle += ray_angle_step;
 	}
 }

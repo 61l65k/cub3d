@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/28 13:16:37 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:35:44 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void				prepare_rays(t_cubed *cubed);
 void				draw_floor(t_cubed *cubed);
 void				draw_ceiling(t_cubed *cubed);
 void				draw_walls(t_cubed *game);
-void				cast_ray(t_ray *ray, t_map *map, t_player *player);
-void				update_rays(t_cubed *game);
+void				update_rays(t_rays *rays, const t_map *map,
+						const t_player *player);
 void				draw_menu(t_cubed *cubed);
 void				hook_mouse(t_cubed *cubed);
 int					key_press_game_over(int keycode, t_cubed *cubed);

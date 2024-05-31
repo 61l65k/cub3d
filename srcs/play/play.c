@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:39:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 23:23:47 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:36:16 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	update_data(t_cubed *cubed)
 {
 	update_player_position(&cubed->player, &cubed->scene.map);
 	update_player_orientation(&cubed->player);
-	update_rays(cubed);
+	update_rays(&cubed->rays, &cubed->scene.map, &cubed->player);
 	update_sprite_render_info(cubed);
 }
 
