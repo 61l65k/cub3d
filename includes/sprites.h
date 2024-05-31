@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 18:46:20 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:35:17 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 # include "display.h"
 
-# define SPRITE_SPEED_FACTOR 0.1
+# ifdef LINUX
+#  define SPRITE_SPEED_FACTOR 0.15
+# else
+#  define SPRITE_SPEED_FACTOR 33
+# endif
 # define ERR_SPRITE_ALLOC "Error: sprite allocation failed"
 # define SPRITE_MAX_HEALTH 50
 # define SPAWNER_MAX_HEALTH 100

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_sprites.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 12:42:30 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:39:42 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ t_sprite	*create_sprite_node(t_cubed *cubed, double x, double y,
 	new_sprite->y = y;
 	cubed->scene.sprite_info.sprites_count++;
 	new_sprite->texture = *texture;
-	new_sprite->speed = 0.01;
+	new_sprite->speed = 0.2;
+	if (!LINUX)
+		new_sprite->speed = 0.4;
 	new_sprite->health = SPRITE_MAX_HEALTH;
 	return (new_sprite);
 }
