@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_sprite_position.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:55:16 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/31 21:03:43 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 21:10:47 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
