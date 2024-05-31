@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 12:29:03 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/05/31 12:24:06 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ static void	get_x_intersection(t_ray *ray, const t_map *map,
 		if (ray->obstacle == '1' || ray->obstacle == 'D')
 		{
 			if (rh.is_south_direction)
-				ray->orientation = 'N';
-			else
 				ray->orientation = 'S';
+			else
+				ray->orientation = 'N';
 			break ;
 		}
 		ray->x += rh.x_step;
@@ -122,9 +122,9 @@ static void	get_y_intersection(t_ray *ray, const t_map *map,
 		if (ray->obstacle == '1' || ray->obstacle == 'D')
 		{
 			if (rh.is_east_direction)
-				ray->orientation = 'W';
-			else
 				ray->orientation = 'E';
+			else
+				ray->orientation = 'W';
 			break ;
 		}
 		ray->x += rh.x_step;
