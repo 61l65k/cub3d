@@ -37,6 +37,7 @@ static bool	hit_spawner(t_cubed *cubed, t_sprite_spawner *spawner,
 	spawner->health -= damage;
 	if (spawner->health <= 0)
 	{
+		t_map_insert_f(&cubed->scene.map, spawner->x, spawner->y, '0');
 		if (prev_spawner == NULL)
 			cubed->scene.sprite_info.spawners = spawner->next;
 		else
