@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 18:14:54 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 19:37:10 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 # ifdef LINUX
 #  define SPRITE_SPEED_FACTOR 0.15
-#  define SPRITE_SPEED_FACTOR_BOSS 0.1
+#  define BOSS_SPEED_FACTOR 0.1
 # else
 #  define SPRITE_SPEED_FACTOR 33
-#  define SPRITE_SPEED_FACTOR_BOSS 20
+#  define BOSS_SPEED_FACTOR 20
 # endif
 # define ERR_SPRITE_ALLOC "Error: sprite allocation failed"
 # define SPRITE_MAX_HEALTH 50

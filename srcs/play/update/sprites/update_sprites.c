@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 19:29:45 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 19:30:51 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void	update_all_sprites(t_cubed *cubed)
 	{
 		update_boss_position(boss, &cubed->player, &cubed->scene.map);
 		update_render_info(cubed, boss->x, boss->y, &boss->info);
+		check_boss_hit_player(cubed, boss);
 		boss = boss->next;
 	}
 }

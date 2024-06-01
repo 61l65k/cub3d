@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:55:16 by ttakala           #+#    #+#             */
-/*   Updated: 2024/06/01 19:29:22 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 19:36:49 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	update_boss_position(t_sprite_boss *boss, const t_player *player,
 		(player->x - old_pos.x) / distance,
 		(player->y - old_pos.y) / distance};
 	const t_coords	proposed_pos = {
-		old_pos.x + dir.x * boss->speed * SPRITE_SPEED_FACTOR_BOSS,
-		old_pos.y + dir.y * boss->speed * SPRITE_SPEED_FACTOR_BOSS};
+		old_pos.x + dir.x * boss->speed * BOSS_SPEED_FACTOR,
+		old_pos.y + dir.y * boss->speed * BOSS_SPEED_FACTOR};
 	const t_coords	new_pos
 		= t_map_get_collision_checked_coords_npc(map, proposed_pos, old_pos);
 
