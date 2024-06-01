@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_sprite_position.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:55:16 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/31 21:10:47 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:14:48 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	update_sprite_position(t_sprite *sprite,
 		= t_map_get_collision_checked_coords_npc(map, proposed_pos, old_pos);
 
 	if (distance < 32)
-		t_map_add_entity(map, (t_ent){new_pos, ENT_GENERIC});
+		t_map_add_ent(map, (t_ent){new_pos, ENT_GENERIC_NPC});
 	sprite->x = new_pos.x;
 	sprite->y = new_pos.y;
 	sprite->distance = distance;

@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:36:38 by ttakala           #+#    #+#             */
-/*   Updated: 2024/05/30 22:27:51 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/01 16:30:57 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	map_color(int cur_color, t_coords cur_map,
 		return (cur_color);
 	if (is_player && c == '1')
 		return (GREEN);
-	if (ENT_GENERIC == t_map_get_entity_type_at(map, cur_map))
+	if (ENT_GENERIC_NPC == t_map_get_ent_type_at(map, cur_map, 0.5))
 		return (RED);
 	if (c == '1')
 		return (BLACK);
@@ -79,4 +79,5 @@ void	draw_minimap(t_img *img,
 		}
 	}
 	map->entity_count = 0;
+	t_map_add_ent(map, (t_ent){(t_coords){player->x, player->y}, ENT_PLAYER});
 }
