@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 17:37:36 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 18:14:54 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,6 @@ void						draw_sprites(t_cubed *cubed);
 void						update_render_info(t_cubed *cubed, double sprite_x,
 								double sprite_y,
 								t_sprite_render_info *transform);
-t_sprite					*create_sprite_node(t_cubed *cubed, double x,
-								double y, t_texture *texture);
 void						free_all_sprites(t_sprite *sprites);
 void						sort_sprites_by_distance(t_sprite **sprites);
 bool						traverse_and_apply_damage(t_cubed *cubed,

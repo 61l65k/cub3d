@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 03:05:49 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 17:51:10 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 17:55:27 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,22 @@ static void	prepare_door_textures(t_cubed *cubed)
 	load_texture(cubed, cubed->mlx.mlx_ptr, &i->door_open_texture);
 }
 
+static void	prepare_sprite_boss(t_cubed *cubed, int x, int y)
+{
+	t_sprite_boss	*new_boss;
+
+	new_boss = ft_calloc(1, sizeof(t_sprite_boss));
+	if (!new_boss)
+		ft_clean_exit(cubed, CUB_ERROR_MALLOC, 0);
+	new_boss->x = x + 0.5;
+	new_boss->y = y + 0.5;
+	new_boss->health = BOSS_MAX_HEALTH;
+	new_boss->texture = cubed->scene.sprite_info.sprite_boss_texture;
+	new_boss->next = cubed->scene.sprite_info.sprite_bosses;
+	cubed->scene.sprite_info.sprite_bosses = new_boss;
+	cubed->scene.sprite_info.boss_count++;
+}
+
 static void	prepare_door(t_cubed *cubed, int x, int y)
 {
 	t_door	*new_door;
@@ -83,13 +99,11 @@ void	prepare_map_specials(t_cubed *cubed)
 		while (++x < (int)map->width)
 		{
 			if (map->grid[y][x] == 'Z')
-			{
 				prepare_spawner(cubed, x, y);
-			}
 			if (map->grid[y][x] == 'D')
-			{
 				prepare_door(cubed, x, y);
-			}
+			if (map->grid[y][x] == 'B')
+				prepare_sprite_boss(cubed, x, y);
 		}
 	}
 }

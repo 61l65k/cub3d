@@ -6,18 +6,19 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 05:37:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 17:36:59 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 18:06:30 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PLAYER_H
 # define PLAYER_H
 
-# include <stdbool.h>
 # include "display.h"
+# include <stdbool.h>
 
 # define PLAYER_MAX_HEALTH 200
-# define TAKE_DAMAGE_THRESHOLD 0.5
+# define SPRITE_TAKE_DAMAGE_THRESHOLD 0.5
+# define SPRITE_BOSS_TAKE_DAMAGE_THRESHOLD 2.0
 # define TAKE_DAMAGE_DISPLAY_TIME 10.0
 # define TAKE_DAMAGE_COOLDOWN_TIME 7.0
 
@@ -47,7 +48,7 @@ typedef struct s_player
 }						t_player;
 
 void					check_sprite_hit_player(t_cubed *cubed,
-							t_sprite *sprite);
+							t_sprite *sprite, bool is_boss);
 void					prepare_player(t_cubed *cubed);
 void					draw_take_damage(t_cubed *cubed);
 void					clear_screen(t_cubed *cubed);

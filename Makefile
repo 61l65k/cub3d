@@ -33,11 +33,12 @@ SRCS_COMMON := \
     srcs/play/draw/gameover/draw_game_over.c \
     srcs/play/draw/minimap/minimap.c \
     srcs/play/play.c \
-    srcs/play/prepare/player.c \
-    srcs/play/prepare/textures/load_textures.c \
-    srcs/play/prepare/textures/load_weapons.c \
+    srcs/play/prepare/prepare_rays.c \
+    srcs/play/prepare/prepare_player.c \
+    srcs/play/prepare/textures/prepare_load_textures.c \
+    srcs/play/prepare/textures/prepare_load_weapons.c \
     srcs/play/prepare/textures/prepare_map_specials.c \
-    srcs/play/prepare/textures/weapon_positions.c \
+    srcs/play/prepare/textures/prepare_weapon_positions.c \
 	srcs/play/prepare/hooks/events.c \
 	srcs/play/prepare/hooks/keyboard_movement.c \
     srcs/play/renderables/collect_renderables.c \
@@ -50,6 +51,7 @@ SRCS_COMMON := \
     srcs/play/update/shooting/handle_shooting_traverse.c \
     srcs/play/update/shooting/switch_weapon.c \
     srcs/play/update/sprites/update_sprite_render_info.c \
+    srcs/play/update/sprites/update_sprites_utils.c \
     srcs/play/update/sprites/update_sprites.c \
     srcs/play/update/sprites/update_sprite_position.c \
     srcs/utils/blend_colors.c \

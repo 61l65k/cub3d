@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:47:17 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 16:49:20 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 17:59:43 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ int	extract_scene_extras(t_scenedata *scene, char **data)
 	else if (is_valid_game_identifier("SPAWNER", data)
 		&& !scene->sprite_info.spawner_texture.path)
 		return (fill_texture(data[1], &scene->sprite_info.spawner_texture));
+	else if (is_valid_game_identifier("SPRITE_BOSS", data)
+		&& !scene->sprite_info.sprite_boss_texture.path)
+		return (fill_texture(data[1], &scene->sprite_info.sprite_boss_texture));
 	else if (is_valid_game_identifier("DOOR_OPEN", data)
 		&& !scene->sprite_info.door_open_texture.path)
 		return (fill_texture(data[1], &scene->sprite_info.door_open_texture));

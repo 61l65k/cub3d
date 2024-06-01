@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_assets.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 01:14:51 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 10:50:51 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/01 18:26:16 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	free_all_sprites(t_sprite *sprites)
 		current_sprite = NULL;
 		current_sprite = next_sprite;
 	}
+	sprites = NULL;
 }
 
 void	free_sprites(t_mlx *mlx, t_sprite_info *sprite_info)
@@ -34,6 +35,7 @@ void	free_sprites(t_mlx *mlx, t_sprite_info *sprite_info)
 
 	free_texture(mlx, &sprite_info->spawner_texture);
 	free_texture(mlx, &sprite_info->sprite_texture);
+	free_texture(mlx, &sprite_info->sprite_boss_texture);
 	if (sprite_info->spawners)
 	{
 		curr_spawner = sprite_info->spawners;
@@ -46,10 +48,9 @@ void	free_sprites(t_mlx *mlx, t_sprite_info *sprite_info)
 		sprite_info->spawners = NULL;
 	}
 	if (sprite_info->sprites)
-	{
 		free_all_sprites(sprite_info->sprites);
-		sprite_info->sprites = NULL;
-	}
+	if (sprite_info->sprite_bosses)
+		free_all_sprites((t_sprite *)sprite_info->sprite_bosses);
 }
 
 void	free_doors(t_mlx *mlx, t_sprite_info *sprite_info)
