@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 19:35:17 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/01 17:37:36 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@
 
 # ifdef LINUX
 #  define SPRITE_SPEED_FACTOR 0.15
+#  define SPRITE_SPEED_FACTOR_BOSS 0.1
 # else
 #  define SPRITE_SPEED_FACTOR 33
+#  define SPRITE_SPEED_FACTOR_BOSS 20
 # endif
 # define ERR_SPRITE_ALLOC "Error: sprite allocation failed"
 # define SPRITE_MAX_HEALTH 50
 # define SPAWNER_MAX_HEALTH 100
+# define BOSS_MAX_HEALTH 300
 
 typedef struct s_cubed		t_cubed;
 typedef struct s_ray		t_ray;
@@ -54,12 +57,23 @@ typedef struct s_sprite_render_info
 	t_health_bar			health_bar;
 }							t_sprite_render_info;
 
+typedef struct s_sprite_boss
+{
+	double					x;
+	double					y;
+	float					health;
+	double					distance;
+	double					speed;
+	t_sprite_render_info	info;
+	t_texture				texture;
+	struct s_sprite_boss	*next;
+}							t_sprite_boss;
+
 typedef struct s_sprite
 {
 	double					x;
 	double					y;
 	double					distance;
-	double					angle;
 	double					speed;
 	float					health;
 	t_sprite_render_info	info;
@@ -96,10 +110,13 @@ typedef struct s_sprite_info
 	t_sprite_spawner		*spawners;
 	t_sprite				*sprites;
 	t_door					*doors;
+	t_sprite_boss			*sprite_bosses;
 	t_texture				door_closed_texture;
 	t_texture				door_open_texture;
+	t_texture				sprite_boss_texture;
 	t_texture				spawner_texture;
 	t_texture				sprite_texture;
+	int						boss_count;
 	int						sprites_count;
 	int						spawner_count;
 }							t_sprite_info;

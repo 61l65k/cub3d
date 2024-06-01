@@ -7,8 +7,18 @@ EXIT_CODE=0
 
 choose_map() {
     echo "Available maps:"
-    select map_file in $(ls "$MAPS_DIRECTORY"); do
-        if [ -n "$map_file" ]; then
+    map_files=($(ls -1 "$MAPS_DIRECTORY"))
+
+    # Print each map file on a new line
+    for i in "${!map_files[@]}"; do
+        echo "$((i + 1)). ${map_files[$i]}"
+    done
+    echo ""
+    # Select a map
+    while true; do
+        read -p "Select a map by number: " selection
+        if [[ $selection -gt 0 && $selection -le ${#map_files[@]} ]]; then
+            map_file="${map_files[$((selection - 1))]}"
             echo "You selected the map: $map_file"
             MAP_PATH="$MAPS_DIRECTORY/$map_file"
             break
@@ -16,7 +26,6 @@ choose_map() {
             echo "Invalid selection. Please try again."
         fi
     done
-    echo "$MAP_PATH"
 }
 
 compile_game() {
@@ -31,7 +40,7 @@ compile_game() {
 
 main() {
     compile_game
-
+    clear
     while true; do
         choose_map
         echo "Starting the game with the selected map: $MAP_PATH"
