@@ -77,17 +77,21 @@ void	start_game(t_cubed *cubed)
 	mlx_data = &cubed->mlx;
 	mlx_data->mlx_ptr = mlx_init();
 	if (!cubed->mlx.mlx_ptr)
-		ft_clean_exit(cubed, "mlx_init() failed\n", 0);
+		ft_clean_exit(cubed, "mlx_init() failed", 0);
 	mlx_data->win = mlx_new_window(mlx_data->mlx_ptr, cubed->scene.resol.width,
 			cubed->scene.resol.height, "cub3D");
 	if (!mlx_data->win)
-		ft_clean_exit(cubed, "mlx_new_window() failed\n", 0);
+		ft_clean_exit(cubed, "mlx_new_window() failed", 0);
 	prepare_game(cubed);
 	cubed->mlx.img.img_ptr = mlx_new_image(cubed->mlx.mlx_ptr,
 			cubed->scene.resol.width, cubed->scene.resol.height);
+	if (!cubed->mlx.img.img_ptr)
+		ft_clean_exit(cubed, "mlx_new_image() failed", 0);
 	cubed->mlx.img.data = (int *)mlx_get_data_addr(cubed->mlx.img.img_ptr,
 			&cubed->mlx.img.bpp, &cubed->mlx.img.size_l,
 			&cubed->mlx.img.endian);
+	if (!cubed->mlx.img.data)
+		ft_clean_exit(cubed, "mlx_get_data_addr() failed", 0);
 	mlx_loop_hook(mlx_data->mlx_ptr, render_frames, cubed);
 	mlx_loop(mlx_data->mlx_ptr);
 }

@@ -44,9 +44,9 @@ void	draw_game_over_screen(t_cubed *cubed)
 	const int	center_x = cubed->scene.resol.width / 2;
 	const int	center_y = cubed->scene.resol.height / 2;
 	const int	image_x = (cubed->scene.resol.width
-				- cubed->game_over_texture.width) / 2;
+			- cubed->game_over_texture.width) / 2;
 	const int	image_y = (cubed->scene.resol.height
-				- cubed->game_over_texture.height) / 2 - 100;
+			- cubed->game_over_texture.height) / 2 - 100;
 	int			option_y_offset;
 
 	mlx_put_image_to_window(cubed->mlx.mlx_ptr, cubed->mlx.win,
