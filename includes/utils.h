@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 16:05:00 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 11:31:01 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void						update_player_orientation(t_player *player);
 double						normalize_radian(double radian);
 void						draw_rectangle(const t_rectangle *rec, int *img,
 								int res_x);
-double						get_hypotenuse(double a, double b);
 void						draw_vertical_line(t_cubed *cubed, int draw_x,
 								int draw_y, int color);
 bool						is_not_transparent(int color);

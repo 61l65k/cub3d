@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 20:14:59 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 13:04:26 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/01 11:30:54 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,6 @@
 double	deg2rad(double deg)
 {
 	return (deg * (M_PI / 180.0));
-}
-
-// pythagorean theorem
-double	get_hypotenuse(double a, double b)
-{
-	return (sqrt(pow(a, 2) + pow(b, 2)));
 }
 
 int	argb_to_int(int a, int r, int g, int b)

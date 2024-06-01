@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 23:00:38 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/01 11:29:45 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	init_x_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 		rh->y_step = ray->y - player->y;
 		rh->x_step = rh->y_step / tan(ray->angle);
 		ray->x = player->x + rh->x_step;
-		ray->distance = get_hypotenuse(rh->x_step, rh->y_step);
+		ray->distance = hypot(rh->x_step, rh->y_step);
 		rh->y_step = 1;
 	}
 	else
@@ -35,12 +35,12 @@ static void	init_x_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 		rh->y_step = player->y - ray->y;
 		rh->x_step = rh->y_step / tan(ray->angle);
 		ray->x = player->x - rh->x_step;
-		ray->distance = get_hypotenuse(rh->x_step, rh->y_step);
+		ray->distance = hypot(rh->x_step, rh->y_step);
 		rh->y_step = -1;
 		ray->y -= 1;
 	}
 	rh->x_step = rh->y_step / tan(ray->angle);
-	rh->ray_section = get_hypotenuse(rh->x_step, rh->y_step);
+	rh->ray_section = hypot(rh->x_step, rh->y_step);
 }
 
 static void	init_y_intersection_helper(t_raycast_helper *rh, t_ray *ray,
@@ -55,7 +55,7 @@ static void	init_y_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 		rh->x_step = ray->x - player->x;
 		rh->y_step = rh->x_step * tan(ray->angle);
 		ray->y = player->y + rh->y_step;
-		ray->distance = get_hypotenuse(rh->x_step, rh->y_step);
+		ray->distance = hypot(rh->x_step, rh->y_step);
 		rh->x_step = 1;
 	}
 	else
@@ -65,12 +65,12 @@ static void	init_y_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 		rh->x_step = player->x - ray->x;
 		rh->y_step = rh->x_step * tan(ray->angle);
 		ray->y = player->y - rh->y_step;
-		ray->distance = get_hypotenuse(rh->x_step, rh->y_step);
+		ray->distance = hypot(rh->x_step, rh->y_step);
 		rh->x_step = -1;
 		ray->x -= 1;
 	}
 	rh->y_step = rh->x_step * tan(ray->angle);
-	rh->ray_section = get_hypotenuse(rh->x_step, rh->y_step);
+	rh->ray_section = hypot(rh->x_step, rh->y_step);
 }
 
 static void	perform_dda(t_ray *ray, const t_map *map, const t_player *player,
