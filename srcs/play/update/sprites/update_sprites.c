@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 19:16:34 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 19:29:45 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 t_sprite	*create_sprite_node(t_cubed *cubed, double x, double y,
 				t_texture *texture);
 void		update_sprite_position(t_sprite *sprite, const t_player *player,
+				t_map *map);
+void		update_boss_position(t_sprite_boss *boss, const t_player *player,
 				t_map *map);
 
 static void	spawn_sprites(t_cubed *cubed, t_sprite_spawner *spawner)
@@ -47,8 +49,7 @@ static void	update_spawners(t_cubed *cubed)
 		spawner = spawner->next;
 	}
 }
-void		update_boss_position(t_sprite_boss *boss, const t_player *player,
-				t_map *map);
+
 static void	update_all_sprites(t_cubed *cubed)
 {
 	t_sprite		*spr;
