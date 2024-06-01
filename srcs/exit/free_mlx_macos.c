@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_texture.c                                     :+:      :+:    :+:   */
+/*   free_mlx_macos.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 11:48:17 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 15:24:33 by apyykone         ###   ########.fr       */
+/*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
+/*   Updated: 2024/06/01 10:50:58 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_texture(t_mlx *mlx, t_texture *texture)
+void	free_mlx(t_cubed *cubed)
 {
-	if (!texture)
-		return ;
-	if (texture->path)
-	{
-		free(texture->path);
-		texture->path = 0;
-	}
-	if (texture->img.img_ptr)
-	{
-		mlx_destroy_image(mlx->mlx_ptr, texture->img.img_ptr);
-		texture->img.img_ptr = 0;
-	}
+	if (cubed->mlx.img.img_ptr)
+		mlx_destroy_image(cubed->mlx.mlx_ptr, cubed->mlx.img.img_ptr);
+	if (cubed->mlx.win)
+		mlx_destroy_window(cubed->mlx.mlx_ptr, cubed->mlx.win);
 }

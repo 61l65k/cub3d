@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_linux.c                                       :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 19:03:38 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 10:51:22 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		free_texture(t_mlx *mlx, t_texture *texture);
 void		free_sprites(t_mlx *mlx, t_sprite_info *sprite_info);
 void		free_animation(t_mlx *mlx, t_animation *animation);
 void		free_weapons(t_mlx *mlx, t_weapon_map *weapon_map);
 void		free_doors(t_mlx *mlx, t_sprite_info *sprite_info);
+void		free_mlx(t_cubed *cubed);
 
-static void	free_all_mlx(t_cubed *cubed)
+void	free_texture(t_mlx *mlx, t_texture *texture)
 {
-	if (cubed->mlx.img.img_ptr)
-		mlx_destroy_image(cubed->mlx.mlx_ptr, cubed->mlx.img.img_ptr);
-	if (cubed->mlx.win)
-		mlx_destroy_window(cubed->mlx.mlx_ptr, cubed->mlx.win);
-	if (LINUX)
-		mlx_destroy_display(cubed->mlx.mlx_ptr);
-	if (cubed->mlx.mlx_ptr)
+	if (!texture)
+		return ;
+	if (texture->path)
 	{
-		free(cubed->mlx.mlx_ptr);
-		cubed->mlx.mlx_ptr = 0;
+		free(texture->path);
+		texture->path = 0;
+	}
+	if (texture->img.img_ptr)
+	{
+		mlx_destroy_image(mlx->mlx_ptr, texture->img.img_ptr);
+		texture->img.img_ptr = 0;
 	}
 }
 
@@ -45,7 +46,7 @@ void	free_cubed(t_cubed *cubed)
 	free_doors(&cubed->mlx, &cubed->scene.sprite_info);
 	free_2d_array(cubed->scene.map.grid);
 	if (cubed->mlx.mlx_ptr)
-		free_all_mlx(cubed);
+		free_mlx(cubed);
 	if (cubed->rays.ray_array)
 		free(cubed->rays.ray_array);
 }

@@ -9,8 +9,8 @@ PATH_LIBMLX_MAC     :=      dependencies/minilibx-macos
 PATH_LIBMLX_LINUX   :=      dependencies/minilibx-linux
 
 SRCS_COMMON := \
-    srcs/exit/free_texture.c \
-    srcs/exit/free_all.c \
+    srcs/exit/exit.c \
+	srcs/exit/free_assets.c \
     srcs/extract/extract_main.c \
     srcs/extract/extract_map.c \
     srcs/extract/extract_map_finalize.c \
@@ -64,13 +64,13 @@ FLAG_INC			:= 		$(addprefix -I, includes $(PATH_LIBFT))
 ifeq ($(OS),Linux)
     FLAG_INC += -I$(PATH_LIBMLX_LINUX)
     SRCS_PLATFORM := \
-        srcs/exit/exit_linux.c \
+        srcs/exit/free_mlx_linux.c \
         srcs/play/prepare/hooks/mouse_linux.c \
 		srcs/play/draw/gameover/input_game_over_linux.c
 else
     FLAG_INC += -I$(PATH_LIBMLX_MAC)
     SRCS_PLATFORM := \
-        srcs/exit/exit_macos.c \
+        srcs/exit/free_mlx_macos.c \
         srcs/play/prepare/hooks/mouse_macos.c \
 		srcs/play/draw/gameover/input_game_over_macos.c
 endif
