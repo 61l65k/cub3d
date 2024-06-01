@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 05:35:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 18:10:47 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 19:12:15 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,11 @@ static void	apply_damage_to_player(t_cubed *cubed, int damage)
 	}
 }
 
-void	check_sprite_hit_player(t_cubed *cubed, t_sprite *sprite, bool is_boss)
+void	check_sprite_hit_player(t_cubed *cubed, t_sprite *sprite)
 {
 	const double	distance = sprite->distance;
 
-	if (is_boss && distance < SPRITE_BOSS_TAKE_DAMAGE_THRESHOLD
-		&& cubed->player.damage_cooldown <= 0)
-	{
-		apply_damage_to_player(cubed, 30);
-		cubed->player.taking_damage = true;
-		cubed->player.damage_timer = TAKE_DAMAGE_DISPLAY_TIME;
-	}
-	else if (!is_boss && distance < SPRITE_TAKE_DAMAGE_THRESHOLD
+	if (distance < SPRITE_TAKE_DAMAGE_THRESHOLD
 		&& cubed->player.damage_cooldown <= 0)
 	{
 		apply_damage_to_player(cubed, 3);

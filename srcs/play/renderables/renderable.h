@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:40:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 12:07:55 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 18:30:32 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ typedef struct s_cubed				t_cubed;
 typedef struct s_scenedata			t_scenedata;
 typedef struct s_texture			t_texture;
 typedef struct s_sprite_render_info	t_sprite_render_info;
+typedef struct s_sprite_boss		t_sprite_boss;
 
 typedef enum e_renderable_type
 {
 	RENDERABLE_WALL,
 	RENDERABLE_SPRITE,
 	RENDERABLE_SPAWNER,
+	RENDERABLE_BOSS,
 }									t_renderable_type;
 
 typedef struct s_renderable
@@ -39,6 +41,7 @@ typedef struct s_renderable
 		t_ray						*ray;
 		t_sprite					*sprite;
 		t_sprite_spawner			*spawner;
+		t_sprite_boss				*boss;
 	} data;
 }									t_renderable;
 

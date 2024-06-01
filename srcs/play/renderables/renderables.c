@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:43:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 17:41:08 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 18:40:30 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,14 @@ static void	draw_renderables(t_cubed *cubed, t_renderable *renderables,
 				continue ;
 		}
 		else if (renderables[i].type == RENDERABLE_SPRITE)
-		{
 			draw_any_sprite(cubed, &renderables[i].data.sprite->info,
 				&cubed->scene.sprite_info.sprite_texture);
-		}
 		else if (renderables[i].type == RENDERABLE_SPAWNER)
-		{
 			draw_any_sprite(cubed, &renderables[i].data.spawner->info,
 				&cubed->scene.sprite_info.spawner_texture);
-		}
+		else if (renderables[i].type == RENDERABLE_BOSS)
+			draw_any_sprite(cubed, &renderables[i].data.boss->info,
+				&cubed->scene.sprite_info.sprite_boss_texture);
 	}
 }
 

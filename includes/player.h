@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 05:37:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 18:06:30 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 19:11:46 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_player
 }						t_player;
 
 void					check_sprite_hit_player(t_cubed *cubed,
-							t_sprite *sprite, bool is_boss);
+							t_sprite *sprite);
 void					prepare_player(t_cubed *cubed);
 void					draw_take_damage(t_cubed *cubed);
 void					clear_screen(t_cubed *cubed);

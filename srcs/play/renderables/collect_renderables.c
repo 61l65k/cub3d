@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:52:03 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 12:07:46 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 18:50:07 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ t_renderable	*collect_spawner_renderables(t_cubed *cubed,
 	return (renderables);
 }
 
-t_renderable	*collect_sprite_renderables(t_cubed *cubed,
+t_renderable	*collect_sprite_and_boss_renderables(t_cubed *cubed,
 		t_renderable *renderables, int *idx)
 {
-	t_sprite	*sprite;
+	t_sprite		*sprite;
+	t_sprite_boss	*boss;
 
 	sprite = cubed->scene.sprite_info.sprites;
 	while (sprite)
@@ -63,28 +64,42 @@ t_renderable	*collect_sprite_renderables(t_cubed *cubed,
 		(*idx)++;
 		sprite = sprite->next;
 	}
+	boss = cubed->scene.sprite_info.sprite_bosses;
+	while (boss)
+	{
+		renderables[*idx].distance = boss->distance;
+		renderables[*idx].type = RENDERABLE_BOSS;
+		renderables[*idx].data.boss = boss;
+		(*idx)++;
+		boss = boss->next;
+	}
 	return (renderables);
 }
 
 static int	count_total_renderables(t_cubed *cubed)
 {
-	int			total_count;
-	t_sprite	*sprite;
-	t_door		*door;
+	int		total_count;
+	void	*entity;
 
 	total_count = cubed->rays.ray_count
 		+ cubed->scene.sprite_info.spawner_count;
-	sprite = cubed->scene.sprite_info.sprites;
-	while (sprite)
+	entity = cubed->scene.sprite_info.sprites;
+	while (entity)
 	{
 		total_count++;
-		sprite = sprite->next;
+		entity = ((t_sprite *)entity)->next;
 	}
-	door = cubed->scene.sprite_info.doors;
-	while (door)
+	entity = cubed->scene.sprite_info.doors;
+	while (entity)
 	{
 		total_count++;
-		door = door->next;
+		entity = ((t_door *)entity)->next;
+	}
+	entity = cubed->scene.sprite_info.sprite_bosses;
+	while (entity)
+	{
+		total_count++;
+		entity = ((t_sprite_boss *)entity)->next;
 	}
 	return (total_count);
 }
@@ -101,7 +116,7 @@ t_renderable	*collect_renderables(t_cubed *cubed, int *count)
 	idx = 0;
 	renderables = collect_wall_renderables(cubed, renderables, &idx);
 	renderables = collect_spawner_renderables(cubed, renderables, &idx);
-	renderables = collect_sprite_renderables(cubed, renderables, &idx);
+	renderables = collect_sprite_and_boss_renderables(cubed, renderables, &idx);
 	*count = idx;
 	return (renderables);
 }

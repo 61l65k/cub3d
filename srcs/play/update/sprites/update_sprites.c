@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 18:24:35 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 19:16:34 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static void	update_spawners(t_cubed *cubed)
 		spawner = spawner->next;
 	}
 }
-
+void		update_boss_position(t_sprite_boss *boss, const t_player *player,
+				t_map *map);
 static void	update_all_sprites(t_cubed *cubed)
 {
 	t_sprite		*spr;
@@ -58,16 +59,14 @@ static void	update_all_sprites(t_cubed *cubed)
 	{
 		update_sprite_position(spr, &cubed->player, &cubed->scene.map);
 		update_render_info(cubed, spr->x, spr->y, &spr->info);
-		check_sprite_hit_player(cubed, spr, false);
+		check_sprite_hit_player(cubed, spr);
 		spr = spr->next;
 	}
 	boss = cubed->scene.sprite_info.sprite_bosses;
 	while (boss)
 	{
-		update_sprite_position((t_sprite *)boss, &cubed->player,
-			&cubed->scene.map);
+		update_boss_position(boss, &cubed->player, &cubed->scene.map);
 		update_render_info(cubed, boss->x, boss->y, &boss->info);
-		check_sprite_hit_player(cubed, (t_sprite *)boss, true);
 		boss = boss->next;
 	}
 }

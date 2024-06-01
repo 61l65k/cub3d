@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 03:05:49 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 17:55:27 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 19:03:25 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static void	prepare_sprite_boss(t_cubed *cubed, int x, int y)
 		ft_clean_exit(cubed, CUB_ERROR_MALLOC, 0);
 	new_boss->x = x + 0.5;
 	new_boss->y = y + 0.5;
+	new_boss->speed = 0.2;
+	new_boss->distance = 0;
 	new_boss->health = BOSS_MAX_HEALTH;
 	new_boss->texture = cubed->scene.sprite_info.sprite_boss_texture;
 	new_boss->next = cubed->scene.sprite_info.sprite_bosses;
