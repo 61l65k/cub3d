@@ -6,16 +6,11 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:17:14 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 19:28:51 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/01 13:35:32 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static double	center_of_tile(int pos)
-{
-	return (pos + 0.5);
-}
 
 static double	get_orientation(char orientation)
 {
@@ -46,10 +41,11 @@ static void	get_starting_position(t_player *player, char **grid)
 		{
 			if (ft_strchr("NSEW", grid[i][j]))
 			{
-				player->x = center_of_tile(j);
-				player->y = center_of_tile(i);
+				player->x = j + 0.5;
+				player->y = i + 0.5;
 				player->rotation_angle = get_orientation(grid[i][j]);
 				grid[i][j] = '0';
+				return ;
 			}
 		}
 	}
@@ -61,9 +57,13 @@ void	prepare_player(t_cubed *cubed)
 
 	player = &cubed->player;
 	ft_memset(player, 0, sizeof(t_player));
-	player->x_move = 0;
-	player->z_move = 0;
-	player->turn_direction = 0;
+	get_starting_position(&cubed->player, cubed->scene.map.grid);
+	player->dir_x = cos(player->rotation_angle);
+	player->dir_y = sin(player->rotation_angle);
+	player->plane_x = -player->dir_y * 0.66;
+	player->plane_y = player->dir_x * 0.66;
+	player->health = PLAYER_MAX_HEALTH;
+	player->damage_cooldown = TAKE_DAMAGE_COOLDOWN_TIME;
 	player->move_speed = 0.03;
 	player->rotation_speed = deg2rad(0.6);
 	if (!LINUX)
@@ -71,11 +71,4 @@ void	prepare_player(t_cubed *cubed)
 		player->move_speed *= 2.5;
 		player->rotation_speed *= 2.5;
 	}
-	player->dir_x = cos(player->rotation_angle);
-	player->dir_y = sin(player->rotation_angle);
-	player->plane_x = -player->dir_y * 0.66;
-	player->plane_y = player->dir_x * 0.66;
-	player->health = PLAYER_MAX_HEALTH;
-	player->damage_cooldown = TAKE_DAMAGE_COOLDOWN_TIME;
-	get_starting_position(&cubed->player, cubed->scene.map.grid);
 }
