@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 10:51:22 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/01 15:00:42 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		free_sprites(t_mlx *mlx, t_sprite_info *sprite_info);
-void		free_animation(t_mlx *mlx, t_animation *animation);
-void		free_weapons(t_mlx *mlx, t_weapon_map *weapon_map);
-void		free_doors(t_mlx *mlx, t_sprite_info *sprite_info);
-void		free_mlx(t_cubed *cubed);
+void	free_sprites(t_mlx *mlx, t_sprite_info *sprite_info);
+void	free_animation(t_mlx *mlx, t_animation *animation);
+void	free_weapons(t_mlx *mlx, t_weapon_map *weapon_map);
+void	free_doors(t_mlx *mlx, t_sprite_info *sprite_info);
+void	free_mlx(t_cubed *cubed);
 
 void	free_texture(t_mlx *mlx, t_texture *texture)
 {
@@ -51,7 +51,7 @@ void	free_cubed(t_cubed *cubed)
 		free(cubed->rays.ray_array);
 }
 
-void	ft_clean_exit(t_cubed *cubed, char *msg, bool reset)
+void	ft_clean_exit(t_cubed *cubed, char *msg, int reset)
 {
 	if (msg)
 		perror(msg);
@@ -61,4 +61,6 @@ void	ft_clean_exit(t_cubed *cubed, char *msg, bool reset)
 		exit(EXIT_FAILURE);
 	if (!reset)
 		exit(EXIT_SUCCESS);
+	if (reset == WRAPPER_EXIT)
+		exit(WRAPPER_EXIT);
 }

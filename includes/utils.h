@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 11:31:01 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/01 14:23:04 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_mlx		t_mlx;
 
 int							has_extension(char *file, char *ext);
 void						ft_clean_exit(t_cubed *cubed, char *msg,
-								bool reset);
+								int reset);
 long						str_to_long(const char *str);
 int							is_start_of_map(char *line);
 void						free_2d_array(char **array);

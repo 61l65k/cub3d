@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_game_over.c                                  :+:      :+:    :+:   */
+/*   input_game_over_linux.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 07:57:03 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 13:51:15 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 14:58:18 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	restart_game(t_cubed *cubed)
 
 static void	switch_map(t_cubed *cubed)
 {
-	cubed->game_state = GAME_STATE_RUNNING;
+	ft_clean_exit(cubed, NULL, WRAPPER_EXIT);
 }
 
 int	key_press_game_over(int keycode, t_cubed *cubed)
