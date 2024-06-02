@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 14:16:17 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 14:53:46 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SPRITES_H
 
 # include "display.h"
+# include "items.h"
 
 # ifdef LINUX
 #  define SPRITE_SPEED_FACTOR 0.15
@@ -111,6 +112,7 @@ typedef struct s_sprite_info
 	t_sprite				*sprites;
 	t_door					*doors;
 	t_sprite_boss			*sprite_bosses;
+	t_item_info				item_info;
 	t_texture				door_closed_texture;
 	t_texture				door_open_texture;
 	t_texture				sprite_boss_texture;

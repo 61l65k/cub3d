@@ -6,17 +6,17 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 18:26:19 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:15:52 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_sprites(t_mlx *mlx, t_sprite_info *sprite_info);
-void	free_animation(t_mlx *mlx, t_animation *animation);
-void	free_weapons(t_mlx *mlx, t_weapon_map *weapon_map);
-void	free_doors(t_mlx *mlx, t_sprite_info *sprite_info);
-void	free_mlx(t_cubed *cubed);
+void		free_sprites(t_mlx *mlx, t_sprite_info *sprite_info);
+void		free_animation(t_mlx *mlx, t_animation *animation);
+void		free_weapons(t_mlx *mlx, t_weapon_map *weapon_map);
+void		free_doors(t_mlx *mlx, t_sprite_info *sprite_info);
+void		free_mlx(t_cubed *cubed);
 
 void	free_texture(t_mlx *mlx, t_texture *texture)
 {
@@ -34,6 +34,17 @@ void	free_texture(t_mlx *mlx, t_texture *texture)
 	}
 }
 
+static void	free_all_items(t_mlx *mlx, t_item_info *i)
+{
+	free_texture(mlx, &i->item_textures.boots);
+	free_texture(mlx, &i->item_textures.cloak);
+	free_texture(mlx, &i->item_textures.health);
+	free_texture(mlx, &i->item_textures.bread);
+	free_texture(mlx, &i->item_textures.poison);
+	if (i->items)
+		free_all_sprites((t_sprite *)i->items);
+}
+
 void	free_cubed(t_cubed *cubed)
 {
 	free_texture(&cubed->mlx, &cubed->scene.north_texture);
@@ -44,6 +55,7 @@ void	free_cubed(t_cubed *cubed)
 	free_weapons(&cubed->mlx, &cubed->weapon_map);
 	free_sprites(&cubed->mlx, &cubed->scene.sprite_info);
 	free_doors(&cubed->mlx, &cubed->scene.sprite_info);
+	free_all_items(&cubed->mlx, &cubed->scene.sprite_info.item_info);
 	free_2d_array(cubed->scene.map.grid);
 	if (cubed->mlx.mlx_ptr)
 		free_mlx(cubed);

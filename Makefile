@@ -35,6 +35,7 @@ SRCS_COMMON := \
     srcs/play/prepare/prepare_rays.c \
     srcs/play/prepare/prepare_player.c \
     srcs/play/prepare/textures/prepare_load_textures.c \
+    srcs/play/prepare/textures/prepare_load_items.c \
     srcs/play/prepare/textures/prepare_load_weapons.c \
     srcs/play/prepare/textures/prepare_map_specials.c \
     srcs/play/prepare/textures/prepare_weapon_pos_dmg.c \

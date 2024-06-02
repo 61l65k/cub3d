@@ -6,11 +6,13 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:36 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 18:19:28 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:20:28 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void		load_all_item_textures(t_cubed *cubed);
 
 static void	load_game_over_image(t_cubed *cubed)
 {
@@ -43,7 +45,7 @@ void	load_texture(t_cubed *cubed, void *mlx, t_texture *texture)
 		ft_clean_exit(cubed, ERR_LOAD_TEXTURE, 0);
 }
 
-static void	load_all_extra_textures(t_cubed *cubed)
+static void	load_all_enemy_textures(t_cubed *cubed)
 {
 	t_sprite_info	*i;
 	const char		*sprite = "./assets/default/boggart.xpm";
@@ -71,7 +73,8 @@ void	prepare_textures(t_cubed *cubed)
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.south_texture);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.west_texture);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &cubed->scene.east_texture);
-	load_all_extra_textures(cubed);
+	load_all_item_textures(cubed);
+	load_all_enemy_textures(cubed);
 	load_game_over_image(cubed);
 	load_weapons(cubed, &cubed->weapon_map);
 }
