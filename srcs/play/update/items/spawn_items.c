@@ -6,28 +6,35 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:20:55 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 20:22:14 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 00:03:32 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+#define TOTAL_ITEMS 11
+
 static void	init_item_probabilities(t_item_probability *probs)
 {
-	probs[0] = (t_item_probability){ITEM_NONE, 25};
-	probs[1] = (t_item_probability){ITEM_HEALTH, 40};
-	probs[2] = (t_item_probability){ITEM_POISON, 55};
-	probs[3] = (t_item_probability){ITEM_BOOTS, 70};
-	probs[4] = (t_item_probability){ITEM_CLOAK, 85};
-	probs[5] = (t_item_probability){ITEM_BREAD, 100};
+	probs[0] = (t_item_probability){ITEM_NONE, 10};
+	probs[1] = (t_item_probability){ITEM_HEALTH, 20};
+	probs[2] = (t_item_probability){ITEM_POISON, 30};
+	probs[3] = (t_item_probability){ITEM_BOOTS, 40};
+	probs[4] = (t_item_probability){ITEM_CLOAK, 50};
+	probs[5] = (t_item_probability){ITEM_BREAD, 60};
+	probs[6] = (t_item_probability){ITEM_NONE, 70};
+	probs[7] = (t_item_probability){ITEM_NONE, 80};
+	probs[8] = (t_item_probability){ITEM_NONE, 90};
+	probs[9] = (t_item_probability){ITEM_NONE, 100};
+	probs[10] = (t_item_probability){ITEM_NONE, 100};
 }
 
 static t_item_probability	*get_probabilities(t_sprite_type entity_type)
 {
 	static int					initialized = 0;
-	static t_item_probability	sprite_probs[ITEM_MAX + 1];
-	static t_item_probability	spawner_probs[ITEM_MAX + 1];
-	static t_item_probability	boss_probs[ITEM_MAX + 1];
+	static t_item_probability	sprite_probs[ITEM_MAX + 6];
+	static t_item_probability	spawner_probs[ITEM_MAX + 6];
+	static t_item_probability	boss_probs[ITEM_MAX + 6];
 
 	if (!initialized)
 	{
@@ -47,7 +54,7 @@ static t_item_probability	*get_probabilities(t_sprite_type entity_type)
 
 static t_item_type	get_item_type(int *counter, t_sprite_type entity_type)
 {
-	const int			count = ITEM_MAX + 1;
+	const int			count = TOTAL_ITEMS;
 	const int			threshold = (*counter * 100 / (count)) % 100;
 	int					i;
 	t_item_probability	*probabilities;
@@ -55,7 +62,7 @@ static t_item_type	get_item_type(int *counter, t_sprite_type entity_type)
 	probabilities = get_probabilities(entity_type);
 	(*counter)++;
 	i = -1;
-	while (++i < ITEM_MAX + 1)
+	while (++i < count)
 	{
 		if (threshold < probabilities[i].cumulative_probability)
 			return (probabilities[i].type);
@@ -67,8 +74,8 @@ void	spawn_item(t_cubed *cubed, double x, double y,
 		t_sprite_type entity_type)
 {
 	const t_item_type	type
-		= get_item_type(&cubed->scene.sprite_info.item_info.\
-		spawn_attempt_counter, entity_type);
+		= get_item_type(&cubed->scene.sprite_info.\
+		item_info.spawn_attempt_counter, entity_type);
 	t_item_info			*i;
 	t_item				*new_item;
 

@@ -52,10 +52,11 @@ SRCS_COMMON := \
     srcs/play/update/shooting/switch_weapon.c \
     srcs/play/update/sprites/update_sprite_render_info.c \
     srcs/play/update/sprites/update_sprites_utils.c \
-    srcs/play/update/sprites/update_sprites.c \
+    srcs/play/update/sprites/update_main.c \
     srcs/play/update/sprites/update_sprite_position.c \
-    srcs/play/update/sprites/update_items.c \
-    srcs/play/update/sprites/spawn_items.c \
+    srcs/play/update/items/update_items.c \
+    srcs/play/update/items/spawn_items.c \
+    srcs/play/update/items/update_item_effects.c \
     srcs/utils/blend_colors.c \
     srcs/utils/free_str_utils.c \
     srcs/utils/math_utils.c \
