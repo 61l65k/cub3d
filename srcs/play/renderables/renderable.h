@@ -12,7 +12,6 @@
 
 #ifndef RENDERABLE_H
 # define RENDERABLE_H
-# define NO_WALL 1
 # define ERR_ALLOC_RENDERABLES "Failed to allocate memory for renderables"
 
 typedef struct s_ray				t_ray;

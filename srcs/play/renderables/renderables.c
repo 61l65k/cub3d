@@ -34,16 +34,14 @@ static void	insertion_sort_renderables(t_renderable *arr, int n)
 	}
 }
 
-static int	render_wall(t_cubed *cubed, t_ray *ray)
+static void	render_wall(t_cubed *cubed, t_ray *ray)
 {
 	t_wall	wall;
 	int		x;
 
-	wall = (t_wall){0};
 	if (!ray->orientation)
-	{
-		return (NO_WALL);
-	}
+		return ;
+	wall = (t_wall){0};
 	x = ray - cubed->rays.ray_array;
 	wall.x = x;
 	wall.height = get_wall_height(cubed, ray);
@@ -58,7 +56,6 @@ static int	render_wall(t_cubed *cubed, t_ray *ray)
 	else
 		wall.texture = get_wall_texture(&cubed->scene, ray->orientation);
 	render_wall_column(&wall, cubed->mlx.img.data, &cubed->scene.resol, ray);
-	return (0);
 }
 
 static void	draw_renderables(t_cubed *cubed, t_renderable *renderables,
@@ -70,10 +67,7 @@ static void	draw_renderables(t_cubed *cubed, t_renderable *renderables,
 	while (++i < count)
 	{
 		if (renderables[i].type == RENDERABLE_WALL)
-		{
-			if (render_wall(cubed, renderables[i].data.ray) == NO_WALL)
-				continue ;
-		}
+			render_wall(cubed, renderables[i].data.ray);
 		else if (renderables[i].type == RENDERABLE_SPRITE)
 			draw_any_sprite(cubed, &renderables[i].data.sprite->info,
 				&cubed->scene.sprite_info.sprite_texture);
