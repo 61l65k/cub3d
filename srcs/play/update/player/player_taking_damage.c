@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 05:35:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 18:03:00 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:51:09 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	check_sprite_hit_player(t_cubed *cubed, t_sprite *sprite)
 
 	if (distance < SPRITE_ATTACK_RANGE && cubed->player.damage_cooldown <= 0)
 	{
-		apply_damage_to_player(cubed, 3);
+		apply_damage_to_player(cubed, SPRITE_DMG);
 		cubed->player.taking_damage = true;
 		cubed->player.damage_timer = TAKE_DAMAGE_DISPLAY_TIME;
 	}
@@ -55,7 +55,7 @@ void	check_boss_hit_player(t_cubed *cubed, t_sprite_boss *boss)
 	if (distance < SPRITE_BOSS_ATTACK_RANGE
 		&& cubed->player.damage_cooldown <= 0)
 	{
-		apply_damage_to_player(cubed, 1000);
+		apply_damage_to_player(cubed, BOSS_DMG);
 		cubed->player.taking_damage = true;
 		cubed->player.damage_timer = TAKE_DAMAGE_DISPLAY_TIME;
 	}

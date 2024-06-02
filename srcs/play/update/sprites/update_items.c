@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:20:55 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 18:32:56 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:49:53 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	get_probabilities(t_item_probability *sprite_probs,
 	boss_probs[5] = (t_item_probability){ITEM_BREAD, 100};
 }
 
-t_item_type	get_item_type(int *counter, t_sprite_type entity_type)
+static t_item_type	get_item_type(int *counter, t_sprite_type entity_type)
 {
 	const int			count = ITEM_MAX + 1;
 	const int			threshold = (*counter * 100 / (count)) % 100;

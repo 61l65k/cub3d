@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 18:31:29 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:51:11 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ typedef enum e_sprite_type
 	SPAWNER,
 	BOSS
 }							t_sprite_type;
+
+typedef enum e_sprite_dmg
+{
+	SPRITE_DMG = 10,
+	BOSS_DMG = 50
+}							t_sprite_dmg;
 
 typedef struct s_apply_damage_helper
 {
