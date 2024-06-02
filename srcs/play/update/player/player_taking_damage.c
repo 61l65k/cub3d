@@ -36,7 +36,7 @@ void	check_sprite_hit_player(t_cubed *cubed, t_sprite *sprite)
 {
 	const double	distance = sprite->distance;
 
-	if (distance < SPRITE_TAKE_DAMAGE_THRESHOLD
+	if (distance < SPRITE_ATTACK_RANGE
 		&& cubed->player.damage_cooldown <= 0)
 	{
 		apply_damage_to_player(cubed, 3);
@@ -53,7 +53,7 @@ void	check_boss_hit_player(t_cubed *cubed, t_sprite_boss *boss)
 {
 	const double	distance = boss->distance;
 
-	if (distance < SPRITE_BOSS_TAKE_DAMAGE_THRESHOLD
+	if (distance < SPRITE_BOSS_ATTACK_RANGE
 		&& cubed->player.damage_cooldown <= 0)
 	{
 		apply_damage_to_player(cubed, 20);

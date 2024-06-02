@@ -33,7 +33,7 @@ static int	map_color(int cur_color, t_coords cur_map,
 	if (c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E')
 		return (WHITE);
 	if (c == 'Z')
-		return (0xFFFF00);
+		return (YELLOW);
 	if (c == ' ')
 		return (blend_colors(cur_color, GRAY, 0.5));
 	if (c == 'D')

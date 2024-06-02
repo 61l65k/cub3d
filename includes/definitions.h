@@ -61,6 +61,7 @@
 # define RED 0xFF0000
 # define GRAY 0x808080
 # define PURPLE 0xAA08AA
+# define YELLOW 0xFFFF00
 # define LEFT_CLICK 1
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5

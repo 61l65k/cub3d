@@ -18,10 +18,10 @@
 
 typedef struct s_minimap
 {
-	int			dimension;
-	double		scale;
-	double		cos_angle;
-	double		sin_angle;
+	const int		dimension;
+	const double	scale;
+	const double	cos_angle;
+	const double	sin_angle;
 }				t_minimap;
 
 #endif
