@@ -44,6 +44,8 @@ static int	key_press_game_running(t_cubed *cubed, int keycode)
 		cubed->weapon_map.current_weapon = WEAPON_MINIGUN;
 	if (keycode == K_4)
 		cubed->weapon_map.current_weapon = WEAPON_WRENCH;
+	if (keycode == K_CAPS_LOCK)
+		cubed->player.fov_rad = cubed->player.fov_rad - deg2rad(20);
 	return (1);
 }
 
@@ -63,6 +65,8 @@ static int	key_released(int keycode, t_cubed *cubed)
 	key_release_movement(keycode, cubed);
 	if (keycode == K_SPACE)
 		cubed->player.shooting = 0;
+	if (keycode == K_CAPS_LOCK)
+		cubed->player.fov_rad = cubed->player.fov_rad + deg2rad(20);
 	return (1);
 }
 
