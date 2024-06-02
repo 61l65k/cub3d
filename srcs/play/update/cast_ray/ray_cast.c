@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 11:29:45 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/02 13:14:19 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	init_y_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 }
 
 static void	perform_dda(t_ray *ray, const t_map *map, const t_player *player,
-	int side)
+		int side)
 {
 	t_raycast_helper	rh;
 

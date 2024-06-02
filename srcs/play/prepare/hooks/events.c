@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 01:47:17 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/02 13:46:29 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int			handle_mouse_move(int x, int y, t_cubed *cubed);
 int			handle_mouse_button(int button, int x, int y, t_cubed *cubed);
 void		key_press_movement(int keycode, t_cubed *cubed);
 void		key_release_movement(int keycode, t_cubed *cubed);
+int			key_press_game_menu(int keycode, t_cubed *cubed);
+int			key_press_game_over(int keycode, t_cubed *cubed);
 
 static int	close_game_x(t_cubed *cubed)
 {

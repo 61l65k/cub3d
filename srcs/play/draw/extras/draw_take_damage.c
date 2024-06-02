@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 05:48:08 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 17:26:57 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 13:35:36 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ static void	draw_red_frame(t_cubed *cubed, float alpha)
 		j = -1;
 		while (++j < width)
 		{
-			data[i * width + j] = blend_colors(data[i * width + j], 0xFF0000,
-					alpha);
+			data[i * width + j] = blend_colors(data[i * width + j], RED, alpha);
 		}
 	}
 }

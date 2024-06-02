@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 14:23:04 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 13:45:22 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ bool						is_not_transparent(int color);
 void						load_texture(t_cubed *cubed, void *mlx,
 								t_texture *texture);
 void						free_texture(t_mlx *mlx, t_texture *texture);
-int							key_press_game_menu(int keycode, t_cubed *cubed);
 int							blend_colors(int c1, int c2, double alpha);
 double						get_distance(double x1, double y1, double x2,
 								double y2);

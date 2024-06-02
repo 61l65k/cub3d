@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 07:26:13 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 14:33:00 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 13:42:01 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	clear_screen(t_cubed *cubed)
 		j = -1;
 		while (++j < width)
 		{
-			data[i * width + j] = 0x000000;
+			data[i * width + j] = BLACK;
 		}
 	}
 }

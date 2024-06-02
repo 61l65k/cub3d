@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_shooting_traverse.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 16:21:41 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/27 20:34:40 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/02 13:05:03 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

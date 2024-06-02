@@ -28,9 +28,8 @@ SRCS_COMMON := \
     srcs/play/draw/extras/draw_take_damage.c \
     srcs/play/draw/extras/draw_healthbars.c \
     srcs/play/draw/extras/draw_crosshair.c \
-    srcs/play/draw/gamemenu/draw_menu.c \
-    srcs/play/draw/gamemenu/input_game_menu.c \
-    srcs/play/draw/gameover/draw_game_over.c \
+    srcs/play/draw/menus/game_menu.c \
+    srcs/play/draw/menus/game_over.c \
     srcs/play/draw/minimap/minimap.c \
     srcs/play/play.c \
     srcs/play/prepare/prepare_rays.c \
@@ -68,13 +67,13 @@ ifeq ($(OS),Linux)
     SRCS_PLATFORM := \
         srcs/exit/free_mlx_linux.c \
         srcs/play/prepare/hooks/mouse_linux.c \
-		srcs/play/draw/gameover/input_game_over_linux.c
+		srcs/play/draw/menus/input_game_over_linux.c
 else
     FLAG_INC += -I$(PATH_LIBMLX_MAC)
     SRCS_PLATFORM := \
         srcs/exit/free_mlx_macos.c \
         srcs/play/prepare/hooks/mouse_macos.c \
-		srcs/play/draw/gameover/input_game_over_macos.c
+		srcs/play/draw/menus/input_game_over_macos.c
 endif
 
 SRCS := $(SRCS_COMMON) $(SRCS_PLATFORM)

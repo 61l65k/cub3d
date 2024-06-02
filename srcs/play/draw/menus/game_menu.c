@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_menu.c                                        :+:      :+:    :+:   */
+/*   game_menu.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 23:13:41 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 23:34:53 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 13:48:38 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,34 @@
 
 int			get_menu_option_color(t_cubed *cubed, int option_index);
 
+int	key_press_game_menu(int keycode, t_cubed *cubed)
+{
+	if (keycode == K_ENTER || keycode == K_SPACE)
+	{
+		if (cubed->selected_option == 0)
+			cubed->game_state = GAME_STATE_RUNNING;
+		else if (cubed->selected_option == 1)
+			ft_clean_exit(cubed, NULL, WRAPPER_EXIT);
+		else if (cubed->selected_option == 2)
+			ft_clean_exit(cubed, NULL, 0);
+	}
+	else if (keycode == K_FORWARD_ARROW || keycode == K_W)
+		cubed->selected_option = (cubed->selected_option - 1 + 3) % 3;
+	else if (keycode == K_BACK_ARROW || keycode == K_S)
+		cubed->selected_option = (cubed->selected_option + 1) % 3;
+	else if (keycode == K_ESC)
+		ft_clean_exit(cubed, NULL, 0);
+	return (1);
+}
+
 static void	draw_menu_image(t_cubed *cubed)
 {
 	t_rectangle	menu;
 	const int	screen_width = cubed->scene.resol.width;
 	const int	screen_height = cubed->scene.resol.height;
 
-	menu.width = screen_width / 3;
-	menu.height = screen_height / 3;
+	menu.width = (int)(screen_width / 3);
+	menu.height = (int)(screen_height / 3);
 	menu.x = (screen_width - menu.width) / 2;
 	menu.y = (screen_height - menu.height) / 2;
 	menu.border_width = 0;
@@ -42,7 +62,7 @@ static void	draw_menu_choices(t_cubed *cubed)
 	mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, menu_x + 20, menu_y + 30,
 		get_menu_option_color(cubed, 0), "Resume");
 	mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, menu_x + 20, menu_y + 70,
-		get_menu_option_color(cubed, 1), "Settings");
+		get_menu_option_color(cubed, 1), "Switch Map");
 	mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, menu_x + 20, menu_y
 		+ 110, get_menu_option_color(cubed, 2), "Exit");
 }
