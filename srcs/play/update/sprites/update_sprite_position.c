@@ -6,21 +6,37 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:55:16 by ttakala           #+#    #+#             */
-/*   Updated: 2024/06/01 19:36:49 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 00:06:54 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	update_sprite_position(t_sprite *sprite,
-	const t_player *player, t_map *map)
+t_coords	apply_special_effects(t_coords dir, t_sprite *sprite,
+		const t_item_effects *effects)
+{
+	if (effects->cloak_effect_timer > 0)
+	{
+		dir.x = -dir.x;
+		dir.y = -dir.y;
+	}
+	if (effects->slowdown_effect_timer > 0)
+	{
+		sprite->speed *= effects->slowdown_factor;
+	}
+	return (dir);
+}
+
+void	update_sprite_position(t_sprite *sprite, const t_player *player,
+		t_map *map)
 {
 	const t_coords	old_pos = {sprite->x, sprite->y};
 	const double	distance
 		= get_distance(player->x, player->y, old_pos.x, old_pos.y);
-	const t_coords	dir = {
-		(player->x - old_pos.x) / distance,
-		(player->y - old_pos.y) / distance};
+	const t_coords	dir
+		= apply_special_effects(((t_coords){(player->x - old_pos.x) / distance,
+				(player->y - old_pos.y) / distance}), (t_sprite *)sprite,
+			&player->effects);
 	const t_coords	proposed_pos = {
 		old_pos.x + dir.x * sprite->speed * SPRITE_SPEED_FACTOR,
 		old_pos.y + dir.y * sprite->speed * SPRITE_SPEED_FACTOR};
@@ -40,9 +56,10 @@ void	update_boss_position(t_sprite_boss *boss, const t_player *player,
 	const t_coords	old_pos = {boss->x, boss->y};
 	const double	distance
 		= get_distance(player->x, player->y, old_pos.x, old_pos.y);
-	const t_coords	dir = {
-		(player->x - old_pos.x) / distance,
-		(player->y - old_pos.y) / distance};
+	const t_coords	dir
+		= apply_special_effects(((t_coords){(player->x - old_pos.x) / distance,
+				(player->y - old_pos.y) / distance}),
+			(t_sprite *)boss, &player->effects);
 	const t_coords	proposed_pos = {
 		old_pos.x + dir.x * boss->speed * BOSS_SPEED_FACTOR,
 		old_pos.y + dir.y * boss->speed * BOSS_SPEED_FACTOR};

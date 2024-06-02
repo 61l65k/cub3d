@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 13:57:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 20:23:36 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 00:00:11 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,17 @@
 # define ERR_ITEM_MALLOC "Error: Item malloc failed\n"
 # define ITEM_DROP_LIFETIME 10
 # define ITEM_TIME_INCREMENT 0.005
+# define ITEM_PICKUP_THRESHOLD 1.0
 
 typedef struct s_texture	t_texture;
 typedef struct s_item_info	t_item_info;
+
+typedef enum e_effect_timers
+{
+	CLOAK_EFFECT_TIME = 10,
+	BOOTS_EFFECT_TIME = 10,
+	POISON_EFFECT_TIME = 10,
+}							t_effect_timers;
 
 typedef enum e_item_type
 {
@@ -71,5 +79,13 @@ typedef struct s_item_info
 	int						item_count;
 	int						spawn_attempt_counter;
 }							t_item_info;
+
+typedef struct s_item_effects
+{
+	double					boots_effect_timer;
+	double					cloak_effect_timer;
+	double					slowdown_effect_timer;
+	double					slowdown_factor;
+}							t_item_effects;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 05:37:06 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 19:31:50 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 22:23:49 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PLAYER_H
 
 # include "display.h"
+# include "items.h"
 # include <stdbool.h>
 
 # define PLAYER_MAX_HEALTH 200
@@ -48,6 +49,7 @@ typedef struct s_player
 	int							damage_timer;
 	double						damage_cooldown;
 	t_health_bar				health_bar;
+	t_item_effects				effects;
 }								t_player;
 
 void							check_sprite_hit_player(t_cubed *cubed,
