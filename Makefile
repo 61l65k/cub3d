@@ -37,7 +37,7 @@ SRCS_COMMON := \
     srcs/play/prepare/textures/prepare_load_textures.c \
     srcs/play/prepare/textures/prepare_load_weapons.c \
     srcs/play/prepare/textures/prepare_map_specials.c \
-    srcs/play/prepare/textures/prepare_weapon_positions.c \
+    srcs/play/prepare/textures/prepare_weapon_pos_dmg.c \
 	srcs/play/prepare/hooks/events.c \
 	srcs/play/prepare/hooks/keyboard_movement.c \
     srcs/play/renderables/collect_renderables.c \

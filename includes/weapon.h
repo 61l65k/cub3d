@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:15:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/26 05:39:31 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 14:12:06 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@
 
 typedef struct s_cubed	t_cubed;
 
+typedef enum e_weapon_dmg
+{
+	DMG_AKIMBOS = 40,
+	DMG_RAYGUN = 80,
+	DMG_MINIGUN = 1
+}						t_weapon_dmg;
+
 typedef enum e_weapon_type
 {
 	WEAPON_AKIMBOS,
@@ -56,6 +63,7 @@ typedef struct s_weapon
 	int					left_gun_tip_x;
 	int					right_gun_tip_x;
 	int					gun_tip_y;
+	int					damage;
 	t_weapon_type		type;
 }						t_weapon;
 
@@ -67,7 +75,7 @@ typedef struct s_weapon_map
 
 int						handle_weapon_switch(int button, t_cubed *cubed);
 void					load_weapons(t_cubed *cubed, t_weapon_map *weapon_map);
-void					get_gun_positions(t_weapon *weapon, t_cubed *cubed,
+void					get_gun_pos_dmg(t_weapon *weapon, t_cubed *cubed,
 							int i);
 void					handle_shooting(t_cubed *cubed);
 void					draw_gun_shooting(t_cubed *cubed);

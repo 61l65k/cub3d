@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 19:37:10 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 14:16:17 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 #  define BOSS_SPEED_FACTOR 20
 # endif
 # define ERR_SPRITE_ALLOC "Error: sprite allocation failed"
-# define SPRITE_MAX_HEALTH 50
-# define SPAWNER_MAX_HEALTH 100
-# define BOSS_MAX_HEALTH 300
+# define SPRITE_MAX_HEALTH 250
+# define SPAWNER_MAX_HEALTH 600
+# define BOSS_MAX_HEALTH 1200
 
 typedef struct s_cubed		t_cubed;
 typedef struct s_ray		t_ray;

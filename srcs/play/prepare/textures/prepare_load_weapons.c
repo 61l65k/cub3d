@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_weapons.c                                     :+:      :+:    :+:   */
+/*   prepare_load_weapons.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 11:51:42 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 13:59:50 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 14:13:19 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,16 @@ static void	load_weapon(t_cubed *cubed, t_weapon *weapon, char *texture_path,
 
 void	load_weapons(t_cubed *cubed, t_weapon_map *weapon_map)
 {
-	char	**weapon_paths;
-	char	**animation_paths;
+	char	**w_paths;
+	char	**a_paths;
 	int		animation_index;
 	int		i;
 	int		frame_count;
 
-	weapon_paths = ft_split(WEAPON_PATHS, ':');
-	animation_paths = ft_split(W_ANIMATION_PATHS, ':');
-	if (!weapon_paths || !animation_paths)
-		return (free_2d_array(weapon_paths), free_2d_array(animation_paths),
+	w_paths = ft_split(WEAPON_PATHS, ':');
+	a_paths = ft_split(W_ANIMATION_PATHS, ':');
+	if (!w_paths || !a_paths)
+		return (free_2d_array(w_paths), free_2d_array(a_paths),
 			ft_clean_exit(cubed, ERR_LOAD_WEAPON, 0));
 	weapon_map->current_weapon = 0;
 	animation_index = 0;
@@ -73,10 +73,10 @@ void	load_weapons(t_cubed *cubed, t_weapon_map *weapon_map)
 	{
 		weapon_map->weapons[i].shooting_animation.frame_count = frame_count
 			+ (i == 1);
-		load_weapon(cubed, &weapon_map->weapons[i], weapon_paths[i],
-			&animation_paths[animation_index]);
-		get_gun_positions(&weapon_map->weapons[i], cubed, i);
+		load_weapon(cubed, &weapon_map->weapons[i], w_paths[i],
+			&a_paths[animation_index]);
+		get_gun_pos_dmg(&weapon_map->weapons[i], cubed, i);
 		animation_index += frame_count;
 	}
-	return (free_2d_array(weapon_paths), free_2d_array(animation_paths));
+	return (free_2d_array(w_paths), free_2d_array(a_paths));
 }

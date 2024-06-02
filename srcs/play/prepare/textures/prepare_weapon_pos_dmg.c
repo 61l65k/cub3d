@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   weapon_positions.c                                 :+:      :+:    :+:   */
+/*   prepare_weapon_pos_dmg.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:15:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 12:09:35 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 14:14:53 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	initialize_akimbos_positions(t_weapon *weapon, t_cubed *cubed)
 {
+	weapon->damage = DMG_AKIMBOS;
 	weapon->gun_pos_x = (cubed->scene.resol.width - weapon->texture.width) / 2;
 	weapon->gun_pos_y = cubed->scene.resol.height - weapon->texture.height + 50;
 	weapon->left_gun_tip_x = weapon->gun_pos_x + weapon->texture.width * 0.2;
@@ -21,8 +22,9 @@ static void	initialize_akimbos_positions(t_weapon *weapon, t_cubed *cubed)
 	weapon->gun_tip_y = weapon->gun_pos_y + weapon->texture.height * 0.3;
 }
 
-static void	initialize_hammer_positions(t_weapon *weapon, t_cubed *cubed)
+static void	initialize_wrench_positions(t_weapon *weapon, t_cubed *cubed)
 {
+	weapon->damage = 0;
 	weapon->gun_pos_x = (cubed->scene.resol.width - weapon->texture.width) / 2;
 	weapon->gun_pos_y = cubed->scene.resol.height - weapon->texture.height + 60;
 	weapon->left_gun_tip_x = weapon->gun_pos_x + weapon->texture.width * 0.1;
@@ -32,6 +34,7 @@ static void	initialize_hammer_positions(t_weapon *weapon, t_cubed *cubed)
 
 static void	initialize_raygun_positions(t_weapon *weapon, t_cubed *cubed)
 {
+	weapon->damage = DMG_RAYGUN;
 	weapon->gun_pos_x = (cubed->scene.resol.width - weapon->texture.width) / 2;
 	weapon->gun_pos_y = cubed->scene.resol.height - weapon->texture.height + 40;
 	weapon->left_gun_tip_x = weapon->gun_pos_x + weapon->texture.width * 0.15;
@@ -41,6 +44,7 @@ static void	initialize_raygun_positions(t_weapon *weapon, t_cubed *cubed)
 
 static void	initialize_minigun_positions(t_weapon *weapon, t_cubed *cubed)
 {
+	weapon->damage = DMG_MINIGUN;
 	weapon->gun_pos_x = (cubed->scene.resol.width - weapon->texture.width) / 2;
 	weapon->gun_pos_y = cubed->scene.resol.height - weapon->texture.height + 50;
 	weapon->left_gun_tip_x = weapon->gun_pos_x + weapon->texture.width * 0.5;
@@ -48,7 +52,7 @@ static void	initialize_minigun_positions(t_weapon *weapon, t_cubed *cubed)
 	weapon->gun_tip_y = weapon->gun_pos_y + weapon->texture.height * 0.52;
 }
 
-void	get_gun_positions(t_weapon *weapon, t_cubed *cubed, int i)
+void	get_gun_pos_dmg(t_weapon *weapon, t_cubed *cubed, int i)
 {
 	const t_weapon_type	weapon_types[WEAPON_MAX] = {WEAPON_AKIMBOS,
 		WEAPON_WRENCH, WEAPON_RAYGUN, WEAPON_MINIGUN};
@@ -60,7 +64,7 @@ void	get_gun_positions(t_weapon *weapon, t_cubed *cubed, int i)
 	}
 	else if (weapon->type == WEAPON_WRENCH)
 	{
-		initialize_hammer_positions(weapon, cubed);
+		initialize_wrench_positions(weapon, cubed);
 	}
 	else if (weapon->type == WEAPON_RAYGUN)
 	{
