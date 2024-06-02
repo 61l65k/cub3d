@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 15:56:17 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:44:19 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@
 typedef struct s_cubed		t_cubed;
 typedef struct s_ray		t_ray;
 typedef struct s_item_info	t_item_info;
+
+typedef enum e_sprite_type
+{
+	SPRITE,
+	SPAWNER,
+	BOSS
+}							t_sprite_type;
 
 typedef struct s_apply_damage_helper
 {

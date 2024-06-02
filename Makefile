@@ -54,6 +54,7 @@ SRCS_COMMON := \
     srcs/play/update/sprites/update_sprites_utils.c \
     srcs/play/update/sprites/update_sprites.c \
     srcs/play/update/sprites/update_sprite_position.c \
+    srcs/play/update/sprites/update_items.c \
     srcs/utils/blend_colors.c \
     srcs/utils/free_str_utils.c \
     srcs/utils/math_utils.c \

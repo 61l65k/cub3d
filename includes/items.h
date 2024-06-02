@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 13:57:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 16:19:16 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:48:52 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@
 # define SPRITE_DROP_PROBABILITY 10
 # define SPAWNER_DROP_PROBABILITY 30
 # define BOSS_DROP_PROBABILITY 70
+# define ITEM_DROP_LIFETIME 10
+# define ITEM_TIME_INCREMENT 0.005
 
 typedef struct s_texture	t_texture;
 typedef struct s_item_info	t_item_info;
 
 typedef enum e_item_type
 {
+	ITEM_NONE = -1,
 	ITEM_HEALTH,
 	ITEM_BREAD,
 	ITEM_BOOTS,
@@ -32,6 +35,12 @@ typedef enum e_item_type
 	ITEM_CLOAK,
 	ITEM_MAX
 }							t_item_type;
+
+typedef struct s_item_probability
+{
+	t_item_type				type;
+	int						cumulative_probability;
+}							t_item_probability;
 
 typedef struct s_sprite_render_info
 {
@@ -64,6 +73,7 @@ typedef struct s_item_info
 	t_item					*items;
 	t_texture				textures[ITEM_MAX];
 	int						item_count;
+	int						spawn_attempt_counter;
 }							t_item_info;
 
 #endif
