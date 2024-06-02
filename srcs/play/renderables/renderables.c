@@ -34,7 +34,7 @@ static void	insertion_sort_renderables(t_renderable *arr, int n)
 	}
 }
 
-static int	render_wall(t_cubed *cubed, t_ray *ray, int *i)
+static int	render_wall(t_cubed *cubed, t_ray *ray)
 {
 	t_wall	wall;
 	int		x;
@@ -42,7 +42,6 @@ static int	render_wall(t_cubed *cubed, t_ray *ray, int *i)
 	wall = (t_wall){0};
 	if (!ray->orientation)
 	{
-		*i += 1;
 		return (NO_WALL);
 	}
 	x = ray - cubed->rays.ray_array;
@@ -72,7 +71,7 @@ static void	draw_renderables(t_cubed *cubed, t_renderable *renderables,
 	{
 		if (renderables[i].type == RENDERABLE_WALL)
 		{
-			if (render_wall(cubed, renderables[i].data.ray, &i) == NO_WALL)
+			if (render_wall(cubed, renderables[i].data.ray) == NO_WALL)
 				continue ;
 		}
 		else if (renderables[i].type == RENDERABLE_SPRITE)
