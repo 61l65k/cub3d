@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:20:55 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 18:49:53 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 19:14:37 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	spawn_item(t_cubed *cubed, double x, double y,
 	if (!new_item)
 		ft_clean_exit(cubed, ERR_ITEM_MALLOC, 0);
 	new_item->type = type;
-	new_item->texture = i->textures[type];
 	new_item->x = x;
 	new_item->y = y;
 	new_item->time_since_drop = 0;
@@ -117,6 +116,8 @@ void	update_all_items(t_cubed *cubed)
 			i->distance = get_distance(p->x, p->y, i->x, i->y);
 			update_render_info(cubed, i->x, i->y, &i->info);
 			i->time_since_drop += ITEM_TIME_INCREMENT;
+			i->info.health_bar.health_percentage = (i->time_since_drop
+					/ ITEM_DROP_LIFETIME);
 			prev_i = i;
 			i = i->next;
 		}

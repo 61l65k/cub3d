@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 03:05:49 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 18:36:31 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 19:14:12 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	prepare_spawner(t_cubed *cubed, int x, int y)
 	new_spawner->y = y + 0.5;
 	new_spawner->spawn_interval = 5.0;
 	new_spawner->health = SPAWNER_MAX_HEALTH;
-	new_spawner->texture = cubed->scene.sprite_info.sprite_texture;
 	if (cubed->scene.sprite_info.spawners == NULL)
 		cubed->scene.sprite_info.spawners = new_spawner;
 	else
@@ -67,7 +66,6 @@ static void	prepare_sprite_boss(t_cubed *cubed, int x, int y)
 	new_boss->speed = 0.2;
 	new_boss->distance = 0;
 	new_boss->health = BOSS_MAX_HEALTH;
-	new_boss->texture = cubed->scene.sprite_info.sprite_boss_texture;
 	new_boss->next = cubed->scene.sprite_info.sprite_bosses;
 	cubed->scene.sprite_info.sprite_bosses = new_boss;
 	cubed->scene.sprite_info.boss_count++;

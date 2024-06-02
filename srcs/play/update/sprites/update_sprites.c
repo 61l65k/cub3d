@@ -6,14 +6,13 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 18:31:34 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 19:13:07 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_sprite	*create_sprite_node(t_cubed *cubed, double x, double y,
-				t_texture *texture);
+t_sprite	*create_sprite_node(t_cubed *cubed, double x, double y);
 void		update_sprite_position(t_sprite *sprite, const t_player *player,
 				t_map *map);
 void		update_boss_position(t_sprite_boss *boss, const t_player *player,
@@ -27,8 +26,7 @@ static void	spawn_sprites(t_cubed *cubed, t_sprite_spawner *spawner)
 	spawner->time_since_last_spawn += 0.005;
 	if (spawner->time_since_last_spawn >= spawner->spawn_interval)
 	{
-		new_sprite = create_sprite_node(cubed, spawner->x, spawner->y,
-				&cubed->scene.sprite_info.sprite_texture);
+		new_sprite = create_sprite_node(cubed, spawner->x, spawner->y);
 		new_sprite->next = cubed->scene.sprite_info.sprites;
 		cubed->scene.sprite_info.sprites = new_sprite;
 		spawner->time_since_last_spawn = 0;

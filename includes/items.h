@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 13:57:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 17:48:52 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 19:14:40 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_sprite_render_info
 typedef struct s_item
 {
 	t_item_type				type;
-	t_texture				texture;
 	t_sprite_render_info	info;
 	int						x;
 	int						y;

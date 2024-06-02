@@ -6,14 +6,13 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 18:01:48 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 18:02:03 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 19:12:30 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_sprite	*create_sprite_node(t_cubed *cubed, double x, double y,
-		t_texture *texture)
+t_sprite	*create_sprite_node(t_cubed *cubed, double x, double y)
 {
 	t_sprite	*new_sprite;
 
@@ -23,7 +22,6 @@ t_sprite	*create_sprite_node(t_cubed *cubed, double x, double y,
 	new_sprite->x = x;
 	new_sprite->y = y;
 	cubed->scene.sprite_info.sprites_count++;
-	new_sprite->texture = *texture;
 	new_sprite->speed = 0.2;
 	if (!LINUX)
 		new_sprite->speed = 0.4;

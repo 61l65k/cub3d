@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:15:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 18:42:13 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 19:04:38 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_cubed	t_cubed;
 
 typedef enum e_weapon_dmg
 {
-	DMG_AKIMBOS = 10,
+	DMG_AKIMBOS = 1000,
 	DMG_RAYGUN = 80,
 	DMG_MINIGUN = 1
 }						t_weapon_dmg;

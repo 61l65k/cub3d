@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 18:51:11 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 19:14:23 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ typedef struct s_sprite_boss
 	double					distance;
 	double					speed;
 	t_sprite_render_info	info;
-	t_texture				texture;
 	struct s_sprite_boss	*next;
 }							t_sprite_boss;
 
@@ -78,7 +77,6 @@ typedef struct s_sprite
 	double					speed;
 	float					health;
 	t_sprite_render_info	info;
-	t_texture				texture;
 	struct s_sprite			*next;
 }							t_sprite;
 
@@ -90,7 +88,6 @@ typedef struct s_sprite_spawner
 	t_sprite_render_info	info;
 	double					spawn_interval;
 	double					time_since_last_spawn;
-	t_texture				texture;
 	double					distance;
 	struct s_sprite_spawner	*next;
 }							t_sprite_spawner;
@@ -99,8 +96,6 @@ typedef struct s_door
 {
 	double					x;
 	double					y;
-	t_texture				closed_texture;
-	t_texture				open_texture;
 	bool					is_open;
 	double					distance;
 	struct s_door			*next;
