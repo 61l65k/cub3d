@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:37:14 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 17:54:52 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:31:31 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static bool	hit_sprite(t_cubed *cubed, t_sprite *sprite, t_sprite *prev_sprite,
 			prev_sprite->next = sprite->next;
 		free(sprite);
 		sprite = NULL;
+		cubed->scene.sprite_info.sprites_count--;
 	}
 	else
 		sprite->info.health_bar.health_percentage = sprite->health
@@ -48,6 +49,8 @@ static bool	hit_spawner(t_cubed *cubed, t_sprite_spawner *spawner,
 		else
 			prev_spawner->next = spawner->next;
 		free(spawner);
+		spawner = NULL;
+		cubed->scene.sprite_info.spawner_count--;
 	}
 	else
 		spawner->info.health_bar.health_percentage = spawner->health
@@ -68,6 +71,7 @@ static bool	hit_boss(t_cubed *cubed, t_sprite_boss *boss,
 			prev_boss->next = boss->next;
 		free(boss);
 		boss = NULL;
+		cubed->scene.sprite_info.boss_count--;
 	}
 	else
 		boss->info.health_bar.health_percentage = boss->health

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 17:44:19 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:31:29 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct s_sprite_info
 	t_texture				sprite_boss_texture;
 	t_texture				spawner_texture;
 	t_texture				sprite_texture;
+	int						door_count;
 	int						boss_count;
 	int						sprites_count;
 	int						spawner_count;

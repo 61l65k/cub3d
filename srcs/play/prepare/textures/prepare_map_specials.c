@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 03:05:49 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 19:03:25 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:36:31 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static void	prepare_door(t_cubed *cubed, int x, int y)
 	new_door->y = y + 0.5;
 	new_door->next = cubed->scene.sprite_info.doors;
 	cubed->scene.sprite_info.doors = new_door;
+	cubed->scene.sprite_info.door_count++;
 }
 
 void	prepare_map_specials(t_cubed *cubed)
@@ -93,7 +94,6 @@ void	prepare_map_specials(t_cubed *cubed)
 	int			x;
 	int			y;
 
-	cubed->scene.sprite_info.spawner_count = 0;
 	y = -1;
 	prepare_door_textures(cubed);
 	while (++y < (int)map->height)

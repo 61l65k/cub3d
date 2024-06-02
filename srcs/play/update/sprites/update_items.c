@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:20:55 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 18:01:52 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:32:56 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	spawn_item(t_cubed *cubed, double x, double y,
 	t_item_info			*i;
 	t_item				*new_item;
 
+	if (type == ITEM_NONE)
+		return ;
 	i = &cubed->scene.sprite_info.item_info;
 	new_item = ft_calloc(1, sizeof(t_item));
 	if (!new_item)
@@ -108,6 +110,7 @@ void	update_all_items(t_cubed *cubed)
 				i = prev_i->next;
 			else
 				i = cubed->scene.sprite_info.item_info.items;
+			cubed->scene.sprite_info.item_info.item_count--;
 		}
 		else
 		{

@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:43:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 18:40:30 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:39:40 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@ static void	draw_renderables(t_cubed *cubed, t_renderable *renderables,
 		else if (renderables[i].type == RENDERABLE_BOSS)
 			draw_any_sprite(cubed, &renderables[i].data.boss->info,
 				&cubed->scene.sprite_info.sprite_boss_texture);
+		else if (renderables[i].type == RENDERABLE_ITEM)
+			draw_any_sprite(cubed, &renderables[i].data.item->info,
+				&cubed->scene.sprite_info.item_info.textures[renderables[i].data.item->type]);
 	}
 }
 
