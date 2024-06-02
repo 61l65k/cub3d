@@ -120,5 +120,6 @@ void	update_rays(t_rays *rays, const t_map *map, const t_player *player)
 			rays->ray_array[i] = y_axis_intersection;
 		ray_angle += ray_angle_step;
 	}
-	rays->proj_plane_dist = (rays->ray_count / 2.0) / tan(player->fov_rad / 2);
+	rays->proj_plane_dist
+		= (rays->ray_count / 2.0) / player->fov_scaling_factor;
 }

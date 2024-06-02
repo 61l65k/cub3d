@@ -50,4 +50,5 @@ void	update_player_orientation(t_player *player)
 	player->dir_y = sin(player->rotation_angle);
 	player->plane_x = -player->dir_y * player->fov_rad / 2;
 	player->plane_y = player->dir_x * player->fov_rad / 2;
+	player->fov_scaling_factor = tan(player->fov_rad / 2);
 }

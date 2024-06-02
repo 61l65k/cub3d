@@ -61,6 +61,7 @@ void	prepare_player(t_cubed *cubed)
 	player->dir_x = cos(player->rotation_angle);
 	player->dir_y = sin(player->rotation_angle);
 	player->fov_rad = deg2rad(FOV);
+	player->fov_scaling_factor = tan(player->fov_rad / 2);
 	player->health = PLAYER_MAX_HEALTH;
 	player->damage_cooldown = TAKE_DAMAGE_COOLDOWN_TIME;
 	player->move_speed = 0.03;

@@ -35,6 +35,7 @@ typedef struct s_player
 	double						plane_x;
 	double						plane_y;
 	double						fov_rad;
+	double						fov_scaling_factor;
 	int							x_move;
 	int							z_move;
 	int							health;
