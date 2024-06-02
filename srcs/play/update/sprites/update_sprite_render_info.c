@@ -43,7 +43,8 @@ static void	calculate_draw_boundaries(t_cubed *cubed, t_sprite_render_info *i)
 {
 	const int	half_screen_height = cubed->scene.resol.height / 2;
 
-	i->sprite_height = abs((int)(cubed->scene.resol.height / i->transform_y));
+	i->sprite_height = abs((int)((cubed->scene.resol.height / i->transform_y)
+				/ tan(cubed->player.fov_rad / 2)));
 	i->sprite_width = i->sprite_height;
 	i->draw_start_y = half_screen_height - i->sprite_height / 2;
 	i->draw_end_y = half_screen_height + i->sprite_height / 2;
