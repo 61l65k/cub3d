@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 02:50:19 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 19:30:51 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 16:19:34 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void		update_sprite_position(t_sprite *sprite, const t_player *player,
 				t_map *map);
 void		update_boss_position(t_sprite_boss *boss, const t_player *player,
 				t_map *map);
+void		update_all_items(t_cubed *cubed);
 
 static void	spawn_sprites(t_cubed *cubed, t_sprite_spawner *spawner)
 {
@@ -79,6 +80,7 @@ void	update_sprite_render_info(t_cubed *cubed)
 
 	update_spawners(cubed);
 	update_all_sprites(cubed);
+	// update_all_items(cubed);
 	door = cubed->scene.sprite_info.doors;
 	while (door)
 	{

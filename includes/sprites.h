@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 02:56:47 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 14:53:46 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:56:17 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 
 typedef struct s_cubed		t_cubed;
 typedef struct s_ray		t_ray;
+typedef struct s_item_info	t_item_info;
 
 typedef struct s_apply_damage_helper
 {
@@ -43,20 +44,6 @@ typedef struct s_apply_damage_helper
 	int						step_x;
 	int						step_y;
 }							t_apply_damage_helper;
-
-typedef struct s_sprite_render_info
-{
-	double					transform_x;
-	double					transform_y;
-	int						sprite_screen_x;
-	int						sprite_height;
-	int						sprite_width;
-	int						draw_start_x;
-	int						draw_end_x;
-	int						draw_start_y;
-	int						draw_end_y;
-	t_health_bar			health_bar;
-}							t_sprite_render_info;
 
 typedef struct s_sprite_boss
 {
