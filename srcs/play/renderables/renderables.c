@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:43:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 19:10:58 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 20:12:46 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,13 @@ static void	draw_renderables(t_cubed *cubed, t_renderable *renderables,
 		int count)
 {
 	int		i;
-	t_ray	*ray;
 
 	i = -1;
 	while (++i < count)
 	{
 		if (renderables[i].type == RENDERABLE_WALL)
 		{
-			ray = renderables[i].data.ray;
-			if (render_wall(cubed, ray, &i) == NO_WALL)
+			if (render_wall(cubed, renderables[i].data.ray, &i) == NO_WALL)
 				continue ;
 		}
 		else if (renderables[i].type == RENDERABLE_SPRITE)
@@ -88,7 +86,8 @@ static void	draw_renderables(t_cubed *cubed, t_renderable *renderables,
 				&cubed->scene.sprite_info.sprite_boss_texture);
 		else if (renderables[i].type == RENDERABLE_ITEM)
 			draw_any_sprite(cubed, &renderables[i].data.item->info,
-				&cubed->scene.sprite_info.item_info.textures[renderables[i].data.item->type]);
+				&cubed->scene.sprite_info.item_info.\
+				textures[renderables[i].data.item->type]);
 	}
 }
 

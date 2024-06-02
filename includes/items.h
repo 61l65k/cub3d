@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 13:57:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 19:14:40 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 20:23:36 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # include "display.h"
 
 # define ERR_ITEM_MALLOC "Error: Item malloc failed\n"
-# define SPRITE_DROP_PROBABILITY 10
-# define SPAWNER_DROP_PROBABILITY 30
-# define BOSS_DROP_PROBABILITY 70
 # define ITEM_DROP_LIFETIME 10
 # define ITEM_TIME_INCREMENT 0.005
 

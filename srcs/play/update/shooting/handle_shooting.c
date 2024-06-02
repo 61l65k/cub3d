@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 14:14:52 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 20:13:49 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ static void	handle_gun_shooting(t_cubed *cubed, float damage,
 static void	handle_wrench_shooting(t_cubed *cubed)
 {
 	const float		distance = 3.0;
-	const double	dir[2] = {cubed->player.dir_x * distance,
-			cubed->player.dir_y * distance};
-	const double	coor[2] = {cubed->player.x + dir[0], cubed->player.y
-			+ dir[1]};
+	const double	dir[2]
+		= {cubed->player.dir_x * distance, cubed->player.dir_y * distance};
+	const double	coor[2]
+		= {cubed->player.x + dir[0], cubed->player.y + dir[1]};
 	const char		map_char = t_map_get_f(&cubed->scene.map, coor[0], coor[1]);
 
 	if (map_char == '0' || map_char == ' ')
