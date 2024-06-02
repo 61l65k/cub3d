@@ -48,6 +48,6 @@ void	update_player_orientation(t_player *player)
 	}
 	player->dir_x = cos(player->rotation_angle);
 	player->dir_y = sin(player->rotation_angle);
-	player->plane_x = -player->dir_y * 0.66;
-	player->plane_y = player->dir_x * 0.66;
+	player->plane_x = -player->dir_y * player->fov_rad / 2;
+	player->plane_y = player->dir_x * player->fov_rad / 2;
 }

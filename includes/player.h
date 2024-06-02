@@ -30,10 +30,11 @@ typedef struct s_player
 {
 	double						x;
 	double						y;
-	float						dir_x;
-	float						dir_y;
-	float						plane_x;
-	float						plane_y;
+	double						dir_x;
+	double						dir_y;
+	double						plane_x;
+	double						plane_y;
+	double						fov_rad;
 	int							x_move;
 	int							z_move;
 	int							health;

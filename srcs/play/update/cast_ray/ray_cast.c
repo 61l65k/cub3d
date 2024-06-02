@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 13:14:19 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/01 11:29:45 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	init_y_intersection_helper(t_raycast_helper *rh, t_ray *ray,
 }
 
 static void	perform_dda(t_ray *ray, const t_map *map, const t_player *player,
-		int side)
+	int side)
 {
 	t_raycast_helper	rh;
 
@@ -106,9 +106,9 @@ void	update_rays(t_rays *rays, const t_map *map, const t_player *player)
 	double			ray_angle;
 	int				i;
 	t_ray			y_axis_intersection;
-	const double	ray_angle_step = rays->field_of_view / rays->ray_count;
+	const double	ray_angle_step = player->fov_rad / rays->ray_count;
 
-	ray_angle = player->rotation_angle - rays->field_of_view / 2;
+	ray_angle = player->rotation_angle - player->fov_rad / 2;
 	i = -1;
 	while (++i < rays->ray_count)
 	{
@@ -120,4 +120,5 @@ void	update_rays(t_rays *rays, const t_map *map, const t_player *player)
 			rays->ray_array[i] = y_axis_intersection;
 		ray_angle += ray_angle_step;
 	}
+	rays->proj_plane_dist = (rays->ray_count / 2.0) / tan(player->fov_rad / 2);
 }

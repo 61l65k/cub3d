@@ -60,8 +60,7 @@ void	prepare_player(t_cubed *cubed)
 	get_starting_position(&cubed->player, cubed->scene.map.grid);
 	player->dir_x = cos(player->rotation_angle);
 	player->dir_y = sin(player->rotation_angle);
-	player->plane_x = -player->dir_y * 0.66;
-	player->plane_y = player->dir_x * 0.66;
+	player->fov_rad = deg2rad(FOV);
 	player->health = PLAYER_MAX_HEALTH;
 	player->damage_cooldown = TAKE_DAMAGE_COOLDOWN_TIME;
 	player->move_speed = 0.03;

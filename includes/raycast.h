@@ -27,7 +27,6 @@ typedef struct s_rays
 {
 	t_ray				*ray_array;
 	double				proj_plane_dist;
-	double				field_of_view;
 	int					ray_count;
 }						t_rays;
 
