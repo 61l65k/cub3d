@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:20:55 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 17:51:21 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:01:52 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,12 @@ void	spawn_item(t_cubed *cubed, double x, double y,
 		ft_clean_exit(cubed, ERR_ITEM_MALLOC, 0);
 	new_item->type = type;
 	new_item->texture = i->textures[type];
+	new_item->x = x;
 	new_item->y = y;
 	new_item->time_since_drop = 0;
 	new_item->distance = get_distance(cubed->player.x, cubed->player.y, x, y);
 	new_item->next = i->items;
+	update_render_info(cubed, x, y, &new_item->info);
 	i->items = new_item;
 	i->item_count++;
 	printf("Item spawned at x: %f, y: %f\n", x, y);

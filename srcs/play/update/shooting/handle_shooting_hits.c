@@ -6,11 +6,14 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:37:14 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 14:45:24 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:54:52 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void		spawn_item(t_cubed *cubed, double x, double y,
+				t_sprite_type entity_type);
 
 static bool	hit_sprite(t_cubed *cubed, t_sprite *sprite, t_sprite *prev_sprite,
 		float damage)
@@ -18,6 +21,7 @@ static bool	hit_sprite(t_cubed *cubed, t_sprite *sprite, t_sprite *prev_sprite,
 	sprite->health -= damage;
 	if (sprite->health <= 0)
 	{
+		spawn_item(cubed, sprite->x, sprite->y, SPRITE);
 		if (prev_sprite == NULL)
 			cubed->scene.sprite_info.sprites = sprite->next;
 		else
@@ -37,6 +41,7 @@ static bool	hit_spawner(t_cubed *cubed, t_sprite_spawner *spawner,
 	spawner->health -= damage;
 	if (spawner->health <= 0)
 	{
+		spawn_item(cubed, spawner->x, spawner->y, SPAWNER);
 		t_map_insert_f(&cubed->scene.map, spawner->x, spawner->y, '0');
 		if (prev_spawner == NULL)
 			cubed->scene.sprite_info.spawners = spawner->next;
@@ -56,6 +61,7 @@ static bool	hit_boss(t_cubed *cubed, t_sprite_boss *boss,
 	boss->health -= damage;
 	if (boss->health <= 0)
 	{
+		spawn_item(cubed, boss->x, boss->y, BOSS);
 		if (prev_boss == NULL)
 			cubed->scene.sprite_info.sprite_bosses = boss->next;
 		else

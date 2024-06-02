@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 16:17:40 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:10:06 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,22 @@ void	free_texture(t_mlx *mlx, t_texture *texture)
 
 static void	free_all_items(t_mlx *mlx, t_item_info *i)
 {
+	t_item	*current_item;
+	t_item	*next_item;
+
 	free_texture(mlx, &i->textures[ITEM_HEALTH]);
 	free_texture(mlx, &i->textures[ITEM_POISON]);
 	free_texture(mlx, &i->textures[ITEM_BOOTS]);
 	free_texture(mlx, &i->textures[ITEM_CLOAK]);
 	free_texture(mlx, &i->textures[ITEM_BREAD]);
-	if (i->items)
-		free_all_sprites((t_sprite *)i->items);
+	current_item = i->items;
+	while (current_item)
+	{
+		next_item = current_item->next;
+		free(current_item);
+		current_item = next_item;
+	}
+	i->items = NULL;
 }
 
 void	free_cubed(t_cubed *cubed)
