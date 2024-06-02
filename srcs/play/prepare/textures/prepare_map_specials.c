@@ -71,6 +71,7 @@ static void	prepare_sprite_boss(t_cubed *cubed, int x, int y)
 	new_boss->next = cubed->scene.sprite_info.sprite_bosses;
 	cubed->scene.sprite_info.sprite_bosses = new_boss;
 	cubed->scene.sprite_info.boss_count++;
+	t_map_insert(&cubed->scene.map, x, y, '0');
 }
 
 static void	prepare_door(t_cubed *cubed, int x, int y)
