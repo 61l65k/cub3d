@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:02:10 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 13:53:03 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:35:07 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void				prepare_rays(t_cubed *cubed);
 void				prepare_rays(t_cubed *cubed);
 void				draw_floor(t_cubed *cubed);
 void				draw_ceiling(t_cubed *cubed);
-void				draw_walls(t_cubed *game);
 void				update_rays(t_rays *rays, const t_map *map,
 						const t_player *player);
 void				draw_menu(t_cubed *cubed);

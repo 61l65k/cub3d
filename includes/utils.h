@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 13:45:22 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:35:32 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int							argb_to_int(int a, int r, int g, int b);
 int							is_map_surrounded_by_walls(const t_map *map);
 int							has_one_start_position(char **map);
 double						deg2rad(double deg);
-void						render_wall_column(t_wall *wall, int *img,
-								t_resolution *res, t_ray *ray);
 void						update_player_position(t_player *player,
 								const t_map *t_map);
 void						update_player_orientation(t_player *player);
