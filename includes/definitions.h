@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 16:16:51 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/03 17:38:59 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@
 # define MAP_ERR_LOC "Error: Map not surrounded by walls at (%zu, %zu) (From where the map started)\n"
 # define MOUSE_SENSITIVITY 0.001
 # define MOUSE_ESCAPE_THRESHOLD 20
-# define RES_MAX_W 1920
-# define RES_MAX_H 1080
-# define RES_MAX_STR "1920x1080"
-# define RES_DEFAULT_W 1280
-# define RES_DEFAULT_H 720
-# define RES_DEFAULT_STR "1280x720"
+# define RES_MAX_W 2440
+# define RES_MAX_H 1320
+# define RES_MAX_STR "2440x1320"
+# define RES_DEFAULT_W 1920
+# define RES_DEFAULT_H 1080
+# define RES_DEFAULT_STR "1920x1080"
 # define RES_MIN_W 320
 # define RES_MIN_H 240
 # define RES_MIN_STR "320x240"
