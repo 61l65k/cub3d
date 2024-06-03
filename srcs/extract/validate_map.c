@@ -3,29 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:45:21 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 14:10:16 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 19:11:01 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	has_adjacent_spaces(const t_map *map, size_t i, size_t j)
+static int	has_adjacent_spaces(const t_map *map, int y, int x)
 {
-	int	has_space;
+	char	map_char;
+	int		y_cur;
+	int		x_cur;
 
-	has_space = 0;
-	has_space |= (map->grid[i - 1][j - 1] == ' ');
-	has_space |= (map->grid[i - 1][j] == ' ');
-	has_space |= (map->grid[i - 1][j + 1] == ' ');
-	has_space |= (map->grid[i][j + 1] == ' ');
-	has_space |= (map->grid[i + 1][j + 1] == ' ');
-	has_space |= (map->grid[i + 1][j] == ' ');
-	has_space |= (map->grid[i + 1][j - 1] == ' ');
-	has_space |= (map->grid[i][j - 1] == ' ');
-	return (has_space);
+	y_cur = y - 1;
+	while (y_cur <= y + 1)
+	{
+		x_cur = x - 1;
+		while (x_cur <= x + 1)
+		{
+			if (y_cur == y && x_cur == x)
+			{
+				x_cur++;
+				continue ;
+			}
+			map_char = t_map_get(map, x_cur, y_cur);
+			if (map_char == ' ' || map_char == '\0')
+				return (1);
+			x_cur++;
+		}
+		y_cur++;
+	}
+	return (0);
 }
 
 int	has_one_start_position(char **map)
@@ -50,27 +61,25 @@ int	has_one_start_position(char **map)
 
 int	is_map_surrounded_by_walls(const t_map *map)
 {
-	size_t	i;
-	size_t	j;
+	int		y;
+	int		x;
+	char	map_char;
 
-	i = 0;
-	while (i < map->height)
+	y = 0;
+	while (y < (int)map->height)
 	{
-		j = 0;
-		while (j < map->width)
+		x = 0;
+		while (x < (int)map->width)
 		{
-			if (j < ft_strlen(map->grid[i]) && map->grid[i][j] != '1'
-				&& map->grid[i][j] != ' ')
+			map_char = t_map_get(map, x, y);
+			if (map_char != '1' && map_char != ' ' && map_char != '\0')
 			{
-				if (i == 0 || j == 0 || i == map->height - 1 || j == map->width
-					- 1)
-					return (1);
-				if (has_adjacent_spaces(map, i, j))
-					return (ft_fprintf(STDERR_FILENO, MAP_ERR_LOC, i, j), 0);
+				if (has_adjacent_spaces(map, y, x))
+					return (ft_fprintf(STDERR_FILENO, MAP_ERR_LOC, y, x), 0);
 			}
-			j++;
+			x++;
 		}
-		i++;
+		y++;
 	}
 	return (1);
 }
