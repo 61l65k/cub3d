@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 03:18:22 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 14:47:30 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/03 14:55:54 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	render_wall_column(const t_wall *wall, int *img,
 {
 	int				y;
 	int				y_tex;
-	const double	step = 1.0 * texture->height / wall->height;
+	const double	step = texture->height / wall->height;
 	double			tex_pos;
 
 	tex_pos = (wall->y - res->height / 2.0 + wall->height / 2) * step;
