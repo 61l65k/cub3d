@@ -43,25 +43,27 @@ void	draw_game_over_screen(t_cubed *cubed)
 {
 	const int	center_x = cubed->scene.resol.width / 2;
 	const int	center_y = cubed->scene.resol.height / 2;
-	const int	image_x = (cubed->scene.resol.width
-			- cubed->game_over_texture.width) / 2;
-	const int	image_y = (cubed->scene.resol.height
-			- cubed->game_over_texture.height) / 2 - 100;
 	int			option_y_offset;
+	int			option_count;
 
+	option_count = 0;
 	mlx_put_image_to_window(cubed->mlx.mlx_ptr, cubed->mlx.win,
-		cubed->game_over_texture.img.img_ptr, image_x, image_y);
+		cubed->game_over_texture.img.img_ptr, (cubed->scene.resol.width
+			- cubed->game_over_texture.width) / 2,
+		(cubed->scene.resol.height \
+		- cubed->game_over_texture.height) / 2 - 100);
 	option_y_offset = 50;
 	if (LINUX)
 	{
 		mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, center_x - 50,
-			center_y + option_y_offset, get_menu_option_color(cubed, 0),
-			"Play Again");
+			center_y + (option_y_offset += 50),
+			get_menu_option_color(cubed, option_count++), "Play Again");
 	}
-	option_y_offset += 50;
 	mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, center_x - 50, center_y
-		+ option_y_offset, get_menu_option_color(cubed, 1), "Switch Map");
+		+ option_y_offset,
+		get_menu_option_color(cubed, option_count++), "Switch Map");
 	option_y_offset += 50;
-	mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, center_x - 50, center_y
-		+ option_y_offset, get_menu_option_color(cubed, 2), "Exit");
+	mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, center_x - 50,
+		center_y + option_y_offset,
+		get_menu_option_color(cubed, option_count++), "Exit");
 }

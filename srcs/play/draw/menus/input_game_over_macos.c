@@ -14,16 +14,16 @@
 
 int	key_press_game_over(int keycode, t_cubed *cubed)
 {
-	if (keycode == K_ENTER || keycode == K_SPACE)
+	if (keycode == K_ENTER)
 	{
-		if (cubed->selected_option == 1)
+		if (cubed->selected_option == 0)
 			ft_clean_exit(cubed, NULL, WRAPPER_EXIT);
-		else if (cubed->selected_option == 2)
+		else if (cubed->selected_option == 1)
 			ft_clean_exit(cubed, NULL, 0);
 	}
 	else if (keycode == K_FORWARD_ARROW || keycode == K_W)
 	{
-		cubed->selected_option = (cubed->selected_option - 1 + 3) % 2;
+		cubed->selected_option = (cubed->selected_option - 1 + 2) % 2;
 	}
 	else if (keycode == K_BACK_ARROW || keycode == K_S)
 	{

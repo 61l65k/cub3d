@@ -16,8 +16,8 @@
 # include "display.h"
 
 # define ERR_ITEM_MALLOC "Error: Item malloc failed\n"
-# define ITEM_DROP_LIFETIME 10
-# define ITEM_TIME_INCREMENT 0.005
+# define ITEM_DROP_LIFETIME 7.0
+# define ITEM_TIME_INCREMENT 0.010
 # define ITEM_PICKUP_THRESHOLD 1.0
 
 typedef struct s_texture	t_texture;
@@ -25,9 +25,9 @@ typedef struct s_item_info	t_item_info;
 
 typedef enum e_effect_timers
 {
-	CLOAK_EFFECT_TIME = 10,
-	BOOTS_EFFECT_TIME = 10,
-	POISON_EFFECT_TIME = 10,
+	CLOAK_EFFECT_TIME = 5,
+	BOOTS_EFFECT_TIME = 5,
+	POISON_EFFECT_TIME = 5,
 }							t_effect_timers;
 
 typedef enum e_item_type
