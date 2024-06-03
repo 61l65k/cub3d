@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderables.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:43:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 20:12:46 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:00:59 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,16 @@ static void	insertion_sort_renderables(t_renderable *arr, int n)
 static void	render_wall(t_cubed *cubed, t_ray *ray)
 {
 	t_wall	wall;
-	int		x;
 
-	if (!ray->orientation)
+	if (ray->obstacle != '1' && ray->obstacle != 'D')
 		return ;
 	wall = (t_wall){0};
-	x = ray - cubed->rays.ray_array;
-	wall.x = x;
+	wall.x = ray - cubed->rays.ray_array;
 	wall.height = get_wall_height(cubed, ray);
 	wall.y = get_y_wall_position(cubed, wall.height);
 	if (ray->obstacle == 'D')
 	{
-		if (get_distance(cubed->player.x, cubed->player.y, ray->x, ray->y) < 3)
+		if (ray->distance < 3)
 			wall.texture = cubed->scene.sprite_info.door_open_texture;
 		else
 			wall.texture = cubed->scene.sprite_info.door_closed_texture;

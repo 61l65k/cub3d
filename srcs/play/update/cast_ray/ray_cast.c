@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 11:29:45 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/03 10:57:54 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ static void	perform_dda(t_ray *ray, const t_map *map, const t_player *player,
 		ray->obstacle = t_map_get_f(map, ray->x, ray->y);
 		if (ray->obstacle == '\0')
 		{
-			ray->distance = INT_MAX;
-			ray->orientation = 0;
 			break ;
 		}
 		if (ray->obstacle == '1')
