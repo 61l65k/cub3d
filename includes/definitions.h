@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   definitions.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 13:24:47 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/03 14:10:49 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define GUN_TEXTURE_PATH "assets/gun/akimbos.xpm"
 # define ERR_LOAD_WEAPON "Error: load_weapon() - could not load weapon\n"
 # define ERR_LOAD_TEXTURE "Error: load_texture() - could not load texture\n"
-
+# define MAP_ERR_LOC "Error: Map not surrounded by walls at (%zu, %zu) (From where the map started)\n"
 # define MOUSE_SENSITIVITY 0.001
 # define MOUSE_ESCAPE_THRESHOLD 20
 # define RES_MAX_W 1920

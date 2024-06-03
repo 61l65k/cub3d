@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:45:21 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/25 00:34:17 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:10:16 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	is_map_surrounded_by_walls(const t_map *map)
 					- 1)
 					return (1);
 				if (has_adjacent_spaces(map, i, j))
-					return (0);
+					return (ft_fprintf(STDERR_FILENO, MAP_ERR_LOC, i, j), 0);
 			}
 			j++;
 		}
