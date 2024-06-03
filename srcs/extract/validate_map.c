@@ -17,22 +17,14 @@ static int	has_adjacent_spaces(const t_map *map, size_t i, size_t j)
 	int	has_space;
 
 	has_space = 0;
-	if (i > 0 && j > 0)
-		has_space |= (map->grid[i - 1][j - 1] == ' ');
-	if (i > 0)
-		has_space |= (map->grid[i - 1][j] == ' ');
-	if (i > 0 && j < map->width - 1)
-		has_space |= (map->grid[i - 1][j + 1] == ' ');
-	if (j < map->width - 1 && j < ft_strlen(map->grid[i]))
-		has_space |= (map->grid[i][j + 1] == ' ');
-	if (i < map->height - 1 && j < ft_strlen(map->grid[i]))
-		has_space |= (map->grid[i + 1][j + 1] == ' ');
-	if (i < map->height - 1)
-		has_space |= (map->grid[i + 1][j] == ' ');
-	if (i < map->height - 1 && j > 0)
-		has_space |= (map->grid[i + 1][j - 1] == ' ');
-	if (j > 0)
-		has_space |= (map->grid[i][j - 1] == ' ');
+	has_space |= (map->grid[i - 1][j - 1] == ' ');
+	has_space |= (map->grid[i - 1][j] == ' ');
+	has_space |= (map->grid[i - 1][j + 1] == ' ');
+	has_space |= (map->grid[i][j + 1] == ' ');
+	has_space |= (map->grid[i + 1][j + 1] == ' ');
+	has_space |= (map->grid[i + 1][j] == ' ');
+	has_space |= (map->grid[i + 1][j - 1] == ' ');
+	has_space |= (map->grid[i][j - 1] == ' ');
 	return (has_space);
 }
 

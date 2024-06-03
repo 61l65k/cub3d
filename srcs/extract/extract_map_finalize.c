@@ -32,6 +32,19 @@ int	calloc_final_grid_strings(char **final_grid, size_t height, size_t width)
 	return (0);
 }
 
+static void	turn_nulls_to_spaces(char *dst, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (dst[i] == '\0')
+			dst[i] = ' ';
+		i++;
+	}
+}
+
 static
 int	strcpy_tab_to_space(const char *src, char *dst, size_t size)
 {
@@ -55,6 +68,7 @@ int	strcpy_tab_to_space(const char *src, char *dst, size_t size)
 	dst[j] = '\0';
 	if (src[i] != '\0')
 		return (-1);
+	turn_nulls_to_spaces(dst, size);
 	return (0);
 }
 
