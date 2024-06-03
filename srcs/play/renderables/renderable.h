@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderable.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:40:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 18:39:16 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:12:19 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,10 @@ typedef struct s_renderable
 }									t_renderable;
 
 void								sort_and_draw_renderables(t_cubed *cubed);
+void								draw_wall(t_cubed *cubed, t_ray *ray);
 void								draw_any_sprite(t_cubed *cubed,
 										t_sprite_render_info *info,
 										t_texture *texture);
-double								get_wall_height(t_cubed *cubed, t_ray *ray);
-int									get_y_wall_position(t_cubed *cubed,
-										double wall_height);
-t_texture							get_wall_texture(t_scenedata *scene,
-										char orientation);
 t_renderable						*collect_renderables(t_cubed *cubed,
 										int *count);
 #endif

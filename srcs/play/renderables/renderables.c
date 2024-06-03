@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:43:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 11:00:59 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/03 11:11:16 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,6 @@ static void	insertion_sort_renderables(t_renderable *arr, int n)
 	}
 }
 
-static void	render_wall(t_cubed *cubed, t_ray *ray)
-{
-	t_wall	wall;
-
-	if (ray->obstacle != '1' && ray->obstacle != 'D')
-		return ;
-	wall = (t_wall){0};
-	wall.x = ray - cubed->rays.ray_array;
-	wall.height = get_wall_height(cubed, ray);
-	wall.y = get_y_wall_position(cubed, wall.height);
-	if (ray->obstacle == 'D')
-	{
-		if (ray->distance < 3)
-			wall.texture = cubed->scene.sprite_info.door_open_texture;
-		else
-			wall.texture = cubed->scene.sprite_info.door_closed_texture;
-	}
-	else
-		wall.texture = get_wall_texture(&cubed->scene, ray->orientation);
-	render_wall_column(&wall, cubed->mlx.img.data, &cubed->scene.resol, ray);
-}
-
 static void	draw_renderables(t_cubed *cubed, t_renderable *renderables,
 		int count)
 {
@@ -65,7 +43,7 @@ static void	draw_renderables(t_cubed *cubed, t_renderable *renderables,
 	while (++i < count)
 	{
 		if (renderables[i].type == RENDERABLE_WALL)
-			render_wall(cubed, renderables[i].data.ray);
+			draw_wall(cubed, renderables[i].data.ray);
 		else if (renderables[i].type == RENDERABLE_SPRITE)
 			draw_any_sprite(cubed, &renderables[i].data.sprite->info,
 				&cubed->scene.sprite_info.sprite_texture);

@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 02:48:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 10:57:54 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/03 11:05:18 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,7 @@ static void	perform_dda(t_ray *ray, const t_map *map, const t_player *player,
 	while (1)
 	{
 		ray->obstacle = t_map_get_f(map, ray->x, ray->y);
-		if (ray->obstacle == '\0')
-		{
-			break ;
-		}
-		if (ray->obstacle == '1')
+		if (ray->obstacle == '\0' || ray->obstacle == '1')
 			break ;
 		if (ray->obstacle == 'D' && ray->distance > DOOR_OPENING_DISTANCE)
 			break ;
