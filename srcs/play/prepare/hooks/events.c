@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 16:37:48 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/03 17:30:19 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static int	close_game_x(t_cubed *cubed)
 
 static int	key_press_game_running(t_cubed *cubed, int keycode)
 {
-	printf("keycode: %d\n", keycode);
 	if (keycode == K_ESC)
 		ft_clean_exit(cubed, NULL, 0);
 	key_press_movement(keycode, cubed);
@@ -64,7 +63,6 @@ static int	key_press(int keycode, t_cubed *cubed)
 
 static int	key_released(int keycode, t_cubed *cubed)
 {
-	printf("keycode: %d released\n", keycode);
 	if (cubed->game_state == GAME_STATE_RUNNING)
 	{
 		key_release_movement(keycode, cubed);
