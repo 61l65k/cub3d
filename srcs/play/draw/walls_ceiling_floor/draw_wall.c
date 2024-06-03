@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 03:18:22 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 12:12:32 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/03 13:24:12 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,6 @@ t_texture	get_wall_texture(t_scenedata *scene, const t_ray *ray)
 		return (scene->sprite_info.door_closed_texture);
 	}
 	return (scene->north_texture);
-}
-
-static
-double	get_wall_height(const t_cubed *cubed, const t_ray *ray)
-{
-	const double	fisheye_adjustment = cos(ray->angle
-			- cubed->player.rotation_angle);
-	const double	scaled_distance = ray->distance * GRID_UNIT_SCALE
-		* fisheye_adjustment;
-
-	return ((GRID_UNIT_SCALE / scaled_distance)
-		* (cubed->rays.proj_plane_dist));
-}
-
-static int	get_texture_x_offset(const t_ray *ray, int texture_width)
-{
-	double	remainder;
-	int		offset;
-
-	if (ray->y == (int)ray->y)
-		remainder = ray->x - floor(ray->x);
-	else
-		remainder = ray->y - floor(ray->y);
-	offset = texture_width * remainder;
-	return (offset);
 }
 
 static
@@ -96,12 +71,17 @@ void	draw_wall(t_cubed *cubed, t_ray *ray)
 	if (ray->obstacle != '1' && ray->obstacle != 'D')
 		return ;
 	wall.x = ray - cubed->rays.ray_array;
-	wall.height = get_wall_height(cubed, ray);
+	wall.height = 1
+		/ (ray->distance * cos(ray->angle - cubed->player.rotation_angle))
+		* cubed->rays.proj_plane_dist;
 	wall.y = (cubed->scene.resol.height - wall.height) / 2;
 	if (wall.y < 0)
 		wall.y = 0;
 	texture = get_wall_texture(&cubed->scene, ray);
-	wall.x_tex = get_texture_x_offset(ray, texture.width);
+	if (ray->y == floor(ray->y))
+		wall.x_tex = (ray->x - floor(ray->x)) * texture.width;
+	else
+		wall.x_tex = (ray->y - floor(ray->y)) * texture.width;
 	render_wall_column(&wall, cubed->mlx.img.data,
 		&cubed->scene.resol, &texture);
 }

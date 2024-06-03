@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   definitions.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/01 15:00:47 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:24:47 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@
 # define LEFT_CLICK 1
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
-# define GRID_UNIT_SCALE 1
 # define FOV 60
 # define TAB_SIZE 4
 # ifndef linux
