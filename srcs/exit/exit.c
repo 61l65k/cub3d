@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:24:56 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 18:10:06 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:19:43 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	free_all_items(t_mlx *mlx, t_item_info *i)
 	free_texture(mlx, &i->textures[ITEM_BOOTS]);
 	free_texture(mlx, &i->textures[ITEM_CLOAK]);
 	free_texture(mlx, &i->textures[ITEM_BREAD]);
+	free_texture(mlx, &i->textures[ITEM_BOOK]);
 	current_item = i->items;
 	while (current_item)
 	{

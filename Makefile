@@ -56,6 +56,7 @@ SRCS_COMMON := \
     srcs/play/update/items/update_items.c \
     srcs/play/update/items/spawn_items.c \
     srcs/play/update/items/update_item_effects.c \
+    srcs/play/update/items/book_of_wisdom.c \
     srcs/utils/blend_colors.c \
     srcs/utils/free_str_utils.c \
     srcs/utils/math_utils.c \

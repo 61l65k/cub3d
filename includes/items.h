@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 13:57:38 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 00:00:11 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:19:28 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef enum e_item_type
 	ITEM_BOOTS,
 	ITEM_POISON,
 	ITEM_CLOAK,
+	ITEM_BOOK,
 	ITEM_MAX
 }							t_item_type;
 

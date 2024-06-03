@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:19:42 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 16:16:38 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:20:18 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,17 @@ void	load_all_item_textures(t_cubed *cubed)
 	t_item_info	*i;
 	const char	*health = "./assets/default/items/health.xpm";
 	const char	*poison = "./assets/default/items/poison.xpm";
+	const char	*book = "./assets/default/items/book_of_wisdom.xpm";
 
 	i = &cubed->scene.sprite_info.item_info;
 	i->textures[ITEM_HEALTH].path = ft_strdup(health);
 	i->textures[ITEM_POISON].path = ft_strdup(poison);
-	if (!i->textures[ITEM_HEALTH].path || !i->textures[ITEM_POISON].path)
+	i->textures[ITEM_BOOK].path = ft_strdup(book);
+	if (!i->textures[ITEM_HEALTH].path || !i->textures[ITEM_POISON].path
+		|| !i->textures[ITEM_BOOK].path)
 		ft_clean_exit(cubed, ERR_LOAD_TEXTURE, 0);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &i->textures[ITEM_HEALTH]);
 	load_texture(cubed, cubed->mlx.mlx_ptr, &i->textures[ITEM_POISON]);
+	load_texture(cubed, cubed->mlx.mlx_ptr, &i->textures[ITEM_BOOK]);
 	load_more_item_textures(cubed, i);
 }

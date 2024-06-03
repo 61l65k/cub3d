@@ -6,13 +6,14 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 20:02:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 00:00:10 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:48:51 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 void		update_item_effects(t_player *p, double delta_time);
+void		end_game(t_cubed *cubed);
 
 static void	remove_expired_items(t_cubed *cubed, t_item **current,
 		t_item **prev)
@@ -62,6 +63,8 @@ void	pick_up_item(t_cubed *cubed, t_item **current, t_item **prev)
 			/ (float)PLAYER_MAX_HEALTH;
 	else if ((*current)->type == ITEM_CLOAK)
 		p->effects.cloak_effect_timer = CLOAK_EFFECT_TIME;
+	else if ((*current)->type == ITEM_BOOK)
+		end_game(cubed);
 	if (p->health > 100)
 		p->health = 100;
 	remove_expired_items(cubed, current, prev);

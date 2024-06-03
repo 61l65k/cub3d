@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:37:14 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 18:31:31 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:42:58 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void		spawn_item(t_cubed *cubed, double x, double y,
 				t_sprite_type entity_type);
+bool		check_and_spawn_book_of_wisdom(t_cubed *cubed,
+				double x, double y);
 
 static bool	hit_sprite(t_cubed *cubed, t_sprite *sprite, t_sprite *prev_sprite,
 		float damage)
@@ -21,14 +23,15 @@ static bool	hit_sprite(t_cubed *cubed, t_sprite *sprite, t_sprite *prev_sprite,
 	sprite->health -= damage;
 	if (sprite->health <= 0)
 	{
-		spawn_item(cubed, sprite->x, sprite->y, SPRITE);
+		cubed->scene.sprite_info.sprites_count--;
+		if (!check_and_spawn_book_of_wisdom(cubed, sprite->x, sprite->y))
+			spawn_item(cubed, sprite->x, sprite->y, SPRITE);
 		if (prev_sprite == NULL)
 			cubed->scene.sprite_info.sprites = sprite->next;
 		else
 			prev_sprite->next = sprite->next;
 		free(sprite);
 		sprite = NULL;
-		cubed->scene.sprite_info.sprites_count--;
 	}
 	else
 		sprite->info.health_bar.health_percentage = sprite->health
@@ -42,7 +45,9 @@ static bool	hit_spawner(t_cubed *cubed, t_sprite_spawner *spawner,
 	spawner->health -= damage;
 	if (spawner->health <= 0)
 	{
-		spawn_item(cubed, spawner->x, spawner->y, SPAWNER);
+		cubed->scene.sprite_info.spawner_count--;
+		if (!check_and_spawn_book_of_wisdom(cubed, spawner->x, spawner->y))
+			spawn_item(cubed, spawner->x, spawner->y, SPAWNER);
 		t_map_insert_f(&cubed->scene.map, spawner->x, spawner->y, '0');
 		if (prev_spawner == NULL)
 			cubed->scene.sprite_info.spawners = spawner->next;
@@ -50,7 +55,6 @@ static bool	hit_spawner(t_cubed *cubed, t_sprite_spawner *spawner,
 			prev_spawner->next = spawner->next;
 		free(spawner);
 		spawner = NULL;
-		cubed->scene.sprite_info.spawner_count--;
 	}
 	else
 		spawner->info.health_bar.health_percentage = spawner->health
@@ -64,14 +68,15 @@ static bool	hit_boss(t_cubed *cubed, t_sprite_boss *boss,
 	boss->health -= damage;
 	if (boss->health <= 0)
 	{
-		spawn_item(cubed, boss->x, boss->y, BOSS);
+		cubed->scene.sprite_info.boss_count--;
+		if (!check_and_spawn_book_of_wisdom(cubed, boss->x, boss->y))
+			spawn_item(cubed, boss->x, boss->y, BOSS);
 		if (prev_boss == NULL)
 			cubed->scene.sprite_info.sprite_bosses = boss->next;
 		else
 			prev_boss->next = boss->next;
 		free(boss);
 		boss = NULL;
-		cubed->scene.sprite_info.boss_count--;
 	}
 	else
 		boss->info.health_bar.health_percentage = boss->health
