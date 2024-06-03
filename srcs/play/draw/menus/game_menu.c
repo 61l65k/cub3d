@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 23:13:41 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 13:48:38 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:09:51 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int			get_menu_option_color(t_cubed *cubed, int option_index);
 
 int	key_press_game_menu(int keycode, t_cubed *cubed)
 {
-	if (keycode == K_ENTER || keycode == K_SPACE)
+	if (keycode == K_ENTER)
 	{
 		if (cubed->selected_option == 0)
 			cubed->game_state = GAME_STATE_RUNNING;

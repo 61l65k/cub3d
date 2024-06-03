@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 13:46:29 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:09:59 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int	close_game_x(t_cubed *cubed)
 
 static int	key_press_game_running(t_cubed *cubed, int keycode)
 {
+	printf("keycode: %d\n", keycode);
 	if (keycode == K_ESC)
 		ft_clean_exit(cubed, NULL, 0);
 	key_press_movement(keycode, cubed);
@@ -53,20 +54,23 @@ static int	key_press(int keycode, t_cubed *cubed)
 {
 	if (cubed->game_state == GAME_STATE_OVER)
 		return (key_press_game_over(keycode, cubed));
-	if (cubed->game_state == GAME_STATE_MENU)
+	else if (cubed->game_state == GAME_STATE_MENU)
 		return (key_press_game_menu(keycode, cubed));
-	if (cubed->game_state == GAME_STATE_RUNNING)
+	else if (cubed->game_state == GAME_STATE_RUNNING)
 		return (key_press_game_running(cubed, keycode));
 	return (1);
 }
 
 static int	key_released(int keycode, t_cubed *cubed)
 {
-	key_release_movement(keycode, cubed);
-	if (keycode == K_SPACE)
-		cubed->player.shooting = 0;
-	if (keycode == K_CAPS_LOCK)
-		cubed->player.fov_rad = cubed->player.fov_rad + deg2rad(20);
+	if (cubed->game_state == GAME_STATE_RUNNING)
+	{
+		key_release_movement(keycode, cubed);
+		if (keycode == K_SPACE)
+			cubed->player.shooting = 0;
+		if (keycode == K_CAPS_LOCK)
+			cubed->player.fov_rad = cubed->player.fov_rad + deg2rad(20);
+	}
 	return (1);
 }
 

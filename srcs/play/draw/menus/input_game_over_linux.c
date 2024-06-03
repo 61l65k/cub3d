@@ -6,7 +6,7 @@
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 07:57:03 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 13:49:51 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:10:32 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	key_press_game_over(int keycode, t_cubed *cubed)
 {
-	if (keycode == K_ENTER || keycode == K_SPACE)
+	if (keycode == K_ENTER)
 	{
 		if (cubed->selected_option == 0)
 		{
