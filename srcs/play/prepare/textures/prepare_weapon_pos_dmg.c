@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_weapon_pos_dmg.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:15:27 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 14:14:53 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 19:54:53 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	initialize_akimbos_positions(t_weapon *weapon, t_cubed *cubed)
 {
+	weapon->range = RANGE_AKIMBOS;
 	weapon->damage = DMG_AKIMBOS;
 	weapon->gun_pos_x = (cubed->scene.resol.width - weapon->texture.width) / 2;
 	weapon->gun_pos_y = cubed->scene.resol.height - weapon->texture.height + 50;
@@ -24,6 +25,7 @@ static void	initialize_akimbos_positions(t_weapon *weapon, t_cubed *cubed)
 
 static void	initialize_wrench_positions(t_weapon *weapon, t_cubed *cubed)
 {
+	weapon->range = 3;
 	weapon->damage = 0;
 	weapon->gun_pos_x = (cubed->scene.resol.width - weapon->texture.width) / 2;
 	weapon->gun_pos_y = cubed->scene.resol.height - weapon->texture.height + 60;
@@ -34,6 +36,7 @@ static void	initialize_wrench_positions(t_weapon *weapon, t_cubed *cubed)
 
 static void	initialize_raygun_positions(t_weapon *weapon, t_cubed *cubed)
 {
+	weapon->range = RANGE_RAYGUN;
 	weapon->damage = DMG_RAYGUN;
 	weapon->gun_pos_x = (cubed->scene.resol.width - weapon->texture.width) / 2;
 	weapon->gun_pos_y = cubed->scene.resol.height - weapon->texture.height + 40;
@@ -44,6 +47,7 @@ static void	initialize_raygun_positions(t_weapon *weapon, t_cubed *cubed)
 
 static void	initialize_minigun_positions(t_weapon *weapon, t_cubed *cubed)
 {
+	weapon->range = RANGE_MINIGUN;
 	weapon->damage = DMG_MINIGUN;
 	weapon->gun_pos_x = (cubed->scene.resol.width - weapon->texture.width) / 2;
 	weapon->gun_pos_y = cubed->scene.resol.height - weapon->texture.height + 50;

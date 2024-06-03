@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_shooting.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:19:20 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 20:13:49 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 19:56:44 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void		apply_damage_to_sprite(t_cubed *cubed, t_sprite *sprite,
 				t_sprite *prev_sprite, int damage);
 
 static void	handle_gun_shooting(t_cubed *cubed, float damage,
-		t_weapon_type weapon_type)
+		t_weapon_type weapon_type, t_weapon_range range)
 {
 	const int	middle_ray_index = cubed->scene.resol.width / 2;
 	const t_ray	*middle_ray = &cubed->rays.ray_array[middle_ray_index];
 	const int	map_x = (int)middle_ray->x;
 	const int	map_y = (int)middle_ray->y;
 
-	if (traverse_and_apply_damage(cubed, middle_ray, 100, damage))
+	if (traverse_and_apply_damage(cubed, middle_ray, range, damage))
 		return ;
 	if (weapon_type == WEAPON_RAYGUN
 		&& t_map_get(&cubed->scene.map, map_x, map_y) == '1')
@@ -59,7 +59,7 @@ void	handle_shooting(t_cubed *cubed)
 	}
 	else
 	{
-		handle_gun_shooting(cubed, weapon->damage, weapon->type);
+		handle_gun_shooting(cubed, weapon->damage, weapon->type, weapon->range);
 	}
 	if (weapon->type != WEAPON_MINIGUN)
 	{

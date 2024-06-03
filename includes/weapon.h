@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:15:35 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 19:04:38 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 19:59:11 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,18 @@
 
 typedef struct s_cubed	t_cubed;
 
+typedef enum e_weapon_range
+{
+	RANGE_AKIMBOS = 100,
+	RANGE_RAYGUN = 1000,
+	RANGE_MINIGUN = 300
+}						t_weapon_range;
+
 typedef enum e_weapon_dmg
 {
-	DMG_AKIMBOS = 1000,
-	DMG_RAYGUN = 80,
-	DMG_MINIGUN = 1
+	DMG_AKIMBOS = 80,
+	DMG_RAYGUN = 50,
+	DMG_MINIGUN = 2
 }						t_weapon_dmg;
 
 typedef enum e_weapon_type
@@ -64,6 +71,7 @@ typedef struct s_weapon
 	int					right_gun_tip_x;
 	int					gun_tip_y;
 	int					damage;
+	int					range;
 	t_weapon_type		type;
 }						t_weapon;
 

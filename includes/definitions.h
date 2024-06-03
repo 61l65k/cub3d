@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 19:11:26 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/03 19:42:58 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 	(From where the map started)\n"
 # define MOUSE_SENSITIVITY 0.001
 # define MOUSE_ESCAPE_THRESHOLD 20
+# define ZOOM_FACTOR 2.0
 # define RES_MAX_W 2440
 # define RES_MAX_H 1320
 # define RES_MAX_STR "2440x1320"
@@ -88,6 +89,7 @@
 #  define K_LEFT_SHIFT 257
 #  define K_RIGHT_SHIFT 258
 #  define K_CAPS_LOCK 48
+#  define LEFT_CTRL 256
 #  define K_1 18
 #  define K_2 19
 #  define K_3 20
@@ -111,6 +113,7 @@
 #  define K_LEFT_SHIFT 65505
 #  define K_RIGHT_SHIFT 65506
 #  define K_CAPS_LOCK 65509
+#  define LEFT_CTRL 65507
 #  define K_1 49
 #  define K_2 50
 #  define K_3 51
