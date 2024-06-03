@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 16:15:44 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/03 16:37:48 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static int	key_press_game_running(t_cubed *cubed, int keycode)
 	if (keycode == K_M)
 		cubed->game_state = GAME_STATE_MENU;
 	if (keycode == K_Q)
-		handle_weapon_switch(K_Q, cubed);
+		cubed->weapon_map.current_weapon
+			= (cubed->weapon_map.current_weapon + 1) % WEAPON_MAX;
 	if (keycode == K_1)
 		cubed->weapon_map.current_weapon = WEAPON_AKIMBOS;
 	if (keycode == K_2)
