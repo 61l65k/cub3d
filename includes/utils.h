@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:00:37 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 11:35:32 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/03 11:57:25 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef struct s_cubed		t_cubed;
 typedef struct s_map		t_map;
 typedef struct s_rectangle	t_rectangle;
 typedef struct s_ray		t_ray;
-typedef struct s_wall		t_wall;
 typedef struct s_resolution	t_resolution;
 typedef struct s_player		t_player;
 typedef struct s_animation	t_animation;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 07:36:17 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/31 16:47:44 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:57:16 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,6 @@ typedef struct s_texture
 	int			width;
 	int			height;
 }				t_texture;
-
-typedef struct s_wall
-{
-	int			x;
-	int			y;
-	double		width;
-	double		height;
-	t_texture	texture;
-}				t_wall;
 
 typedef struct s_health_bar
 {
