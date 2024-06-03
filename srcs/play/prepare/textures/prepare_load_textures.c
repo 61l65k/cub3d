@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_load_textures.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 21:27:36 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 15:20:28 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:15:09 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,24 @@ static void	load_game_over_image(t_cubed *cubed)
 		ft_clean_exit(cubed, ERR_LOAD_TEXTURE, 0);
 }
 
+static void	zero_highest_order_bits(t_texture *texture)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < texture->height)
+	{
+		j = 0;
+		while (j < texture->width)
+		{
+			texture->img.data[i * texture->width + j] &= 0x00FFFFFF;
+			j++;
+		}
+		i++;
+	}
+}
+
 void	load_texture(t_cubed *cubed, void *mlx, t_texture *texture)
 {
 	texture->img.img_ptr = mlx_xpm_file_to_image(mlx, texture->path,
@@ -43,6 +61,8 @@ void	load_texture(t_cubed *cubed, void *mlx, t_texture *texture)
 			&texture->img.bpp, &texture->img.size_l, &texture->img.endian);
 	if (!texture->img.data)
 		ft_clean_exit(cubed, ERR_LOAD_TEXTURE, 0);
+	if (!LINUX)
+		zero_highest_order_bits(texture);
 }
 
 static void	load_all_enemy_textures(t_cubed *cubed)

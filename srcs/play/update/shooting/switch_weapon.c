@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   switch_weapon.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 08:26:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/05/30 19:09:49 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:39:06 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@ int	handle_weapon_switch(int button, t_cubed *cubed)
 		switch_weapon(cubed, 1);
 	}
 	else if (button == SCROLL_DOWN)
-	{
-		switch_weapon(cubed, -1);
-	}
-	else if (button == K_Q)
 	{
 		switch_weapon(cubed, -1);
 	}
