@@ -6,7 +6,7 @@
 /*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 03:18:22 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 13:24:12 by ttakala          ###   ########.fr       */
+/*   Updated: 2024/06/03 14:47:30 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,16 @@ void	render_wall_column(const t_wall *wall, int *img,
 	const double	step = 1.0 * texture->height / wall->height;
 	double			tex_pos;
 
-	tex_pos = (wall->y - res->height / 2 + wall->height / 2) * step;
+	tex_pos = (wall->y - res->height / 2.0 + wall->height / 2) * step;
 	y = 0;
-	while (y < wall->height && wall->y + y < res->height)
+	while (y < wall->height && wall->y + y < res->height && wall->y + y >= 0)
 	{
-		if (wall->y + y >= 0)
+		y_tex = (int)tex_pos % (texture->height - 1);
+		tex_pos += step;
+		if (y_tex >= 0 && y_tex < texture->height)
 		{
-			y_tex = (int)tex_pos % (texture->height - 1);
-			tex_pos += step;
-			if (y_tex >= 0 && y_tex < texture->height)
-			{
-				img[(wall->y + y) * res->width
-					+ wall->x] = texture->img.data[y_tex
-					* texture->width + wall->x_tex];
-			}
+			img[(wall->y + y) * res->width + wall->x]
+				= texture->img.data[y_tex * texture->width + wall->x_tex];
 		}
 		y++;
 	}
