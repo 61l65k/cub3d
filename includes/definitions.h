@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   definitions.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:01:16 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 14:10:49 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:16:51 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,13 @@
 #  define K_FORWARD_ARROW 126
 #  define K_BACK_ARROW 125
 #  define K_LEFT_SHIFT 257
+#  define K_RIGHT_SHIFT 258
+#  define K_CAPS_LOCK 48
+#  define K_1 18
+#  define K_2 19
+#  define K_3 20
+#  define K_4 21
+#  define K_5 23
 # else
 #  define RIGHT_CLICK 3
 #  define K_ENTER 65293

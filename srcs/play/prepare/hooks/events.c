@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ttakala <ttakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:32:15 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/03 15:09:59 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:15:44 by ttakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static int	key_press(int keycode, t_cubed *cubed)
 
 static int	key_released(int keycode, t_cubed *cubed)
 {
+	printf("keycode: %d released\n", keycode);
 	if (cubed->game_state == GAME_STATE_RUNNING)
 	{
 		key_release_movement(keycode, cubed);
