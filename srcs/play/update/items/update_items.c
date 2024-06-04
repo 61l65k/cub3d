@@ -41,17 +41,24 @@ static void	update_active_item(t_cubed *cubed, t_item *item)
 			/ ITEM_DROP_LIFETIME);
 }
 
+void	update_player_health(t_player *p, double health_change)
+{
+	const double	new_health
+		= fmin(p->health + health_change, PLAYER_MAX_HEALTH);
+
+	p->health_bar.health_percentage = new_health / PLAYER_MAX_HEALTH;
+	p->health = new_health;
+}
+
 void	pick_up_item(t_cubed *cubed, t_item **current, t_item **prev)
 {
 	t_player	*p;
 
 	p = &cubed->player;
 	if ((*current)->type == ITEM_HEALTH)
-		p->health_bar.health_percentage = (float)(p->health += 30)
-			/ (float)PLAYER_MAX_HEALTH;
+		update_player_health(p, 30);
 	else if ((*current)->type == ITEM_BREAD)
-		p->health_bar.health_percentage = (float)(p->health += 20)
-			/ (float)PLAYER_MAX_HEALTH;
+		update_player_health(p, 20);
 	else if ((*current)->type == ITEM_BOOTS)
 	{
 		if (p->effects.boots_effect_timer == 0)
@@ -59,14 +66,11 @@ void	pick_up_item(t_cubed *cubed, t_item **current, t_item **prev)
 		p->effects.boots_effect_timer = BOOTS_EFFECT_TIME;
 	}
 	else if ((*current)->type == ITEM_POISON)
-		p->health_bar.health_percentage = (float)(p->health -= 20)
-			/ (float)PLAYER_MAX_HEALTH;
+		update_player_health(p, -20);
 	else if ((*current)->type == ITEM_CLOAK)
 		p->effects.cloak_effect_timer = CLOAK_EFFECT_TIME;
 	else if ((*current)->type == ITEM_BOOK)
 		end_game(cubed);
-	if (p->health > 100)
-		p->health = 100;
 	remove_expired_items(cubed, current, prev);
 }
 

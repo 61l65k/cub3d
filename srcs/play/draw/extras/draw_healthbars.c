@@ -19,8 +19,8 @@ void	init_health_bar(t_player *p, int screen_width, int screen_height)
 	p->health_bar.x = screen_width / 50;
 	p->health_bar.y = screen_height - p->health_bar.height
 		- screen_height / 50;
-	p->health_bar.health_percentage = (float)p->health
-		/ (float)PLAYER_MAX_HEALTH;
+	p->health_bar.health_percentage = (double)p->health
+		/ (double)PLAYER_MAX_HEALTH;
 	p->health_bar.initialized = true;
 }
 

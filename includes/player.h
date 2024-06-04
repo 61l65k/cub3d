@@ -39,7 +39,7 @@ typedef struct s_player
 	double						fov_scaling_factor;
 	int							x_move;
 	int							z_move;
-	int							health;
+	double						health;
 	double						move_speed;
 	int							turn_direction;
 	double						rotation_angle;
