@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_game_over.c                                   :+:      :+:    :+:   */
+/*   game_over.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apyykone <apyykone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 07:26:13 by apyykone          #+#    #+#             */
-/*   Updated: 2024/06/02 13:42:01 by apyykone         ###   ########.fr       */
+/*   Updated: 2024/06/04 02:07:38 by apyykone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	draw_game_over_screen(t_cubed *cubed)
 			get_menu_option_color(cubed, option_count++), "Play Again");
 	}
 	mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, center_x - 50, center_y
-		+ option_y_offset,
+		+ (option_y_offset += 50),
 		get_menu_option_color(cubed, option_count++), "Switch Map");
 	option_y_offset += 50;
 	mlx_string_put(cubed->mlx.mlx_ptr, cubed->mlx.win, center_x - 50,
