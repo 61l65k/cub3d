@@ -44,7 +44,7 @@ static int	map_color(int cur_color, t_coords cur_map,
 static t_minimap	get_minimap(const t_resolution *res, const t_player *player)
 {
 	const t_minimap	minimap = {
-		.dimension = res->width / 4,
+		.dimension = fmin(res->width / 4.0, fmin(res->width, res->height)),
 		.scale = (double)MMAP_SIZE / minimap.dimension,
 		.cos_angle = cos(player->rotation_angle),
 		.sin_angle = sin(player->rotation_angle)
